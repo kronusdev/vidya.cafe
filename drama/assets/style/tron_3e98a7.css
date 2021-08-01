@@ -18591,6 +18591,13 @@ body.using-mouse :focus {
   background-color: transparent;
   color: #3e98a7; }
 
+.site-banner {
+  border-bottom: 4px solid;
+  border-top: 4px solid;
+  margin-top: 5px;
+  height: 112px;
+  object-fit: fill; }
+
 .article-title {
   margin-bottom: 3rem;
   font-weight: 600;
