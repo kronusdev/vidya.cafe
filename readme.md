@@ -1,6 +1,6 @@
 # Installation
 
-Installing Drama locally is the fastest way to get the software up and running and start tinkering under the hood.
+Installing vidya.cafe locally is the fastest way to get the software up and running and start tinkering under the hood.
 
 ---
 
@@ -10,13 +10,13 @@ Installing Drama locally is the fastest way to get the software up and running a
 
 [Docker installation for Windows](https://docs.docker.com/docker-for-windows/install/)
 
-2- Download Drama into your machine by running this command.
+2- Download vidya.cafe into your machine by running this command.
 
 ```
-git clone https://github.com/Aevann1/Drama/
+git clone https://github.com/kronusdev/vidya.cafe/
 ```
 
-3- Press shift+right click inside the Drama code folder and run PowerShell. Then in PowerShell, run the following command:
+3- Press shift+right click inside the vidya.cafe code folder and run PowerShell. Then in PowerShell, run the following command:
 
 ```
 docker-compose up
@@ -30,16 +30,16 @@ docker-compose up
 
 # Linux
 
-1- Download Drama into your machine by running this command.
+1- Download vidya.cafe into your machine by running this command.
 
 ```
-git clone https://github.com/Aevann1/Drama/ /drama
+git clone https://github.com/kronusdev/vidya.cafe/ /vidya.cafe
 ```
 
-2- Navigate to `/drama`
+2- Navigate to `/vidya.cafe`
 
 ```
-cd /drama
+cd /vidya.cafe
 ```
 
 3- run the following command:
@@ -54,5 +54,5 @@ source setup
 5- Optional: to configure the site settings and successsfully integrate it with the external services we use (hcaptcha, cloudflare, discord, tenor and mailgun), please run this command and edit the variables:
 
 ```
-nano /drama/docker-compose.yml
+nano /vidya.cafe/docker-compose.yml
 ```
