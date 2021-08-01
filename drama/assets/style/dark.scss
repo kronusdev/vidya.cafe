@@ -1,6 +1,6 @@
 // Colors
 
-$primary: #ff66ac;
+$primary: #E83F6F;
 $dark: #383838;
 $secondary: #383838;
 $danger: #E53E3E;
@@ -11,7 +11,7 @@ $success: #38A169;
 $muted: #E1E1E1;
 $info: #168EEA;
 
-$purple: #ff66ac;
+$purple: #E83F6F;
 $red: #E53E3E;
 $gray: #383838;
 $green: #38A169;
@@ -37,6 +37,7 @@ $code: #e83e8c;
 
 $gold: #ECC94B;
 $reddit: #ED4630;
+
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";

@@ -23,7 +23,7 @@ $theme-colors: (
 	"gray-700": $gray-700,
 	"gray-800": $gray-800,
 	"gray-900": $gray-900,
-	"reddit": $reddit
+	"reddit": $reddit,
 );
 
 // Borders
@@ -122,7 +122,8 @@ html {
 body {
 	color: $black;
 	padding-top: 49px;
-	background-color: $gray-700;
+    background: linear-gradient(135deg, #efcfe3, #e83f6f) no-repeat center center fixed;
+    background-size: cover !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
