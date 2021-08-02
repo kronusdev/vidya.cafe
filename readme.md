@@ -16,7 +16,7 @@ Installing vidya.cafe locally is the fastest way to get the software up and runn
 git clone https://github.com/kronusdev/vidya.cafe/
 ```
 
-3- Press shift+right click inside the vidya.cafe code folder and run PowerShell. Then in PowerShell, run the following command:
+3- Press shift + right click inside the vidya.cafe code folder and run PowerShell. Then in PowerShell, run the following command:
 
 ```
 docker-compose up
