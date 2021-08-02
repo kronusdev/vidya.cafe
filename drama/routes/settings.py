@@ -62,7 +62,7 @@ def settings_profile_post(v):
 		v.is_nofollow = request.values.get("nofollow", None) == 'true'
 
 	if request.values.get("bio"):
-		bio = request.values.get("bio")[0:1500]
+		bio = request.values.get("bio")[:1500]
 
 		if bio == v.bio:
 			return render_template("settings_profile.html",
@@ -71,8 +71,7 @@ def settings_profile_post(v):
 
 		for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif|PNG|JPG|JPEG|GIF))', bio, re.MULTILINE): bio = bio.replace(i.group(1), f'![]({i.group(1)})')
 		bio = bio.replace("\n", "\n\n").replace("\n\n\n\n\n\n", "\n\n").replace("\n\n\n\n", "\n\n").replace("\n\n\n", "\n\n")
-		with CustomRenderer() as renderer:
-			bio_html = renderer.render(mistletoe.Document(bio))
+		with CustomRenderer() as renderer: bio_html = renderer.render(mistletoe.Document(bio))
 		bio_html = sanitize(bio_html, linkgen=True)
 
 		# Run safety filter
@@ -98,7 +97,7 @@ def settings_profile_post(v):
 
 	if request.values.get("filters"):
 
-		filters=request.values.get("filters")[0:1000].strip()
+		filters=request.values.get("filters")[:1000].strip()
 
 		if filters==v.custom_filter_list:
 			return render_template("settings_profile.html",
@@ -413,7 +412,7 @@ def settings_css_get(v):
 @app.post("/settings/css")
 @auth_required
 def settings_css(v):
-	css = request.form.get("css").replace('\\', '')[0:50000]
+	css = request.form.get("css").replace('\\', '')[:50000]
 
 	if not v.agendaposter:
 		v.css = css
@@ -426,14 +425,14 @@ def settings_css(v):
 @auth_required
 def settings_profilecss_get(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	if v.dramacoins < 1000: return "You must have +1000 dramacoins to set profile css."
+	if v.dramacoins < 1000 and not v.patron: return "You must have +1000 dramacoins or be a patron to set profile css."
 	return render_template("settings_profilecss.html", v=v)
 
 @app.post("/settings/profilecss")
 @auth_required
 def settings_profilecss(v):
-	if v.dramacoins < 1000: return "You must have +1000 dramacoins to set profile css."
-	profilecss = request.form.get("profilecss").replace('\\', '')[0:50000]
+	if v.dramacoins < 1000 and not v.patron: return "You must have +1000 dramacoins or be a patron to set profile css."
+	profilecss = request.form.get("profilecss").replace('\\', '')[:50000]
 	v.profilecss = profilecss
 	g.db.add(v)
 	return render_template("settings_profilecss.html", v=v)

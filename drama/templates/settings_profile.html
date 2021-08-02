@@ -25,7 +25,7 @@
 							<p>Change the theme for the website.</p>
 							<div class="input-group mb2">
 								<select id='theme' class="form-control" form="profile-settings" name="theme" onchange="post('/settings/profile?theme='+document.getElementById('theme').value, function(){window.location.reload(true);})">
-								 {% for entry in ["dark", "light", "coffee", "tron", "4chan"] %}
+								 {% for entry in ["dark", "light", "coffee", "tron", "4chan", "midnight"] %}
 									 <option value="{{entry}}" {% if v.theme==entry %} selected {% endif %}>
 										{{entry}}
 									</option>
@@ -172,7 +172,7 @@
 
 						<div class="input-group">
 
-							<input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://rdrama.net/signup?ref={{v.username}}" data-clipboard-text="https://rdrama.net/signup?ref={{v.username}}">
+							<input type="text" readonly="" class="form-control copy-link" id="referral_code" value="{{request.host_url}}signup?ref={{v.username}}" data-clipboard-text="{{request.host_url}}signup?ref={{v.username}}">
 
 							<span class="input-group-append" data-toggle="tooltip" data-placement="top" title="You have referred {{v.referral_count}} user{{'s' if v.referral_count != 1 else ''}} so far. {% if v.referral_count==0 %}¯\_(ツ)_/¯{% elif v.referral_count>10%}Wow!{% endif %}">
 								<span class="input-group-text text-primary border-0">

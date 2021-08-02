@@ -7,12 +7,14 @@ from drama.helpers.lazy import lazy
 from drama.__main__ import Base
 from .mix_ins import *
 from .flags import *
+from os import environ
+
+site = environ.get("domain").strip()
 
 class SubmissionAux(Base):
 
 	__tablename__ = "submissions_aux"
 
-	# we don't care about this ID
 	key_id = Column(BigInteger, primary_key=True)
 	id = Column(BigInteger, ForeignKey("submissions.id"))
 	title = Column(String(500))
@@ -123,7 +125,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		output = re.sub('&\w{2,3};', '', output)
 
 		output = [re.sub('\W', '', word) for word in output.split()]
-		output = [x for x in output if x][0:6]
+		output = [x for x in output if x][:6]
 
 		output = '-'.join(output)
 
@@ -197,11 +199,11 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	@property
 	@lazy
 	def thumb_url(self):
-		if self.over_18: return "https://rdrama.net/assets/images/nsfw.png"
-		elif not self.url: return "https://rdrama.net/assets/images/default_thumb_text.png"
+		if self.over_18: return f"https://{site}/assets/images/nsfw.png"
+		elif not self.url: return f"https://{site}/assets/images/default_thumb_text.png"
 		elif self.thumburl: return self.thumburl
-		elif "youtu.be" in self.domain or "youtube.com" in self.domain: return "https://rdrama.net/assets/images/default_thumb_yt.png"
-		else: return "https://rdrama.net/assets/images/default_thumb_link.png"
+		elif "youtu.be" in self.domain or "youtube.com" in self.domain: return f"https://{site}/assets/images/default_thumb_yt.png"
+		else: return f"https://{site}/assets/images/default_thumb_link.png"
 
 	@property
 
