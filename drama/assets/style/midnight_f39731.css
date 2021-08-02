@@ -23570,7 +23570,8 @@ html {
 body {
   color: #c9d1d9;
   padding-top: 49px;
-  background-color: #21262d;
+  background: linear-gradient(135deg, #efcfe3, #e83f6f) no-repeat center center fixed;
+  background-size: cover !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23632,6 +23633,14 @@ body.using-mouse :focus {
 #article .navbar-light .navbar-nav .nav-link:focus {
   background-color: transparent;
   color: #c9d1d9;
+}
+
+.site-banner {
+  border-bottom: 4px solid;
+  border-top: 4px solid;
+  margin-top: 5px;
+  height: 112px;
+  object-fit: fill;
 }
 
 .article-title {
