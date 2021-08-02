@@ -24,12 +24,14 @@ $theme-colors: (
 	"gray-800": $gray-800,
 	"gray-900": $gray-900,
 	"reddit": $reddit,
+    "border-color": $border-color,
 );
 
 // Borders
 
 $input-border-color: $gray-400;
-$border-color: $gray-400;
+//$border-color: $gray-400;
+$border-width: 4px;
 
 $border-radius: .35rem;
 
@@ -122,7 +124,7 @@ html {
 body {
 	color: $black;
 	padding-top: 49px;
-    background: linear-gradient(135deg, #efcfe3, #e83f6f) no-repeat center center fixed;
+    background: linear-gradient(135deg, #47A3FF, #1870C9) no-repeat center center fixed;
     background-size: cover !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -186,8 +188,8 @@ body.using-mouse :focus {
 }
 
 .site-banner {
-    border-bottom: 4px solid;
-    border-top: 4px solid;
+    //border-bottom: 4px solid;
+    //border-top: 4px solid;
     margin-top: 5px;
     height: 112px;
     object-fit: fill;
@@ -448,7 +450,7 @@ ol > li::before {
 // Navbar and tab Bar
 
 .navbar-light {
-	background-color: $gray-500!important;
+	background-color: $gray-200!important;
 	box-shadow: 0 0.1px 2px rgba(0,0,0,.15),0 0 2px rgba(0,0,0,.1)!important;
 }
 
@@ -764,8 +766,10 @@ label.color-radio span {
 
 .form-control {
 	color: $muted;
-	border-color: $muted;
-	border-width: 2px;
+	//border-color: $muted;
+	//border-width: 2px;
+    border: none;
+    box-shadow: 0px 0px 4px $primary;
 	background: $gray-300;
 	transition: none;
 }
@@ -789,10 +793,10 @@ label.color-radio span {
 
 .form-control:hover {
 	color: $black;
-	background-color: $gray-600;
+	background-color: $gray-600 !important;
 	outline: 0;
 	border-color: $primary;
-	box-shadow: none;
+    box-shadow: 0px 0px 8px #47A3FF;
 }
 
 .form-control:focus, .form-control:active {
@@ -1131,11 +1135,11 @@ color: $dark;
 // Main Content
 
 .pseudo-submit-form .card-header {
-	background-color: $gray-600!important;
+	background-color: $gray-200!important;
 }
 
 #frontpage .pseudo-submit-form.card, #search .search-results.card, #guild .pseudo-submit-form.card {
-	background-color: $gray-600;
+	background-color: $gray-500;
 	border-radius: $border-radius;
 	border: none;
 	//box-shadow: $box-shadow-sm;
@@ -1147,11 +1151,11 @@ color: $dark;
 }
 
 #frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
-	background-color: $light;
+	background-color: $gray-700;
 }
-
+// TODO remove question mark?
 #frontpage .pseudo-submit-form.card .card-body .form-control:hover, #frontpage .pseudo-submit-form.card .card-body .form-control:active, #frontpage .pseudo-submit-form.card .card-body .form-control:focus {
-	background-color: $light;
+	background-color: $gray-600;
 }
 
 #guild .pseudo-submit-form.card .card-body .form-control:hover, #guild .pseudo-submit-form.card .card-body .form-control:active, #guild .pseudo-submit-form.card .card-body .form-control:focus {
@@ -3386,6 +3390,7 @@ html {
 .container {
 	overflow: hidden;
 	max-width: none;
+    //background: rgba()
 }
 
 body, #settings, #notifications, #submit {
@@ -3949,12 +3954,9 @@ img.emoji {
     border: 2px solid $gray-200;
 }
 
-.btn {
-	background: transparent;
-}
-
 .form-control {
 	background: transparent;
+    transition: 0.15s;
 }
 
 .navbar-light .navbar-nav .nav-link {

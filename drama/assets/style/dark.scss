@@ -1,6 +1,6 @@
 // Colors
 
-$primary: #E83F6F;
+$primary: #47A3FF;
 $dark: #383838;
 $secondary: #383838;
 $danger: #E53E3E;
@@ -11,19 +11,19 @@ $success: #38A169;
 $muted: #E1E1E1;
 $info: #168EEA;
 
-$purple: #E83F6F;
+$purple: #47A3FF;
 $red: #E53E3E;
 $gray: #383838;
 $green: #38A169;
-
-$gray-100: #E1E1E1;
-$gray-200: #E1E1E1;
-$gray-300: #383838;
-$gray-400: #303030;
-$gray-500: #000000;
-$gray-600: #000000;
-$gray-700: #000000;
-$gray-800: #000000;
+//HSB hue 210 saturation 30 brightness from 0 incremented by 4 each time
+$gray-100: #394552;
+$gray-200: #323C47;
+$gray-300: #2B353D;
+$gray-400: #242C33;
+$gray-500: #1C2229;
+$gray-600: #151A1F;
+$gray-700: #0E1114;
+$gray-800: #07090A;
 $gray-900: #000000;
 
 $upvote: #ff66ac;
@@ -38,6 +38,8 @@ $code: #e83e8c;
 $gold: #ECC94B;
 $reddit: #ED4630;
 
+$border-color: #2E2F2F;
+$border-width: 4px;
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
@@ -46,17 +48,13 @@ $reddit: #ED4630;
 	border-color: $primary;
 }
 
-.border {
-	border-color: $primary !important;
-}
-
 .form-control {
 	background: transparent;
 	border-color: $primary !important;
 }
 
 .btn {
-	background: transparent;
+	//background: transparent;
 	border-color: $primary !important;
 }
 
