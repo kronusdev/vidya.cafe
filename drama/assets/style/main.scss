@@ -3151,6 +3151,14 @@ ul.comment-section {
 		height: auto !important;
 	}
 	}
+// Post view
+
+.post-top {
+    padding: 1em !important;
+    border-radius: $border-radius !important;
+    border: none !important;
+    background: $gray-500;
+}
 
 // Submit Page
 
@@ -3974,11 +3982,6 @@ img.emoji {
 .table {
 	color: $white;
 }
-
-.comment-box {
-    border: 2px solid $gray-200;
-}
-
 
 .navbar-light .navbar-nav .nav-link {
     border-radius: 5px;

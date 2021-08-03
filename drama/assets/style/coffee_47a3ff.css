@@ -21337,6 +21337,11 @@ ul.comment-section {
 
   .h-xl-auto {
     height: auto !important; } }
+.post-top {
+  padding: 1em !important;
+  border-radius: 0.35rem !important;
+  border: none !important; }
+
 .submit-container {
   border-radius: 0.35rem;
   padding: 2rem;
@@ -21955,9 +21960,6 @@ img.emoji {
     padding: 0.75rem 0.4rem; } }
 .table {
   color: #F1E7D0; }
-
-.comment-box {
-  border: 2px solid #433434; }
 
 .navbar-light .navbar-nav .nav-link {
   border-radius: 5px; }
