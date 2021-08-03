@@ -13,7 +13,6 @@ from drama.helpers.security import *
 from drama.helpers.get import *
 from drama.helpers.images import *
 from drama.classes import *
-from drama.classes.domains import reasons as REASONS
 from flask import *
 import matplotlib.pyplot as plt
 from drama.__main__ import app, cache
@@ -457,24 +456,6 @@ def admin_appdata(v):
 		return render_template(
 			"admin/app_data.html",
 			v=v)
-
-
-@app.get("/admin/domain/<domain_name>")
-@admin_level_required(4)
-def admin_domain_domain(domain_name, v):
-
-	d_query=domain_name.replace("_","\_")
-	domain=g.db.query(BannedDomain).filter_by(domain=d_query).first()
-
-	if not domain: domain=BannedDomain(domain=domain_name)
-
-	return render_template(
-		"admin/manage_domain.html",
-		v=v,
-		domain_name=domain_name,
-		domain=domain,
-		reasons=REASONS
-		)
 
 
 @app.post("/admin/image_purge")
@@ -961,25 +942,29 @@ def admin_dump_cache(v):
 	return {"message": "Internal cache cleared."}
 
 
-@app.post("/admin/ban_domain")
+@app.get("/admin/banned_domains/")
+@admin_level_required(4)
+def admin_banned_domains(v):
+
+	banned_domains = g.db.query(BannedDomain).all()
+	return render_template("admin/banned_domains.html", v=v, banned_domains=banned_domains)
+
+@app.post("/admin/banned_domains")
 @admin_level_required(4)
 @validate_formkey
-def admin_ban_domain(v):
+def admin_toggle_ban_domain(v):
 
-	domain=request.form.get("domain",'').strip()
-
+	domain=request.form.get("domain").strip()
 	if not domain: abort(400)
 
-	reason=int(request.form.get("reason",0))
-	if not reason: abort(400)
+	reason=request.form.get("reason", "").strip()
 
-	d_query=domain.replace("_","\_")
-	d=g.db.query(BannedDomain).filter_by(domain=d_query).first()
-	if d: d.reason=reason
-	else: d=BannedDomain(domain=domain, reason=reason)
-
-	g.db.add(d)
-	return redirect(d.permalink)
+	d = g.db.query(BannedDomain).filter_by(domain=domain.replace("_","\_")).first()
+	if d: g.db.delete(d)
+	else:
+		d = BannedDomain(domain=domain, reason=reason)
+		g.db.add(d)
+	return redirect("/admin/banned_domains/")
 
 
 @app.post("/admin/nuke_user")
