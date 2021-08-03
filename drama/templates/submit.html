@@ -301,12 +301,10 @@
 
 						<div class="row justify-content-center mb-4 pb-7">
 
-								<div class="col col-md-6 p-3 py-md-0">
-
+								<div class="col col-md-6 submit-container">
 										<h1 class="d-none d-md-block">Create a post</h1>
 
 										<h2 class="h3 d-md-none">Create a post</h2>
-
 										<div class="body">
 
 												<input type="hidden" name="formkey" value="{{v.formkey}}">
@@ -370,18 +368,25 @@
 													<div id="emoji-reply-btn" onclick="loadEmojis('post-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam"></i></div>
 												</label>
 												
-												<pre></pre>
-												<div class="form-text text-small"><a href="/formatting" target="_blank">Formatting help</a></div>
+												<a href="/formatting" target="_blank" class="float-right">Formatting help</a>
 												<pre></pre>
 
-												<div class="custom-control custom-checkbox">
+												
+												<div class="submit-bottom">
+													<a href="/" class="btn btn-secondary">Cancel</a>
+													{% if error %}<span class="text-danger mr-2">{{error}}</span>{% endif %}
+													
+													<div class="custom-control custom-checkbox">
 														<input type="checkbox" class="custom-control-input" id="nsfwCheck" name="over_18">
 														<label class="custom-control-label" for="nsfwCheck">+18</label>
-												</div>
-												
-												<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="privateCheck" name="private">
-														<label class="custom-control-label" for="privateCheck">Unlisted</label>
+													</div>
+													
+													<div class="custom-control custom-checkbox">
+															<input type="checkbox" class="custom-control-input" id="privateCheck" name="private">
+															<label class="custom-control-label" for="privateCheck">Unlisted</label>
+													</div>
+													
+													<button class="btn btn-outline-purple" id="create_button" type="submit" disabled>Post</button>
 												</div>
 										</div>
 
@@ -390,19 +395,6 @@
 						</div>
 
 				</div>
-
-				<div class="container">
-						<div class="row fixed-bottom bg-white border-top p-3" id="" style="z-index: 100; bottom: 0px; transition: bottom 220ms cubic-bezier(0, 0, 0.2, 1) 0s;">
-								<div class="col">
-										<a href="/" class="btn btn-secondary">Cancel</a>
-								</div>
-								<div class="col text-right">
-										{% if error %}<span class="text-danger mr-2">{{error}}</span>{% endif %}
-										<button class="btn btn-outline-purple" id="create_button" type="submit" disabled>Post</button>
-								</div>
-						</div>
-				</div>
-
 		</form>
 
 		{% endblock %}
