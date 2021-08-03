@@ -18648,7 +18648,7 @@ html {
 body {
   color: #433434;
   padding-top: 49px;
-  background: linear-gradient(135deg, #47A3FF, #1870C9) no-repeat center center fixed;
+  background: linear-gradient(135deg, #2a96f3, #F0E0D6) no-repeat center center fixed;
   background-size: cover !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -18803,7 +18803,14 @@ ol > li::before {
 .btn {
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 0.2rem; }
+  background: #F0E0D6;
+  box-shadow: 0px 0px 4px #2a96f3;
+  transition: 0.15s;
+  border: none; }
+
+.btn:hover {
+  background-color: #F0E0D6 !important;
+  box-shadow: 0px 0px 8px #2a96f3; }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.75rem;
@@ -19139,8 +19146,8 @@ label.color-radio span {
   color: #AA9881;
   border: none;
   box-shadow: 0px 0px 4px #2a96f3;
-  background: #433434;
-  transition: none; }
+  background: #F0E0D6;
+  transition: 0.15s; }
 
 .form-control:disabled, .form-control[readonly] {
   background-color: #3E2C18; }
@@ -19160,7 +19167,7 @@ label.color-radio span {
   background-color: #F0E0D6 !important;
   outline: 0;
   border-color: #2a96f3;
-  box-shadow: 0px 0px 8px #47A3FF; }
+  box-shadow: 0px 0px 8px #2a96f3; }
 
 .form-control:focus, .form-control:active {
   color: #433434;
@@ -20761,7 +20768,7 @@ ul.comment-section {
   margin-bottom: 0; }
 
 .settings .settings-section .footer {
-  background-color: #F0E0D6; }
+  background-color: #433434; }
 
 .modal .profile-actions .list-group-item {
   border: none;
@@ -21329,6 +21336,19 @@ ul.comment-section {
 
   .h-xl-auto {
     height: auto !important; } }
+.submit-container {
+  border-radius: 0.35rem;
+  padding: 2rem;
+  padding-bottom: calc(2rem + 32px) !important;
+  background: #F0E0D6; }
+
+.submit-bottom {
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 4rem); }
+
 .text-format {
   display: flex;
   align-items: center;
@@ -21559,7 +21579,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     box-shadow: none; }
 
   .mobile-nav-icon {
-    padding: 0.25rem 0.75rem; }
+    padding: 0.25rem 0.75rem;
+    color: #817261; }
 
   #thread, #submit, #error-401, #error-403, #error-404, #error-405, #error-409, #error-410, #error-422, #error-429, #error-451, #error-500 {
     background-color: #F0E0D6; }
@@ -21936,10 +21957,6 @@ img.emoji {
 
 .comment-box {
   border: 2px solid #433434; }
-
-.form-control {
-  background: transparent;
-  transition: 0.15s; }
 
 .navbar-light .navbar-nav .nav-link {
   border-radius: 5px; }

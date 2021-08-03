@@ -124,7 +124,7 @@ html {
 body {
 	color: $black;
 	padding-top: 49px;
-    background: linear-gradient(135deg, #47A3FF, #1870C9) no-repeat center center fixed;
+    background: linear-gradient(135deg, $primary, $secondary) no-repeat center center fixed;
     background-size: cover !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -332,7 +332,16 @@ ol > li::before {
 .btn {
 	font-weight: $font-weight-bold;
 	font-size: $font-size-base;
-	border-radius: $border-radius-sm;
+	//border-radius: $border-radius-sm;
+    background: $gray-700;
+    box-shadow: 0px 0px 4px $primary;
+    transition: 0.15s;
+    border: none;
+}
+
+.btn:hover {
+    background-color: $gray-600 !important;
+    box-shadow: 0px 0px 8px $primary;
 }
 
 .btn-sm {
@@ -770,8 +779,8 @@ label.color-radio span {
 	//border-width: 2px;
     border: none;
     box-shadow: 0px 0px 4px $primary;
-	background: $gray-300;
-	transition: none;
+    background: $gray-700;
+    transition: 0.15s;
 }
 
 .form-control:disabled, .form-control[readonly] {
@@ -796,7 +805,7 @@ label.color-radio span {
 	background-color: $gray-600 !important;
 	outline: 0;
 	border-color: $primary;
-    box-shadow: 0px 0px 8px #47A3FF;
+    box-shadow: 0px 0px 8px $primary;
 }
 
 .form-control:focus, .form-control:active {
@@ -2841,7 +2850,7 @@ ul.comment-section {
 }
 
 .settings .settings-section .footer {
-	background-color: $secondary;
+	background-color: $gray-300;
 }
 
 // Modal Profile Actions
@@ -3144,6 +3153,21 @@ ul.comment-section {
 	}
 
 // Submit Page
+
+.submit-container {
+    border-radius: $border-radius;
+    padding: 2rem;
+    padding-bottom: calc(2rem + 32px) !important;
+    background: $gray-500;
+}
+
+.submit-bottom {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 4rem);
+}
 
 .text-format {
 	display: flex;
@@ -3448,6 +3472,7 @@ body, #settings, #notifications, #submit {
 
 .mobile-nav-icon {
 	padding: 0.25rem 0.75rem;
+    color: $gray-100;
 }
 
 #thread, #submit, #error-401, #error-403, #error-404, #error-405, #error-409, #error-410, #error-422, #error-429, #error-451, #error-500 {
@@ -3954,10 +3979,6 @@ img.emoji {
     border: 2px solid $gray-200;
 }
 
-.form-control {
-	background: transparent;
-    transition: 0.15s;
-}
 
 .navbar-light .navbar-nav .nav-link {
     border-radius: 5px;

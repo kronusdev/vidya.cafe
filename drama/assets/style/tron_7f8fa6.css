@@ -18649,7 +18649,7 @@ html {
 body {
   color: #f0f0f0;
   padding-top: 49px;
-  background: linear-gradient(135deg, #47A3FF, #1870C9) no-repeat center center fixed;
+  background: linear-gradient(135deg, #7f8fa6, #7f8fa6) no-repeat center center fixed;
   background-size: cover !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -18804,7 +18804,14 @@ ol > li::before {
 .btn {
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 0.2rem; }
+  background: #00001f;
+  box-shadow: 0px 0px 4px #7f8fa6;
+  transition: 0.15s;
+  border: none; }
+
+.btn:hover {
+  background-color: #00001f !important;
+  box-shadow: 0px 0px 8px #7f8fa6; }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.75rem;
@@ -19141,7 +19148,7 @@ label.color-radio span {
   border: none;
   box-shadow: 0px 0px 4px #7f8fa6;
   background: #00001f;
-  transition: none; }
+  transition: 0.15s; }
 
 .form-control:disabled, .form-control[readonly] {
   background-color: #00001f; }
@@ -19161,7 +19168,7 @@ label.color-radio span {
   background-color: #00001f !important;
   outline: 0;
   border-color: #7f8fa6;
-  box-shadow: 0px 0px 8px #47A3FF; }
+  box-shadow: 0px 0px 8px #7f8fa6; }
 
 .form-control:focus, .form-control:active {
   color: #f0f0f0;
@@ -20762,7 +20769,7 @@ ul.comment-section {
   margin-bottom: 0; }
 
 .settings .settings-section .footer {
-  background-color: #7f8fa6; }
+  background-color: #00001f; }
 
 .modal .profile-actions .list-group-item {
   border: none;
@@ -21330,6 +21337,19 @@ ul.comment-section {
 
   .h-xl-auto {
     height: auto !important; } }
+.submit-container {
+  border-radius: 0.35rem;
+  padding: 2rem;
+  padding-bottom: calc(2rem + 32px) !important;
+  background: #00001f; }
+
+.submit-bottom {
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 4rem); }
+
 .text-format {
   display: flex;
   align-items: center;
@@ -21560,7 +21580,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     box-shadow: none; }
 
   .mobile-nav-icon {
-    padding: 0.25rem 0.75rem; }
+    padding: 0.25rem 0.75rem;
+    color: #7f8fa6; }
 
   #thread, #submit, #error-401, #error-403, #error-404, #error-405, #error-409, #error-410, #error-422, #error-429, #error-451, #error-500 {
     background-color: #00001f; }
@@ -21937,10 +21958,6 @@ img.emoji {
 
 .comment-box {
   border: 2px solid #7f8fa6; }
-
-.form-control {
-  background: transparent;
-  transition: 0.15s; }
 
 .navbar-light .navbar-nav .nav-link {
   border-radius: 5px; }
