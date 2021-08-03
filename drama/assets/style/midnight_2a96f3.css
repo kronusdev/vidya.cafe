@@ -7804,7 +7804,7 @@ a.text-dark:hover, a.text-dark:focus {
   border-left-color: #38B2AC; }
 
 .bd-callout-upvote {
-  border-left-color: #2a96f3; }
+  border-left-color: #ff66ac; }
 
 .bd-callout-purple {
   border-left-color: #a371f7; }
@@ -7813,7 +7813,7 @@ a.text-dark:hover, a.text-dark:focus {
   border-left-color: #ECC94B; }
 
 .bd-callout-admin {
-  border-left-color: #2a96f3; }
+  border-left-color: #ff66ac; }
 
 .bd-callout-gray {
   border-left-color: #8b949e; }
@@ -7883,10 +7883,10 @@ a.text-dark:hover, a.text-dark:focus {
   --black: #c9d1d9;
   --muted: #c9d1d9;
   --downvote: #38B2AC;
-  --upvote: #2a96f3;
+  --upvote: #ff66ac;
   --purple: #a371f7;
   --gold: #ECC94B;
-  --admin: #2a96f3;
+  --admin: #ff66ac;
   --gray: #8b949e;
   --gray-100: #c9d1d9;
   --gray-200: #b1bac4;
@@ -10410,8 +10410,8 @@ fieldset:disabled a.btn {
 
 .btn-upvote {
   color: #0d1117;
-  background-color: #2a96f3;
-  border-color: #2a96f3; }
+  background-color: #ff66ac;
+  border-color: #ff66ac; }
   .btn-upvote:hover {
     color: #c9d1d9;
     background-color: #2a96f3;
@@ -10423,8 +10423,8 @@ fieldset:disabled a.btn {
     box-shadow: 0 0 0 0.2rem rgba(219, 89, 150, 0.5); }
   .btn-upvote.disabled, .btn-upvote:disabled {
     color: #0d1117;
-    background-color: #2a96f3;
-    border-color: #2a96f3; }
+    background-color: #ff66ac;
+    border-color: #ff66ac; }
   .btn-upvote:not(:disabled):not(.disabled):active, .btn-upvote:not(:disabled):not(.disabled).active, .show > .btn-upvote.dropdown-toggle {
     color: #c9d1d9;
     background-color: #2a96f3;
@@ -10482,8 +10482,8 @@ fieldset:disabled a.btn {
 
 .btn-admin {
   color: #0d1117;
-  background-color: #2a96f3;
-  border-color: #2a96f3; }
+  background-color: #ff66ac;
+  border-color: #ff66ac; }
   .btn-admin:hover {
     color: #c9d1d9;
     background-color: #2a96f3;
@@ -10495,8 +10495,8 @@ fieldset:disabled a.btn {
     box-shadow: 0 0 0 0.2rem rgba(219, 89, 150, 0.5); }
   .btn-admin.disabled, .btn-admin:disabled {
     color: #0d1117;
-    background-color: #2a96f3;
-    border-color: #2a96f3; }
+    background-color: #ff66ac;
+    border-color: #ff66ac; }
   .btn-admin:not(:disabled):not(.disabled):active, .btn-admin:not(:disabled):not(.disabled).active, .show > .btn-admin.dropdown-toggle {
     color: #c9d1d9;
     background-color: #2a96f3;
@@ -11021,21 +11021,21 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(56, 178, 172, 0.5); }
 
 .btn-outline-upvote {
-  color: #2a96f3;
-  border-color: #2a96f3; }
+  color: #ff66ac;
+  border-color: #ff66ac; }
   .btn-outline-upvote:hover {
     color: #0d1117;
-    background-color: #2a96f3;
-    border-color: #2a96f3; }
+    background-color: #ff66ac;
+    border-color: #ff66ac; }
   .btn-outline-upvote:focus, .btn-outline-upvote.focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 102, 172, 0.5); }
   .btn-outline-upvote.disabled, .btn-outline-upvote:disabled {
-    color: #2a96f3;
+    color: #ff66ac;
     background-color: transparent; }
   .btn-outline-upvote:not(:disabled):not(.disabled):active, .btn-outline-upvote:not(:disabled):not(.disabled).active, .show > .btn-outline-upvote.dropdown-toggle {
     color: #0d1117;
-    background-color: #2a96f3;
-    border-color: #2a96f3; }
+    background-color: #ff66ac;
+    border-color: #ff66ac; }
     .btn-outline-upvote:not(:disabled):not(.disabled):active:focus, .btn-outline-upvote:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-upvote.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(255, 102, 172, 0.5); }
 
@@ -11078,21 +11078,21 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(236, 201, 75, 0.5); }
 
 .btn-outline-admin {
-  color: #2a96f3;
-  border-color: #2a96f3; }
+  color: #ff66ac;
+  border-color: #ff66ac; }
   .btn-outline-admin:hover {
     color: #0d1117;
-    background-color: #2a96f3;
-    border-color: #2a96f3; }
+    background-color: #ff66ac;
+    border-color: #ff66ac; }
   .btn-outline-admin:focus, .btn-outline-admin.focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 102, 172, 0.5); }
   .btn-outline-admin.disabled, .btn-outline-admin:disabled {
-    color: #2a96f3;
+    color: #ff66ac;
     background-color: transparent; }
   .btn-outline-admin:not(:disabled):not(.disabled):active, .btn-outline-admin:not(:disabled):not(.disabled).active, .show > .btn-outline-admin.dropdown-toggle {
     color: #0d1117;
-    background-color: #2a96f3;
-    border-color: #2a96f3; }
+    background-color: #ff66ac;
+    border-color: #ff66ac; }
     .btn-outline-admin:not(:disabled):not(.disabled):active:focus, .btn-outline-admin:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-admin.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(255, 102, 172, 0.5); }
 
@@ -12867,7 +12867,7 @@ input[type="button"].btn-block {
 
 .badge-upvote {
   color: #0d1117;
-  background-color: #2a96f3; }
+  background-color: #ff66ac; }
   a.badge-upvote:hover, a.badge-upvote:focus {
     color: #0d1117;
     background-color: #2a96f3; }
@@ -12897,7 +12897,7 @@ input[type="button"].btn-block {
 
 .badge-admin {
   color: #0d1117;
-  background-color: #2a96f3; }
+  background-color: #ff66ac; }
   a.badge-admin:hover, a.badge-admin:focus {
     color: #0d1117;
     background-color: #2a96f3; }
@@ -14517,7 +14517,7 @@ button.bg-downvote:focus {
   background-color: #2c8b87 !important; }
 
 .bg-upvote {
-  background-color: #2a96f3 !important; }
+  background-color: #ff66ac !important; }
 
 a.bg-upvote:hover, a.bg-upvote:focus,
 button.bg-upvote:hover,
@@ -14541,7 +14541,7 @@ button.bg-gold:focus {
   background-color: #e7bb1d !important; }
 
 .bg-admin {
-  background-color: #2a96f3 !important; }
+  background-color: #ff66ac !important; }
 
 a.bg-admin:hover, a.bg-admin:focus,
 button.bg-admin:hover,
@@ -14717,7 +14717,7 @@ button.bg-border-color:focus {
   border-color: #38B2AC !important; }
 
 .border-upvote {
-  border-color: #2a96f3 !important; }
+  border-color: #ff66ac !important; }
 
 .border-purple {
   border-color: #a371f7 !important; }
@@ -14726,7 +14726,7 @@ button.bg-border-color:focus {
   border-color: #ECC94B !important; }
 
 .border-admin {
-  border-color: #2a96f3 !important; }
+  border-color: #ff66ac !important; }
 
 .border-gray {
   border-color: #8b949e !important; }
@@ -18436,7 +18436,7 @@ a.text-downvote:hover, a.text-downvote:focus {
   color: #267874 !important; }
 
 .text-upvote {
-  color: #2a96f3 !important; }
+  color: #ff66ac !important; }
 
 a.text-upvote:hover, a.text-upvote:focus {
   color: #2a96f3 !important; }
@@ -18454,7 +18454,7 @@ a.text-gold:hover, a.text-gold:focus {
   color: #d4ab16 !important; }
 
 .text-admin {
-  color: #2a96f3 !important; }
+  color: #ff66ac !important; }
 
 a.text-admin:hover, a.text-admin:focus {
   color: #2a96f3 !important; }
@@ -19315,7 +19315,7 @@ th {
 	outline: 0;
 } */
 .active.arrow-up::before {
-  color: #2a96f3; }
+  color: #ff66ac; }
 
 .arrow-up::before {
   cursor: pointer;
@@ -19326,7 +19326,7 @@ th {
   content: "\f357"; }
 
 .arrow-up:hover::before {
-  color: #2a96f3;
+  color: #ff66ac;
   opacity: 0.5; }
 
 .active.arrow-down::before {
@@ -19366,7 +19366,7 @@ th {
   bottom: 0; }
 
 .upvoted .arrow-mobile-up {
-  color: #2a96f3 !important; }
+  color: #ff66ac !important; }
 
 .downvoted .arrow-mobile-down {
   color: #38B2AC !important; }
@@ -19378,7 +19378,7 @@ th {
   color: #c9d1d9; }
 
 .score-up {
-  color: #2a96f3 !important; }
+  color: #ff66ac !important; }
 
 .score-down {
   color: #38B2AC !important; }
@@ -21715,7 +21715,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     opacity: 1; }
 
   .active.arrow-up::before, .active.arrow-up:hover::before {
-    color: #2a96f3; }
+    color: #ff66ac; }
 
   .active.arrow-down::before, .active.arrow-down:hover::before {
     color: #38B2AC; }
@@ -21876,7 +21876,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   display: none; }
 
 span.red {
-  color: #2a96f3; }
+  color: #ff66ac; }
 
 span.green {
   color: #3fb950; }
@@ -21892,7 +21892,7 @@ div.deleted.banned {
   background-color: #964000; }
 
 .text-admin {
-  color: #2a96f3; }
+  color: #ff66ac; }
 
 .in-comment-image {
   max-height: 100px !important;
@@ -22094,4 +22094,4 @@ body {
   -webkit-animation: None !important;
   animation: None !important; }
 
-/*# sourceMappingURL=midnight_2a96f3.css.map */
+/*# sourceMappingURL=midnight_ff66ac.css.map */
