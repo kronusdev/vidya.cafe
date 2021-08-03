@@ -1,6 +1,7 @@
 $theme-colors: (
 	"primary": $primary,
 	"secondary": $secondary,
+	"accent": $accent,
 	"danger": $danger,
 	"dark": $dark,
 	"white": $white,
@@ -93,8 +94,9 @@ $sizes: map-merge(
 
 $box-shadow-sm: 0 0.1px 3px 0 rgba(0, 0, 0, 0.05), 0 0.1px 2px 0 rgba(0, 0, 0, 0.03);
 
-$box-shadow: 0 0.1px 3px rgba(0, 0, 0, 0.05), 0 0 0 0.1px rgba(0, 0, 0, 0.05);
-
+//$box-shadow: 0 0.1px 3px rgba(0, 0, 0, 0.05), 0 0 0 0.1px rgba(0, 0, 0, 0.05);
+$box-shadow: 0px 0px 4px $primary;
+$box-shadow-offset: 3px 3px 6px $primary;
 // Tool Tips
 
 $tooltip-opacity: 1;
@@ -146,6 +148,7 @@ pre {
 	white-space: -pre-wrap;		/* Opera 4-6 */
 	white-space: -o-pre-wrap;	/* Opera 7 */
 	word-wrap: break-word;		 /* Internet Explorer 5.5+ */
+	background: inherit;
 }
 
 body.using-mouse :focus {
@@ -334,7 +337,7 @@ ol > li::before {
 	font-size: $font-size-base;
 	//border-radius: $border-radius-sm;
     background: $gray-700;
-    box-shadow: 0px 0px 4px $primary;
+    box-shadow: $box-shadow;
     transition: 0.15s;
     border: none;
 }
@@ -778,7 +781,7 @@ label.color-radio span {
 	//border-color: $muted;
 	//border-width: 2px;
     border: none;
-    box-shadow: 0px 0px 4px $primary;
+    box-shadow: $box-shadow;
     background: $gray-700;
     transition: 0.15s;
 }
@@ -1145,6 +1148,10 @@ color: $dark;
 
 .pseudo-submit-form .card-header {
 	background-color: $gray-200!important;
+}
+
+.pseudo-submit-form:hover {
+    transform: none !important;
 }
 
 #frontpage .pseudo-submit-form.card, #search .search-results.card, #guild .pseudo-submit-form.card {
@@ -1866,7 +1873,14 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .card {
-	background-color: $gray-900;
+	background-color: $gray-500;
+    transition: 0.15s;
+    margin: 0.25rem 0 0.25rem;
+    border-radius: 0.35rem !important;
+}
+.card:hover {
+    transform: scale(1.005);
+    z-index: 1000;
 }
 
 #thread .card {
@@ -1892,9 +1906,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	padding: 0.5rem;
 }
 
-#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover, #guild .posts .card:hover, #settings-guild .posts .card:hover {
-	background-color: $gray-600;
-}
+//#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover, #guild .posts .card:hover, #settings-guild .posts .card:hover {
+	//background-color: $gray-600;
+//}
 
 .post-title {
 	font-size: 16px;
@@ -1912,9 +1926,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	color: $primary;
 }
 
-#frontpage .post-title a {
-	color: $black;
-}
+
 
 #frontpage .post-title a:hover, #frontpage .post-title a:active, #frontpage .post-title a:focus	{
 	text-decoration: none;
@@ -2290,7 +2302,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .post-actions a {
-	color: $gray-100;
+	color: $accent;
 	text-decoration: none;
 	text-transform: none;
 }
@@ -2307,7 +2319,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	width: 100px;
 	height: 70px;
 	object-fit: cover;
-	border: 0.1px solid $primary;
+	//border: 0.1px solid $primary;
+    border: none;
+    //box-shadow: $box-shadow-offset;
 	border-radius: $border-radius;
 	z-index: 2;
 	background-color: $gray-300;
@@ -2397,6 +2411,7 @@ div:hover .thumb-img-link-overlay {
 	position: relative;
 	margin-top: 2rem;
 	padding-left: 13px;
+    background: $gray-500;
 }
 
 #notifications .comment, #userpage .comment {
@@ -2487,7 +2502,7 @@ blockquote p {
 // Comments
 
 .comment-section {
-	background-color: $gray-700;
+	background-color: $gray-500;
 }
 
 .comment p {
@@ -2503,7 +2518,7 @@ blockquote p {
 .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
 	font-size: 12px;
 	margin-right: .5rem;
-	color: $gray-100;
+	color: $accent;
 }
 
 .comment-actions .dropdown-item:active .fa, .comment-actions .dropdown-item:active .fas, .comment-actions .dropdown-item:active .far {
@@ -2540,7 +2555,7 @@ blockquote p {
 }
 
 .comment-actions a {
-	color: $gray-100;
+	color: $accent;
 	text-decoration: none;
 }
 
@@ -2603,9 +2618,9 @@ ul.comment-section {
 	min-height: 84px;
 }
 
-.comment-write textarea {
-	background: $light;
-}
+//.comment-write textarea {
+	//background: $light;
+//}
 
 .comment-write textarea:hover,
 .form-control[readonly]:hover {
@@ -2625,11 +2640,11 @@ ul.comment-section {
 .comment-write .comment-format .format {
 	padding: 0 .5rem;
 	font-size: $font-size-base;
-	color: $gray-200;
+	color: $accent;
 }
 
 .comment-write .comment-format .format:hover {
-	color: $black;
+	color: $white;
 }
 
 .comment .comment-collapse::before {
@@ -3631,7 +3646,7 @@ body, #settings, #notifications, #submit {
 
 .post-actions a {
 	font-size: $font-size-base;
-	color: $gray-200;
+    color: $accent;
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
@@ -3681,7 +3696,7 @@ body, #settings, #notifications, #submit {
 // Comments
 
 .comment-section {
-	background-color: $gray-600;
+	background-color: $gray-500;
 }
 
 .comment-section > .comment {
@@ -3967,10 +3982,14 @@ img.emoji {
 }
 
 .comment.collapsed .comment-collapse-desktop:hover {
-	color:$white !important; }
-	
+	color:$white !important;
+}
+
+#frontpage .post-title a {
+    color: $primary;
+}
 #frontpage .post-title a:visited {
-	color: $gray-200;
+	color: $secondary;
 }
 
 @media (max-width: 767.98px) {
