@@ -19130,7 +19130,7 @@ ol > li::before {
   padding: 0.75rem 1rem; }
 
 .settings-nav .nav-link {
-  color: #ff66ac;
+  color: #86b9ec;
   font-size: 1rem;
   font-weight: 400;
   padding: 0.75rem 1rem; }
@@ -19936,7 +19936,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-20 {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -19944,7 +19944,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-25 {
   width: 25px;
   height: 25px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -19952,7 +19952,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-28 {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -19960,7 +19960,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-30 {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -19968,7 +19968,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-35 {
   width: 35px;
   height: 35px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -19976,7 +19976,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-40 {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -19984,7 +19984,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-50 {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -19992,7 +19992,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-65 {
   width: 65px;
   height: 65px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -20000,7 +20000,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-75 {
   width: 75px;
   height: 75px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -20008,7 +20008,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-100 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 0.35rem;
   text-align: center;
   object-fit: cover;
   background-color: #00001f; }
@@ -20106,6 +20106,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   border-radius: 0.35rem 0.35rem 0 0; }
 
 .card-header {
+  background: #ff66ac;
   font-size: 1rem;
   font-weight: 600;
   color: #f0f0f0;

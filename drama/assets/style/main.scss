@@ -613,7 +613,7 @@ ol > li::before {
 }
 
 .settings-nav .nav-link {
-	color: $gray-200;
+	color: $accent;
 	font-size: $font-size-base;
 	font-weight: $font-weight-normal;
 	padding: 0.75rem 1rem;
@@ -1670,7 +1670,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-20 {
 	width: 20px;
 	height: 20px;
-	border-radius: 50%;
+	border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1679,7 +1679,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-25 {
 	width: 25px;
 	height: 25px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1688,7 +1688,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-28 {
 	width: 28px;
 	height: 28px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1697,7 +1697,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-30 {
 	width: 30px;
 	height: 30px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1706,7 +1706,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-35 {
 	width: 35px;
 	height: 35px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1715,7 +1715,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-40 {
 	width: 40px;
 	height: 40px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1724,7 +1724,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-50 {
 	width: 50px;
 	height: 50px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1733,7 +1733,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-65 {
 	width: 65px;
 	height: 65px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1742,7 +1742,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-75 {
 	width: 75px;
 	height: 75px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1751,7 +1751,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-100 {
 	width: 100px;
 	height: 100px;
-	border-radius: 50%;
+    border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
@@ -1865,6 +1865,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .card-header {
+    background: $gray-200;
 	font-size: $font-size-base;
 	font-weight: $font-weight-bold;
 	color: $black;
