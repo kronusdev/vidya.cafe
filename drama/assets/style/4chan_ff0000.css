@@ -20815,9 +20815,7 @@ ul.comment-section {
 
 #login {
   padding-top: 0;
-  height: 100%;
-  overflow: hidden;
-  background-color: #F0E0D6; }
+  height: 100%; }
 
 .splash-wrapper {
   position: relative;
@@ -20832,7 +20830,8 @@ ul.comment-section {
   width: 100%;
   height: 100%;
   background-color: rgba(127, 127, 127, 0.25);
-  background-image: linear-gradient(135deg, rgba(30, 30, 36, 0.1) 0%, rgba(255, 103, 173, 0.75) 76%); }
+  background-image: linear-gradient(135deg, #00000000 0%, #ff66ac 100%);
+  opacity: 0.5; }
 
 .splash-img {
   height: 100%;
