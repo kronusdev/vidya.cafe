@@ -20874,6 +20874,9 @@ ul.comment-section {
 #settings .bg-gray-300 {
   background-color: #3E2C18 !important; }
 
+.settings-body {
+  background-attachment: fixed !important; }
+
 .settings .settings-section .title, .settings .settings-section .body, .settings .settings-section .footer {
   padding: 1rem; }
 

@@ -2856,6 +2856,10 @@ ul.comment-section {
 	background-color: $dark!important;
 }
 
+.settings-body {
+	background-attachment: fixed !important;
+}
+
 .settings .settings-section .title, .settings .settings-section .body, .settings .settings-section .footer {
 	padding: 1rem;
 }
