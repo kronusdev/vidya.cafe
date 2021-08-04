@@ -1,7 +1,7 @@
 from sqlalchemy import *
 from flask import g
 from drama.__main__ import Base
-
+import os, random
 
 class Image(Base):
 	__tablename__ = "images"
@@ -13,9 +13,18 @@ class Image(Base):
 	
 	@property
 	def path(self):
-		return f"/assets/images/platy.jpg"
+		onlyfiles = next(os.walk("/assets/images/loginbackgrounds"))[2] #dir is your directory path as string
+		nFiles = len(onlyfiles)
+		pic = random.randint(1, nFiles)
+		return f"/assets/images/loginbackgrounds/bg-{pic}.png"
+
+		#return f"/assets/images/platy.jpg"
 
 
+def random_background():
+	#change the 2nd number when adding backgrounds
+	pic = random.randint(1, 11)
+	return f"/assets/images/loginbackgrounds/bg-{pic}"
 
 def random_image():
 	n=g.db.query(Image).count()

@@ -17,7 +17,7 @@ def login_get(v):
 
 	return render_template("login.html",
 						   failed=False,
-						   i=random_image(),
+						   i=random_background(),
 						   redirect=redir)
 
 
@@ -198,7 +198,7 @@ def sign_up_get(v):
 	return render_template("sign_up.html",
 						   formkey=formkey,
 						   now=now,
-						   i=random_image(),
+						   i=random_background(),
 						   redirect=redir,
 						   ref_user=ref_user,
 						   error=error,
