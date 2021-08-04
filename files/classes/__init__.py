@@ -12,6 +12,6 @@ from .images import *
 from .domains import *
 from .subscriptions import *
 from .agents import *
-from drama.__main__ import Base, app 
+from files.__main__ import Base, app 
 from .mod_logs import *
 from .award import *

@@ -1,11 +1,7 @@
 version: '2.3'
 
 services:
-<<<<<<< HEAD
-  vidya:
-=======
   files:
->>>>>>> df20530d2b49c78a8af64ef8f9c953e974de2cc5
     build:
       context: .
     volumes:

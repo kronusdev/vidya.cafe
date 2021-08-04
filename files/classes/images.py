@@ -1,12 +1,7 @@
 from sqlalchemy import *
 from flask import g
-<<<<<<< HEAD:drama/classes/images.py
-from drama.__main__ import Base
 import os, random
-=======
 from files.__main__ import Base
-
->>>>>>> df20530d2b49c78a8af64ef8f9c953e974de2cc5:files/classes/images.py
 
 class Image(Base):
 	__tablename__ = "images"
