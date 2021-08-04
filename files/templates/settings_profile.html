@@ -129,16 +129,16 @@
 									let bgsDir = backgrounds[bgselector.selectedIndex].folder;
 									for (i=0; i < bgsToDisplay.length; i++) {
 										let onclickPost = bgsDir + "/" + bgsToDisplay[i];
-										str += `<button class="btn btn-secondary m-1 p-0" style="width:15rem; overflow: hidden;"><img style="padding:0.25rem; width: 15rem" src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background" onclick="post('/settings/profile?background=${onclickPost}')"/></button>`;
+										str += `<button class="btn btn-secondary m-1 p-0" style="width:15rem; overflow: hidden;"><img style="padding:0.25rem; width: 15rem" src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background" onclick="post('/settings/profile?background=${onclickPost}', function(){window.location.reload(true);})"/></button>`;
 									}
 									bgContainer.innerHTML = str;
 								}
 							</script>
 							<p>Change the background for the website.</p>
 							<div class="input-group mb2">
-									<select id='backgroundSelector' class="form-control" form="profile-settings" name="background" onchange="updatebgselection();" onload="updatebgselection();">
+									<select id='backgroundSelector' class="form-control" form="profile-settings" name="background" onchange="updatebgselection();">
 									{% for entry in ["solarpunk", "other", "pixelart"] %}
-										<option value="{{entry}}" {% if v.background==entry %} selected {% endif %}>
+										<option value="{{entry}}">
 											{{entry}}
 										</option>
 									{% endfor %}
