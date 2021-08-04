@@ -1001,7 +1001,7 @@
 
  </head>
 
- <body id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}" style="overflow-x: hidden;">
+ <body id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}" style="overflow-x: hidden; background:url(/assets/images/custombackgrounds/{{ v.background }})">
 
 {% include "header.html" %}
 

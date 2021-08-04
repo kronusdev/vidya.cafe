@@ -179,7 +179,8 @@ CREATE TABLE public.users (
     highres text,
     rent_utc integer,
     patron integer,
-    zzz boolean DEFAULT false
+    zzz boolean DEFAULT false,
+    background character varying(512) DEFAULT 'other/bg-0'::character varying
 );
 
 
@@ -191,11 +192,16 @@ ALTER TABLE public.users OWNER TO postgres;
 
 CREATE FUNCTION public.referral_count(public.users) RETURNS bigint
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$
-        SELECT COUNT(*)
-        FROM USERS
-        WHERE users.is_banned=0
-        AND users.referred_by=$1.id
+    AS $_$
+
+        SELECT COUNT(*)
+
+        FROM USERS
+
+        WHERE users.is_banned=0
+
+        AND users.referred_by=$1.id
+
     $_$;
 
 
@@ -238,8 +244,10 @@ ALTER TABLE public.comments OWNER TO postgres;
 
 CREATE FUNCTION public.score(public.comments) RETURNS integer
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$
-      SELECT ($1.upvotes - $1.downvotes)
+    AS $_$
+
+      SELECT ($1.upvotes - $1.downvotes)
+
       $_$;
 
 
@@ -251,8 +259,10 @@ ALTER FUNCTION public.score(public.comments) OWNER TO postgres;
 
 CREATE FUNCTION public.score(public.submissions) RETURNS integer
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$
-      SELECT ($1.upvotes - $1.downvotes)
+    AS $_$
+
+      SELECT ($1.upvotes - $1.downvotes)
+
       $_$;
 
 
