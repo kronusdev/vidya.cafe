@@ -37,7 +37,7 @@ services:
       - COMMENT_SPAM_COUNT_THRESHOLD=5
       - READ_ONLY=0
       - BOT_DISABLE=0
-      - coins_name=Dramacoins
+      - COINS_NAME=Sips
     links:
       - "redis"
       - "postgres"

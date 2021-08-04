@@ -14,7 +14,7 @@ valid_title_regex = re.compile("^((?!<).){3,100}$")
 valid_password_regex = re.compile("^.{8,100}$")
 
 youtubekey = environ.get("youtubekey").strip()
-coins_name = environ.get("coins_name").strip()
+COINS_NAME = environ.get("COINS_NAME").strip()
 
 @app.post("/settings/profile")
 @auth_required
@@ -430,13 +430,13 @@ def settings_css(v):
 @auth_required
 def settings_profilecss_get(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	if v.coins < 1000 and not v.patron: return f"You must have +1000 {coins_name} or be a patron to set profile css."
+	if v.coins < 1000 and not v.patron: return f"You must have +1000 {COINS_NAME} or be a patron to set profile css."
 	return render_template("settings_profilecss.html", v=v)
 
 @app.post("/settings/profilecss")
 @auth_required
 def settings_profilecss(v):
-	if v.coins < 1000 and not v.patron: return f"You must have +1000 {coins_name} or be a patron to set profile css."
+	if v.coins < 1000 and not v.patron: return f"You must have +1000 {COINS_NAME} or be a patron to set profile css."
 	profilecss = request.form.get("profilecss").replace('\\', '')[:50000]
 	v.profilecss = profilecss
 	g.db.add(v)
