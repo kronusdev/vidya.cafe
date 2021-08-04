@@ -10,7 +10,8 @@ class Image(Base):
 	number = Column(Integer)
 	text = Column(String(64))
 	deletehash = Column(String(64))
-	
+	bgcategories = ["solarpunk", "other"]
+
 	@property
 	def path(self):
 		onlyfiles = next(os.walk("/assets/images/loginbackgrounds"))[2] #dir is your directory path as string

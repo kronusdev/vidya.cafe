@@ -119,7 +119,7 @@ def settings_profile(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("settings_profile.html",
-						   v=v)
+						   v=v, i=i)
 
 
 @app.get("/titles")
