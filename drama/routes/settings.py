@@ -183,6 +183,15 @@ def themecolor(v):
 	g.db.add(v)
 	return redirect("/settings/profile")
 
+@app.post("/settings/background")
+@auth_required
+@validate_formkey
+def background(v):
+	background= str(request.form.get("background", "")).strip()
+	v.background = background
+	g.db.add(v)
+	return redirect("/settings/profile")
+
 @app.post("/settings/titlecolor")
 @auth_required
 @validate_formkey

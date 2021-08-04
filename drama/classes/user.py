@@ -25,6 +25,7 @@ class User(Base, Stndrd, Age_times):
 	customtitleplain = Column(String)
 	titlecolor = Column(String, default='ff66ac')
 	theme = Column(String, default='dark')
+	background = Column(String, default='other/bg-0')
 	themecolor = Column(String, default='ff66ac')
 	song = Column(String)
 	highres = Column(String)

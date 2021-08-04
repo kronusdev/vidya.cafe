@@ -10,7 +10,6 @@ class Image(Base):
 	number = Column(Integer)
 	text = Column(String(64))
 	deletehash = Column(String(64))
-	bgcategories = ["solarpunk", "other"]
 
 	@property
 	def path(self):
@@ -20,7 +19,6 @@ class Image(Base):
 		return f"/assets/images/loginbackgrounds/bg-{pic}.png"
 
 		#return f"/assets/images/platy.jpg"
-
 
 def random_background():
 	#change the 2nd number when adding backgrounds

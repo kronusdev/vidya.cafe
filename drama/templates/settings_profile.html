@@ -34,11 +34,59 @@
 							</div>
 
 						</div>
-                        {% for entry in i.bgcategories %}
-                            <p>
-                                {{entry}}
-                            </p>
-                        {% endfor %}
+						<div class="body w-lg-100">
+						<script>
+						    function updatebgselection(){
+						    var bgselector = document.getElementById("backgroundSelector");
+							var selection = bgselector.options[bgselector.selectedIndex].text;
+							
+							//var paragraph = document.getElementById("testp");
+							//paragraph.innerHTML = selection;
+							
+							const backgrounds = [
+								{
+									folder: "solarpunk",
+									backgrounds: 
+									[
+										"bg-1",
+										"bg-2",
+										"bg-3",
+									]
+								},
+								{
+									folder: "other",
+									backgrounds:
+									[
+										"bg-1",
+										"bg-2",
+									]
+								}
+							]
+								let bgContainer = document.getElementById(`bgcontainer`);
+								let str = '';
+								let bgsToDisplay = backgrounds[bgselector.selectedIndex].backgrounds;
+								let bgsDir = backgrounds[bgselector.selectedIndex].folder;
+								for (i=0; i < bgsToDisplay.length; i++) {
+									let onclickPost = bgsDir + "/" + bgsToDisplay[i];
+									str += `<button class="btn btn-secondary m-1 p-0" style="width:90px; height:90px; overflow: hidden;"><img width=85 src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background" onclick="post('/settings/background=${onclickPost}')"/></button>`;
+								}
+								bgContainer.innerHTML = str;
+
+								
+							}
+						</script>
+							<p>Change the background for the website.</p>
+							<div class="input-group mb2">
+								<select id='backgroundSelector' class="form-control" form="profile-settings" name="background" onchange="updatebgselection();">
+								 {% for entry in ["solarpunk", "other"] %}
+									 <option value="{{entry}}" {% if v.theme==entry %} selected {% endif %}>
+										{{entry}}
+									</option>
+								 {% endfor %}
+							 </select>
+							</div>
+							<div id="bgcontainer"></div>
+						</div>
 				 </div>
 				 
 				<div class="body d-lg-flex border-bottom">
