@@ -1,13 +1,17 @@
 version: '2.3'
 
 services:
+<<<<<<< HEAD
   vidya:
+=======
+  files:
+>>>>>>> df20530d2b49c78a8af64ef8f9c953e974de2cc5
     build:
       context: .
     volumes:
-      - "./:/drama/service"
+      - "./:/service"
     environment:
-      - PYTHONPATH="drama/service"
+      - PYTHONPATH="/service"
       - REDIS_URL=redis://redis
       - DATABASE_URL=postgresql://postgres@postgres:5432/postgres
       - DATABASE_CONNECTION_POOL_URL=postgresql://postgres@postgres:5432/postgres
@@ -19,7 +23,6 @@ services:
       - TENOR_KEY=vcxvdfgfc6r554etrgd
       - MAILGUN_KEY=vcxvdfgfc6r554etrgd
       - MAILGUN_DOMAIN=rdrama.net
-      - admin_email=drama@rdrama.net
       - FORCE_HTTPS=0
       - DISCORD_SERVER_ID=vcxvdfgfc6r554etrgd
       - DISCORD_CLIENT_ID=vcxvdfgfc6r554etrgd
@@ -27,10 +30,18 @@ services:
       - DISCORD_BOT_TOKEN=vcxvdfgfc6r554etrgd
       - imgurkey=vcxvdfgfc6r554etrgd
       - FACEBOOK_TOKEN=vcxvdfgfc6r554etrgd
-        #- HCAPTCHA_SITEKEY=vcxvdfgfc6r554etrgd
+     #- HCAPTCHA_SITEKEY=vcxvdfgfc6r554etrgd
       - HCAPTCHA_SECRET=vcxvdfgfc6r554etrgd
       - youtubekey=vcxvdfgfc6r554etrgd
       - PUSHER_KEY=vcxvdfgfc6r554etrgd
+      - SPAM_SIMILARITY_THRESHOLD=0.5
+      - SPAM_SIMILAR_COUNT_THRESHOLD=5
+      - SPAM_URL_SIMILARITY_THRESHOLD=0.1
+      - COMMENT_SPAM_SIMILAR_THRESHOLD=0.5
+      - COMMENT_SPAM_COUNT_THRESHOLD=5
+      - READ_ONLY=0
+      - BOT_DISABLE=0
+      - coins_name=Dramacoins
     links:
       - "redis"
       - "postgres"

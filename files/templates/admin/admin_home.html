@@ -1,0 +1,37 @@
+{% extends "default.html" %}
+
+{% block title %}
+<title>{{"SITE_NAME" | app_config}}</title>
+<meta name="description" content="{{"SITE_NAME" | app_config}} Help">
+{% endblock %}
+
+{% block content %}
+<pre></pre>
+<pre></pre>
+<h4>&nbsp;Admin Tools</h4>
+{% filter markdown %}
+* [Grant User Award](/admin/user_award)
+* [Advanced Stats](/user_stat_data)
+* [Banned Domains](/admin/banned_domains)
+* [Shadowbanned Users](/admin/shadowbanned)
+* [Users with Agendaposter Theme](/admin/agendaposters)
+* [Flagged Posts](/admin/flagged/posts)
+* [Flagged Comments](/admin/flagged/comments)
+* [Image Posts](/admin/image_posts)
+* [Removed Posts](/admin/removed)
+* [Users Feed](/admin/users)
+* [Remove image from imgur and from cloudflare cache](/admin/image_purge)
+* [Perceptive Hash Image Ban](/admin/image_ban)
+* [Multi Vote Analysis](/admin/alt_votes)
+* [Apps](/admin/apps)
+* [Badges](/admin/badge_grant)
+* [Content Stats](/admin/content_stats)
+
+{% endfilter %}
+
+<div class="custom-control custom-switch">
+	<input type="checkbox" class="custom-control-input" id="disablesignups" name="disablesignups" {% if x == "yes" %}checked{% endif %} onchange="post('/admin/disablesignups');">
+	<label class="custom-control-label" for="disablesignups">Disable signups</label>
+</div>
+
+{% endblock %}
