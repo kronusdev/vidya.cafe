@@ -2558,7 +2558,7 @@ CREATE TABLE public.users (
     oldreddit boolean,
     css text,
     profilecss text,
-    dramacoins integer,
+    coins integer,
     agendaposter boolean,
     agendaposter_expires_utc integer DEFAULT 0,
     resized boolean,
