@@ -447,8 +447,7 @@ class User(Base, Stndrd, Age_times):
 
 	@cache.memoize(0)
 	def defaultpicture(self):
-		pic = random.randint(1, 50)
-		return f"https://{site}/assets/images/defaultpictures/{pic}.png"
+		return f"https://robohash.org/{self.username}"
 
 	@property
 	def profile_url(self):
