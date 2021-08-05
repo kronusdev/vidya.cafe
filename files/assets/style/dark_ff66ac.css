@@ -24679,7 +24679,7 @@ th {
   color: #323C47;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
-  content: "";
+  content: "";
 }
 
 .arrow-up:hover::before {
