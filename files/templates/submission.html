@@ -10,8 +10,8 @@
 </script>
 
 {% set title=p.title %}
-{% set sips=p.sips %}
-{% set score=sips %}
+{% set ups=p.upvotes %}
+{% set score=ups %}
 
 {% if v %}
 {% set voted=p.voted if p.voted else 0 %}
@@ -400,14 +400,14 @@
 
 					<div id="voting" class="voting d-none d-md-block mb-auto">
 						<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mx-auto arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></div>
-						<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="right" data-original-title="{{sips}} Likes (Sips)">{{score}}</span>
+						<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips">{{score}}</span>
 					</div>
 
 					{% else %}
 
 					<div id="voting" class="voting d-none d-md-block mb-auto">
 						<div id="post-{{p.id}}-up" tabindex="0" class="arrow-up mx-auto" onclick="location.href='/login?redirect={{request.path | urlencode}}';"></div>
-						<span id="post-{{p.id}}-score-none" class="score text-muted"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{sips}} Likes (Sips)"{% endif %}>{{score}}</span>
+						<span id="post-{{p.id}}-score-none" class="score text-muted"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 					</div>
 
 					{% endif %}
@@ -458,7 +458,7 @@
 					</span>
 					{% endif %}
 
-					<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="top" data-original-title="{{sips}} Likes (Sips)">{{score}}</span>
+					<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips">{{score}}</span>
 
 					{% if v %}
 					<span id="post-{{p.id}}-down-mobile" tabindex="0" data-id-down="{{p.id}}" data-content-type="post" class="ml-2 my-0 arrow-down downvote-button post-{{p.id}}-down {% if voted==-1 %}active{% endif %}">

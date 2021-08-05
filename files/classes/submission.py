@@ -67,7 +67,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	is_pinned = Column(Boolean, default=False)
 	is_bot = Column(Boolean, default=False)
 
-	sips = Column(Integer, default=1)
+	upvotes = Column(Integer, default=1)
 	
 	app_id=Column(Integer, ForeignKey("oauth_apps.id"))
 	oauth_app=relationship("OauthApp")
@@ -102,12 +102,12 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	@property
 	@lazy
 	def hotscore(self):
-		return 10000000*(self.sips + 1)/(((self.age+3600)/1000)**(1.35))
+		return 10000000*(self.upvotes + 1)/(((self.age+3600)/1000)**(1.35))
 
 	@property
 	@lazy
 	def score_disputed(self):
-		return (self.sips + 1)
+		return (self.upvotes + 1)
 
 
 	@property
@@ -228,7 +228,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 				'edited_utc': self.edited_utc or 0,
 				'comment_count': self.comment_count,
 				'score': self.score,
-				'sips': self.sips,
+				'upvotes': self.upvotes,
 				'stickied': self.stickied,
 				'distinguish_level': self.distinguish_level,
 				#'award_count': self.award_count,

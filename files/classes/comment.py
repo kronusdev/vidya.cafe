@@ -63,7 +63,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 		innerjoin=True,
 		primaryjoin="User.id==Comment.author_id")
 
-	sips = Column(Integer, default=1)
+	upvotes = Column(Integer, default=1)
 	
 	parent_comment = relationship("Comment", remote_side=[id])
 	child_comments = relationship("Comment", remote_side=[parent_comment_id])
@@ -93,7 +93,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	@property
 	@lazy
 	def score_disputed(self):
-		return (self.sips+1)
+		return (self.upvotes+1)
 
 	def children(self, v):
 		return sorted([x for x in self.child_comments if not x.author.shadowbanned or (v and v.id == x.author_id)], key=lambda x: x.score, reverse=True)
@@ -162,7 +162,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 			'distinguish_level': self.distinguish_level,
 			'post_id': self.post.id,
 			'score': self.score,
-			'sips': self.sips,
+			'upvotes': self.upvotes,
 			#'award_count': self.award_count,
 			'is_bot': self.is_bot,
 			'flags': flags,

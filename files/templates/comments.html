@@ -7,8 +7,7 @@
 </script>
 
 {% set ups=c.upvotes %}
-{% set downs=c.downvotes %}
-{% set score=ups-downs %}
+{% set score=ups %}
 {% include "emoji_modal.html" %}
 
 <!--conditions under which a comment might be hidden-->
@@ -221,7 +220,7 @@
 					{% endif %}
 
 					<li class="list-inline-item d-none d-md-inline-block mr-2">
-						<span class="points" data-toggle="tooltip" data-placement="top" data-original-title="+{{ups}} | -{{downs}}"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% elif voted==-1%}score-down{% endif %}">{{score}}</span></span>
+						<span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{score}}</span></span>
 					</li>
 
 					{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
@@ -326,7 +325,7 @@
 						<li id="comment-{{c.id}}-up" tabindex="0" class="list-inline-item arrow-up d-inline-block d-md-none mr-2" onclick="location.href='/login';"></li>
 					{% endif %}
 					
-					<li class="list-inline-item d-inline-block d-md-none mr-2"><span class="points" data-toggle="tooltip" data-placement="top" data-original-title="+{{ups}} | -{{downs}}"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% elif voted==-1%}score-down{% endif %}">{{score}}</span></span></li>
+					<li class="list-inline-item d-inline-block d-md-none mr-2"><span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{score}}</span></span></li>
 					{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
 						{% if voted==-1 %}
 							<li class="list-inline-item arrow-down d-inline-block d-md-none mr-2 comment-{{c.id}}-up active"></li>

@@ -9,8 +9,8 @@
 	{% endif %}
 </script>
 
-{% set sips=p.sips %}
-{% set score=sips %}
+{% set ups=p.upvotes %}
+{% set score=ups %}
 
 {% if v %}
 	{% set voted=p.voted %}
@@ -32,19 +32,19 @@
 				<div class="mx-auto arrow-up post-{{p.id}}-up active"></div>
 				{% endif %}
 
-				<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{sips}} Likes (Sips)"{% endif %}>{{score}}</span>
+				<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			{% elif v %}
 
 			<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mx-auto arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></div>
 
-			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{sips}} Likes (Sips)"{% endif %}>{{score}}</span>
+			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			{% else %}
 
 			<div id="post-{{p.id}}-up" tabindex="0" class="mx-auto arrow-up" onclick="location.href='/login';"></div>
 
-			<span id="post-{{p.id}}-score-none" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{sips}} Likes (Sips)"{% endif %}>{{score}}</span>
+			<span id="post-{{p.id}}-score-none" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			{% endif %}
 
@@ -230,7 +230,7 @@
 				</span>
 				{% endif %}
 
-				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{sips}} Likes (Sips)"{% endif %}>{{score}}</span>
+				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			</li>
 			{% elif v %}
@@ -239,7 +239,7 @@
 				<span id="post-{{p.id}}-up-mobile" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mr-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}">
 				</span>
 
-				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{sips}} Likes (Sips)"{% endif %}>{{score}}</span>
+				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 				</span>
 
@@ -250,7 +250,7 @@
 					<i class="fas fa-arrow-alt-up mx-0" aria-hidden="true"></i>
 				</span>
 
-				<span id="post-score-{{p.id}}-mobile" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Likes (Sips)"{% endif %}>{{score}}</span>
+				<span id="post-score-{{p.id}}-mobile" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			</li>
 			{% endif %}
