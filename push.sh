@@ -15,6 +15,3 @@ python3 ./compilecss.py
 git add .
 git commit -m "css"
 git push
-
-cd D:\1
-git pull
