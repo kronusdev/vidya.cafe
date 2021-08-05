@@ -650,14 +650,12 @@
 			var type = event.target.dataset.contentType;
 			var id = event.target.dataset.idUp;
 
-			var downvoteButton = document.getElementsByClassName(type + '-' + id + '-down');
 			var upvoteButton = document.getElementsByClassName(type + '-' + id + '-up');
 			var scoreText = document.getElementsByClassName(type + '-score-' + id);
 
-			for (var j = 0; j < upvoteButton.length && j < downvoteButton.length && j < scoreText.length; j++) {
+			for (var j = 0; j < upvoteButton.length  && j < scoreText.length; j++) {
 
 				var thisUpvoteButton = upvoteButton[j];
-				var thisDownvoteButton = downvoteButton[j];
 				var thisScoreText = scoreText[j];
 				var thisScore = Number(thisScoreText.textContent);
 
@@ -665,11 +663,6 @@
 					thisUpvoteButton.classList.remove('active')
 					thisScoreText.textContent = thisScore - 1
 					voteDirection = "0"
-				} else if (thisDownvoteButton.classList.contains('active')) {
-					thisUpvoteButton.classList.add('active')
-					thisDownvoteButton.classList.remove('active')
-					thisScoreText.textContent = thisScore + 2
-					voteDirection = "1"
 				} else {
 					thisUpvoteButton.classList.add('active')
 					thisScoreText.textContent = thisScore + 1
@@ -678,78 +671,19 @@
 
 				if (thisUpvoteButton.classList.contains('active')) {
 					thisScoreText.classList.add('score-up')
-					thisScoreText.classList.remove('score-down')
-					thisScoreText.classList.remove('score')
-				} else if (thisDownvoteButton.classList.contains('active')) {
-					thisScoreText.classList.add('score-down')
-					thisScoreText.classList.remove('score-up')
 					thisScoreText.classList.remove('score')
 				} else {
 					thisScoreText.classList.add('score')
-					thisScoreText.classList.remove('score-up')
-					thisScoreText.classList.remove('score-down')
+					thisScoreText.classList.remove('score-up')	
 				}
 			}
 
 			post_toast("/vote/" + type + "/" + id + "/" + voteDirection);
 			
 		}
-
-		var downvote = function(event) {
-
-			var type = event.target.dataset.contentType;
-			var id = event.target.dataset.idDown;
-
-			var downvoteButton = document.getElementsByClassName(type + '-' + id + '-down');
-			var upvoteButton = document.getElementsByClassName(type + '-' + id + '-up');
-			var scoreText = document.getElementsByClassName(type + '-score-' + id);
-
-			for (var j = 0; j < upvoteButton.length && j < downvoteButton.length && j < scoreText.length; j++) {
-
-				var thisUpvoteButton = upvoteButton[j];
-				var thisDownvoteButton = downvoteButton[j];
-				var thisScoreText = scoreText[j];
-				var thisScore = Number(thisScoreText.textContent);
-
-				if (thisDownvoteButton.classList.contains('active')) {
-					thisDownvoteButton.classList.remove('active')
-					thisScoreText.textContent = thisScore + 1
-					voteDirection = "0"
-				} else if (thisUpvoteButton.classList.contains('active')) {
-					thisDownvoteButton.classList.add('active')
-					thisUpvoteButton.classList.remove('active')
-					thisScoreText.textContent = thisScore - 2
-					voteDirection = "-1"
-				} else {
-					thisDownvoteButton.classList.add('active')
-					thisScoreText.textContent = thisScore - 1
-					voteDirection = "-1"
-				}
-
-				if (thisUpvoteButton.classList.contains('active')) {
-					thisScoreText.classList.add('score-up')
-					thisScoreText.classList.remove('score-down')
-					thisScoreText.classList.remove('score')
-				} else if (thisDownvoteButton.classList.contains('active')) {
-					thisScoreText.classList.add('score-down')
-					thisScoreText.classList.remove('score-up')
-					thisScoreText.classList.remove('score')
-				} else {
-					thisScoreText.classList.add('score')
-					thisScoreText.classList.remove('score-up')
-					thisScoreText.classList.remove('score-down')
-				}
-			}
-
-			post_toast("/vote/" + type + "/" + id + "/" + voteDirection);
-			
-		}
-
 
 		var register_votes = function() {
 			var upvoteButtons = document.getElementsByClassName('upvote-button')
-
-			var downvoteButtons = document.getElementsByClassName('downvote-button')
 
 			var voteDirection = 0
 
@@ -758,15 +692,6 @@
 				upvoteButtons[i].addEventListener('keydown', function(event) {
 					if (event.keyCode === 13) {
 						upvote(event)
-					}
-				}, false)
-			};
-
-			for (var i = 0; i < downvoteButtons.length; i++) {
-				downvoteButtons[i].addEventListener('click', downvote, false);
-				downvoteButtons[i].addEventListener('keydown', function(event) {
-					if (event.keyCode === 13) {
-						downvote(event)
 					}
 				}, false)
 			};

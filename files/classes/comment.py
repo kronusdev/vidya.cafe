@@ -17,7 +17,7 @@ class CommentAux(Base):
 	ban_reason = Column(String(256), default='')
 
 
-class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
+class Comment(Base, Age_times, Scores, Stndrd):
 
 	__tablename__ = "comments"
 
@@ -63,9 +63,8 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 		innerjoin=True,
 		primaryjoin="User.id==Comment.author_id")
 
-	upvotes = Column(Integer, default=1)
-	downvotes = Column(Integer, default=0)
-
+	sips = Column(Integer, default=1)
+	
 	parent_comment = relationship("Comment", remote_side=[id])
 	child_comments = relationship("Comment", remote_side=[parent_comment_id])
 
@@ -94,7 +93,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	@property
 	@lazy
 	def score_disputed(self):
-		return (self.upvotes+1) * (self.downvotes+1)
+		return (self.sips+1)
 
 	def children(self, v):
 		return sorted([x for x in self.child_comments if not x.author.shadowbanned or (v and v.id == x.author_id)], key=lambda x: x.score, reverse=True)
@@ -162,9 +161,8 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 			'is_pinned': self.is_pinned,
 			'distinguish_level': self.distinguish_level,
 			'post_id': self.post.id,
-			'score': self.score_fuzzed,
-			'upvotes': self.upvotes_fuzzed,
-			'downvotes': self.downvotes_fuzzed,
+			'score': self.score,
+			'sips': self.sips,
 			#'award_count': self.award_count,
 			'is_bot': self.is_bot,
 			'flags': flags,

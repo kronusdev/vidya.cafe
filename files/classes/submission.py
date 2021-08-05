@@ -28,7 +28,7 @@ class SubmissionAux(Base):
 	meta_description=Column(String(1024), default="")
 
 
-class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
+class Submission(Base, Stndrd, Age_times, Scores):
 
 	__tablename__ = "submissions"
 
@@ -67,9 +67,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	is_pinned = Column(Boolean, default=False)
 	is_bot = Column(Boolean, default=False)
 
-	upvotes = Column(Integer, default=1)
-	downvotes = Column(Integer, default=0)
-
+	sips = Column(Integer, default=1)
+	
 	app_id=Column(Integer, ForeignKey("oauth_apps.id"))
 	oauth_app=relationship("OauthApp")
 
@@ -103,12 +102,12 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	@property
 	@lazy
 	def hotscore(self):
-		return 10000000*(self.upvotes - self.downvotes + 1)/(((self.age+3600)/1000)**(1.35))
+		return 10000000*(self.sips + 1)/(((self.age+3600)/1000)**(1.35))
 
 	@property
 	@lazy
 	def score_disputed(self):
-		return (self.upvotes+1) * (self.downvotes+1)
+		return (self.sips + 1)
 
 
 	@property
@@ -228,9 +227,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 				'created_utc': self.created_utc,
 				'edited_utc': self.edited_utc or 0,
 				'comment_count': self.comment_count,
-				'score': self.score_fuzzed,
-				'upvotes': self.upvotes_fuzzed,
-				'downvotes': self.downvotes_fuzzed,
+				'score': self.score,
+				'sips': self.sips,
 				'stickied': self.stickied,
 				'distinguish_level': self.distinguish_level,
 				#'award_count': self.award_count,

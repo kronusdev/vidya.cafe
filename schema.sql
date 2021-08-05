@@ -80,8 +80,7 @@ CREATE TABLE public.submissions (
     is_approved integer NOT NULL,
     edited_utc integer,
     is_pinned boolean,
-    upvotes integer,
-    downvotes integer,
+    sips integer,
     app_id integer,
     thumburl text,
     private boolean,
@@ -226,8 +225,7 @@ CREATE TABLE public.comments (
     level integer,
     parent_comment_id integer,
     over_18 boolean,
-    upvotes integer,
-    downvotes integer,
+    sips integer,
     is_bot boolean DEFAULT false,
     is_pinned boolean DEFAULT false,
     app_id integer,
@@ -246,7 +244,7 @@ CREATE FUNCTION public.score(public.comments) RETURNS integer
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
 
-      SELECT ($1.upvotes - $1.downvotes)
+      SELECT ($1.sips)
 
       $_$;
 
@@ -261,7 +259,7 @@ CREATE FUNCTION public.score(public.submissions) RETURNS integer
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
 
-      SELECT ($1.upvotes - $1.downvotes)
+      SELECT ($1.sips)
 
       $_$;
 
