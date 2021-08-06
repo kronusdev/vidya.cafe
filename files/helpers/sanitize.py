@@ -6,7 +6,7 @@ from functools import partial
 from .get import *
 from os import path
 
-site = environ.get("domain").strip()
+site = environ.get("DOMAIN").strip()
 
 _allowed_tags = tags = ['b',
 						'blockquote',
@@ -178,7 +178,7 @@ def sanitize(text, linkgen=False, flair=False):
 	
 	start = '&lt;s&gt;'
 	end = '&lt;/s&gt;' 
-	if start in sanitized and end in sanitized and start in sanitized.split(end)[0] and end in sanitized.split(start)[1]: sanitized = sanitized.replace(start, '<span class="spoiler">').replace(end, '</span>')
+	if start in sanitized and end in sanitized and start in sanitized.split(end)[0] and end in sanitized.split(start)[1]: 			sanitized = sanitized.replace(start, '<span class="spoiler">').replace(end, '</span>')
 	
 	if flair: emojisize = 20
 	else: emojisize = 30
