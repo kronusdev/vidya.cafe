@@ -16,9 +16,9 @@ services:
       - SITE_NAME=VidyaCafe
       - CLOUDFLARE_ZONE=vcxvdfgfc6r554etrgd
       - CLOUDFLARE_KEY=vcxvdfgfc6r554etrgd
-      - TENOR_KEY=RUJ3OUHJYOIZ
+      - TENOR_KEY=asdf
       - MAILGUN_KEY=vcxvdfgfc6r554etrgd
-      - MAILGUN_DOMAIN=rdrama.net
+      - MAILGUN_DOMAIN=rdrama.ne
       - FORCE_HTTPS=0
       - DISCORD_SERVER_ID=vcxvdfgfc6r554etrgd
       - DISCORD_CLIENT_ID=vcxvdfgfc6r554etrgd
