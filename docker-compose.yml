@@ -24,11 +24,11 @@ services:
       - DISCORD_CLIENT_ID=vcxvdfgfc6r554etrgd
       - DISCORD_CLIENT_SECRET=vcxvdfgfc6r554etrgd
       - DISCORD_BOT_TOKEN=vcxvdfgfc6r554etrgd
-      - imgurkey=vcxvdfgfc6r554etrgd
+      - IMGUR_KEY=vcxvdfgfc6r554etrgd
       - FACEBOOK_TOKEN=vcxvdfgfc6r554etrgd
      #- HCAPTCHA_SITEKEY=vcxvdfgfc6r554etrgd
       - HCAPTCHA_SECRET=vcxvdfgfc6r554etrgd
-      - youtubekey=vcxvdfgfc6r554etrgd
+      - YOUTUBE_KEY=vcxvdfgfc6r554etrgd
       - PUSHER_KEY=vcxvdfgfc6r554etrgd
       - SPAM_SIMILARITY_THRESHOLD=0.5
       - SPAM_SIMILAR_COUNT_THRESHOLD=5

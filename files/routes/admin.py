@@ -443,7 +443,7 @@ def admin_image_purge(v):
 	name = request.form.get("url")
 	image = g.db.query(Image).filter(Image.text == name).first()
 	if image:
-		requests.delete(f'https://api.imgur.com/3/image/{image.deletehash}', headers = {"Authorization": f"Client-ID {imgurkey}"})
+		requests.delete(f'https://api.imgur.com/3/image/{image.deletehash}', headers = {"Authorization": f"Client-ID {IMGUR_KEY}"})
 		headers = {"Authorization": f"Bearer {CF_KEY}", "Content-Type": "application/json"}
 		data = {'files': [name]}
 		url = f"https://api.cloudflare.com/client/v4/zones/{CF_ZONE}/purge_cache"
@@ -931,7 +931,7 @@ def admin_banned_domains(v):
 @validate_formkey
 def admin_toggle_ban_domain(v):
 
-	domain=request.form.get("domain").strip()
+	domain=request.form.get("DOMAIN").strip()
 	if not domain: abort(400)
 
 	reason=request.form.get("reason", "").strip()
