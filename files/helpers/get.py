@@ -47,7 +47,7 @@ def get_user(username, v=None, graceful=False):
 def get_account(id, v=None):
 
 	user = g.db.query(User).filter_by(id = id).first()
-				
+
 	if not user:
 		try: id = int(str(id), 36)
 		except: abort(404)
@@ -90,12 +90,12 @@ def get_post(i, v=None, graceful=False, **kwargs):
 			items=items.options(joinedload(Submission.oauth_app))
 		items=items.filter(Submission.id == i
 		).join(
-			vt, 
-			vt.c.submission_id == Submission.id, 
+			vt,
+			vt.c.submission_id == Submission.id,
 			isouter=True
 		).join(
-			blocking, 
-			blocking.c.target_id == Submission.author_id, 
+			blocking,
+			blocking.c.target_id == Submission.author_id,
 			isouter=True
 		)
 
@@ -126,7 +126,7 @@ def get_posts(pids, v=None):
 
 	if v:
 		vt = g.db.query(Vote).filter(
-			Vote.submission_id.in_(pids), 
+			Vote.submission_id.in_(pids),
 			Vote.user_id==v.id
 			).subquery()
 
@@ -143,12 +143,12 @@ def get_posts(pids, v=None):
 		).join(
 			vt, vt.c.submission_id==Submission.id, isouter=True
 		).join(
-			blocking, 
-			blocking.c.target_id == Submission.author_id, 
+			blocking,
+			blocking.c.target_id == Submission.author_id,
 			isouter=True
 		).join(
-			blocked, 
-			blocked.c.user_id == Submission.author_id, 
+			blocked,
+			blocked.c.user_id == Submission.author_id,
 			isouter=True
 		).all()
 
@@ -187,9 +187,10 @@ def get_comment(i, v=None, graceful=False, **kwargs):
 			)
 		).first()
 
+		vt = g.db.query(CommentVote).filter_by(user_id=v.id, comment_id=Comment.id).first()
 		comment._is_blocking = block and block.user_id == v.id
 		comment._is_blocked = block and block.target_id == v.id
-		comment._voted = g.db.query(CommentVote).filter_by(user_id=v.id, comment_id=Comment.id).first().vote_type
+		comment._voted = vt.vote_type if vt else 0
 
 	else:
 		comment = g.db.query(Comment).filter(Comment.id == i).first()
@@ -217,7 +218,7 @@ def get_comments(cids, v=None):
 			blocking.c.id,
 			blocked.c.id,
 		).filter(Comment.id.in_(cids))
- 
+
 		comments = comments.join(
 			votes,
 			votes.c.comment_id == Comment.id,
