@@ -165,7 +165,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 				try: g.db.flush()
 				except: g.db.rollback()
 				post.upvotes = g.db.query(Vote).filter_by(submission_id=post.id, vote_type=1).count()
-				post.downvotes = g.db.query(Vote).filter_by(submission_id=post.id, vote_type=-1).count()
 				post.views = post.views + random.randint(7,10)
 				g.db.add(post)
 

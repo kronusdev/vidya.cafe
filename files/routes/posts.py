@@ -54,18 +54,6 @@ def post_id(pid, anything=None, v=None):
 	else: defaultsortingcomments = "top"
 	sort=request.args.get("sort", defaultsortingcomments)
 	
-
-
-
-
-
-
-
-
-
-
-
-
 	try: pid = int(pid)
 	except:
 		try: pid = int(pid, 36)
@@ -166,7 +154,6 @@ def post_id(pid, anything=None, v=None):
 					try: g.db.flush()
 					except: g.db.rollback()
 					comment.upvotes = g.db.query(CommentVote).filter_by(comment_id=comment.id, vote_type=1).count()
-					comment.downvotes = g.db.query(CommentVote).filter_by(comment_id=comment.id, vote_type=-1).count()
 					g.db.add(comment)
 
 		post._preloaded_comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]

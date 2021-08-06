@@ -905,8 +905,8 @@ def admin_distinguish_comment(c_id, v):
 def refund(v):
 	for u in g.db.query(User).all():
 		if u.id == 253: continue
-		posts=sum([x[0]+x[1]-1 for x in g.db.query(Submission.upvotes, Submission.downvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
-		comments=sum([x[0]+x[1]-1 for x in g.db.query(Comment.upvotes, Comment.downvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
+		posts=sum([x[0]+x[1]-1 for x in g.db.query(Submission.upvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
+		comments=sum([x[0]+x[1]-1 for x in g.db.query(Comment.upvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
 		u.coins = int(posts+comments)
 		g.db.add(u)
 	return "sex"

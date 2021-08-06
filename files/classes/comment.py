@@ -84,7 +84,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	@property
 	@lazy
 	def score(self):
-		return self.upvotes - self.downvotes
+		return self.upvotes
 
 	@property
 	@lazy
