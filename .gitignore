@@ -115,4 +115,4 @@ local.txt
 *.scssc
 .idea/*
 disablesignups
-docker-compose.yml
+./docker-compose.yml
