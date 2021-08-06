@@ -57,6 +57,7 @@
 					{% if sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}
 					{% if sort=="old" %}<i class="fas fa-book mr-1"></i>{% endif %}
 					{% if sort=="controversial" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
+					{% if sort=="active" %}<i class="fas fa-chart-line mr-1"></i>{% endif %}
 					{{sort | capitalize}}
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
@@ -65,6 +66,7 @@
 					{% if sort != "new" %}<a class="dropdown-item" href="?sort=new&t={{t}}"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
 					{% if sort != "old" %}<a class="dropdown-item" href="?sort=old&t={{t}}"><i class="fas fa-book mr-2"></i>Old</a>{% endif %}
 					{% if sort != "controversial" %}<a class="dropdown-item" href="?sort=controversial&t={{t}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>{% endif %}
+					{% if sort != "active" %}<a class="dropdown-item" href="?sort=active&t={{t}}"><i class="fas fa-chart-line mr-2"></i>Active</a>{% endif %}
 				</div>
 			</div>
 		</div>

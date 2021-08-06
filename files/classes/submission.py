@@ -98,8 +98,8 @@ class Submission(Base, Stndrd, Age_times, Scores):
 
 	@property
 	@lazy
-	def score(self):
-		return self.upvotes - self.downvotes
+	def score(self): 
+		return self.upvotes # just sips for now, this needs to change when adding reactions
 
 	@property
 	@lazy
@@ -111,6 +111,10 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	def score_disputed(self):
 		return (self.upvotes + 1)
 
+	@property
+	@lazy
+	def score_active(self):
+		return 10000000*(self.score + 30 * self.comment_count / self.age)
 
 	@property
 	@lazy
