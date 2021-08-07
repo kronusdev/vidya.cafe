@@ -9,7 +9,7 @@ from .mix_ins import *
 from .flags import *
 from os import environ
 
-site = environ.get("domain").strip()
+site = environ.get("DOMAIN").strip()
 
 class SubmissionAux(Base):
 
@@ -24,8 +24,6 @@ class SubmissionAux(Base):
 	body_html = Column(String(20000), default="")
 	ban_reason = Column(String(128), default="")
 	embed_url = Column(String(256), default="")
-	meta_title=Column(String(512), default="")
-	meta_description=Column(String(1024), default="")
 
 
 class Submission(Base, Stndrd, Age_times, Scores):
@@ -51,11 +49,11 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	stickied = Column(Boolean, default=False)
 	is_pinned = Column(Boolean, default=False)
 	private = Column(Boolean, default=False)
-	_comments = relationship(
+	comments = relationship(
 		"Comment",
-		lazy="dynamic",
+		lazy="joined",
 		primaryjoin="Comment.parent_submission==Submission.id",
-		backref="submissions")
+		)
 	flags = relationship("Flag", lazy="dynamic")
 	is_approved = Column(Integer, ForeignKey("users.id"), default=0)
 	over_18 = Column(Boolean, default=False)
@@ -77,12 +75,6 @@ class Submission(Base, Stndrd, Age_times, Scores):
 		uselist=False,
 		primaryjoin="Submission.is_approved==User.id")
 
-	# These are virtual properties handled as postgres functions server-side
-	# There is no difference to SQLAlchemy, but they cannot be written to
-
-	comment_count = Column(Integer, server_default=FetchedValue())
-	score = deferred(Column(Float, server_default=FetchedValue()))
-
 	awards = relationship("AwardRelationship", lazy="joined")
 
 	def __init__(self, *args, **kwargs):
@@ -98,7 +90,17 @@ class Submission(Base, Stndrd, Age_times, Scores):
 
 	def __repr__(self):
 		return f"<Submission(id={self.id})>"
-		
+
+	@property
+	@lazy
+	def comment_count(self):
+		return len(self.comments)
+
+	@property
+	@lazy
+	def score(self): 
+		return self.upvotes # just sips for now, this needs to change when adding reactions
+
 	@property
 	@lazy
 	def hotscore(self):
@@ -109,6 +111,10 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	def score_disputed(self):
 		return (self.upvotes + 1)
 
+	@property
+	@lazy
+	def score_active(self):
+		return 10000000*(self.score + 30 * self.comment_count / self.age)
 
 	@property
 	@lazy

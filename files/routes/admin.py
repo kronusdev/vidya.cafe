@@ -443,7 +443,7 @@ def admin_image_purge(v):
 	name = request.form.get("url")
 	image = g.db.query(Image).filter(Image.text == name).first()
 	if image:
-		requests.delete(f'https://api.imgur.com/3/image/{image.deletehash}', headers = {"Authorization": f"Client-ID {imgurkey}"})
+		requests.delete(f'https://api.imgur.com/3/image/{image.deletehash}', headers = {"Authorization": f"Client-ID {IMGUR_KEY}"})
 		headers = {"Authorization": f"Bearer {CF_KEY}", "Content-Type": "application/json"}
 		data = {'files': [name]}
 		url = f"https://api.cloudflare.com/client/v4/zones/{CF_ZONE}/purge_cache"
@@ -905,8 +905,8 @@ def admin_distinguish_comment(c_id, v):
 def refund(v):
 	for u in g.db.query(User).all():
 		if u.id == 253: continue
-		posts=sum([x[0]+x[1]-1 for x in g.db.query(Submission.upvotes, Submission.downvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
-		comments=sum([x[0]+x[1]-1 for x in g.db.query(Comment.upvotes, Comment.downvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
+		posts=sum([x[0]+x[1]-1 for x in g.db.query(Submission.upvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
+		comments=sum([x[0]+x[1]-1 for x in g.db.query(Comment.upvotes).options(lazyload('*')).filter_by(author_id = u.id, is_banned = False, deleted_utc = 0).all()])
 		u.coins = int(posts+comments)
 		g.db.add(u)
 	return "sex"
@@ -931,7 +931,7 @@ def admin_banned_domains(v):
 @validate_formkey
 def admin_toggle_ban_domain(v):
 
-	domain=request.form.get("domain").strip()
+	domain=request.form.get("DOMAIN").strip()
 	if not domain: abort(400)
 
 	reason=request.form.get("reason", "").strip()

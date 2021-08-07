@@ -18,7 +18,7 @@ from files.__main__ import app, limiter, cache
 from PIL import Image as PILimage
 from .front import frontlist
 
-site = environ.get("domain").strip()
+site = environ.get("DOMAIN").strip()
 
 with open("snappy.txt", "r") as f: snappyquotes = f.read().split("{[para]}")
 
@@ -54,18 +54,6 @@ def post_id(pid, anything=None, v=None):
 	else: defaultsortingcomments = "top"
 	sort=request.args.get("sort", defaultsortingcomments)
 	
-
-
-
-
-
-
-
-
-
-
-
-
 	try: pid = int(pid)
 	except:
 		try: pid = int(pid, 36)
@@ -80,16 +68,16 @@ def post_id(pid, anything=None, v=None):
 
 		blocked = v.blocked.subquery()
 
-		comms = g.db.query(
+		comments = g.db.query(
 			Comment,
 			votes.c.vote_type,
 			blocking.c.id,
 			blocked.c.id,
 		)
 		if v.admin_level >=4:
-			comms=comms.options(joinedload(Comment.oauth_app))
+			comments=comments.options(joinedload(Comment.oauth_app))
  
-		comms=comms.filter(
+		comments=comments.filter(
 			Comment.parent_submission == post.id
 		).join(
 			votes,
@@ -106,17 +94,17 @@ def post_id(pid, anything=None, v=None):
 		)
 
 		if sort == "top":
-			comments = comms.order_by(Comment.score.desc()).all()
+			comments = sorted(comments.all(), key=lambda x: x[0].score, reverse=True)
 		elif sort == "bottom":
-			comments = comms.order_by(Comment.score.asc()).all()
+			comments = sorted(comments.all(), key=lambda x: x[0].score)
 		elif sort == "new":
-			comments = comms.order_by(Comment.created_utc.desc()).all()
+			comments = comments.order_by(Comment.created_utc.desc()).all()
 		elif sort == "old":
-			comments = comms.order_by(Comment.created_utc.asc()).all()
+			comments = comments.order_by(Comment.created_utc.asc()).all()
 		elif sort == "controversial":
-			comments = sorted(comms.all(), key=lambda x: x[0].score_disputed, reverse=True)
+			comments = sorted(comments.all(), key=lambda x: x[0].score_disputed, reverse=True)
 		elif sort == "random":
-			c = comms.all()
+			c = comments.all()
 			comments = random.sample(c, k=len(c))
 		else:
 			abort(422)
@@ -133,24 +121,24 @@ def post_id(pid, anything=None, v=None):
 		post._preloaded_comments = output
 
 	else:
-		comms = g.db.query(
+		comments = g.db.query(
 			Comment
 		).filter(
 			Comment.parent_submission == post.id
 		)
 
 		if sort == "top":
-			comments = comms.order_by(Comment.score.desc()).all()
+			comments = sorted(comments.all(), key=lambda x: x.score, reverse=True)
 		elif sort == "bottom":
-			comments = comms.order_by(Comment.score.asc()).all()
+			comments = sorted(comments.all(), key=lambda x: x.score)
 		elif sort == "new":
-			comments = comms.order_by(Comment.created_utc.desc()).all()
+			comments = comments.order_by(Comment.created_utc.desc()).all()
 		elif sort == "old":
-			comments = comms.order_by(Comment.created_utc.asc()).all()
+			comments = comments.order_by(Comment.created_utc.asc()).all()
 		elif sort == "controversial":
-			comments = sorted(comms.all(), key=lambda x: x.score_disputed, reverse=True)
+			comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort == "random":
-			c = comms.all()
+			c = comments.all()
 			comments = random.sample(c, k=len(c))
 		else:
 			abort(422)
@@ -166,7 +154,6 @@ def post_id(pid, anything=None, v=None):
 					try: g.db.flush()
 					except: g.db.rollback()
 					comment.upvotes = g.db.query(CommentVote).filter_by(comment_id=comment.id, vote_type=1).count()
-					comment.downvotes = g.db.query(CommentVote).filter_by(comment_id=comment.id, vote_type=-1).count()
 					g.db.add(comment)
 
 		post._preloaded_comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
@@ -400,23 +387,6 @@ def thumbs(new_post):
 		soup=BeautifulSoup(x.content, 'html.parser')
 		#parse html
 
-		#first, set metadata
-		try:
-			meta_title=soup.find('title')
-			if meta_title:
-				post.submission_aux.meta_title=str(meta_title.string)[:500]
-
-			meta_desc = soup.find('meta', attrs={"name":"description"})
-			if meta_desc:
-				post.submission_aux.meta_description=meta_desc['content'][:1000]
-
-			if meta_title or meta_desc:
-				g.db.add(post.submission_aux)
-				g.db.commit()
-
-		except Exception as e:
-			pass
-
 		#create list of urls to check
 		thumb_candidate_urls=[]
 
@@ -505,6 +475,22 @@ def thumbs(new_post):
 def archiveorg(url):
 	try: requests.get(f'https://web.archive.org/save/{url}', headers={'User-Agent': 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'}, timeout=100)
 	except Exception as e: print(e)
+
+
+@app.route("/embed/post/<pid>", methods=["GET"])
+def embed_post_pid(pid):
+
+    post = get_post(pid)
+
+    return render_template("embeds/post.html", p=post)
+
+
+@app.route("/embed/comment/<cid>", methods=["GET"])
+def embed_comment_cid(cid, pid=None):
+
+    comment = get_comment(cid)
+
+    return render_template("embeds/comment.html", c=comment)
 
 
 @app.post("/submit")
@@ -603,8 +589,9 @@ def submit_post(v):
 		else: return render_template("submit.html", v=v, error="ToS Violation", title=title, url=url, body=request.form.get("body", "")), 400
 
 	if "twitter.com" in domain:
-		embed = requests.get("https://publish.twitter.com/oembed", params={"url":url, "omit_script":"t"}).json()["html"]
-	
+		try: embed = requests.get("https://publish.twitter.com/oembed", params={"url":url, "omit_script":"t"}).json()["html"]
+		except: embed = None
+
 	elif "youtu" in domain:
 		yt_id = re.match(re.compile("^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|\&v=)([^#\&\?]*).*"), url).group(2)
 		if not yt_id or len(yt_id) != 11: embed = None
@@ -788,7 +775,7 @@ def submit_post(v):
 			
 	url = url.replace("https://mobile.twitter.com", "https://twitter.com")
 	
-	if url.startswith("https://old.reddit.com/") and '/comments/' in url and '?sort=' not in url: url += "?sort=controversial" 
+	# if url.startswith("https://old.reddit.com/") and '/comments/' in url and '?' not in url: url += "?sort=controversial" 
 
 	title_html = sanitize(title, linkgen=True, flair=True)
 

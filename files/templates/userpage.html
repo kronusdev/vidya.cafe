@@ -29,7 +29,7 @@
 <meta property="og:author" name="author" content="@{{u.username}}" />
 <meta property="og:title" content="{{u.username}}" />
 <meta property="og:image" content="{% if u.bannerurl %}{{u.banner_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
-<meta property="og:url" content="{{u.permalink | full_link}}" />
+<meta property="og:url" content="{{u.url | full_link}}" />
 <meta property="og:site_name" content="{{request.host}}" />
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -38,7 +38,7 @@
 <meta name="twitter:creator" content="@{{u.username}}">
 <meta name="twitter:description" content="{{u.coins}} {{"COINS_NAME" | app_config}} - Joined {{u.created_date}} - {% if u.stored_subscriber_count >=1 and not u.is_private and not u.is_nofollow %}{{u.stored_subscriber_count}} Followers -{% endif %} {% if not u.is_private %} {{u.post_count}} Posts - {{u.comment_count}} Comments -{% endif %} {{u.bio}}" />
 <meta name="twitter:image" content="{% if u.bannerurl %}{{u.banner_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
-<meta name="twitter:url" content="{{u.permalink | full_link}}" />
+<meta name="twitter:url" content="{{u.url | full_link}}" />
 {% endblock %}
 
 {% block desktopUserBanner %}
@@ -360,7 +360,7 @@
 										<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody-mobile')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add Emoji"></i></small>
 										&nbsp;&nbsp;&nbsp;
 										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="locked-mobile" name="locked">
+											<input type="checkbox" class="custom-control-input" id="locked-mobile" name="locked" {% if u.flairchanged %}checked{% endif %}>
 											<label class="custom-control-label" for="locked-mobile">locked</label>
 										</div>
 										&nbsp;&nbsp;&nbsp;
@@ -510,6 +510,7 @@
 					{% if sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}
 					{% if sort=="old" %}<i class="fas fa-book mr-1"></i>{% endif %}
 					{% if sort=="controversial" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
+					{% if sort=="active" %}<i class="fas fa-chart-line mr-1"></i>{% endif %}
 					{% if sort=="comments" %}<i class="fas fa-comments mr-1"></i>{% endif %}
 					{{sort | capitalize}}
 				</button>
@@ -519,6 +520,7 @@
 					{% if sort != "new" %}<a class="dropdown-item" href="?sort=new&t={{t}}"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
 					{% if sort != "old" %}<a class="dropdown-item" href="?sort=old&t={{t}}"><i class="fas fa-book mr-2"></i>Old</a>{% endif %}
 					{% if sort != "controversial" %}<a class="dropdown-item" href="?sort=controversial&t={{t}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>{% endif %}
+					{% if sort != "active" %}<a class="dropdown-item" href="?sort=active&t={{t}}"><i class="fas fa-chart-line mr-2"></i>Active</a>{% endif %}
 					{% if sort != "comments" %}<a class="dropdown-item" href="?sort=comments&t={{t}}"><i class="fas fa-comments mr-2"></i>Comments</a>{% endif %}
 				</div>
 			</div>

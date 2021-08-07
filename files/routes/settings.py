@@ -13,7 +13,7 @@ valid_username_regex = re.compile("^[a-zA-Z0-9_\-]{3,25}$")
 valid_title_regex = re.compile("^((?!<).){3,100}$")
 valid_password_regex = re.compile("^.{8,100}$")
 
-youtubekey = environ.get("youtubekey").strip()
+YOUTUBE_KEY = environ.get("YOUTUBE_KEY").strip()
 COINS_NAME = environ.get("COINS_NAME").strip()
 
 @app.post("/settings/profile")
@@ -25,7 +25,7 @@ def settings_profile_post(v):
 	if request.values.get("background", v.background) != v.background:
 		updated = True
 		v.background= request.values.get("background", None)
-	
+
 	if request.values.get("slurreplacer", v.slurreplacer) != v.slurreplacer:
 		updated = True
 		v.slurreplacer = request.values.get("slurreplacer", None) == 'true'
@@ -49,7 +49,7 @@ def settings_profile_post(v):
 	if request.values.get("over18", v.over_18) != v.over_18:
 		updated = True
 		v.over_18 = request.values.get("over18", None) == 'true'
-		
+
 	if request.values.get("private", v.is_private) != v.is_private:
 		updated = True
 		v.is_private = request.values.get("private", None) == 'true'
@@ -87,7 +87,7 @@ def settings_profile_post(v):
 			reason = f"Remove the {ban.domain} link from your bio and try again."
 			if ban.reason:
 				reason += f" {ban.reason}"
-				
+
 			#auto ban for digitally malicious content
 			if any([x.reason==4 for x in bans]):
 				v.ban(days=30, reason="Digitally malicious content is not allowed.")
@@ -127,7 +127,7 @@ def settings_profile_post(v):
 
 	defaultsorting = request.values.get("defaultsorting")
 	if defaultsorting:
-		if defaultsorting in ["hot", "new", "old", "comments", "controversial", "top", "bottom", "random"]:
+		if defaultsorting in ["hot", "new", "old", "comments", "controversial", "top", "bottom", "random", "active"]:
 			v.defaultsorting = defaultsorting
 			updated = True
 		else:
@@ -177,7 +177,7 @@ def namecolor(v):
 	v.namecolor = color
 	g.db.add(v)
 	return redirect("/settings/profile")
-	
+
 @app.post("/settings/themecolor")
 @auth_required
 @validate_formkey
@@ -210,7 +210,7 @@ def settings_security_post(v):
 
 		if not re.match(valid_password_regex, request.form.get("new_password")):
 			#print(f"signup fail - {username } - invalid password")
-			return redirect("/settings/security?error=" + 
+			return redirect("/settings/security?error=" +
 							escape("Password must be between 8 and 100 characters."))
 
 		if not v.verifyPass(request.form.get("old_password")):
@@ -466,7 +466,7 @@ def settings_block_user(v):
 						  )
 	g.db.add(new_block)
 
-	
+
 
 	existing = g.db.query(Notification).filter_by(blocksender=v.id, user_id=user.id).first()
 	if not existing: send_block_notif(v.id, user.id, f"@{v.username} has blocked you!")
@@ -488,12 +488,12 @@ def settings_unblock_user(v):
 	user = get_user(request.values.get("username"))
 
 	x = v.has_block(user)
-	
+
 	if not x: abort(409)
 
 	g.db.delete(x)
 
-	
+
 
 	existing = g.db.query(Notification).filter_by(unblocksender=v.id, user_id=user.id).first()
 	if not existing: send_unblock_notif(v.id, user.id, f"@{v.username} has unblocked you!")
@@ -611,14 +611,14 @@ def settings_song_change(v):
 	if "?" in id: id = id.split("?")[0]
 	if "&" in id: id = id.split("&")[0]
 
-	if path.isfile(f'/songs/{id}.mp3'): 
+	if path.isfile(f'/songs/{id}.mp3'):
 		v.song=id
 		g.db.add(v)
 		g.db.commit()
 		return redirect("/settings/profile")
-		
-	
-	req = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={youtubekey}&part=contentDetails").json()
+
+
+	req = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={YOUTUBE_KEY}&part=contentDetails").json()
 	try: duration = req['items'][0]['contentDetails']['duration']
 	except:
 		print(req)
@@ -630,7 +630,7 @@ def settings_song_change(v):
 
 	if "M" in duration:
 		duration = int(duration.split("PT")[1].split("M")[0])
-		if duration > 10: 
+		if duration > 10:
 			return render_template("settings_profile.html",
 						v=v,
 						error=f"Duration of the video must not exceed 10 minutes.")
@@ -673,7 +673,7 @@ def settings_song_change(v):
 def settings_title_change(v):
 
 	if v.flairchanged: abort(403)
-	
+
 	new_name=request.form.get("title").strip()
 
 	#verify acceptability

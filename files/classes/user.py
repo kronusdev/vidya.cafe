@@ -14,7 +14,7 @@ from .clients import *
 from files.__main__ import Base, cache
 from files.helpers.security import *
 
-site = environ.get("domain").strip()
+site = environ.get("DOMAIN").strip()
 
 class User(Base, Stndrd, Age_times):
 	__tablename__ = "users"
@@ -60,21 +60,20 @@ class User(Base, Stndrd, Age_times):
 		"Submission",
 		lazy="dynamic",
 		primaryjoin="Submission.author_id==User.id",
-		backref="author_rel")
+		)
 	comments = relationship(
 		"Comment",
 		lazy="dynamic",
 		primaryjoin="Comment.author_id==User.id")
-	votes = relationship("Vote", lazy="dynamic", backref="users")
-	commentvotes = relationship("CommentVote", lazy="dynamic", backref="users")
+	votes = relationship("Vote", lazy="dynamic")
+	commentvotes = relationship("CommentVote", lazy="dynamic")
 	bio = Column(String, default="")
 	bio_html = Column(String, default="")
-	badges = relationship("Badge", lazy="dynamic", backref="user")
+	badges = relationship("Badge", lazy="dynamic")
 	notifications = relationship(
 		"Notification",
 		lazy="dynamic")
 
-	referred_by = Column(Integer)
 	is_banned = Column(Integer, default=None)
 	unban_utc = Column(Integer, default=None)
 	ban_reason = Column(String, default="")
@@ -117,8 +116,12 @@ class User(Base, Stndrd, Age_times):
 		primaryjoin="User.id==AwardRelationship.user_id"
 	)
 
-	# properties defined as SQL server-side functions
-	referral_count = deferred(Column(Integer, server_default=FetchedValue()))
+	referred_by = Column(Integer, ForeignKey("users.id"))
+
+	referrals = relationship(
+		"User",
+		lazy="joined"
+	)
 
 	def __init__(self, **kwargs):
 
@@ -129,6 +132,11 @@ class User(Base, Stndrd, Age_times):
 		kwargs["created_utc"] = int(time.time())
 
 		super().__init__(**kwargs)
+
+	@property
+	@lazy
+	def referral_count(self):
+		return len(self.referrals)
 
 	def has_block(self, target):
 
@@ -185,11 +193,11 @@ class User(Base, Stndrd, Age_times):
 		elif sort == "controversial":
 			submissions = sorted(submissions.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort == "top":
-			submissions = submissions.order_by(Submission.score.desc()).all()
+			submissions = sorted(submissions.all(), key=lambda x: x.score, reverse=True)
 		elif sort == "bottom":
-			submissions = submissions.order_by(Submission.score.asc()).all()
+			submissions = sorted(submissions.all(), key=lambda x: x.score)
 		elif sort == "comments":
-			submissions = submissions.order_by(Submission.comment_count.desc()).all()
+			submissions = sorted(submissions.all(), key=lambda x: x.comment_count, reverse=True)
 
 		firstrange = 25 * (page - 1)
 		secondrange = firstrange + 26
@@ -228,9 +236,9 @@ class User(Base, Stndrd, Age_times):
 		elif sort == "controversial":
 			comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort == "top":
-			comments = comments.order_by(Comment.score.desc()).all()
+			comments = sorted(comments.all(), key=lambda x: x.score, reverse=True)
 		elif sort == "bottom":
-			comments = comments.order_by(Comment.score.asc()).all()
+			comments = sorted(comments.all(), key=lambda x: x.score)
 
 		firstrange = 25 * (page - 1)
 		secondrange = firstrange + 26

@@ -70,10 +70,6 @@ class Comment(Base, Age_times, Scores, Stndrd):
 
 	awards = relationship("AwardRelationship", lazy="joined")
 
-	# These are virtual properties handled as postgres functions server-side
-	# There is no difference to SQLAlchemy, but they cannot be written to
-	score = deferred(Column(Integer, server_default=FetchedValue()))
-
 	def __init__(self, *args, **kwargs):
 
 		if "created_utc" not in kwargs:
@@ -84,6 +80,11 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	def __repr__(self):
 
 		return f"<Comment(id={self.id})>"
+
+	@property
+	@lazy
+	def score(self):
+		return self.upvotes
 
 	@property
 	@lazy
@@ -219,10 +220,9 @@ class Comment(Base, Age_times, Scores, Stndrd):
 
 		return data
 
-	def voted(self, v):
-		x = self.votes.filter_by(user_id=v.id).first()
-		if x: return x.vote_type
-		else: return 0
+	@property
+	def voted(self):
+		return self.__dict__.get("_voted")
 
 	@property
 	def is_blocking(self):

@@ -126,11 +126,13 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	elif sort == "controversial":
 		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
-		posts = posts.order_by(Submission.score.desc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.score, reverse=True)
 	elif sort == "bottom":
-		posts = posts.order_by(Submission.score.asc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.score)
 	elif sort == "comments":
-		posts = posts.order_by(Submission.comment_count.desc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.comment_count, reverse=True)
+	elif sort == "active":
+		posts = sorted(posts.all(), key=lambda x: x.score_active, reverse=True)
 	elif sort == "random":
 		posts = posts.all()
 		posts = random.sample(posts, k=len(posts))
@@ -165,7 +167,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 				try: g.db.flush()
 				except: g.db.rollback()
 				post.upvotes = g.db.query(Vote).filter_by(submission_id=post.id, vote_type=1).count()
-				post.downvotes = g.db.query(Vote).filter_by(submission_id=post.id, vote_type=-1).count()
 				post.views = post.views + random.randint(7,10)
 				g.db.add(post)
 
@@ -270,11 +271,13 @@ def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 	elif sort == "controversial":
 		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
-		posts = posts.order_by(Submission.score.desc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.score, reverse=True)
 	elif sort == "bottom":
-		posts = posts.order_by(Submission.score.asc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.score)
 	elif sort == "comments":
-		posts = posts.order_by(Submission.comment_count.desc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.comment_count, reverse=True)
+	elif sort == "active":
+		posts = sorted(posts.all(), key=lambda x: x.score_active, reverse=True)
 	elif sort == "random":
 		posts = posts.all()
 		posts = random.sample(posts, k=len(posts))
@@ -323,7 +326,7 @@ def changelog(v):
 def random_post(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False, Submission.score > 20)
+	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False)
 
 	total = x.count()
 	n = random.randint(0, total - 1)
@@ -380,9 +383,9 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 	elif sort == "controversial":
 		comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
-		comments = comments.order_by(Comment.score.desc()).all()
+		comments = sorted(comments.all(), key=lambda x: x.score, reverse=True)
 	elif sort == "bottom":
-		comments = comments.order_by(Comment.score.asc()).all()
+		comments = sorted(comments.all(), key=lambda x: x.score)
 
 	firstrange = 25 * (page - 1)
 	secondrange = firstrange+100
