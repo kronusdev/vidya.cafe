@@ -218,7 +218,8 @@ def gitpull():
 		header_splitted = request.headers[sig_header].split("=")
 		if len(header_splitted) == 2:
 			req_sign = header_splitted[1]
-			computed_sign = hmac.new(app.config['GITHUB_WEBHOOK_SECRET'].encoded(), request.json.encoded(), hashlib.sha256).hexdigest()
+			secret = app.config['GITHUB_WEBHOOK_SECRET']
+			computed_sign = hmac.new(secret.encode(), request.json, hashlib.sha256).hexdigest()
 			if hmac.compare_digest(req_sign, computed_sign):
 				print("OK")
 				threading.Thread(target=lambda: [time.sleep(2), subprocess.call(['source', '/vidya.cafe/vidya.cafe/pull.sh'])]).start()
