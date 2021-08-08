@@ -363,7 +363,7 @@ def sign_up_post(v):
 		send_verification_email(new_user)
 
 	# send welcome message
-	send_notification(1046, new_user, "Welcome to Vidya Cafe! It's your taste in gaming. ☕")
+	send_notification(1, new_user, "Welcome to Vidya Cafe! It's your taste in gaming. ☕")
 
 	session["user_id"] = new_user.id
 	session["session_id"] = token_hex(16)
