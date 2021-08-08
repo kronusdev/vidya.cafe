@@ -1,3 +1,5 @@
+newrelic.ini
+vars.env
 /docker-compose.yml
 image.png
 image.gif

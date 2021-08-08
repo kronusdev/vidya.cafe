@@ -205,3 +205,8 @@ def dismiss_mobile_tip():
 	session.modified=True
 
 	return "", 204
+
+@app.post("/gitpull")
+def gitpull():
+	print(request.json)
+	return 200
