@@ -213,7 +213,7 @@ def dismiss_mobile_tip():
 
 @app.post("/gitpull")
 def gitpull():
-	branch = (request.json.ref).split("/")[-1]
+	branch = (request.json["ref"]).split("/")[-1]
 	if branch != "main": return "OK", 200
 
 	sig_header = 'X-Hub-Signature-256'
