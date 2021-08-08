@@ -91,7 +91,7 @@
 		{% else %}
 			<span class="font-weight-bold"><a href="{{c.post.permalink}}">{{c.post.title | safe}}</a></span>
 		{% endif %}
-	{% elif c.author_id==1046 or c.author_id==2360 %}
+	{% elif c.author_id==1 or c.author_id==6 %}
 	<span class="font-weight-bold">{{"SITE_NAME" | app_config}} Notification</span>
 	{% else %}
 	<span class="font-weight-bold">Private Message</span>
@@ -140,7 +140,7 @@
 			<div id="comment-text-{{c.id}}" class="comment-text mb-0">
 				{{c.realbody(v) | safe}}
 
-				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}
+				{% if not c.parent_submission and c.author_id!=1 and c.author_id!=6 and c.author_id!=v.id %}
 					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.toggle('d-none')">Reply</a>
 					<pre></pre>
 					<form class="d-none" id="reply-to-{{c.id}}" action="/@{{c.author.username}}/reply/{{c.id}}" method="post">

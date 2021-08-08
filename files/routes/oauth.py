@@ -47,7 +47,7 @@ def request_api_keys(v):
 
 	g.db.add(new_app)
 
-	send_admin(1046, f"@{v.username} has requested API keys for `{request.form.get('name')}`. You can approve or deny the request [here](/admin/apps).")
+	send_admin(1, f"@{v.username} has requested API keys for `{request.form.get('name')}`. You can approve or deny the request [here](/admin/apps).")
 
 	return redirect('/settings/apps')
 
@@ -106,7 +106,7 @@ def admin_app_approve(v, aid):
 
 	g.db.add(new_auth)
 
-	send_notification(1046, v, f"Your application `{app.app_name}` has been approved. Here's your access token: `{access_token}`\nPlease check the guide [here](/api) if you don't know what to do next.")
+	send_notification(1, v, f"Your application `{app.app_name}` has been approved. Here's your access token: `{access_token}`\nPlease check the guide [here](/api) if you don't know what to do next.")
 
 	return {"message": f"{app.app_name} approved"}
 
@@ -121,7 +121,7 @@ def admin_app_revoke(v, aid):
 	for auth in g.db.query(ClientAuth).filter_by(oauth_client=app.id).all(): g.db.delete(auth)
 
 	g.db.flush()
-	send_notification(1046, app.author, f"Your application `{app.app_name}` has been revoked.")
+	send_notification(1, app.author, f"Your application `{app.app_name}` has been revoked.")
 
 	g.db.delete(app)
 
@@ -138,7 +138,7 @@ def admin_app_reject(v, aid):
 	for auth in g.db.query(ClientAuth).filter_by(oauth_client=app.id).all(): g.db.delete(auth)
 
 	g.db.flush()
-	send_notification(1046, app.author, f"Your application `{app.app_name}` has been rejected.")
+	send_notification(1, app.author, f"Your application `{app.app_name}` has been rejected.")
 
 	g.db.delete(app)
 
