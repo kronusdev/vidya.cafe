@@ -224,6 +224,5 @@ def gitpull():
 			secret = app.config['GITHUB_WEBHOOK_SECRET']
 			computed_sign = hmac.new(secret.encode(), request.data, hashlib.sha256).hexdigest()
 			if hmac.compare_digest(req_sign, computed_sign):
-				print("OK")
 				threading.Thread(target=lambda: [time.sleep(2), subprocess.call(['sh', '/vidya.cafe/vidya.cafe/pull.sh'])]).start()
 	return "OK", 200
