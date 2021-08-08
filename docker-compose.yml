@@ -13,6 +13,7 @@ services:
       - DATABASE_CONNECTION_POOL_URL=postgresql://postgres@postgres:5432/postgres
       - MASTER_KEY=${MASTER_KEY:-KTVciAUQFpFh2WdJ/oiHJlxl6FvzRZp8kYzAAv3l2OA=}
       - DOMAIN=vidya.cafe
+      - IMGUR_KEY=vcxvdfgfc6r554etrgd
       - SITE_NAME=VidyaCafe
       - CLOUDFLARE_ZONE=vcxvdfgfc6r554etrgd
       - CLOUDFLARE_KEY=vcxvdfgfc6r554etrgd
