@@ -2,6 +2,8 @@ version: '2.3'
 
 services:
   files:
+    env_file:
+      - ./vars.env
     build:
       context: .
     volumes:
