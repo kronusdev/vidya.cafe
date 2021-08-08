@@ -1,6 +1,10 @@
 from files.mail import *
 from files.__main__ import app, limiter
 from files.helpers.alerts import *
+import hashlib
+import hmac
+import subprocess
+import threading
 
 site = environ.get("DOMAIN").strip()
 
@@ -58,7 +62,7 @@ def log_item(id, v):
 
 @app.route("/sex")
 def index():
-    return render_template("index.html", **{"greeting": "Hello from Flask!"})
+	return render_template("index.html", **{"greeting": "Hello from Flask!"})
 
 @app.get("/assets/favicon.ico")
 def favicon():
@@ -206,7 +210,19 @@ def dismiss_mobile_tip():
 
 	return "", 204
 
+
 @app.post("/gitpull")
 def gitpull():
-	print(request.json)
-	return 200
+	branch = (request.json["ref"]).split("/")[-1]
+	if branch != "master": return "OK", 200
+
+	sig_header = 'X-Hub-Signature-256'
+	if sig_header in request.headers:
+		header_splitted = request.headers[sig_header].split("=")
+		if len(header_splitted) == 2:
+			req_sign = header_splitted[1]
+			secret = app.config['GITHUB_WEBHOOK_SECRET']
+			computed_sign = hmac.new(secret.encode(), request.data, hashlib.sha256).hexdigest()
+			if hmac.compare_digest(req_sign, computed_sign):
+				threading.Thread(target=lambda: [time.sleep(2), subprocess.call(['sh', '/vidya.cafe/vidya.cafe/pull.sh'])]).start()
+	return "OK", 200
