@@ -199,7 +199,7 @@
 			</div>
 			{% endif %}
 		
-			<div id="comment-{{c.id}}-actions" class="comment-actions{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
+			<div id="comment-{{c.id}}-actions" class="comment-actions{% if voted==1 %} upvoted {% endif %}">
 				<ul class="list-inline text-right text-md-left">
 
 					{% if v and request.path.startswith('/@') and v.admin_level == 0%}
@@ -222,23 +222,6 @@
 					<li class="list-inline-item d-none d-md-inline-block mr-2">
 						<span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{score}}</span></span>
 					</li>
-
-					{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
-					
-					{% if voted==-1 %}
-					<li class="list-inline-item arrow-down d-none d-md-inline-block mr-2 comment-{{c.id}}-down active"></li>
-					{% endif %}
-					
-					{% elif v %}
-					<li id="comment-{{c.id}}-down" tabindex="0" class="list-inline-item arrow-down downvote-button d-none d-md-inline-block mr-2 comment-{{c.id}}-down {% if voted==-1 %}active{% endif %}" data-id-down="{{c.id}}" data-content-type="comment">
-					</li>
-
-					{% else %}
-
-					<li id="comment-{{c.id}}-down" tabindex="0" class="list-inline-item arrow-down d-none d-md-inline-block" onclick="location.href='/login';">
-					</li>
-
-					{% endif %}
 
 					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="/votes?link={{c.fullname}}"><i class="fas fa-arrows-v"></i>Votes</a></li>
 
