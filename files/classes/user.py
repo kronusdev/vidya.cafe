@@ -327,11 +327,11 @@ class User(Base, Stndrd, Age_times):
 	@lazy
 	def post_notifications_count(self):
 		return self.notifications.filter(Notification.read == False).join(Notification.comment).filter(
-			Comment.author_id == 2360).count()
+			Comment.author_id == 23).count()
 
 	def notification_subscriptions(self, page=1, all_=False):
 
-		notifications = self.notifications.join(Notification.comment).filter(Comment.author_id == 2360)
+		notifications = self.notifications.join(Notification.comment).filter(Comment.author_id == 23)
 
 		notifications = notifications.options(
 			contains_eager(Notification.comment)
@@ -352,7 +352,7 @@ class User(Base, Stndrd, Age_times):
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,
 			Comment.deleted_utc == 0,
-			Comment.author_id != 2360,
+			Comment.author_id != 23,
 		)
 
 		if not all_:
@@ -516,7 +516,7 @@ class User(Base, Stndrd, Age_times):
 			self.profileurl = None
 			delete_role(self, "linked")
 
-		self.is_banned = admin.id if admin else 2317
+		self.is_banned = admin.id if admin else 23
 		if reason: self.ban_reason = reason
 
 		g.db.add(self)

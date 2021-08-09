@@ -458,7 +458,7 @@ def settings_block_user(v):
 	if v.has_block(user):
 		return {"error": f"You have already blocked @{user.username}."}, 409
 
-	if user.id == 1046:
+	if user.id == 1:
 		return {"error": "You can't block @files."}, 409
 
 	new_block = UserBlock(user_id=v.id,

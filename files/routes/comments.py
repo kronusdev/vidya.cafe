@@ -272,7 +272,7 @@ def api_comment(v):
 
 		if len(similar_comments) > threshold:
 			text = "Your account has been suspended for 1 day for the following reason:\n\n> Too much spam!"
-			send_notification(1046, v, text)
+			send_notification(1, v, text)
 
 			v.ban(reason="Spamming.",
 					days=1)
@@ -286,7 +286,7 @@ def api_comment(v):
 				comment.ban_reason = "Automatic spam removal. This happened because the post's creator submitted too much similar content too quickly."
 				g.db.add(comment)
 				ma=ModAction(
-					user_id=2317,
+					user_id=23,
 					target_comment_id=comment.id,
 					kind="ban_comment",
 					note="spam"
@@ -359,7 +359,7 @@ def api_comment(v):
 
 		g.db.add(c)
 
-		c_jannied = Comment(author_id=2317,
+		c_jannied = Comment(author_id=23,
 			parent_submission=parent_submission,
 			distinguish_level=6,
 			parent_comment_id=c.id,
@@ -391,121 +391,6 @@ def api_comment(v):
 		g.db.flush()
 		n = Notification(comment_id=c_jannied.id, user_id=v.id)
 		g.db.add(n)
-
-	if len(body) >= 1000 and v.username != "Snappy" and "</blockquote>" not in body_html:
-		c2 = Comment(author_id=1832,
-			parent_submission=parent_submission,
-			parent_comment_id=c.id,
-			level=level+1,
-			is_bot=True,
-			)
-
-		g.db.add(c2)
-		g.db.flush()
-	
-		body = random.choice(choices)
-		body = body.replace("\n", "\n\n").replace("\n\n\n\n\n\n", "\n\n").replace("\n\n\n\n", "\n\n").replace("\n\n\n", "\n\n")
-		with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
-		body_html2 = sanitize(body_md, linkgen=True)
-		c_aux = CommentAux(
-			id=c2.id,
-			body_html=body_html2,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c2.id, user_id=v.id)
-		g.db.add(n)
-
-
-
-
-
-
-
-	if	random.random() < 0.001 and v.username != "Snappy" and v.username != "zozbot":
-		c2 = Comment(author_id=1833,
-			parent_submission=parent_submission,
-			parent_comment_id=c.id,
-			level=level+1,
-			is_bot=True,
-			)
-
-		g.db.add(c2)
-		g.db.flush()
-	
-		body = "zoz"
-		with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
-		body_html2 = sanitize(body_md, linkgen=True)
-		c_aux = CommentAux(
-			id=c2.id,
-			body_html=body_html2,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c2.id, user_id=v.id)
-		g.db.add(n)
-
-
-
-
-		c3 = Comment(author_id=1833,
-			parent_submission=parent_submission,
-			parent_comment_id=c2.id,
-			level=level+2,
-			is_bot=True,
-			)
-
-		g.db.add(c3)
-		g.db.flush()
-	
-		body = "zle"
-		with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
-		body_html2 = sanitize(body_md, linkgen=True)
-		c_aux = CommentAux(
-			id=c3.id,
-			body_html=body_html2,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		
-		
-
-
-
-		
-		c4 = Comment(author_id=1833,
-			parent_submission=parent_submission,
-			parent_comment_id=c3.id,
-			level=level+3,
-			is_bot=True,
-			)
-
-		g.db.add(c4)
-		g.db.flush()
-	
-		body = "zozzle"
-		with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
-		body_html2 = sanitize(body_md, linkgen=True)
-		c_aux = CommentAux(
-			id=c4.id,
-			body_html=body_html2,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-
-
-
-
-
-
-
-
-
-
 
 
 	if not v.shadowbanned:
@@ -669,7 +554,7 @@ def edit_comment(cid, v):
 
 	if len(similar_comments) > threshold:
 		text = "Your account has been suspended for 1 day for the following reason:\n\n> Too much spam!"
-		send_notification(1046, v, text)
+		send_notification(1, v, text)
 
 		v.ban(reason="Spamming.",
 				days=1)
@@ -705,7 +590,7 @@ def edit_comment(cid, v):
 
 		g.db.add(c)
 
-		c_jannied = Comment(author_id=2317,
+		c_jannied = Comment(author_id=23,
 			parent_submission=c.parent_submission,
 			distinguish_level=6,
 			parent_comment_id=c.id,
