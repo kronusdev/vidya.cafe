@@ -10,7 +10,7 @@ from files.helpers.markdown import *
 from files.helpers.session import *
 from files.helpers.thumbs import *
 from files.helpers.alerts import send_notification
-#from files.helpers.discord import send_message
+from files.helpers.discord import send_message
 from files.classes import *
 from flask import *
 from io import BytesIO
@@ -277,7 +277,7 @@ def edit_post(pid, v):
 
 		g.db.add(p)
 
-		c_jannied = Comment(author_id=6,
+		c_jannied = Comment(author_id=23,
 			parent_submission=p.id,
 			level=1,
 			over_18=False,
@@ -681,7 +681,7 @@ def submit_post(v):
 			post.ban_reason = "Automatic spam removal. This happened because the post's creator submitted too much similar content too quickly."
 			g.db.add(post)
 			ma=ModAction(
-					user_id=6,
+					user_id=23,
 					target_submission_id=post.id,
 					kind="ban_post",
 					note="spam"
@@ -838,7 +838,7 @@ def submit_post(v):
 	if not new_post.private:
 		for follow in v.followers:
 			user = get_account(follow.user_id)
-			send_notification(6, user, f"@{v.username} has made a new post: [{title}](https://{site}{new_post.permalink})")
+			send_notification(23, user, f"@{v.username} has made a new post: [{title}](https://{site}{new_post.permalink})")
 
 	g.db.add(new_post)
 	g.db.commit()
@@ -850,7 +850,7 @@ def submit_post(v):
 
 		g.db.add(new_post)
 
-		c_jannied = Comment(author_id=6,
+		c_jannied = Comment(author_id=23,
 			parent_submission=new_post.id,
 			level=1,
 			over_18=False,
@@ -885,7 +885,7 @@ def submit_post(v):
 		g.db.add(n)
 
 	if new_post.url:
-		c = Comment(author_id=261,
+		c = Comment(author_id=21,
 			distinguish_level=6,
 			parent_submission=new_post.id,
 			level=1,
@@ -896,7 +896,6 @@ def submit_post(v):
 
 		g.db.add(c)
 		g.db.flush()
-
 		body = f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{new_post.url})\n* [archive.org](https://web.archive.org/{new_post.url})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
 		gevent.spawn(archiveorg, new_post.url)
 		with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
@@ -910,7 +909,7 @@ def submit_post(v):
 		g.db.flush()
 		n = Notification(comment_id=c.id, user_id=v.id)
 		g.db.add(n)
-
+		g.db.commit()
 	#send_message(f"https://{site}{new_post.permalink}")
 	
 	v.post_count = v.submissions.filter_by(is_banned=False, deleted_utc=0).count()
