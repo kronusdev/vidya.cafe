@@ -15,12 +15,12 @@ def banaward_trigger(post=None, comment=None):
         if not author.is_suspended:
             author.ban(reason="1-day ban award used", days=1)
 
-            send_notification(1, author, f"Your account has been suspended for a day for {link}. It sucked and you should feel bad.")
+            send_notification(1046, author, f"Your account has been suspended for a day for {link}. It sucked and you should feel bad.")
         elif author.unban_utc > 0:
             author.unban_utc += 24*60*60
             g.db.add(author)
 
-            send_notification(1, author, f"Your account has been suspended for yet another day for {link}. Seriously man?")
+            send_notification(1046, author, f"Your account has been suspended for yet another day for {link}. Seriously man?")
 
 
 ACTIONS = {
@@ -99,7 +99,7 @@ def award_post(pid, v):
     if note:
         msg += f"\n\n> {note}"
 
-    send_notification(1, post.author, msg)
+    send_notification(1046, post.author, msg)
 
     if kind in ACTIONS:
         ACTIONS[kind](post=post)
@@ -160,7 +160,7 @@ def award_comment(cid, v):
     if note:
         msg += f"\n\n> {note}"
 
-    send_notification(1, c.author, msg)
+    send_notification(1046, c.author, msg)
 
     if kind in ACTIONS:
         ACTIONS[kind](comment=c)
@@ -216,6 +216,6 @@ def admin_userawards_post(v):
     for key, value in notify_awards.items():
         text += f" - **{value}** {AWARDS[key]['title']} {'Awards' if value != 1 else 'Award'}\n"
 
-    send_notification(1, u, text)
+    send_notification(1046, u, text)
 
     return render_template("admin/user_award.html", awards=list(AWARDS.values()), v=v)
