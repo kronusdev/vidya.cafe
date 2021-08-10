@@ -19434,7 +19434,7 @@ th {
   color: #b1bac4;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
-  content: "\f357"; }
+  content: "\f7b6"; }
 
 .arrow-up:hover::before {
   color: #ff66ac;
@@ -22008,10 +22008,10 @@ div.banned {
   border-left: 3px solid #ff0000 !important; }
 
 div.deleted {
-  background-color: #969600; }
+  background-color: #969600 !important; }
 
 div.deleted.banned {
-  background-color: #964000; }
+  background-color: #964000 !important; }
 
 .text-admin {
   color: #ff66ac; }
