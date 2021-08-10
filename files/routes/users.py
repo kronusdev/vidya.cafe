@@ -11,16 +11,16 @@ from files.helpers.markdown import *
 from files.mail import *
 from flask import *
 from files.__main__ import app, limiter
-from pusher_push_notifications import PushNotifications, PusherAuthError
+# from pusher_push_notifications import PushNotifications, PusherAuthError
 
 site = environ.get("DOMAIN").strip()
 
-PUSHER_KEY = environ.get("PUSHER_KEY", "").strip()
+# PUSHER_KEY = environ.get("PUSHER_KEY", "").strip()
 
-beams_client = PushNotifications(
-		instance_id='9a1835db-8f76-4c65-b444-cb61af126521',
-		secret_key=PUSHER_KEY,
-)
+# beams_client = PushNotifications(
+# 		instance_id='9a1835db-8f76-4c65-b444-cb61af126521',
+# 		secret_key=PUSHER_KEY,
+# )
 
 @app.post("/@<username>/suicide")
 @auth_required
@@ -145,22 +145,22 @@ def message2(v, username):
 
 	send_pm(v.id, user, message)
 	
-	try:
-		beams_client.publish_to_interests(
-			interests=[str(user.id)],
-			publish_body={
-				'web': {
-					'notification': {
-						'title': f'New message from @{v.username}',
-						'body': message,
-						'deep_link': f'https://{site}/notifications',
-					},
-				},
-			},
-		)
-	except PusherAuthError as e:
-		sys.stderr.write(traceback.format_exc())
-		sys.stderr.flush()
+	# try:
+	# 	beams_client.publish_to_interests(
+	# 		interests=[str(user.id)],
+	# 		publish_body={
+	# 			'web': {
+	# 				'notification': {
+	# 					'title': f'New message from @{v.username}',
+	# 					'body': message,
+	# 					'deep_link': f'https://{site}/notifications',
+	# 				},
+	# 			},
+	# 		},
+	# 	)
+	# except PusherAuthError as e:
+	# 	sys.stderr.write(traceback.format_exc())
+	# 	sys.stderr.flush()
 
 	return redirect('/notifications?all=true')
 
