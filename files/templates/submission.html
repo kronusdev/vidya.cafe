@@ -399,8 +399,8 @@
 					{% if v %}
 
 					<div id="voting" class="voting d-none d-md-block mb-auto">
-						<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mx-auto arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></div>
 						<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips">{{score}}</span>
+						<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mx-auto arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></div>
 					</div>
 
 					{% else %}
@@ -427,6 +427,8 @@
 					</li>
 					{% endif %}
 					<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
+
+						<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips">{{score}}</span>
 						{% if v %}
 						<span id="post-{{p.id}}-up-mobile" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mr-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}">
 						</span>
@@ -435,8 +437,6 @@
 							<i class="fas fa-arrow-alt-up mx-0" aria-hidden="true"></i>
 						</span>
 						{% endif %}
-
-						<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips">{{score}}</span>
 					</li>
 				</ul>
 			</div>

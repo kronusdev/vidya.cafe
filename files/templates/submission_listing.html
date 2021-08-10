@@ -28,23 +28,24 @@
 		<div class="voting my-2 d-none d-md-block pr-2">
 			{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
 
-				{% if voted==1 %}
-				<div class="mx-auto arrow-up post-{{p.id}}-up active"></div>
-				{% endif %}
+			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
-				<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+			{% if voted==1 %}
+			<div class="mx-auto arrow-up post-{{p.id}}-up active"></div>
+			{% endif %}
 
 			{% elif v %}
 
-			<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mx-auto arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></div>
-
+			
 			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+
+			<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mx-auto arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></div>
 
 			{% else %}
 
-			<div id="post-{{p.id}}-up" tabindex="0" class="mx-auto arrow-up" onclick="location.href='/login';"></div>
-
 			<span id="post-{{p.id}}-score-none" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+
+			<div id="post-{{p.id}}-up" tabindex="0" class="mx-auto arrow-up" onclick="location.href='/login';"></div>
 
 			{% endif %}
 
@@ -225,32 +226,32 @@
 			{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
 			<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none">
 
+				
+				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+	
 				{% if voted==1 %}
 				<span class="mr-2 arrow-up post-{{p.id}}-up active">
 				</span>
 				{% endif %}
 
-				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
-
 			</li>
 			{% elif v %}
 			<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none">
 
-				<span id="post-{{p.id}}-up-mobile" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mr-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}">
-				</span>
-
+				
 				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
-				</span>
+				<span id="post-{{p.id}}-up-mobile" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mr-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></span>
 
 			</li>
 			{% else %}
 			<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none">
+
+				<span id="post-score-{{p.id}}-mobile" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+
 				<span id="arrow-{{p.id}}-mobile-up" tabindex="0" class="mr-2 arrow-mobile-up" onclick="location.href='/login';">
 					<i class="fas fa-arrow-alt-up mx-0" aria-hidden="true"></i>
 				</span>
-
-				<span id="post-score-{{p.id}}-mobile" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			</li>
 			{% endif %}
