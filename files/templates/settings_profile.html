@@ -77,6 +77,16 @@
 								
 								const backgrounds = [
 									{
+										folder: "fantasy",
+										backgrounds: 
+										[
+											"bg-1",
+											"bg-2",
+											"bg-3",
+											"bg-4",
+										]
+									},
+									{
 										folder: "solarpunk",
 										backgrounds: 
 										[
@@ -137,7 +147,7 @@
 							<p>Change the background for the website.</p>
 							<div class="input-group mb2">
 									<select id='backgroundSelector' class="form-control" form="profile-settings" name="background" onchange="updatebgselection();">
-									{% for entry in ["solarpunk", "other", "pixelart"] %}
+									{% for entry in ["fantasy", "solarpunk", "other", "pixelart"] %}
 										<option value="{{entry}}">
 											{{entry}}
 										</option>
