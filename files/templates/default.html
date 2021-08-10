@@ -696,8 +696,8 @@
 				}, false)
 			};
 		}
-
-		register_votes()
+		document.addEventListener("DOMContentLoaded", function(e) { register_votes() })
+		
 	</script>
 	{% if v %}
 		<script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
