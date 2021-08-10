@@ -20227,7 +20227,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   color: #AA9881;
   font-weight: 600;
   font-size: 12px;
-  z-index: 3; }
+  background-color: transparent;
+  padding: 0.5rem 0.5rem 0.25rem; }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
   font-size: 12px;
@@ -20248,9 +20249,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .post-actions a:hover .fa, .post-actions a:hover .fas {
   color: #433434; }
-
-.post-actions:hover, .post-actions:focus {
-  z-index: 4; }
 
 .post-actions .copy-link:hover {
   color: #433434; }
