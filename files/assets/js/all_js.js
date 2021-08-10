@@ -55,7 +55,7 @@ document.body.addEventListener('keydown', function(event) {
 			'idontknow','interuptedreading','iseewhatyoudidthere','killherkillher','ledesire','leexcited','legenius','lelolidk','lemiddlefinger',
 			'lemindblown','leokay','lepanicrunning','lepokerface','lepokerface2','lerageface','leseriousface','likeaboss','lolface','longwhiskers',
 			'manymiddlefingers','megusta','motherfucker','motherofgod','mysides','ohgodwhy','pervertedspiderman','picard','ragestrangle','rukiddingme',
-			'tfwyougettrolled','trollolol','truestorybro','xallthey','yuno']
+			'tfwyougettrolled','trollolol','truestorybro','xallthey']
 		}
 		]
 
