@@ -47,7 +47,7 @@
 	var userid = document.getElementById("userid").value;
 	if (userid != "nosong")
 	{
-		var audio = new Audio(`/songs/${userid}`);
+		var audio = new Audio(`/songs/${userid}.mp3`);
 		audio.loop=true;
 		audio.play();
 		document.getElementById('userpage').addEventListener('click', () => {
