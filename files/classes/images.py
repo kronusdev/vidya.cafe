@@ -18,8 +18,6 @@ class Image(Base):
 		pic = random.randint(1, nFiles)
 		return f"/assets/images/loginbackgrounds/bg-{pic}.png"
 
-		#return f"/assets/images/platy.jpg"
-
 def random_background():
 	#change the 2nd number when adding backgrounds
 	pic = random.randint(1, 11)
