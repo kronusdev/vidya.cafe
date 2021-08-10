@@ -412,8 +412,34 @@
 
 					{% endif %}
 
-				</div>
+			</div>
+			<div class="post-actions d-md-none bg-gray-500 overflow-hidden rounded">
+				<ul class="list-inline text-right d-flex">
 
+					<li class="list-inline-item mr-auto"><a href="{{p.permalink}}"><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
+
+					<li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{p.permalink | full_link}}"><i class="fas fa-link"></i>Share</a></li>
+					{% if v %}
+					<li class="list-inline-item">
+						<a href="#" data-toggle="modal" data-target="#actionsModal">
+							<i class="fas fa-ellipsis-h"></i>
+						</a>
+					</li>
+					{% endif %}
+					<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
+						{% if v %}
+						<span id="post-{{p.id}}-up-mobile" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mr-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}">
+						</span>
+						{% else %}
+						<span id="arrow-{{p.id}}-mobile-up" tabindex="0" class="mr-2 arrow-mobile-up" onclick="location.href='/login?redirect={{request.path | urlencode}}';">
+							<i class="fas fa-arrow-alt-up mx-0" aria-hidden="true"></i>
+						</span>
+						{% endif %}
+
+						<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips">{{score}}</span>
+					</li>
+				</ul>
+			</div>
 
 
 
@@ -435,33 +461,7 @@
  <div class="row mb-3 d-block d-md-none">
 	<div class="col-12">
 
-		<div class="post-actions">
-			<ul class="list-inline text-right d-flex">
-
-				<li class="list-inline-item mr-auto"><a href="{{p.permalink}}"><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
-
-				<li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{p.permalink | full_link}}"><i class="fas fa-link"></i>Share</a></li>
-				{% if v %}
-				<li class="list-inline-item">
-					<a href="#" data-toggle="modal" data-target="#actionsModal">
-						<i class="fas fa-ellipsis-h"></i>
-					</a>
-				</li>
-				{% endif %}
-				<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
-					{% if v %}
-					<span id="post-{{p.id}}-up-mobile" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mr-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}">
-					</span>
-					{% else %}
-					<span id="arrow-{{p.id}}-mobile-up" tabindex="0" class="mr-2 arrow-mobile-up" onclick="location.href='/login?redirect={{request.path | urlencode}}';">
-						<i class="fas fa-arrow-alt-up mx-0" aria-hidden="true"></i>
-					</span>
-					{% endif %}
-
-					<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips">{{score}}</span>
-				</li>
-			</ul>
-		</div>
+		
 
 	</div>
 
