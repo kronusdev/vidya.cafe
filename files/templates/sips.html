@@ -25,7 +25,7 @@
 	<thead class="bg-primary text-white"><tr><th>User</th></tr></thead>
 
 	{% for vote in ups %}
-		<tr><td><a {% if vote.user.animatedname %}class="{% if vote.user.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} style="color:#{{vote.user.namecolor}}; font-weight:bold;" href="/@{{vote.user.username}}"><img src="/uid/{{vote.user.id}}/pic/profile" class="profile-pic-20 mr-1">{{vote.user.username}}</a><br><p style="color:#{{vote.user.namecolor}}; font-weight:bold;">{{vote.user.post_count}} Posts, {{vote.user.comment_count}} Comments</p></td></tr>
+		<tr><td><a {% if vote.user.animatedname %}class="{% if vote.user.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} style="color:#{{vote.user.namecolor}}; font-weight:bold;" href="/@{{vote.user.username}}"><img src="/uid/{{vote.user.id}}/pic/profile" class="profile-pic-20 mr-1">{{vote.user.username}}</a><br><br><p style="color:#{{vote.user.namecolor}}; font-weight:bold;">{{vote.user.post_count}} Posts, {{vote.user.comment_count}} Comments</p></td></tr>
 	{% endfor %}
 </table>
 
