@@ -5,15 +5,4 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="{{url_for('static', filename='index.js')}}"></script>
-    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
-    <script>
-        const beamsClient = new PusherPushNotifications.Client({
-          instanceId: '9a1835db-8f76-4c65-b444-cb61af126521',
-        });
-      
-        beamsClient.start()
-          .then(() => beamsClient.addDeviceInterest('hello'))
-          .then(() => console.log('Successfully registered and subscribed!'))
-          .catch(console.error);
-      </script>
 </body>
