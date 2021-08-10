@@ -18,7 +18,7 @@ site = environ.get("DOMAIN").strip()
 PUSHER_KEY = environ.get("PUSHER_KEY", "").strip()
 
 beams_client = PushNotifications(
-		instance_id='02ddcc80-b8db-42be-9022-44c546b4dce6',
+		instance_id='9a1835db-8f76-4c65-b444-cb61af126521',
 		secret_key=PUSHER_KEY,
 )
 
