@@ -44,11 +44,18 @@ document.body.addEventListener('keydown', function(event) {
 		},
 		{
 			type:'marsey',
-			emojis: ['marseyburger','marseyfacepalm','marseyrentfree','marseyretard','marseysadcat','marseysick','marseysmug', 'marseysipping', 'marseyjamming','marseyangel','marseyblowkiss','marseycry','marseydead','marseyexcited','marseygift','marseyinabox','marseylaugh','marseylove','marseymad','marseyparty','marseyrain','marseyreading','marseyready','marseysad','marseyscarf','marseyshook','marseysleep','marseythumbsup','marseywave', 'marseyglam', 'marseycowboy', 'marseypat', 'marseybingus', 'marseydepressed', 'marseygift']
+			emojis: ['marseywave','marseysmug','marseythumbsup','marseysipping','marseysleep','marseyshook','marseysick','marseysad','marseysadcat','marseyscarf','marseyrentfree','marseyretard','marseyreading','marseyready','marseypat','marseyrain','marseyparty','marseymermaid','marseylaugh','marseylove','marseymad','marseyjamming','marseyjanny','marseyinabox','marseygift','marseyglam','marseyexcited','marseyfacepalm','marseydepressed','marseycowboy','marseycry','marseydead','marseyburger','marseyblowkiss','marseyangel','marseybingus']
 		},
 		{
 			type:'rage',
-			emojis: ['troll','bitchplease','cerealguypart2','challengeaccepted','contentiouscereal','cryingatcuteness','derp','derpcornsyrup','derpcrying','derpcute','derpdumb','derpeuphoria','derpinahd','derpinapokerface','derpinasnickering','derpprocessing','derprealization','derpsnickering','derptalking','derpthinking','derpthumbsup','derpunimpressed','derpwhy','donotwant','epicfacefeatures','fancywithwine','fffffffuuuuuuuuuuuu','flipthetable','foreveralone','foreveralonehappy','hewillnever','idontknow','interuptedreading','iseewhatyoudidthere','killherkillher','ledesire','leexcited','legenius','lelolidk','lemiddlefinger','lemindblown','leokay','lepanicrunning','lepokerface','lepokerface2','lerageface','leseriousface','likeaboss','lolface','longwhiskers','manymiddlefingers','megusta','motherfucker','motherofgod','mysides','ohgodwhy','pervertedspiderman','picard','ragestrangle','rukiddingme','tfwyougettrolled','trollolol','truestorybro','xallthey','yuno']
+			emojis: ['troll','bitchplease','cerealguypart2','challengeaccepted','contentiouscereal','cryingatcuteness',
+			'derp','derpcornsyrup','derpcrying','derpcute','derpdumb','derpeuphoria','derpinahd','derpinapokerface','derpinasnickering',
+			'derpprocessing','derprealization','derpsnickering','derptalking','derpthinking','derpthumbsup','derpunimpressed','derpwhy',
+			'donotwant','epicfacefeatures','fancywithwine','fffffffuuuuuuuuuuuu','flipthetable','foreveralone','foreveralonehappy','hewillnever',
+			'idontknow','interuptedreading','iseewhatyoudidthere','killherkillher','ledesire','leexcited','legenius','lelolidk','lemiddlefinger',
+			'lemindblown','leokay','lepanicrunning','lepokerface','lepokerface2','lerageface','leseriousface','likeaboss','lolface','longwhiskers',
+			'manymiddlefingers','megusta','motherfucker','motherofgod','mysides','ohgodwhy','pervertedspiderman','picard','ragestrangle','rukiddingme',
+			'tfwyougettrolled','trollolol','truestorybro','xallthey']
 		}
 		]
 
@@ -58,7 +65,8 @@ document.body.addEventListener('keydown', function(event) {
 			let str = ''
 			let arr = emojis[i].emojis
 
-			for (j=0; j < arr.length; j++) { 
+			for (j=0; j < arr.length; j++) {
+				console.log(arr[j]) 
 				str += `<button class="btn m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:40px; overflow: hidden; border: none;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 			}
 
