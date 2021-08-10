@@ -39,32 +39,16 @@ document.body.addEventListener('keydown', function(event) {
 
 		const emojis = [
 		{
-			type:'platy',
-			emojis: ['platyblush','platybruh','platycaveman','platycheer','platydown','platyeyes','platyheart','platylol','platymicdrop','platynooo','platysalute','platyseethe','platythumbsup','platywave']
-		},
-		{
-			type:'marsey',
-			emojis: ['marseyasian','marseyblm','marseyburger','marseydildo','marseyfacepalm','marseygrilling','marseyjanny','marseymermaid','marseyrentfree','marseyretard','marseysadcat','marseysick','marseysmug','marseytrain', 'marseysipping', 'marseyjamming','marseyangel','marseyblowkiss','marseycry','marseydead','marseyexcited','marseygift','marseyinabox','marseylaugh','marseylove','marseymad','marseyparty','marseyrain','marseyreading','marseyready','marseysad','marseyscarf','marseyshook','marseysleep','marseythumbsup','marseywave', 'marsey69', 'marseycomrade', 'marseyira', 'marseyisis', 'marseymerchant', 'marseynut', 'marseyreich', 'marseyglam', 'marseycowboy', 'marseypat', 'marseypanties', 'marseybingus', 'marseydepressed', 'marseygift']
-		},
-		{
-			type:'tay',
-			emojis: ['tayaaa','tayadmire','taycat','taycelebrate','taychefkiss','taychristmas','tayclap','taycold','taycrown','tayflex','tayflirt','taygrimacing','tayhappy','tayheart','tayhmm','tayhuh','tayhyperdab','tayjammin','taylaugh','taymindblown','tayno','taynod','taypeace','taypray','tayrun','tayscrunch','tayshake','tayshrug','taysilly','tayslide','taysmart','taystop','taytantrum','taytea','taythink','tayvibin','taywhat','taywine','taywine2','taywink','tayyes']
-		},
-		{
 			type:'classic',
 			emojis: ['2thumbsup','aliendj','ambulance','angry','angrywhip','argue','aroused','ashamed','badass','banana','band','banghead','batman','bigeyes','bite','blind','blowkiss','blush','bong','bounce','bow','breakheart','bs','cartwheel','cat','celebrate','chainsaw','cheers','clap','cold','confused','crazyeyes','cry','cthulhu','cute','D','daydream','ddr','deadpool','devilsmile','diddle','die','distress','disturbing','dizzy','domo','doughboy','drink','drool','dudeweedlmao','edward','electro','elephant','embarrassed','emo','emo2','evil','evilclown','evilgrin','facepalm','fap','flamethrower','flipbird','flirt','frown','gasp','glomp','go','gooby','grr','gtfo','guitar','haha','handshake','happydance','headbang','heart','heartbeat','hearts','highfive','hmm','hmph','holdhands','horny','hug','hugging','hugs','hump','humpbed','hysterical','ily','inlove','jason','jawdrop','jedi','jester','kaboom','kick','kiss','kitty','laughchair','lick','link','lol','lolbeat','loving','makeout','medal','megaman','megamanguitar','meow','metime','mooning','mummy','na','nauseous','nervous','ninja','nod','nono','omg','onfire','ooo','orly','p','paddle','panda','pandabutt','paranoid','party','pat','peek','pikachu','pimp','plzdie','poke','popcorn','pout','probe','puke','punch','quote','raccoon','roar','rofl','roflmao','rolleyes','sad','sadeyes','sadhug','samurai','sarcasm','scoot','scream','shmoopy','shrug','skull','slap','slapfight','sleepy','smackfish','smackhead','smh','smile','smoke','sonic','spank','sparta','sperm','spiderman','stab','star','stare','stfu','suicide','surprisehug','suspicious','sweat','swordfight','taco','talk2hand','tantrum','teehee','thinking','threesome','throw','throwaway','tickle','typing','uhuh','vampbat','viking','violin','vulgar','wah','wat','whip','whipping','wink','witch','wizard','woah','worm','woo','work','worship','wow','XD','yay','zzz']
 		},
 		{
+			type:'marsey',
+			emojis: ['marseyburger','marseyfacepalm','marseyrentfree','marseyretard','marseysadcat','marseysick','marseysmug', 'marseysipping', 'marseyjamming','marseyangel','marseyblowkiss','marseycry','marseydead','marseyexcited','marseygift','marseyinabox','marseylaugh','marseylove','marseymad','marseyparty','marseyrain','marseyreading','marseyready','marseysad','marseyscarf','marseyshook','marseysleep','marseythumbsup','marseywave', 'marseyglam', 'marseycowboy', 'marseypat', 'marseybingus', 'marseydepressed', 'marseygift']
+		},
+		{
 			type:'rage',
 			emojis: ['troll','bitchplease','cerealguypart2','challengeaccepted','contentiouscereal','cryingatcuteness','derp','derpcornsyrup','derpcrying','derpcute','derpdumb','derpeuphoria','derpinahd','derpinapokerface','derpinasnickering','derpprocessing','derprealization','derpsnickering','derptalking','derpthinking','derpthumbsup','derpunimpressed','derpwhy','donotwant','epicfacefeatures','fancywithwine','fffffffuuuuuuuuuuuu','flipthetable','foreveralone','foreveralonehappy','hewillnever','idontknow','interuptedreading','iseewhatyoudidthere','killherkillher','ledesire','leexcited','legenius','lelolidk','lemiddlefinger','lemindblown','leokay','lepanicrunning','lepokerface','lepokerface2','lerageface','leseriousface','likeaboss','lolface','longwhiskers','manymiddlefingers','megusta','motherfucker','motherofgod','mysides','ohgodwhy','pervertedspiderman','picard','ragestrangle','rukiddingme','tfwyougettrolled','trollolol','truestorybro','xallthey','yuno']
-		},
-		{
-			type:'wojak',
-			emojis: ['gigachad','chadyes','chadno','abusivewife','ancap','bardfinn','bloomer','boomer','boomermonster','brainletbush','brainletcaved','brainletchair','brainletchest','brainletmaga','brainletpit','chad','chadarab','chadasian','chadblack','chadjesus','chadjew','chadjihadi','chadlatino','chadlibleft','chadnordic','chadsikh','chadusa','coomer','doomer','doomerfront','doomergirl','ethot','fatbrain','fatpriest','femboy','gogetter','grug','monke','nazijak','npc','npcfront','npcmaga','psychojak','ragejak','ragemask','ramonajak','soyjackwow','soyjak','soyjakfront','soyjakhipster','soyjakmaga','soyjakyell','tomboy','zoomer','zoomersoy']
-		},
-		{
-			type:'flags',
-			emojis: ['niger', 'lgbt', 'saudi', 'animesexual','blacknation','blm','blueline','dreamgender','fatpride','incelpride','israel','kazakhstan','landlordlove','scalperpride','superstraight','trans','translord','transracial','usa']
 		}
 		]
 
