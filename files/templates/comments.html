@@ -309,15 +309,6 @@
 					{% endif %}
 					
 					<li class="list-inline-item d-inline-block d-md-none mr-2"><span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{score}}</span></span></li>
-					{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
-						{% if voted==-1 %}
-							<li class="list-inline-item arrow-down d-inline-block d-md-none mr-2 comment-{{c.id}}-up active"></li>
-						{% endif %}
-					{% elif v %}
-						<li id="comment-{{c.id}}-down" tabindex="0" class="list-inline-item arrow-down downvote-button d-inline-block d-md-none mr-2 comment-{{c.id}}-down {% if voted==-1 %}active{% endif %}" data-id-down="{{c.id}}" data-content-type="comment"></li>
-					{% else %}
-						<li id="comment-{{c.id}}-down" tabindex="0" class="list-inline-item arrow-down d-inline-block d-md-none" onclick="location.href='/login';"></li>
-					{% endif %}
 				</ul>
 			</div>
 			{% endif %}

@@ -459,15 +459,6 @@
 					{% endif %}
 
 					<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips">{{score}}</span>
-
-					{% if v %}
-					<span id="post-{{p.id}}-down-mobile" tabindex="0" data-id-down="{{p.id}}" data-content-type="post" class="ml-2 my-0 arrow-down downvote-button post-{{p.id}}-down {% if voted==-1 %}active{% endif %}">
-					</span>
-					{% else %}
-					<span id="arrow-{{p.id}}-mobile-down" tabindex="0" class="arrow-mobile-down ml-2 my-0" onclick="location.href='/login?redirect={{request.path | urlencode}}';">
-						<i class="fas fa-arrow-alt-down mx-0" aria-hidden="true"></i>
-					</span>
-					{% endif %}
 				</li>
 			</ul>
 		</div>
