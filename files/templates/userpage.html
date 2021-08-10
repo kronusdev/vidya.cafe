@@ -81,7 +81,7 @@
 								{% endif %}
 								{% if u.admin_level > 1 or (u.admin_level == 1 and (not v or v.admin_level < 2)) %}
 								<span>
-									<i class="fas fa-broom text-admin align-middle ml-2" data-toggle="tooltip" data-placement="bottom" title="Badmin"></i>
+									<i class="fas fa-broom text-admin align-middle ml-2" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>
 								</span>
 								{% elif u.admin_level == 1 %}
 								<span>
