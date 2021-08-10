@@ -6,28 +6,32 @@
 {% endblock %}
 
 {% block content %}
-<h1>Sip Info</h1>
+<div class="card-blank rounded">
+	<h1 class="p-3">Sip Info</h1>
 
-<form action="votes" method="get" class="mb-6">
-	<label for="link-input">Paste permalink</label>
-	<input id="link-input" type="text" class="form-control mb-2" name="link" value="{{thing.permalink if thing else ''}}">
-	<input type="submit" value="Submit" class="btn btn-primary">
-</form>
+	<form action="votes" method="get" class="mb-6 p-3">
+		<label for="link-input">Paste permalink</label>
+		<input id="link-input" type="text" class="form-control mb-2" name="link" value="{{thing.permalink if thing else ''}}">
+		<input type="submit" value="Submit" class="btn btn-primary">
+	</form>
+</div>
 
 {% if thing %}
-<h1>Info</h1>
-<p><a href="{{thing.permalink}}">{{thing.permalink}}</a></p>
-<p><b>Author:</b> <a href="{{thing.author.url}}">@{{thing.author.username}}</a></p>
-<p><b>Author Created At:</b> {{thing.author.created_utc}} ({{thing.author.created_datetime}})</p>
+<div class="card-blank rounded">
+<h1 class="px-3 py-2">Info</h1>
+<p class="px-3 py-2"><a href="{{thing.permalink}}">{{thing.permalink}}</a></p>
+<p class="px-3 py-2"><b>Author:</b> <a href="{{thing.author.url}}">@{{thing.author.username}}</a></p>
+<p class="px-3 py-2"><b>Author Created At:</b> {{thing.author.created_utc}} ({{thing.author.created_datetime}})</p>
 
-<h2>Sips</h2>
-<table class="table table-striped mb-5">
-	<thead class="bg-primary text-white"><tr><th>User</th></tr></thead>
+<h2 class="px-3 py-2">Sips</h2>
+	<table class="table table-striped mb-5">
+		<thead class="bg-primary text-white"><tr><th>User</th></tr></thead>
 
-	{% for vote in ups %}
-		<tr><td><a {% if vote.user.animatedname %}class="{% if vote.user.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} style="color:#{{vote.user.namecolor}}; font-weight:bold;" href="/@{{vote.user.username}}"><img src="/uid/{{vote.user.id}}/pic/profile" class="profile-pic-20 mr-1">{{vote.user.username}}</a><br><br><p style="color:#{{vote.user.namecolor}}; font-weight:bold;">{{vote.user.post_count}} Posts, {{vote.user.comment_count}} Comments</p></td></tr>
-	{% endfor %}
-</table>
+		{% for vote in ups %}
+			<tr><td><a {% if vote.user.animatedname %}class="{% if vote.user.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} style="color:#{{vote.user.namecolor}}; font-weight:bold;" href="/@{{vote.user.username}}"><img src="/uid/{{vote.user.id}}/pic/profile" class="profile-pic-20 mr-1">{{vote.user.username}}</a><br><br><p style="color:#{{vote.user.namecolor}}; font-weight:bold;">{{vote.user.post_count}} Posts, {{vote.user.comment_count}} Comments</p></td></tr>
+		{% endfor %}
+	</table>
+</div>
 
 {% endif %}
 
