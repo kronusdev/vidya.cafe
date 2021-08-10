@@ -223,7 +223,7 @@
 						<span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{score}}</span></span>
 					</li>
 
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="/sips?link={{c.fullname}}"><i class="fas fa-arrows-v"></i>Votes</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="/sips?link={{c.fullname}}"><i class="fas fa-star"></i>Sips</a></li>
 
 					{% if v and c.id in v.saved_comment_idlist() %}
 						<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0)" onclick="post('/unsave_comment/{{c.id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Unsave</a></li>
@@ -381,7 +381,7 @@
 			<div class="modal-body">
 				<ul class="list-group comment-actions">
 
-					<li class="list-group-item"><a href="/sips?link={{c.fullname}}"><i class="fas fa-arrows-v"></i>Votes</a></li>
+					<li class="list-group-item"><a href="/sips?link={{c.fullname}}"><i class="fas fa-star"></i>Sips</a></li>
 
 					{% if v and c.id in v.saved_comment_idlist() %}
 						<li class="list-group-item"><a href="javascript:void(0)" onclick="post('/unsave_comment/{{c.id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Unsave</a></li>

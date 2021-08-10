@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>Vote Info</h1>
+<h1>Sip Info</h1>
 
 <form action="votes" method="get" class="mb-6">
 	<label for="link-input">Paste permalink</label>
@@ -19,8 +19,6 @@
 <p><a href="{{thing.permalink}}">{{thing.permalink}}</a></p>
 <p><b>Author:</b> <a href="{{thing.author.url}}">@{{thing.author.username}}</a></p>
 <p><b>Author Created At:</b> {{thing.author.created_utc}} ({{thing.author.created_datetime}})</p>
-<p><b>Upvotes:</b>{{ups | length}}</p>
-<p><b>Downvotes:</b>{{downs | length}}</p>
 
 <h2>Sips</h2>
 <table class="table table-striped mb-5">
