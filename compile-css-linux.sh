@@ -12,3 +12,4 @@ echo "Finished tron\n"
 sass ./files/assets/style/4chan.scss ./files/assets/style/4chan_ff66ac.css
 echo "Finished 4chan\n"
 python3 ./compilecss.py
+rm ./files/assets/style/*[.]map
