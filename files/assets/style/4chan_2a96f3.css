@@ -20226,6 +20226,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   color: #AA9881;
   font-weight: 600;
   font-size: 12px;
+  background-color: transparent;
+  padding: 0.5rem 0.5rem 0.25rem;
   z-index: 3; }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
@@ -20247,9 +20249,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .post-actions a:hover .fa, .post-actions a:hover .fas {
   color: #433434; }
-
-.post-actions:hover, .post-actions:focus {
-  z-index: 4; }
 
 .post-actions .copy-link:hover {
   color: #433434; }
@@ -20861,10 +20860,10 @@ ul.comment-section {
 #settings-guild {
   background-color: #F0E0D6; }
 
-#settings-guild .settings .settings-section {
+#settings-guild .settings .card-blank {
   border: 0.1px solid #433434; }
 
-.settings .settings-section {
+.card-blank {
   margin-bottom: 3rem;
   background: #F0E0D6;
   border: 0.1px solid #433434;
@@ -20877,13 +20876,13 @@ ul.comment-section {
 .settings-body {
   background-attachment: fixed !important; }
 
-.settings .settings-section .title, .settings .settings-section .body, .settings .settings-section .footer {
+.settings .card-blank .title, .settings .card-blank .body, .settings .card-blank .footer {
   padding: 1rem; }
 
-.settings .settings-section .title p:last-of-type {
+.settings .card-blank .title p:last-of-type {
   margin-bottom: 0; }
 
-.settings .settings-section .footer {
+.settings .card-blank .footer {
   background-color: #433434; }
 
 .modal .profile-actions .list-group-item {

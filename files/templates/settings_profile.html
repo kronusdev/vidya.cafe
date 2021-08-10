@@ -14,7 +14,7 @@
 
 			
 
-			<div class="settings-section rounded">
+			<div class="card-blank rounded">
 				<h2 class="h5 card-header" name="referral">Theme</h2>
 					<div class="d-lg-flex border-bottom">
 						<div class="title w-lg-25">
@@ -77,6 +77,16 @@
 								
 								const backgrounds = [
 									{
+										folder: "fantasy",
+										backgrounds: 
+										[
+											"bg-1",
+											"bg-2",
+											"bg-3",
+											"bg-4",
+										]
+									},
+									{
 										folder: "solarpunk",
 										backgrounds: 
 										[
@@ -137,7 +147,7 @@
 							<p>Change the background for the website.</p>
 							<div class="input-group mb2">
 									<select id='backgroundSelector' class="form-control" form="profile-settings" name="background" onchange="updatebgselection();">
-									{% for entry in ["solarpunk", "other", "pixelart"] %}
+									{% for entry in ["fantasy", "solarpunk", "other", "pixelart"] %}
 										<option value="{{entry}}">
 											{{entry}}
 										</option>
@@ -145,7 +155,8 @@
 								</select>
 							</div>
 							<div class="d-flex mt-2">
-								<input class="btn btn-primary ml-auto" value="Load Backgrounds" onclick="updatebgselection();">
+								<!--<input class="btn btn-primary ml-auto" value="Load Backgrounds" onclick="updatebgselection();">-->
+								<a class="btn btn-primary ml-auto" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
 							</div>
 							<div id="bgcontainer"></div>
 							
@@ -153,7 +164,7 @@
 				</div>
 			</div>
 
-			<div class="settings-section rounded">
+			<div class="card-blank rounded">
 				<h2 class="h5 card-header">Profile Picture</h2>
 				<div class="d-flex">
 
@@ -195,7 +206,7 @@
 
 			</div>
 
-			<div class="settings-section rounded">
+			<div class="card-blank rounded">
 				<h2 class="h5 card-header">Profile Banner</h2>
 				<div class="d-flex">
 
@@ -238,7 +249,7 @@
 
 			</div>
 
-			<div class="settings-section rounded">
+			<div class="card-blank rounded">
 			<div class="card-header">
 				<h2 class="h5" id="referral" name="referral">Referrals</h2>
 				<p class="text-small text-muted">Invite a friend.</p>
@@ -270,7 +281,7 @@
 
 					</div>
 
-					  <div class="settings-section rounded">
+					  <div class="card-blank rounded">
 						<div class="card-header">
 							<h2 class="h5" name="referral">Linked Accounts</h2>
 							<p class="text-small text-muted">Manage your connections to other services.</p>
@@ -303,7 +314,7 @@
 
 
 
-					<div class="settings-section rounded">
+					<div class="card-blank rounded">
 						<div class="card-header">
 							<h2 class="h5" name="referral">RSS Feed</h2>
 							<p class="text-small text-muted">Subscribe to the {{"SITE_NAME" | app_config}} RSS feed.</p>
@@ -322,7 +333,7 @@
 
 					</div>
 
-						<div class="settings-section rounded mb-0">
+						<div class="card-blank rounded mb-0">
 							<div class="card-header">
 								<h2 class="h5" id="bio" name="bio">Your Profile</h2>
 								<p class="text-small text-muted">Edit how others see you on {{"SITE_NAME" | app_config}}.</p>
