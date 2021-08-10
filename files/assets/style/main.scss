@@ -2019,6 +2019,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	font-size: $small-font-size;
 	background-color: transparent;
 	padding: 0.5rem 0.5rem 0.25rem;
+	z-index: 3;
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
@@ -2834,13 +2835,13 @@ ul.comment-section {
 	background-color: $gray-600;
 }
 
-#settings-guild .settings .settings-section {
+#settings-guild .settings .card-blank {
 	border: 0.1px solid $border-color;
 }
 
 // Settings Page
 
-.settings .settings-section {
+.card-blank {
 	margin-bottom: 3rem;
 	background: $gray-500;
 	border: 0.1px solid $border-color;
@@ -2857,15 +2858,15 @@ ul.comment-section {
 	background-attachment: fixed !important;
 }
 
-.settings .settings-section .title, .settings .settings-section .body, .settings .settings-section .footer {
+.settings .card-blank .title, .settings .card-blank .body, .settings .card-blank .footer {
 	padding: 1rem;
 }
 
-.settings .settings-section .title p:last-of-type {
+.settings .card-blank .title p:last-of-type {
 	margin-bottom: 0;
 }
 
-.settings .settings-section .footer {
+.settings .card-blank .footer {
 	background-color: $gray-300;
 }
 

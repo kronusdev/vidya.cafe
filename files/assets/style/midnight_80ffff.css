@@ -20227,7 +20227,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   font-weight: 600;
   font-size: 12px;
   background-color: transparent;
-  padding: 0.5rem 0.5rem 0.25rem; }
+  padding: 0.5rem 0.5rem 0.25rem;
+  z-index: 3; }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
   font-size: 12px;
@@ -20859,10 +20860,10 @@ ul.comment-section {
 #settings-guild {
   background-color: #30363d; }
 
-#settings-guild .settings .settings-section {
+#settings-guild .settings .card-blank {
   border: 0.1px solid #8b949e; }
 
-.settings .settings-section {
+.card-blank {
   margin-bottom: 3rem;
   background: #484f58;
   border: 0.1px solid #8b949e;
@@ -20875,13 +20876,13 @@ ul.comment-section {
 .settings-body {
   background-attachment: fixed !important; }
 
-.settings .settings-section .title, .settings .settings-section .body, .settings .settings-section .footer {
+.settings .card-blank .title, .settings .card-blank .body, .settings .card-blank .footer {
   padding: 1rem; }
 
-.settings .settings-section .title p:last-of-type {
+.settings .card-blank .title p:last-of-type {
   margin-bottom: 0; }
 
-.settings .settings-section .footer {
+.settings .card-blank .footer {
   background-color: #8b949e; }
 
 .modal .profile-actions .list-group-item {
