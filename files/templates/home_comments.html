@@ -54,8 +54,10 @@
 
 	<div class="row no-gutters {% if listing %}mt-md-3{% elif not listing %}my-md-3{% endif %}">
 
-		<div class="col-12">
-
+		<div class="col-12 card-blank">
+			<div class="card-header">
+				<h5>All Comments</h5>
+			</div>
 			<div class="posts" id="posts">
 
 				{% include "comments.html" %}
