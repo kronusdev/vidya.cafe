@@ -74,7 +74,7 @@
 	{% endif %}
 
 	<script>
-
+document.addEventListener("DOMContentLoaded", function(e) {
 		// comment collapse
 
 		// Toggle comment collapse
@@ -695,7 +695,8 @@
 				}, false)
 			};
 		}
-		document.addEventListener("DOMContentLoaded", function(e) { register_votes() })
+		 register_votes()
+	})
 		
 	</script>
 	<!-- {% if v %}
