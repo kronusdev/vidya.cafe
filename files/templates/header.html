@@ -83,7 +83,7 @@
 						</div>
 					</div>
 				</a>
-				<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left border-0 shadow fade px-0 mt-2"
+				<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left border-0 fade px-0 mt-2"
 				aria-labelledby="dropdownMenuButton">
 				<div class="px-2">
 					<a class="dropdown-item" href="{{v.url}}"><i class="fas fa-user-circle fa-fw text-left mr-3"></i>My
@@ -124,7 +124,7 @@
 
 	 <!-- Mobile Nav Menu -->
 	 <ul class="navbar-nav ml-auto d-flex d-md-none mt-3">
-		 <li class="nav-item pb-3">
+		<li class="nav-item pb-3">
 			<form id="searchform" class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search/posts/" method="get">
 				<input class="form-control form-control-sm w-100" type="search" placeholder="Search" aria-label="Search" name="q">
 				<span class="input-group-append">
@@ -149,11 +149,22 @@
 		<li class="nav-item">
 			<a class="nav-link" href="/settings"><i class="fas fa-cog fa-fw mr-3"></i>My account</a>
 		</li>
-		<a class="dropdown-item" href="/rules"><i class="fas fa-balance-scale fa-fw text-left mr-3"></i>Rules</a>
-		<a class="dropdown-item" href="/changelog"><i class="fas fa-clipboard fa-fw text-left mr-3"></i>Changelog</a>
-		<a class="dropdown-item" href="https://github.com/kronusdev/vidya.cafe"><i class="fab fa-github fa-fw text-left mr-3"></i>Source Code</a>
-		<a class="dropdown-item" href="https://discord.gg/gZdqSh93fC"><i class="fab fa-discord fa-fw text-left mr-3"></i>Discord</a>
-		<a class="dropdown-item" href="/contact"><i class="fas fa-file-signature fa-fw text-left mr-3"></i>Contact us</a>
+		<hr>
+		<li class="nav-item">
+			<a class="nav-link" href="/rules"><i class="fas fa-balance-scale fa-fw text-left mr-3"></i>Rules</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/changelog"><i class="fas fa-clipboard fa-fw text-left mr-3"></i>Changelog</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="https://github.com/kronusdev/vidya.cafe"><i class="fab fa-github fa-fw text-left mr-3"></i>Source Code</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="https://discord.gg/gZdqSh93fC"><i class="fab fa-discord fa-fw text-left mr-3"></i>Discord</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/contact"><i class="fas fa-file-signature fa-fw text-left mr-3"></i>Contact us</a>
+		</li>
 
 		<li class="nav-item border-top border-bottom mt-2 pt-2">
 			<a class="nav-link" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})"><i class="fas fa-sign-out fa-fw mr-3 text-danger"></i>Log out</a>
