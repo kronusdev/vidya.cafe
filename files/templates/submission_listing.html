@@ -58,8 +58,8 @@
 						<img src="{{p.thumb_url}}" class="post-img">
 					</a>
 				{% elif p.is_image %}
-					<a href="javascript:void(0)" rel="nofollow noopener" class="expandable-image" data-toggle="modal" data-target="#expandImageModal" data-url="{{p.realurl(v)}}">
-						<img src="{{p.thumb_url}}" class="post-img">
+					<a href="{{p.realurl(v)}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-toggle="modal" data-target="#expandImageModal" onclick="expandDesktopImage('{{p.realurl(v)}}','{{p.realurl(v)}}')"{% endif %}>
+						<img src="{{p.thumb_url}}" class="post-img d-none d-md-block" alt="Unable to load image">
 					</a>
 				{% else %}
 					<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.realurl(v)}}" rel="nofollow noopener">
