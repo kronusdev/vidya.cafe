@@ -2850,6 +2850,27 @@ ul.comment-section {
 	overflow: hidden;
 }
 
+.info-popup {
+	position: relative;
+	height: max-content;
+	background: $gray-500;
+	padding: 2rem;
+	border-radius: $border-radius;
+	width: 20rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+//.info-popup-text {
+	//background: $gray-200;
+	//position: absolute;
+	//bottom: 0;
+	//padding-left: 3rem;
+	//padding-right: 3rem;
+	//left: 0;
+	//border-radius: $border-radius;
+//}
+
 #settings .bg-gray-300 {
 	background-color: $dark!important;
 }
@@ -3453,7 +3474,7 @@ body, #settings, #notifications, #submit {
 
 .custom-gutters {
 	padding-left: 8px;
-	padding-right: 0;
+	padding-right: 8px;
 }
 
 .shadow-sm-0 {

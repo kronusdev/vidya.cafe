@@ -20870,6 +20870,16 @@ ul.comment-section {
   border-radius: 0.35rem;
   overflow: hidden; }
 
+.info-popup {
+  position: relative;
+  height: max-content;
+  background: #F0E0D6;
+  padding: 2rem;
+  border-radius: 0.35rem;
+  width: 20rem;
+  margin-left: auto;
+  margin-right: auto; }
+
 #settings .bg-gray-300 {
   background-color: #3E2C18 !important; }
 
@@ -21667,7 +21677,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .custom-gutters {
     padding-left: 8px;
-    padding-right: 0; }
+    padding-right: 8px; }
 
   .shadow-sm-0 {
     box-shadow: none !important; }
