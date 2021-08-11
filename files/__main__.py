@@ -254,10 +254,11 @@ def after_request(response):
 		g.db.close()
 		print(e)
 		abort(500)
+	
 
 	response.headers.add('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth")
-	response.headers.remove("Cache-Control")
-	response.headers.add("Cache-Control", "public, max-age=31536000")
+	response.cache_control.max_age = 600
+	response.cache_control.public = True
 	response.headers.add("Access-Control-Allow-Origin", app.config["SERVER_NAME"])
 
 	response.headers.add("Strict-Transport-Security", "max-age=31536000")
