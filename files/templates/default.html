@@ -74,7 +74,7 @@
 	{% endif %}
 
 	<script>
-
+document.addEventListener("DOMContentLoaded", function(e) {
 		// comment collapse
 
 		// Toggle comment collapse
@@ -695,7 +695,8 @@
 				}, false)
 			};
 		}
-		document.addEventListener("DOMContentLoaded", function(e) { register_votes() })
+		 register_votes()
+	})
 		
 	</script>
 	<!-- {% if v %}
@@ -903,7 +904,7 @@
 			<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
 			{% if v.agendaposter %}<link rel="stylesheet" href="/assets/style/agendaposter.css">{% elif v.css %}<link rel="stylesheet" href="/@{{v.username}}/css">{% endif %}
 		{% else %}
-			<link rel="stylesheet" href="/assets/style/dark_ff66ac.css">
+			<link rel="stylesheet" href="/assets/style/dark_47a3ff.css">
 		{% endif %}
 
 		{% endblock %}

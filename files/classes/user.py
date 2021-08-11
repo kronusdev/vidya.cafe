@@ -26,7 +26,7 @@ class User(Base, Stndrd, Age_times):
 	titlecolor = Column(String, default='ff66ac')
 	theme = Column(String, default='dark')
 	background = Column(String, default='pixelart/bg-1')
-	themecolor = Column(String, default='ff66ac')
+	themecolor = Column(String, default='47a3ff')
 	song = Column(String)
 	highres = Column(String)
 	profileurl = Column(String)
