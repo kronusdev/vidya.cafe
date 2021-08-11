@@ -11,7 +11,7 @@ def color_variant(hex_color, brightness_offset=1):
 
 #def saturation_change(hex_color, saturation_mult):
     #""" takes a color like #87c95f and produces a lighter or darker variant """  
-    #if len(hex_color) != 6:  
+   #if len(hex_color) != 6:  
         #raise Exception("Passed %s into color_variant(), needs to be in 87c95f format." % hex_color)
     #rgb_hex = [hex_color[x:x+2] for x in [0, 2, 4]]
     #new_rgb_int = [int(hex_value, 16) + brightness_offset for hex_value in rgb_hex]
