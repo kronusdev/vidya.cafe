@@ -19327,7 +19327,8 @@ label.terms {
 .dropdown-menu {
   padding: 0.5rem;
   color: #F1E7D0;
-  background-color: #DDD2C4; }
+  background-color: #DDD2C4;
+  border-radius: 0.35rem; }
 
 .user-profile > .dropdown-toggle::after {
   display: none; }
