@@ -183,7 +183,7 @@ def namecolor(v):
 @validate_formkey
 def themecolor(v):
 	themecolor = str(request.form.get("themecolor", "")).strip()
-	if themecolor not in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58']: abort(400)
+	if themecolor not in ['47a3ff','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58']: abort(400)
 	v.themecolor = themecolor
 	g.db.add(v)
 	return redirect("/settings/profile")
