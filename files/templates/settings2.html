@@ -57,40 +57,23 @@
 
 </head>
 
-<body id="settings-guild">
+<body id="settings-guild" style="overflow-x: hidden; {% if v %} background:url(/assets/images/custombackgrounds/{{ v.background }}) {% else %} background:url(/assets/images/custombackgrounds/pixelart/bg-1) {% endif %} no-repeat center center fixed">
 
 	{% include "header.html" %}
 
 	<!-- sub-header container -->
 
-	{% block subHeader %}
-	<div class="container-fluid bg-light">
-		<div class="row py-3">
-			<div class="col">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<span class="post-meta-guild font-weight-bold">
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endblock %}
-
-	<!-- tabs container -->
+		<!-- tabs container -->
 	{% block subNav %}
 
 {% if True %}
 	{% set mod = (v.admin_level==6) %}
 	<!-- Desktop -->
-	<div class="container-fluid bg-white sticky d-none d-md-block">
+	<div class="container-fluid bg-gray-400 sticky d-none d-md-block">
 		<div class="row box-shadow-bottom">
 			<div class="col">
 				<div class="container">
-					<div class="row box-shadow-bottom bg-white">
+					<div class="row box-shadow-bottom">
 						<div class="col">
 							<div class="d-flex flex-row-reverse justify-content-end">
 								<ul class="nav settings-nav" style="margin-left: -15px;">
