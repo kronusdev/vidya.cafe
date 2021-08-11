@@ -45,9 +45,9 @@ $reddit: #ED4630;
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
 
-//#frontpage .post-title a:visited {
-	//color: $white;
-//}
+#frontpage .post-title a:visited {
+	color: $white;
+}
 
 .comment-box {
     border: 2px solid $gray-200;

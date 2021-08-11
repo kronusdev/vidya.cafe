@@ -22209,6 +22209,9 @@ img.emoji {
 .text-info {
   color: #47a3ff !important; }
 
+#frontpage .post-title a:visited {
+  color: #f0f0f0; }
+
 .comment-box {
   border: 2px solid #1f7bd7; }
 
