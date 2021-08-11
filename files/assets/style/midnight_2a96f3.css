@@ -19212,7 +19212,6 @@ label.color-radio span {
   border-color: #a371f7; }
 
 .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-  background-color: #0d1117;
   color: #c9d1d9; }
 
 .form-inline.search .form-control,
@@ -19258,7 +19257,7 @@ label.color-radio span {
   border: none;
   box-shadow: 0px 0px 4px #c9d1d9;
   background: #21262d;
-  transition: 0.15s; }
+  transition: box-shadow 0.15s, background 0.15s; }
 
 .form-control:disabled, .form-control[readonly] {
   background-color: #8b949e; }
@@ -19282,10 +19281,10 @@ label.color-radio span {
 
 .form-control:focus, .form-control:active {
   color: #c9d1d9;
-  background-color: #0d1117;
+  background-color: #30363d !important;
   outline: 0;
   border-color: #c9d1d9;
-  box-shadow: none; }
+  box-shadow: 0px 0px 8px #c9d1d9; }
 
 .form-control::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */

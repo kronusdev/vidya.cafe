@@ -19212,7 +19212,6 @@ label.color-radio span {
   border-color: #3e98a7; }
 
 .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-  background-color: #000000;
   color: #CFCFCF; }
 
 .form-inline.search .form-control,
@@ -19258,7 +19257,7 @@ label.color-radio span {
   border: none;
   box-shadow: 0px 0px 4px #3e98a7;
   background: #0E1114;
-  transition: 0.15s; }
+  transition: box-shadow 0.15s, background 0.15s; }
 
 .form-control:disabled, .form-control[readonly] {
   background-color: #2B353D; }
@@ -19282,10 +19281,10 @@ label.color-radio span {
 
 .form-control:focus, .form-control:active {
   color: #CFCFCF;
-  background-color: #000000;
+  background-color: #151A1F !important;
   outline: 0;
   border-color: #3e98a7;
-  box-shadow: none; }
+  box-shadow: 0px 0px 8px #3e98a7; }
 
 .form-control::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
