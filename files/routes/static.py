@@ -86,17 +86,11 @@ def submit_contact(v):
 	send_admin(v.id, message)
 	return render_template("contact.html", v=v, msg="Your message has been sent.")
 
-@app.route('/archives')
-@limiter.exempt
-def archivesindex():
-	return redirect("/archives/index.html")
+@app.get("/rules")
+@auth_desired
+def rules(v):
+	return render_template("rules.html", v=v)
 
-@app.route('/archives/<path:path>')
-@limiter.exempt
-def archives(path):
-	resp = make_response(send_from_directory('/archives', path))
-	if request.path.endswith('.css'): resp.headers.add("Content-Type", "text/css")
-	return resp
 
 @app.route('/assets/<path:path>')
 @limiter.exempt

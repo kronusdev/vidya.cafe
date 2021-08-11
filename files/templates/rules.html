@@ -1,0 +1,71 @@
+{% extends "default.html" %}
+
+{% block title %}
+<title>{{"SITE_NAME" | app_config}} Rules</title>
+<meta name="description" content="Content Guidelines and Rules for Vidya Cafe">
+{% endblock %}
+
+{% block content %}
+<div class="card-blank rounded">
+    <h1 class="px-6 py-3">Vidya Cafe Content Policy</h1>
+    <h6 class="px-6 py-3">By using vidya.cafe, you agree to follow these rules.<br> Violations (by the administrator’s sole discretion) may lead to the suspension of your vidya.cafe account.</h6>
+    <ul class="px-6 py-3">
+        <li>
+            <h3>Intellectual Property</h3>
+            <p>You may not upload to, embed within, or link out from vidya.cafe:</p>
+            <p class="px-6">- Copyrighted material that you are not authorized to distribute<br>
+            - Anything not legal to publish within, or export from, the United States of America
+            </p>
+        </li>
+        <li>
+            <h3>Digital Safety</h3>
+            <p>You may not upload to, embed within, or link out from vidya.cafe:
+                Digitally malicious content, including but not limited to:
+                <ul class="px-6">
+                <li>Phishing attacks</li>
+                <li>XSS attacks</li>
+                <li>URL shorteners</li>
+                <li>Anything that breaks Vidya</li>
+                </ul>
+            </p>
+        </li>
+    </ul>
+
+    <h1 class="px-6 py-3">Vidya Cafe Rules</h1>
+    <ul class="px-6 py-3"> 
+        <li>
+            <h5>Political content, unless explicitly related to video games, is prohibited. For example, you may make posts and comment about a country deciding to ban loot boxes in video games, but you may not link to, make posts about, or comment about a video game developer or publisher’s political beliefs.
+            </h5>
+        </li>
+        <li>
+            <h5>Vidya Cafe is a place for civil discussion, and as such you may not: 
+            </h5>
+            <ul>
+                <li><p>Use racial slurs in posts or comments.</p></li>
+                <li><p>Harrass a user based on their sexuality, religion, race, creed, or political beliefs</p></li>
+                <li><p></p></li>
+                <li><p></p></li>
+                <li><p></p></li>
+            </ul>
+        </li>
+        <li>
+            <h5>Excessive post or comment spamming is not allowed, doing so will result in potential strikes, and the spam in question being removed.
+            </h5>
+        </li>    
+        <li>
+            <h5>You may not post sexual or sexually suggestive material involving individuals under the age of 18, including fictitious content. Doing so will result in an immediate ban, pedophilia is not tolerated on this website.
+            </h5>
+        </li>
+        <li>
+            <h5>Self Promotion is allowed, however you must clearly indicate in the post or title of your post that it is self promotion. Excessive posting of self promotion will be treated the same as spamming, which can result in strikes and the content being removed.
+            </h5>
+            <ul>
+                <li><p>To avoid self promotion spam, you must contribute more to the community than simply spamming links to your own content.</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+
+{% endblock %}
