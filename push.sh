@@ -6,7 +6,7 @@ git push
 npm install -g sass
 apt install ruby-sass
 sass ./files/assets/style/midnight.scss ./files/assets/style/midnight_ff66ac.css
-sass ./files/assets/style/dark.scss ./files/assets/style/dark_ff66ac.css
+sass ./files/assets/style/dark.scss ./files/assets/style/dark_47a3ff.css
 sass ./files/assets/style/light.scss ./files/assets/style/light_ff66ac.css
 sass ./files/assets/style/coffee.scss ./files/assets/style/coffee_ff66ac.css
 sass ./files/assets/style/tron.scss ./files/assets/style/tron_ff66ac.css
