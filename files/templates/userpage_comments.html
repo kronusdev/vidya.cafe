@@ -5,7 +5,7 @@
 <div class="row no-gutters">
 	<div class="col">
 		<div class="flex-row box-shadow-bottom d-flex justify-content-center justify-content-md-between align-items-center">
-			<ul class="nav settings-nav">
+			<ul class="nav settings-nav bg-gray-400 rounded overflow-hidden mt-2">
 				<li class="nav-item">
 					<a class="nav-link" href="/@{{u.username}}">Posts</a>
 				</li>
@@ -78,16 +78,19 @@
 	<div class="col">
 
 		{% if listing %}
-		<div class="posts p-3 p-md-0">
-		 {% with comments=listing %}
-		 {% include "comments.html" %}
-		 {% endwith %}
-	 </div>
+		<div class="card-blank mt-3">
+
+			<div class="posts p-3 p-md-0">
+			{% with comments=listing %}
+			{% include "comments.html" %}
+			{% endwith %}
+			</div>
+		</div>
 	 {% else %}
-	 <div class="text-center px-3 my-3">
+	 <div class="text-center px-3 my-3 info-popup">
 			<span class="fa-stack fa-2x text-muted mb-4">
-				<i class="fas fa-square text-gray-500 opacity-25 fa-stack-2x"></i>
-				<i class="fas text-gray-500 fa-scroll-old fa-stack-1x text-lg"></i>
+				<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
+				<i class="fas text-primary fa-scroll-old fa-stack-1x text-lg"></i>
 			</span>
 			{% if v and v.id == u.id %}
 			<h2 class="h5">You haven't made any comments yet</h2>
@@ -99,6 +102,7 @@
 		</div>
 
 	{% endif %}
+
 </div>
 </div>
 {% endblock %}

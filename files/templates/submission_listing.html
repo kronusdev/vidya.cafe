@@ -373,10 +373,10 @@
 {% if v and v.id == u.id %}
 <div class="row no-gutters">	 
 	<div class="col">			
-		<div class="text-center px-3 my-3">
+		<div class="text-center px-3 my-3 info-popup">
 			<span class="fa-stack fa-2x text-muted mb-4">
-				<i class="fas fa-square text-gray-500 opacity-25 fa-stack-2x"></i>
-				<i class="fas text-gray-500 fa-ghost fa-stack-1x text-lg"></i>
+				<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
+				<i class="fas text-primary fa-ghost fa-stack-1x text-lg"></i>
 			</span>
 			<h2 class="h5">You haven't {% if "saved" in request.full_path %}saved{% else %}made{% endif %} a post yet</h2>
 			<p class="text-muted mb-md-5">Your {% if "saved" in request.full_path %}saved posts{% else %}posting history{% endif %} will show here.</p>
@@ -389,10 +389,10 @@
 {% else %}
 <div class="row no-gutters">	 
 	<div class="col">			
-		<div class="text-center px-3 my-3">
+		<div class="text-center px-3 my-3 info-popup">
 			<span class="fa-stack fa-2x text-muted mb-4">
-				<i class="fas fa-square text-gray-500 opacity-25 fa-stack-2x"></i>
-				<i class="fas text-gray-500 fa-scroll-old fa-stack-1x text-lg"></i>
+				<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
+				<i class="fas text-primary fa-scroll-old fa-stack-1x text-lg"></i>
 			</span>
 			<h2 class="h5">@{{u.username}} hasn't made a post yet</h2>
 			<p class="text-muted">Their posting history will show here.</p>
