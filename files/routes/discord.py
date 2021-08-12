@@ -13,7 +13,8 @@ WELCOME_CHANNEL="871198743796514819"
 @app.get("/discord")
 @auth_required
 def join_discord(v):
-	state=generate_hash(f"{int(time.time())}+{v.id}+discord")
+	now = int(time.time())
+	state=generate_hash(f"{now}+{v.id}+discord")
 	state=f"{now}.{state}"
 	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord&response_type=code&scope=identify%20guilds.join&state={state}")
 
