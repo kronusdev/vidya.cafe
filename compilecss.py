@@ -38,7 +38,7 @@ def color_variant(hex_color, brightness_offset=1):
     #print(new_rgb_int)
 	#new_rgb_int_desaturated = [channel * brightness_offset for channel in rgb_hex]
 
-for theme in ['midnight', 'dark', 'light', 'coffee', 'tron', '4chan', 'blur']:
+for theme in ['midnight', 'dark', 'light', 'coffee', 'tron', '4chan', 'blur', 'hackernews']:
     with open(f"./files/assets/style/{theme}_47a3ff.css", encoding='utf-8') as t:
         text = t.read()
         for color in ['47a3ff','805ad5','62ca56','38a169','80ffff','2a96f3','62ca56','eb4963','ff0000','f39731','adf1d2','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58']:

@@ -5,6 +5,8 @@ sass ./files/assets/style/light.scss ./files/assets/style/light_47a3ff.css
 echo "Finished light"
 sass ./files/assets/style/blur.scss ./files/assets/style/blur_47a3ff.css
 echo "Finished blur"
+sass ./files/assets/style/hackernews.scss ./files/assets/style/hackernews_47a3ff.css
+echo "Finished HN"
 sass ./files/assets/style/coffee.scss ./files/assets/style/coffee_47a3ff.css
 echo "Finished coffe"
 sass ./files/assets/style/tron.scss ./files/assets/style/tron_47a3ff.css
