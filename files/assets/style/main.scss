@@ -28,13 +28,17 @@ $theme-colors: (
     "border-color": $border-color,
 );
 
+$settings: (
+	"border-radius": $border-radius,
+);
+
 // Borders
 
 $input-border-color: $gray-400;
 //$border-color: $gray-400;
 $border-width: 4px;
 
-$border-radius: .35rem;
+$border-radius: $border-radius;
 
 $text-white: $white;
 
@@ -379,7 +383,7 @@ ol > li::before {
 
 .btn.login, .btn.register {
 	height: calc(1.5em + 0.75rem + 2px);
-	border-radius: .35rem;
+	border-radius: $border-radius;
 }
 
 .btn-group.btn-integration {
@@ -1625,7 +1629,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .profile-pic.profile-pic.transition-square:hover {
-	border-radius: .35rem;
+	border-radius: $border-radius;
 }
 
 .profile-pic {
@@ -1880,7 +1884,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	background-color: $gray-500;
     transition: 0.15s;
     margin: 0.25rem 0 0.25rem;
-    border-radius: 0.35rem !important;
+    border-radius: $border-radius !important;
 }
 .card:hover {
     transform: scale(1.005);
@@ -2284,6 +2288,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	opacity: 0.5;
 }
 
+.page-item {
+	margin: 0 1rem;
+}
+
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
 	.post-actions .list-inline .list-inline-item {
@@ -2414,7 +2422,7 @@ div:hover .thumb-img-link-overlay {
 	margin-top: 2rem;
     background: rgba($gray-200, 0.4);
 	padding: 1rem !important;
-	border-radius: 0.35rem !important;
+	border-radius: $border-radius !important;
 }
 
 #notifications .comment, #userpage .comment {
@@ -2729,7 +2737,7 @@ ul.comment-section {
 	border: 0.1px solid $gray-300;
 	background-color: $light;
 	padding: 0.25rem 0.5rem;
-	border-radius: .35rem;
+	border-radius: $border-radius;
 	font-weight: $font-weight-bold;
 	margin-right: .25rem;
 }
@@ -4000,7 +4008,7 @@ img.emoji {
 //}
 
 .comment .comment-collapse-desktop {
-	padding-right: 20px;
+	padding-right: 12px;
 	cursor: pointer;
 	position: absolute;
 	left: 0;
