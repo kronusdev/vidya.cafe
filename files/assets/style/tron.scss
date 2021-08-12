@@ -9,7 +9,7 @@ $white: #f0f0f0;
 $black: #f0f0f0;
 $light: #00001f;
 $success: #38A169;
-$muted: #1f84d7;
+$muted: #f0f0f0;
 $info: #168EEA;
 
 $purple: #47a3ff;
@@ -45,6 +45,21 @@ $reddit: #ED4630;
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
 
+//.text-muted {
+	//mix-blend-mode: difference;
+//}
+
+.settings-nav > .nav-item > .nav-link.active {
+	color: $white;
+}
+
+.settings-nav .nav-link {
+	color: $primary;
+}
+
+.navbar-light *{
+	color: $white !important;
+}
 #frontpage .post-title a:visited {
 	color: $white;
 }
