@@ -20123,9 +20123,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   transform: scale(1.005);
   z-index: 1000; }
 
-#thread .card {
-  background-color: #00001f; }
-
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type, #settings-guild .posts .card:first-of-type {
   border-top-left-radius: 0.35rem;
   border-top-right-radius: 0.35rem; }
@@ -20530,8 +20527,9 @@ div:hover .thumb-img-link-overlay {
   display: flex;
   position: relative;
   margin-top: 2rem;
-  padding-left: 13px;
-  background: #00001f; }
+  background: rgba(31, 132, 215, 0.4);
+  padding: 1rem !important;
+  border-radius: 0.35rem !important; }
 
 #notifications .comment, #userpage .comment {
   margin-top: 0.5rem;
@@ -22063,13 +22061,14 @@ img.emoji {
 .spoiler:hover {
   color: #7f8fa6; }
 
-@media (min-width: 768px) {
-  .comment {
-    border-left: 0 !important;
-    padding-left: 0 !important; } }
 .comment .comment-collapse-desktop {
   padding-right: 20px;
-  cursor: pointer; }
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%; }
 
 .comment .comment-collapse-desktop:hover {
   border-left-color: #f0f0f0 !important; }
@@ -22208,6 +22207,9 @@ img.emoji {
 
 .text-info {
   color: #7f8fa6 !important; }
+
+.comment {
+  background: rgba(31, 132, 215, 0.1) !important; }
 
 .settings-nav > .nav-item > .nav-link.active {
   color: #f0f0f0; }

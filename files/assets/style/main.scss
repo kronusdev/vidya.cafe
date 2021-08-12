@@ -730,7 +730,7 @@ label.color-radio span {
 
 .form-inline.search .form-control,
 .form-control[readonly] {
-	background-color: $gray-800;
+	background-color: $gray-700;
 	font-size: $font-size-base;
 	color: $white;
 }
@@ -1887,9 +1887,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     z-index: 1000;
 }
 
-#thread .card {
-	background-color: $gray-700;
-}
+//#thread .card {
+	//background-color: $gray-700;
+//}
 
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type, #settings-guild .posts .card:first-of-type {
 	border-top-left-radius: $border-radius;
@@ -2412,8 +2412,9 @@ div:hover .thumb-img-link-overlay {
 	display: flex;
 	position: relative;
 	margin-top: 2rem;
-	padding-left: 13px;
-    background: $gray-500;
+    background: rgba($gray-200, 0.4);
+	padding: 1rem !important;
+	border-radius: 0.35rem !important;
 }
 
 #notifications .comment, #userpage .comment {
@@ -3991,16 +3992,21 @@ img.emoji {
 	color: $gray;
 }
 
-@media (min-width: 768px) {
-	.comment {
-		border-left: 0 !important;
-		padding-left: 0 !important;
-	}
-}
+//@media (min-width: 768px) {
+	//.comment {
+		//border-left: 0 !important;
+		//padding-left: 0 !important;
+	//}
+//}
 
 .comment .comment-collapse-desktop {
 	padding-right: 20px;
 	cursor: pointer;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 2px;
+	height: 100%;
 	}
 	
 .comment .comment-collapse-desktop:hover {

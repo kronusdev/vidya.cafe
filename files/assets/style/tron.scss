@@ -48,7 +48,9 @@ $reddit: #ED4630;
 //.text-muted {
 	//mix-blend-mode: difference;
 //}
-
+.comment {
+	background: rgba($gray-200, 0.1) !important;
+}
 .settings-nav > .nav-item > .nav-link.active {
 	color: $white;
 }
