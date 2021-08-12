@@ -7,19 +7,19 @@ SERVER_ID = environ.get("DISCORD_SERVER_ID",'').strip()
 CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').strip()
 CLIENT_SECRET = environ.get("DISCORD_CLIENT_SECRET",'').strip()
 BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN").strip()
-COINS_NAME = environ.get("COINS_NAME").strip()
 DISCORD_ENDPOINT = "https://discordapp.com/api/v6"
-WELCOME_CHANNEL="846509313941700618"
+WELCOME_CHANNEL="871198743796514819"
 
 @app.get("/discord")
 @auth_required
 def join_discord(v):
-	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord&response_type=code&scope=guilds.join")
+	state=generate_hash(f"{int(time.time())}+{v.id}+discord")
+	state=f"{now}.{state}"
+	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord&response_type=code&scope=identify%20guilds.join&state={state}")
 
 @app.get("/discord_redirect")
 @auth_required
 def discord_redirect(v):
-
 
 	#validate state
 	now=int(time.time())
