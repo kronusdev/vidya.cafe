@@ -22229,7 +22229,7 @@ img.emoji {
 body {
   background: #ffffff !important; }
 
-.post-title, .navbar-brand, #settings .text-muted {
+.post-title, .navbar-brand, #settings .text-muted, .user-name {
   color: #000000 !important; }
 
 .form-control {
