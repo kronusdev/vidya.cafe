@@ -21,9 +21,9 @@ $green: #38A169;
 //"background" UI: $gray-500
 //search boxes, buttons, ect.: $gray-700 -> $gray-600 on hover
 $gray-100: #394552;
-$gray-200: #FF6600;
+$gray-200: #47a3ff;
 $gray-300: #2B353D;
-$gray-400: #FF6600;
+$gray-400: #47a3ff;
 $gray-500: #f6f6ef;
 $gray-600: #ffffff;
 $gray-700: #ffffff;
@@ -89,6 +89,10 @@ body {
 	background-color: #fff;
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
+}
+
+.card-header {
+	display: none !important;
 }
 
 .comment-text a {
