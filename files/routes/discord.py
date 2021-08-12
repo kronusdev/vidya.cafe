@@ -16,7 +16,6 @@ WELCOME_CHANNEL="846509313941700618"
 def join_discord(v):
 	
 	if v.is_banned != 0: return "You're banned"
-	if v.admin_level == 0 and v.coins < 150: return f"You must earn 150 {COINS_NAME} before entering the Discord server. You earn {COINS_NAME} by making posts/comments and getting upvoted."
 	
 	now=int(time.time())
 
