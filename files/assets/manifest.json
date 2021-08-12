@@ -1,8 +1,8 @@
 {
-  "name": "Drama",
-  "short_name": "Drama",
-  "start_url": "https://rdrama.net",
+  "name": "VidyaCafe",
+  "short_name": "Vidya",
+  "start_url": "https://vidya.cafe",
   "display": "standalone",
-  "background_color": "#FF66AC",
-  "description": "Drama"
+  "background_color": "#FFFFFF",
+  "description": "Vidya"
 }
