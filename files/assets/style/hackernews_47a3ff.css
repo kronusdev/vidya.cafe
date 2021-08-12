@@ -22261,4 +22261,14 @@ body {
 .fas.fa-sign-out.fa-fw.mr-3.text-danger {
   color: #000000 !important; }
 
+.arrow-up:hover::before {
+  color: #47a3ff !important;
+  opacity: 0.5; }
+
+.active.arrow-up::before {
+  color: #47a3ff !important; }
+
+.arrow-up::before {
+  color: #9a9a9a !important; }
+
 /*# sourceMappingURL=hackernews_47a3ff.css.map */

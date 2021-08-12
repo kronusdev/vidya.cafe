@@ -110,3 +110,14 @@ body {
 .fas.fa-sign-out.fa-fw.mr-3.text-danger{
 	color: $black !important;
 }
+
+.arrow-up:hover::before {
+	color: $gray-200 !important;
+	opacity: 0.5;
+}
+.active.arrow-up::before {
+	color: $gray-200 !important;
+}
+.arrow-up::before {
+	color: $primary !important;
+}
