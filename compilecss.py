@@ -6,8 +6,27 @@ def color_variant(hex_color, brightness_offset=1):
     new_rgb_int = [int(hex_value, 16) + brightness_offset for hex_value in rgb_hex]
     new_rgb_int = [min([255, max([0, i])]) for i in new_rgb_int] # make sure new values are between 0 and 255  
     print(new_rgb_int)
-    # hex() produces "0x88", we want just "88"  
-    return "".join([hex(i)[2:] for i in new_rgb_int])
+    # hex() produces "0x88", we want just "88"
+    if(len(hex(new_rgb_int[0])) != 4):
+        print("0" + hex(new_rgb_int[0])[2:])
+        R = "0" + hex(new_rgb_int[0])[2:]
+    else:
+        R = hex(new_rgb_int[0])[2:]
+        
+    
+    if(len(hex(new_rgb_int[1])) != 4):
+        print("0" + hex(new_rgb_int[1])[2:])
+        G = "0" + hex(new_rgb_int[1])[2:]
+    else:
+        G = hex(new_rgb_int[1])[2:]
+    
+    if(len(hex(new_rgb_int[2])) != 4):
+        print("0" + hex(new_rgb_int[2])[2:])
+        B = "0" + hex(new_rgb_int[2])[2:]
+    else:
+        B = hex(new_rgb_int[2])[2:]
+        
+    return R + G + B
 
 #def saturation_change(hex_color, saturation_mult):
     #""" takes a color like #87c95f and produces a lighter or darker variant """  
