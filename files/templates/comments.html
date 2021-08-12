@@ -16,10 +16,10 @@
 
 
 
-<div id="comment-{{c.id}}" class="comment">
+<div id="comment-{{c.id}}" class="comment" style="border-left: 2px solid #{{c.author.namecolor}} !important;">
 
 
-		<span class="comment-collapse-desktop d-none d-md-block" style="border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.id}}')"></span>
+		<span class="comment-collapse-desktop d-none d-md-block"  onclick="collapse_comment('{{c.id}}')"></span>
 
 		<div class="comment-body">
 
@@ -100,9 +100,9 @@
 </div>
 {% endif %}
 
-<div id="comment-{{c.id}}" class="comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18 and not (v and v.over_18)) %} collapsed{% endif %}" style="border-left: 2px solid #{{c.author.namecolor}};">
+<div id="comment-{{c.id}}" class="comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18 and not (v and v.over_18)) %} collapsed{% endif %}" style="border-left: 2px solid #{{c.author.namecolor}} !important;">
 
-	<span class="comment-collapse-desktop d-none d-md-block" style="border-left: 2px solid #{{c.author.namecolor}};"  onclick="collapse_comment('{{c.id}}')"></span>
+	<span class="comment-collapse-desktop d-none d-md-block" onclick="collapse_comment('{{c.id}}')"></span>
 	
 	<div class="comment-body">
 
@@ -474,9 +474,4 @@
 		<i class="fas fa-exclamation-circle mr-2"></i><span id="comment-error-text"></span>
 	</div>
 </div>
-<pre>
-
-
-
-</pre>
 </body>

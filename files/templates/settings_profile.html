@@ -16,7 +16,7 @@
 
 			<div class="card-blank rounded">
 				<h2 class="h5 card-header" name="referral">Theme</h2>
-					<div class="d-lg-flex border-bottom">
+					<div class="body d-lg-flex border-bottom">
 						<div class="title w-lg-25">
 							<label for="theme">Website Theme</label>
 						</div>
@@ -25,17 +25,19 @@
 							<p>Change the theme for the website.</p>
 							<div class="input-group mb2">
 								<select id='theme' class="form-control" form="profile-settings" name="theme" onchange="post('/settings/profile?theme='+document.getElementById('theme').value, function(){window.location.reload(true);})">
-								 {% for entry in ["dark", "light", "coffee", "tron", "4chan", "midnight"] %}
+								 {% for entry in ["dark", "light", "coffee", "tron", "4chan", "blur", "midnight"] %}
 									 <option value="{{entry}}" {% if v.theme==entry %} selected {% endif %}>
 										{{entry}}
 									</option>
-								 {% endfor %}
+								{% endfor %}
 							 </select>
 							</div>
-
+							{% if v.theme == "blur" %}
+								<div class="text-small text-muted mt-3">This theme won't work for most firefox users. To make it work, see <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#browser_compatibility">the mozilla developers website</a> and follow the instructions to turn it on (click small triangle under "Firefox")</div>
+							{% endif %}
 						</div>
 				</div>
-					<div class="d-lg-flex border-bottom">
+					<div class="body d-lg-flex border-bottom">
 						<div class="title w-lg-25">
 							<label for="themecolor">Theme Color</label>
 						</div>
@@ -62,7 +64,7 @@
 				</div>
 				
 				</div>
-					<div class="d-lg-flex border-bottom">
+					<div class="body d-lg-flex border-bottom">
 					<div class="title w-lg-25">
 						<label for="theme">Website Backgrounds</label>
 					</div>
@@ -526,7 +528,7 @@
 
 						 </div>
 
-						 <div class="d-lg-flex border-bottom">
+						 <div class="body d-lg-flex border-bottom">
 
 							<div class="title w-lg-25">
 								<label for="privateswitch">Private Mode</label>
@@ -544,7 +546,7 @@
 							</div>
 
 						</div>
-						 <div class="d-lg-flex border-bottom">
+						 <div class="body d-lg-flex border-bottom">
 
 							<div class="title w-lg-25">
 								<label for="nofollowswitch">Disable Subscriptions</label>

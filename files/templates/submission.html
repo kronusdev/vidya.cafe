@@ -560,13 +560,13 @@
 	{% endif %}
 
 	{% if p.replies %}
-	<div class="comment-section">
+	<div id="actual-comments" class="comment-section">
 	 {% with comments=p.replies %}
 	 {% include "comments.html" %}
 	 {% endwith %}
  </div>
  {% elif not p.replies and p.deleted_utc == 0 %}
- <div class="comment-section text-center py-7">
+ <div id="actual-comments" class="comment-section text-center py-7">
 	<span class="fa-stack fa-2x text-muted mb-4">
 		<i class="fas fa-square text-gray-500 opacity-25 fa-stack-2x"></i>
 		<i class="fas text-gray-500 fa-ghost fa-stack-1x text-lg"></i>
