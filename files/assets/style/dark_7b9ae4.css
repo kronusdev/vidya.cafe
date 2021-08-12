@@ -22208,29 +22208,4 @@ img.emoji {
 .text-info {
   color: #7b9ae4 !important; }
 
-* {
-  border-color: #7b9ae4; }
-
-.btn {
-  border-color: #7b9ae4 !important; }
-
-.form-control:disabled, .form-control[readonly] {
-  background: transparent;
-  border-color: #7b9ae4 !important; }
-
-.btn-success {
-  border-color: #38A169 !important; }
-
-.btn-danger {
-  border-color: #E53E3E !important; }
-
-#frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
-  border-color: transparent !important; }
-
-.btn-lg, .btn-group-lg > .btn {
-  border-color: transparent !important; }
-
-pre {
-  color: #CFCFCF; }
-
 /*# sourceMappingURL=dark_7b9ae4.css.map */
