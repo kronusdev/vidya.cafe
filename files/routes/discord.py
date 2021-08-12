@@ -45,7 +45,7 @@ def discord_redirect(v):
 		'client_secret': CLIENT_SECRET,
 		'grant_type': 'authorization_code',
 		'code': code,
-		'redirect_uri': f"https://{app.config['SERVER_NAME']}/discord_redirect",
+		'redirect_uri': f"https://vidya.cafe/discord_redirect",
 		'scope': 'identify guilds.join'
 	}
 	headers={
