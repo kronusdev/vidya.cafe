@@ -24,9 +24,9 @@ $gray-100: #394552;
 $gray-200: #323C47;
 $gray-300: #2B353D;
 $gray-400: #242C33;
-$gray-500: #1C2229;
-$gray-600: #151A1F;
-$gray-700: #0E1114;
+$gray-500: rgba(#1C2229, 0.5);
+$gray-600: rgba(#151A1F, 0.7);
+$gray-700: rgba(#0E1114, 0.5);
 $gray-800: #07090A;
 $gray-900: #000000;
 
@@ -48,3 +48,22 @@ $border-width: 4px;
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss"; 
+
+.card-blank, .card, .comment-section, .navbar, .btn, .page-item, .nav, .info-popup {
+	backdrop-filter: blur(10px);
+}
+
+.comment.collapsed .comment-collapse::before {
+	color: $primary !important;
+}
+.dropdown-menu {
+	background-color: #151A1F;
+}
+#actual-comments {
+	background: transparent !important;
+	backdrop-filter: none;
+}
+
+*:not(.comment-collapse-desktop):not(.comment) {
+	border: none !important;
+}
