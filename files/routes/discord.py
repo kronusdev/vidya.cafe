@@ -14,15 +14,6 @@ WELCOME_CHANNEL="846509313941700618"
 @app.get("/discord")
 @auth_required
 def join_discord(v):
-	
-	if v.is_banned != 0: return "You're banned"
-	
-	now=int(time.time())
-
-	state=generate_hash(f"{now}+{v.id}+discord")
-
-	state=f"{now}.{state}"
-
 	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord&response_type=code&scope=guilds.join")
 
 @app.get("/discord_redirect")
