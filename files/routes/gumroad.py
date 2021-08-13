@@ -1,4 +1,4 @@
-from flask import *
+from flask import request
 from files.__main__ import app
 
 
