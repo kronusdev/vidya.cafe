@@ -25,7 +25,7 @@ class SubmissionAux(Base):
 	body_html = Column(String(20000), default="")
 	ban_reason = Column(String(128), default="")
 	embed_url = Column(String(256), default="")
-	tag = Column(String, default="")
+	tag = Column(String(128), default="")
 
 
 class Submission(Base, Stndrd, Age_times, Scores):
@@ -302,7 +302,11 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	@property
 	def title(self):
 		return self.submission_aux.title
-
+	
+	@property
+	def tag(self):
+		return self.submission_aux.tag
+	
 	@title.setter
 	def title(self, x):
 		self.submission_aux.title = x
