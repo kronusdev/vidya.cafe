@@ -28,16 +28,10 @@ $theme-colors: (
     "border-color": $border-color,
 	"online": $online,
 	"offline": $offline,
-	"actually-black": $actually-black,
 );
 
 $settings: (
 	"border-radius": $border-radius,
-);
-
-$tag-colors: (
-	"news-tag": $news-tag,
-	"oc-tag": $oc-tag,
 );
 
 // Borders
@@ -1974,26 +1968,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 #frontpage .post-title a:hover, #frontpage .post-title a:active, #frontpage .post-title a:focus	{
 	text-decoration: none;
 	color: $black;
-}
-
-.news-tag::before {
-	content:"NEWS! \f1ea";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
-	background-color: $news-tag;
-	color: $actually-black;
-	padding: 2px;
-	display: inline-block;
-	border-radius: $border-radius;
-}
-
-.oc-tag::before {
-	content:"[OC] \f005";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
-	background-color: $oc-tag;
-	color: $actually-black;
-	padding: 2px;
-	display: inline-block;
-	border-radius: $border-radius;
 }
 
 .stretched-link a:hover {
