@@ -541,7 +541,25 @@
 									<label class="custom-control-label" for="privateswitch"></label>
 								</div>
 
-								<span class="text-small-extra text-muted">This will hide your post and comment history from others. We will also ask search engines to not index your profile page. (Your content will still be accessible via direct link.)</span>
+								<span class="text-small-extra text-muted">This will hide your post and comment history from others. We will also ask search engines to not index your profile page. (Your content will still be accessible via direct link.). It will also turn off showing the activity status by default </span>
+
+							</div>
+
+						</div>
+						<div class="body d-lg-flex border-bottom">
+
+							<div class="title w-lg-25">
+								<label for="activityswitch">Show Activity Status</label>
+							</div>
+
+							<div class="body w-lg-100">
+
+								<div class="custom-control custom-switch">
+									<input type="checkbox" class="custom-control-input" id="activityswitch" name="activity"{% if v.show_activity%} checked{% endif %} onchange="post_toast('/settings/profile?activity='+document.getElementById('activityswitch').checked)">
+									<label class="custom-control-label" for="activityswitch"></label>
+								</div>
+
+								<span class="text-small-extra text-muted">This will hide your online status (green dot next to the username)</span>
 
 							</div>
 

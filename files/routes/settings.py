@@ -53,6 +53,11 @@ def settings_profile_post(v):
 	if request.values.get("private", v.is_private) != v.is_private:
 		updated = True
 		v.is_private = request.values.get("private", None) == 'true'
+		v.show_activity = False
+	
+	if request.values.get("activity", v.show_activity) != v.show_activity:
+		updated = True
+		v.show_activity = request.values.get("activity", None) == 'true'
 
 	if request.values.get("animatedname", v.animatedname) != v.animatedname:
 		if v.animatedname == False:

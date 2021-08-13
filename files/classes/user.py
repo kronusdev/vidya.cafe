@@ -87,6 +87,7 @@ class User(Base, Stndrd, Age_times):
 	defaultsorting = Column(String, default="hot")
 	defaulttime = Column(String, default="all")
 	last_active = Column(Integer, default=0)
+	show_activity = Column(Boolean, default=True)
 
 	is_nofollow = Column(Boolean, default=False)
 	custom_filter_list = Column(String(1000), default="")

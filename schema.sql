@@ -180,7 +180,8 @@ CREATE TABLE public.users (
     patron integer,
     zzz boolean DEFAULT false,
     background character varying(512) DEFAULT 'pixelart/bg-1'::character varying,
-    last_active integer DEFAULT 0
+    last_active integer DEFAULT 0,
+    show_activity boolean DEFAULT true
 );
 
 
