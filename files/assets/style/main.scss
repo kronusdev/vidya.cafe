@@ -26,6 +26,8 @@ $theme-colors: (
 	"gray-900": $gray-900,
 	"reddit": $reddit,
     "border-color": $border-color,
+	"online": $online,
+	"offline": $offline,
 );
 
 $settings: (
@@ -1690,6 +1692,33 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	text-align: center;
 	object-fit: cover;
 	background-color: $gray-600;
+}
+
+//.profile-pic-25::before {
+	//inset: 0;
+	//background: #0f0;
+	//content: "";
+	//padding: 5px;
+//}
+
+.online::after {
+	background: $online;
+	border-radius: 50%;
+	content: "";
+	width: 0.6em;
+	height: 0.6em;
+	display: inline-block;
+	margin-left: 0.3rem;
+}
+
+.offline::after {
+	background: $offline;
+	border-radius: 50%;
+	content: "";
+	width: 0.6em;
+	height: 0.6em;
+	display: inline-block;
+	margin-left: 0.3rem;
 }
 
 .profile-pic-28 {
