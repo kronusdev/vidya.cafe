@@ -7,5 +7,6 @@ def gumroad():
 	data = request.json
 
 	print(data)
+	print(request.data)
 
 	return "OK", 200
