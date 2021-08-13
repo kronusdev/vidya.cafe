@@ -979,7 +979,8 @@ CREATE TABLE public.submissions_aux (
     key_id integer NOT NULL,
     meta_title character varying(512),
     meta_description character varying(1024),
-    title_html text
+    title_html text,
+    tag character varying(128)
 );
 
 
