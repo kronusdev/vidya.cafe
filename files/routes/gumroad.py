@@ -10,3 +10,8 @@ def gumroad():
 	print(request.data)
 
 	return "OK", 200
+
+@app.get("/gumroad")
+def gumroad_get():
+
+	return "OK", 200
