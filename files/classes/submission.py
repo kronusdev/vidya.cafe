@@ -67,7 +67,6 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	is_bot = Column(Boolean, default=False)
 
 	upvotes = Column(Integer, default=1)
-	score = Column(Integer, default=1)
 	app_id=Column(Integer, ForeignKey("oauth_apps.id"))
 	oauth_app=relationship("OauthApp")
 
