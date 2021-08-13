@@ -39,6 +39,10 @@ $deletedandbanned: #964000;
 $mod: #07c20c;
 $code: #e83e8c;
 
+$online: #88cc66;
+$offline: rgba(#aaaaaa, 0.6);
+
+
 $gold: #ECC94B;
 $reddit: #ED4630;
 
@@ -49,7 +53,7 @@ $border-width: 4px;
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss"; 
 
-.card-blank, .card, .comment-section, .navbar, .btn, .page-item, .nav, .info-popup {
+.card-blank, .card, .comment-section, .navbar, .btn, .page-item, .nav, .info-popup, .submit-container, .form-control {
 	backdrop-filter: blur(10px);
 }
 

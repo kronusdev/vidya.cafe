@@ -196,7 +196,7 @@
 
 				{% if p.thumb_url and not p.embed_url %}
 				<div class="card-header bg-transparent border-0 d-none d-md-flex flex-row flex-nowrap pl-3 p-0">
-					<a href="{{p.realurl(v)}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-toggle="modal" data-target="#expandImageModal" onclick="expandDesktopImage('{{p.realurl(v)}}','{{p.realurl(v)}}')"{% endif %}><img src="{{p.thumb_url}}" class="post-img d-none d-md-block" alt="Unable to load image"></a>
+					<a href="{{p.realurl(v)}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-toggle="modal" data-target="#expandImageModal" onclick="expandDesktopImage('{{p.realurl(v)}}','{{p.realurl(v)}}')"{% endif %}><img src="{{p.thumb_url}}" class="post-img d-md-block" alt="Unable to load image"></a>
 
 				</div>
 				{% endif %}
@@ -218,7 +218,7 @@
 						{% if p.over_18 %}<span class="badge badge-danger text-small-extra mr-1">+18</span>{% endif %}
 						{% if p.private %}<span class="badge border-warning border-1 text-small-extra">unlisted</span>{% endif %}
 						{% if p.active_flags %}<a class="btn btn-primary" href="javascript:void(0)" style="padding:1px 5px; font-size:10px;" onclick="document.getElementById('flaggers').classList.toggle('d-none')">{{p.active_flags}} Reports</a>{% endif %}
-						&nbsp;<a {% if p.author.animatedname %}class="{% if p.author.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} href="{{p.author.url}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name">&nbsp;&nbsp;<img src="{{p.author.profile_url}}" class="profile-pic-25 mr-2"/>{{p.author.username}}</a>{% if p.author.customtitle %}&nbsp;<bdi style="color: #{{p.author.titlecolor}}">&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}
+						&nbsp;<a {% if p.author.animatedname %}class="{% if p.author.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} href="{{p.author.url}}" style="color: #{{p.author.namecolor}}; font-weight: bold; {% if p.author.show_activity %}{% if p.author.last_active+420 > time %} online {%else %} offline {% endif %}{% endif %}" class="user-name {% if p.author.show_activity %}{% if p.author.last_active+420 > time %} online {%else %} offline {% endif %}{% endif %}">&nbsp;&nbsp;<img src="{{p.author.profile_url}}" class="profile-pic-25 mr-2"/>{{p.author.username}}</a>{% if p.author.customtitle %}&nbsp;<bdi style="color: #{{p.author.titlecolor}}">&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}
 						<span data-toggle="tooltip" data-placement="bottom" id="timestamp" title="">&nbsp;{{p.age_string}}</span>
 						({% if p.realurl(v) %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" {% if v and v.newtabexternal %}target="_blank"{% endif %}>{{p.domain}}</a>{% else %}text post{% endif %})
 						

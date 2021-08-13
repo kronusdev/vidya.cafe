@@ -336,7 +336,7 @@
 
 					</div>
 
-						<div class="card-blank rounded mb-0">
+						<div class="card-blank rounded">
 							<div class="card-header">
 								<h2 class="h5" id="bio" name="bio">Your Profile</h2>
 								<p class="text-small text-muted">Edit how others see you on {{"SITE_NAME" | app_config}}.</p>
@@ -389,7 +389,7 @@
 									<form action="/settings/namecolor" id="color-form" method="post" class="color-picker" style="line-height: 0">
 											<input type="hidden" name="formkey" value="{{v.formkey}}">
 
-											{% for color in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff'] %}
+											{% for color in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600'] %}
 											<input type="radio" name="color" id="color-{{color}}" value="{{color}}" {% if v.namecolor == color %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
 											<label class="color-radio" for="color-{{color}}">
 												<span style="background-color: #{{color}}">
@@ -457,7 +457,7 @@
 								 <form action="/settings/titlecolor" id="titlecolor-form" method="post" class="color-picker" style="line-height: 0">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 
-										{% for titlecolor in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff'] %}
+										{% for titlecolor in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600'] %}
 										<input type="radio" name="titlecolor" id="titlecolor-{{titlecolor}}" value="{{titlecolor}}" {% if v.titlecolor == titlecolor %}checked{% endif %} onclick="document.getElementById('titlecolor-form').submit()"/>
 										<label class="color-radio" for="titlecolor-{{titlecolor}}">
 											<span style="background-color: #{{titlecolor}}">
@@ -527,7 +527,11 @@
 							 </div>
 
 						 </div>
-
+						 </div>
+						<div class="card-blank rounded">
+							<div class="card-header">
+								<h2 class="h5" id="bio" name="bio">Privacy Toggles</h2>
+								</div>
 						 <div class="body d-lg-flex border-bottom">
 
 							<div class="title w-lg-25">
@@ -541,7 +545,25 @@
 									<label class="custom-control-label" for="privateswitch"></label>
 								</div>
 
-								<span class="text-small-extra text-muted">This will hide your post and comment history from others. We will also ask search engines to not index your profile page. (Your content will still be accessible via direct link.)</span>
+								<span class="text-small-extra text-muted">This will hide your post and comment history from others. We will also ask search engines to not index your profile page. (Your content will still be accessible via direct link.). It will also turn off showing the activity status by default </span>
+
+							</div>
+
+						</div>
+						<div class="body d-lg-flex border-bottom">
+
+							<div class="title w-lg-25">
+								<label for="activityswitch">Show Activity Status</label>
+							</div>
+
+							<div class="body w-lg-100">
+
+								<div class="custom-control custom-switch">
+									<input type="checkbox" class="custom-control-input" id="activityswitch" name="activity"{% if v.show_activity%} checked{% endif %} onchange="post_toast('/settings/profile?activity='+document.getElementById('activityswitch').checked)">
+									<label class="custom-control-label" for="activityswitch"></label>
+								</div>
+
+								<span class="text-small-extra text-muted">This will hide your online status (green dot next to the username)</span>
 
 							</div>
 
@@ -563,6 +585,7 @@
 
 							</div>
 
+						</div>
 						</div>
 					</div>
 					</div>
