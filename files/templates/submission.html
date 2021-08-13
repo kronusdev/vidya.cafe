@@ -196,7 +196,7 @@
 
 				{% if p.thumb_url and not p.embed_url %}
 				<div class="card-header bg-transparent border-0 d-none d-md-flex flex-row flex-nowrap pl-3 p-0">
-					<a href="{{p.realurl(v)}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-toggle="modal" data-target="#expandImageModal" onclick="expandDesktopImage('{{p.realurl(v)}}','{{p.realurl(v)}}')"{% endif %}><img src="{{p.thumb_url}}" class="post-img d-none d-md-block" alt="Unable to load image"></a>
+					<a href="{{p.realurl(v)}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-toggle="modal" data-target="#expandImageModal" onclick="expandDesktopImage('{{p.realurl(v)}}','{{p.realurl(v)}}')"{% endif %}><img src="{{p.thumb_url}}" class="post-img d-md-block" alt="Unable to load image"></a>
 
 				</div>
 				{% endif %}
