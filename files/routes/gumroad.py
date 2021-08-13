@@ -11,7 +11,6 @@ def gumroad():
 
 	return "OK", 200
 
-@app.get("/gumroad")
+@app.post("/gumroad")
 def gumroad_get():
-
 	return "OK", 200
