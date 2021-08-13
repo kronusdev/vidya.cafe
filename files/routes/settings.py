@@ -150,7 +150,6 @@ def settings_profile_post(v):
 	if theme:
 		v.theme = theme
 		if theme =="hackernews": v.themecolor = "ff6600"
-
 		g.db.add(v)
 		return "", 204
 
