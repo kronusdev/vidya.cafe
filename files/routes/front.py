@@ -419,4 +419,4 @@ def all_comments(v):
 	idlist = idlist[:25]
 
 	if request.headers.get("Authorization"): return {"data": [x.json for x in comments]}
-	else: return render_template("home_comments.html", v=v, sort=sort, t=t, page=page, comments=comments, standalone=True, next_exists=next_exists)
+	else: return render_template("home_comments.html", v=v, sort=sort, t=t, page=page, comments=comments, standalone=True, next_exists=next_exists, time=time.time())
