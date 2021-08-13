@@ -3,6 +3,7 @@ from files.helpers.get import *
 from files.classes import *
 from flask import *
 from files.__main__ import app
+import time
 
 
 @app.get("/sips")
@@ -95,6 +96,7 @@ def api_vote_post(post_id, new, v):
 	except: g.db.rollback()
 	post.upvotes = g.db.query(Vote).filter_by(submission_id=post.id, vote_type=1).count()
 	g.db.add(post)
+	v.last_active = int(time.time());
 	return "", 204
 
 @app.post("/vote/comment/<comment_id>/<new>")
@@ -143,4 +145,5 @@ def api_vote_comment(comment_id, new, v):
 	except: g.db.rollback()
 	comment.upvotes = g.db.query(CommentVote).filter_by(comment_id=comment.id, vote_type=1).count()
 	g.db.add(comment)
+	v.last_active = int(time.time());
 	return make_response(""), 204

@@ -1,6 +1,6 @@
 from files.helpers.wrappers import *
 from files.helpers.get import *
-
+import time
 from files.__main__ import app, cache
 from files.classes.submission import Submission
 
@@ -67,7 +67,8 @@ def notifications(v):
 						   page=page,
 						   standalone=True,
 						   render_replies=True,
-						   is_notification_page=True)
+						   is_notification_page=True,
+						   time=time.time())
 
 @cache.memoize(timeout=1500)
 def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
@@ -216,7 +217,7 @@ def front_all(v):
 	posts = get_posts(ids, v=v)
 
 	if request.headers.get("Authorization"): return {"data": [x.json for x in posts], "next_exists": next_exists}
-	else: return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort=sort, t=t, page=page)
+	else: return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort=sort, t=t, page=page, time=time.time())
 
 @cache.memoize(timeout=1500)
 def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):

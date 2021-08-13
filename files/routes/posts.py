@@ -2,6 +2,7 @@ from urllib.parse import urlparse
 import mistletoe
 import urllib.parse
 import gevent
+import time
 
 from files.helpers.wrappers import *
 from files.helpers.sanitize import *
@@ -30,12 +31,14 @@ def publish(pid, v):
 	g.db.add(post)
 	
 	cache.delete_memoized(frontlist)
+	v.last_active = int(time.time());
 
 	return "", 204
 
 @app.get("/submit")
 @auth_required
 def submit_get(v):
+	v.last_active = time.time()
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 		
 	return render_template("submit.html",
@@ -327,7 +330,7 @@ def edit_post(pid, v):
 @limiter.limit("6/minute")
 @is_not_banned
 def get_post_title(v):
-
+	v.last_active = time.time()
 	url = request.args.get("url", None)
 	if not url:
 		return abort(400)
@@ -496,7 +499,7 @@ def embed_comment_cid(cid, pid=None):
 @is_not_banned
 @validate_formkey
 def submit_post(v):
-
+	v.last_active = time.time()
 
 	title = request.form.get("title", "").strip()
 

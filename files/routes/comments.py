@@ -1,5 +1,6 @@
 import traceback
 import sys
+import time
 
 from files.helpers.wrappers import *
 from files.helpers.filters import *
@@ -180,6 +181,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 @is_not_banned
 @validate_formkey
 def api_comment(v):
+	v.last_active = int(time.time());
 
 	parent_submission = request.form.get("submission")
 	parent_fullname = request.form.get("parent_fullname")
@@ -462,6 +464,7 @@ def api_comment(v):
 													v=v,
 													comments=[c],
 													render_replies=False,
+													time=time.time()
 													)})
 
 
@@ -470,6 +473,7 @@ def api_comment(v):
 @is_not_banned
 @validate_formkey
 def edit_comment(cid, v):
+	v.last_active = int(time.time());
 
 	c = get_comment(cid, v=v)
 
@@ -659,6 +663,7 @@ def edit_comment(cid, v):
 @auth_required
 @validate_formkey
 def delete_comment(cid, v):
+	v.last_active = int(time.time());
 
 	c = g.db.query(Comment).filter_by(id=cid).first()
 
@@ -681,6 +686,7 @@ def delete_comment(cid, v):
 @auth_required
 @validate_formkey
 def undelete_comment(cid, v):
+	v.last_active = int(time.time());
 
 	c = g.db.query(Comment).filter_by(id=cid).first()
 
@@ -703,7 +709,8 @@ def undelete_comment(cid, v):
 @auth_required
 @validate_formkey
 def toggle_comment_pin(cid, v):
-	
+	v.last_active = int(time.time());
+
 	comment = get_comment(cid, v=v)
 	
 	if v.admin_level < 1 and v.id != comment.post.author_id:
@@ -727,6 +734,7 @@ def toggle_comment_pin(cid, v):
 				v=v,
 				comments=[comment],
 				render_replies=False,
+				time=time.time(),
 				)
 
 	html=str(BeautifulSoup(html, features="html.parser").find(id=f"comment-{comment.id}-only"))

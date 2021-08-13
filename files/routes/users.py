@@ -251,7 +251,6 @@ def u_username(username, v=None):
 	# case insensitive search
 
 	u = get_user(username, v=v)
-
 	# check for wrong cases
 
 	if username != u.username:
@@ -340,6 +339,7 @@ def u_username(username, v=None):
 												page=page,
 												sort=sort,
 												t=t,
+												time=time.time(),
 												next_exists=next_exists,
 												is_following=(v and u.has_follower(v)))
 
@@ -353,6 +353,7 @@ def u_username(username, v=None):
 									page=page,
 									sort=sort,
 									t=t,
+									time=time.time(),
 									next_exists=next_exists,
 									is_following=(v and u.has_follower(v)))
 
@@ -379,7 +380,8 @@ def u_username_comments(username, v=None):
 		if request.headers.get("Authorization"): return {"error": f"That username is reserved for: {u.reserved}"}
 		else: return render_template("userpage_reserved.html",
 												u=u,
-												v=v)
+												v=v,
+												time=time.time())
 
 
 	if u.is_private and (not v or (v.id != u.id and v.admin_level < 3)):
@@ -399,19 +401,22 @@ def u_username_comments(username, v=None):
 		if request.headers.get("Authorization"): return {"error": "That userpage is private"}
 		else: return render_template("userpage_private.html",
 													u=u,
-													v=v)
+													v=v,
+													time=time.time())
 
 	if u.is_blocking and (not v or v.admin_level < 3):
 		if request.headers.get("Authorization"): return {"error": f"You are blocking @{u.username}."}
 		else: return render_template("userpage_blocking.html",
 													u=u,
-													v=v)
+													v=v,
+													time=time.time())
 
 	if u.is_blocked and (not v or v.admin_level < 3):
 		if request.headers.get("Authorization"): return {"error": "This person is blocking you."}
 		else: return render_template("userpage_blocked.html",
 													u=u,
-													v=v)
+													v=v,
+													time=time.time())
 
 
 	page = int(request.args.get("page", "1"))
@@ -434,7 +439,7 @@ def u_username_comments(username, v=None):
 	is_following = (v and user.has_follower(v))
 
 	if request.headers.get("Authorization"): return {"data": [c.json for c in listing]}
-	else: return render_template("userpage_comments.html", u=user, v=v, listing=listing, page=page, sort=sort, t=t,next_exists=next_exists, is_following=is_following, standalone=True)
+	else: return render_template("userpage_comments.html", u=user, v=v, listing=listing, page=page, sort=sort, t=t,next_exists=next_exists, is_following=is_following, standalone=True, time=time.time())
 
 @app.get("/@<username>/info")
 @auth_desired
@@ -524,6 +529,7 @@ def saved_posts(v, username):
 											listing=listing,
 											page=page,
 											next_exists=next_exists,
+											time=time.time(),
 											)
 
 
@@ -549,4 +555,5 @@ def saved_comments(v, username):
 											listing=listing,
 											page=page,
 											next_exists=next_exists,
-											standalone=True)
+											standalone=True,
+											time=time.time())
