@@ -2,6 +2,7 @@ from flask import render_template, g
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
 import re, random
+import time
 from urllib.parse import urlparse
 from files.helpers.lazy import lazy
 from files.__main__ import Base
@@ -162,6 +163,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 							   linked_comment=comment,
 							   comment_info=comment_info,
 							   render_replies=True,
+							   time=time.time(),
 							   )
 
 	@property
