@@ -36,7 +36,7 @@
 
 			{% elif v %}
 			<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mx-auto arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></div>
-			
+
 			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			{% else %}
@@ -52,7 +52,7 @@
 		<div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap pl-2 pl-md-0 p-0 mr-md-2">
 
 			<div style="z-index: 3;">
-				
+
 				{% if not p.url %}
 					<a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" rel="nofollow noopener">
 						<img src="{{p.thumb_url}}" class="post-img">
@@ -66,7 +66,7 @@
 						<img src="{{p.thumb_url}}" class="post-img">
 					</a>
 				{% endif %}
-				
+
 			</div>
 
 
@@ -94,12 +94,12 @@
 				<span data-toggle="tooltip" data-placement="bottom" id="timestamp-{{p.id}}" title="">&nbsp;{{p.age_string}}</span>
 				&nbsp;
 				({% if p.realurl(v) %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})
-				
+
 				{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom" id="edited_timestamp-{{p.id}}" title="">{{p.edited_string}}</span>{% endif %}
 				&nbsp;&nbsp;{{p.views}} views
 			</div>
 
-			<h5 class="card-title post-title text-left w-lg-75 mb-0 pb-0 pb-md-1"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" class="stretched-link" {% if p.author.is_private %} rel="nofollow"{% endif %}>
+			<p>  </p><h5 class="{{p.tag}}-tag card-title post-title text-left w-lg-75 mb-0 pb-0 pb-md-1"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" class="stretched-link" {% if p.author.is_private %} rel="nofollow"{% endif %}>
 				{{p.realtitle(v) | safe}}
 			</a></h5>
 
@@ -139,7 +139,7 @@
 						{% elif v %}
 						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/save_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Save</a></li>
 						{% endif %}
-						
+
 						<li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{p.id}}', '{{p.author.username}}')"><i class="fas fa-flag"></i>Report</a></li>
 
 						{% if v and v.id==p.author_id %}
@@ -151,7 +151,7 @@
 						{% endif %}
 						{% endif %}
 
-						
+
 						{% if v and v.admin_level>=3 %}
 						<li class="list-inline-item"><a class="text-info" href="javascript:void(0)" onclick="post('/sticky/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack"></i>{% if p.stickied %}Unpin{% else %}Pin{% endif %}</a></li>
 						{% if v==p.author %}
@@ -192,7 +192,7 @@
 								{% endif %}
 							{% endif %}
 						{% endif %}
-												
+
 			</ul>
 		</div>
 	</div>
@@ -224,9 +224,9 @@
 			{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
 			<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none">
 
-				
+
 				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
-	
+
 				{% if voted==1 %}
 				<span class="mr-2 arrow-up post-{{p.id}}-up active">
 				</span>
@@ -236,7 +236,7 @@
 			{% elif v %}
 			<li id="voting-{{p.id}}-mobile" class="voting list-inline-item d-md-none">
 
-				
+
 				<span id="post-score-{{p.id}}-mobile" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 				<span id="post-{{p.id}}-up-mobile" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="ml-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}"></span>
@@ -270,8 +270,8 @@
 			</div>
 			<div class="modal-body">
 				<ul class="list-group post-actions">
-					<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="/sips?link={{p.fullname}}"><i class="fas fa-star text-center text-muted mr-3"></i>Sips</a></button>					 
-<!--					
+					<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="/sips?link={{p.fullname}}"><i class="fas fa-star text-center text-muted mr-3"></i>Sips</a></button>
+<!--
 					{% if v and v.id!=p.author_id %}
 						<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0)" data-toggle="modal" data-target="#awardModal" onclick="awardModal('/post/{{p.id}}/awards')"><i class="fas fa-gift fa-fw"></i>Give Award</a></li>
 					{% endif %}
@@ -281,7 +281,7 @@
 					{% elif v %}
 						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/subscribe/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye text-center text-muted mr-3"></i>Subscribe</a></button>
 					{% endif %}
-					
+
 					{% if v and p.id in v.saved_idlist() %}
 						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/unsave_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save text-center text-muted mr-3"></i>Unsave</a></button>
 					{% elif v %}
@@ -302,12 +302,12 @@
 					{% if v %}
 						{% if v.admin_level >=3 %}
 							<button class="btn btn-link btn-block btn-lg text-left" id="sticky-post-{{p.id}}" href="javascript:void(0)" onclick="post('/sticky/{{p.id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-thumbtack text-center mr-3"></i>{% if p.stickied %}Unpin{% else %}Pin{% endif %}</button>
-							
+
 							{% if v==p.author %}
 							<button class="btn btn-link btn-block btn-lg text-left" id="distinguish-post-{{p.id}}" href="javascript:void(0)" onclick="post('/distinguish/{{p.id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-crown text-center mr-3"></i>Distinguish</button>
 							{% endif %}
 
-						
+
 							<button class="btn btn-link btn-block btn-lg text-success text-left" id="moderate-post-{{p.id}}" href="javascript:void(0)" onclick="post('/unban_post/{{p.id}}',callback=function(){window.location.reload(true);})"><i class="far fa-check text-center text-success mr-3"></i>Approve</button>
 							<button class="btn btn-link btn-block btn-lg text-danger text-left" id="moderate-post-{{p.id}}" href="javascript:void(0)" onclick="post('/ban_post/{{p.id}}',callback=function(){window.location.reload(true);})"><i class="far fa-ban text-center text-danger mr-3"></i>Remove</button>
 						{% endif %}
@@ -360,19 +360,19 @@
 
 {% if request.path.endswith('/admin/queue') %}
 
-<div class="row no-gutters">	 
-	<div class="col">			
+<div class="row no-gutters">
+	<div class="col">
 		<div class="text-center py-7">
 			<div class="h4 p-2">This queue is empty. (That's a good thing.)</div>
-		</div>			 
-	</div>	
+		</div>
+	</div>
 </div>
 
 
 {% elif u %}
 {% if v and v.id == u.id %}
-<div class="row no-gutters">	 
-	<div class="col">			
+<div class="row no-gutters">
+	<div class="col">
 		<div class="text-center px-3 my-3 info-popup">
 			<span class="fa-stack fa-2x text-muted mb-4">
 				<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
@@ -381,14 +381,14 @@
 			<h2 class="h5">You haven't {% if "saved" in request.full_path %}saved{% else %}made{% endif %} a post yet</h2>
 			<p class="text-muted mb-md-5">Your {% if "saved" in request.full_path %}saved posts{% else %}posting history{% endif %} will show here.</p>
 			{% if "saved" not in request.full_path %}<a href="/submit" class="btn btn-primary">Create a post</a>{% endif %}
-		</div>			
-	</div>	
+		</div>
+	</div>
 </div>
 
 
 {% else %}
-<div class="row no-gutters">	 
-	<div class="col">			
+<div class="row no-gutters">
+	<div class="col">
 		<div class="text-center px-3 my-3 info-popup">
 			<span class="fa-stack fa-2x text-muted mb-4">
 				<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
@@ -397,16 +397,16 @@
 			<h2 class="h5">@{{u.username}} hasn't made a post yet</h2>
 			<p class="text-muted">Their posting history will show here.</p>
 			<pre>
-				
+
 			</pre>
-		</div>			
-	</div>	
+		</div>
+	</div>
 </div>
 {% endif %}
 
 {% else %}
-<div class="row no-gutters">	 
-	<div class="col">			
+<div class="row no-gutters">
+	<div class="col">
 		<div class="text-center px-3 my-3 info-popup">
 			<span class="fa-stack fa-2x text-muted mb-4">
 				<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
@@ -414,8 +414,8 @@
 			</span>
 			<h2 class="h5">There are no posts here.</h2>
 			<p class="text-muted">But the magic gnomes tell us there will be (eventually).</p>
-		</div>			
-	</div>	
+		</div>
+	</div>
 </div>
 
 

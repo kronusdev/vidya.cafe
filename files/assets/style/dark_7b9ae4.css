@@ -20393,6 +20393,128 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   text-decoration: none;
   color: #CFCFCF; }
 
+.news-tag::before {
+  content: "News \f1ea";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #F28181;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.oc-tag::before {
+  content: "OC \f005";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #ECC94B;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.video-tag::before {
+  content: "Video \f03d";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #ffafaf;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.music-tag::before {
+  content: "Music \f001";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #17d860;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.picture-tag::before {
+  content: "Picture \f302";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #CCE3DF;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.meta-tag::before {
+  content: "Meta \f129";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #7b9ae4;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.discussion-tag::before {
+  content: "Discussion \f086";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #7A83FF;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.rant-tag::before {
+  content: "Rant \f556";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #BB6FEE;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.review-tag::before {
+  content: "Review \f5c0";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #C6EE6F;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.question-tag::before {
+  content: "Question \f128";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #EE98E9;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.breaking-news-tag::before {
+  content: "\f1ea BREAKING NEWS \f1ea";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #ff0000;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.tag-radio {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0; }
+
+.tag-container:focus-within {
+  opacity: 0.7; }
+
+#submit .none-tag::before {
+  content: "None \f00d";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #E1E1E1;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+#thread .news-tag::before, #thread .oc-tag::before, #thread .video-tag::before, #thread .music-tag::before, #thread .picture-tag::before, #thread .meta-tag::before, #thread .discussion-tag::before {
+  margin: 0 1rem !important; }
+
 .stretched-link a:hover {
   color: #7b9ae4; }
 
@@ -21998,7 +22120,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     right: 0; }
 
   /*
-  
+
   #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
   	border-width: 0 0 0.1px 0;
   	border-color: $border-color;
@@ -22007,12 +22129,12 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   	margin-top: 0;
   	box-shadow: none;
   }
-  
+
   #frontpage.toggle-card-view .posts .card .post-img-lg img, #userpage.toggle-card-view .posts .card .post-img-lg img, #search.toggle-card-view .posts .card .post-img-lg img, #guild.toggle-card-view .posts .card .post-img-lg img {
   	max-width: 100%;
   	height: auto;
   }
-  
+
   */
   .jumbotron-guild {
     height: 115px; }

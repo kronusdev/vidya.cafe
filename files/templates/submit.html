@@ -5,7 +5,7 @@
 	{% include "bootstrap.html" %}
 
 	<script>
-	
+
 		$(document).ready(function() {
 			$('#submitform').submit(function() {
 					// disable button
@@ -29,7 +29,7 @@
 
 			if (selectedText.includes('**')) {
 				text.value = selectedText.replace(/\*/g, '');
-				
+
 			}
 			else if (selectedText.length == 0) {
 				text.value = text.value.substring(0, startIndex) + selectedText + text.value.substring(endIndex);
@@ -51,7 +51,7 @@
 
 			if (selectedText.includes('*')) {
 				text.value = selectedText.replace(/\*/g, '');
-				
+
 			}
 			else if (selectedText.length == 0) {
 				text.value = text.value.substring(0, startIndex) + selectedText + text.value.substring(endIndex);
@@ -73,7 +73,7 @@
 
 			if (selectedText.includes('>')) {
 				text.value = text.value.substring(0, startIndex) + selectedText.replace(/\>/g, '') + text.value.substring(endIndex);
-				
+
 			}
 			else if (selectedText.length == 0) {
 				text.value = text.value.substring(0, startIndex) + selectedText + text.value.substring(endIndex);
@@ -82,7 +82,7 @@
 				text.value = text.value.substring(0, startIndex) + format + selectedText + text.value.substring(endIndex);
 			}
 		}
-	
+
 		// Character Count
 
 		function charLimit(form, text) {
@@ -107,7 +107,7 @@
 
 			text.innerText = maxLength - length;
 		}
-	
+
 		//part of submit page js
 
 		hide_image=function(){
@@ -347,11 +347,11 @@
 						<small class="btn btn-secondary format d-inline-block m-0">
 						<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('post-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
 						</small>
-						&nbsp; 
+						&nbsp;
 						<small class="btn btn-secondary format d-inline-block m-0">
 						<i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('post-text')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
 						</small>
-						&nbsp; 
+						&nbsp;
 						<small class="btn btn-secondary format d-inline-block m-0">
 						<i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('post-text')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
 						</small>
@@ -361,25 +361,46 @@
 						<label class="btn btn-secondary format d-inline-block m-0" for="emoji-reply-btn">
 							<div id="emoji-reply-btn" onclick="loadEmojis('post-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam"></i></div>
 						</label>
-						
+<!--						<div class="input-group my2">
+								<select id='post-tag' class="form-control" name="tag" type="text" form="submitform">
+								 {% for entry in ["other", "news", "oc", "video", "music", "picture", "meta", "discussion", "rant", "review", "question", "breaking-news"] %}
+									 <option value="{{entry}}">
+										{{entry}}
+									</option>
+								{% endfor %}
+							 </select>
+
+							</div>-->
+							<div class="py-3">
+							<label for="url" class="mt-3">Post Tag (Optional)</label>
+							<br>
+
+							{% for tag in ["news", "oc", "video", "music", "picture", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
+								<div style="width: max-content; display: inline-block;" class="tag-container">
+									<div class="{{tag}}-tag inline-block" style="width: max-content; position:relative;">
+										<input type="radio" id="{{tag}}-radio" name="tag" value="{{tag}}" class="tag-radio">
+									</div>
+								</div>
+							{% endfor %}
+							</div>
 						<a href="/formatting" target="_blank" class="float-right">Formatting help</a>
 						<pre></pre>
 
-						
+
 						<div class="submit-bottom">
 							<a href="/" class="btn btn-secondary">Cancel</a>
 							{% if error %}<span class="text-danger mr-2">{{error}}</span>{% endif %}
-							
+
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="nsfwCheck" name="over_18">
 								<label class="custom-control-label" for="nsfwCheck">+18</label>
 							</div>
-							
+
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="privateCheck" name="private">
 								<label class="custom-control-label" for="privateCheck">Unlisted</label>
 							</div>
-							
+
 							<button class="btn btn-outline-purple" id="create_button" type="submit" disabled>Post</button>
 						</div>
 					</div>
@@ -427,7 +448,7 @@
 				$('#urlblock').addClass('d-none');
 				var fileReader = new FileReader();
 				fileReader.readAsDataURL(f.files[0]);
-				fileReader.addEventListener("load", function () {$('#image-preview').attr('src', this.result);});  
+				fileReader.addEventListener("load", function () {$('#image-preview').attr('src', this.result);});
 				$('#file-upload').attr('required', false);
 				checkForRequired();
 			}
@@ -439,7 +460,7 @@
 			$('#filename-show').text($('#file-upload')[0].files[0].name);
 			var fileReader = new FileReader();
 			fileReader.readAsDataURL(f.files[0]);
-			fileReader.addEventListener("load", function () {$('#image-preview').attr('src', this.result);});  
+			fileReader.addEventListener("load", function () {$('#image-preview').attr('src', this.result);});
 			checkForRequired();
 		})
 	</script>

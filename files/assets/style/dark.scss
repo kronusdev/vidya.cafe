@@ -48,5 +48,18 @@ $reddit: #ED4630;
 $border-color: #1C2229;
 $border-width: 4px;
 
+$news-tag: #F28181;
+$oc-tag: #ECC94B;
+$video-tag: #ffafaf;
+$music-tag: #17d860;
+$picture-tag: #CCE3DF;
+$meta-tag: $primary;
+$discussion-tag: #7A83FF;
+$rant-tag: #BB6FEE;
+$review-tag: #C6EE6F;
+$question-tag: #EE98E9;
+$breaking-news-tag: #ff0000;
+$none-tag: #E1E1E1;
+
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
