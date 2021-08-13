@@ -7,29 +7,20 @@ SERVER_ID = environ.get("DISCORD_SERVER_ID",'').strip()
 CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').strip()
 CLIENT_SECRET = environ.get("DISCORD_CLIENT_SECRET",'').strip()
 BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN").strip()
-COINS_NAME = environ.get("COINS_NAME").strip()
 DISCORD_ENDPOINT = "https://discordapp.com/api/v6"
-WELCOME_CHANNEL="846509313941700618"
+WELCOME_CHANNEL="871198743796514819"
 
 @app.get("/discord")
 @auth_required
 def join_discord(v):
-	
-	if v.is_banned != 0: return "You're banned"
-	if v.admin_level == 0 and v.coins < 150: return f"You must earn 150 {COINS_NAME} before entering the Discord server. You earn {COINS_NAME} by making posts/comments and getting upvoted."
-	
-	now=int(time.time())
-
+	now = int(time.time())
 	state=generate_hash(f"{now}+{v.id}+discord")
-
 	state=f"{now}.{state}"
-
-	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2F{app.config['SERVER_NAME']}%2Fdiscord_redirect&response_type=code&scope=identify%20guilds.join&state={state}")
+	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord&response_type=code&scope=identify%20guilds.join&state={state}")
 
 @app.get("/discord_redirect")
 @auth_required
 def discord_redirect(v):
-
 
 	#validate state
 	now=int(time.time())
@@ -55,7 +46,7 @@ def discord_redirect(v):
 		'client_secret': CLIENT_SECRET,
 		'grant_type': 'authorization_code',
 		'code': code,
-		'redirect_uri': f"https://{app.config['SERVER_NAME']}/discord_redirect",
+		'redirect_uri': f"https://vidya.cafe/discord_redirect",
 		'scope': 'identify guilds.join'
 	}
 	headers={
