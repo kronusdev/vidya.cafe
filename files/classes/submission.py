@@ -114,7 +114,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	@property
 	@lazy
 	def score_active(self):
-		return (self.score + 5 * self.comment_count)/ (math.ceil((self.age+3600)/1000)**1.35)
+		return (self.score + self.comment_count)
 
 	@property
 	@lazy
