@@ -7,7 +7,6 @@ $dark: #2B353D;
 $danger: #E53E3E;
 $white: #E1E1E1;
 $black: #CFCFCF;
-$actually-black: #000000;
 $light: #000000;
 $success: #38A169;
 $muted: #E1E1E1;
@@ -48,9 +47,6 @@ $reddit: #ED4630;
 //$border-color: #2E2F2F;
 $border-color: #1C2229;
 $border-width: 4px;
-
-$news-tag: #F28181;
-$oc-tag: #ECC94B;
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
