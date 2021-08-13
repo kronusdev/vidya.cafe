@@ -153,7 +153,7 @@ def settings_profile_post(v):
 		elif theme == "tron": v.themecolor = "adf1d2"
 		elif theme == "4chan": v.themecolor = "7f8fa6"
 		elif theme =="light": v.themecolor = "805ad5"
-		#elif theme =="hackernews": v.themecolor = "ff6600"
+		elif theme =="hackernews": v.themecolor = "ff6600"
 
 		g.db.add(v)
 		return "", 204
