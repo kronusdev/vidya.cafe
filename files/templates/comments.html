@@ -298,6 +298,8 @@
 					{% endif %}
 
 					<li class="list-inline-item d-inline-block d-md-none"><a href="#" data-toggle="modal" data-target="#actionsModal-{{c.id}}" data-focus="false"><i class="fas fa-ellipsis-h"></i></a></li>
+					<li class="list-inline-item d-inline-block d-md-none mr-2"><span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{score}}</span></span></li>
+
 					{% if v and request.path.startswith('/@') and v.admin_level == 0 %}
 						{% if voted==1 %}<li class="list-inline-item arrow-up d-inline-block d-md-none mr-2 comment-{{c.id}}-up active"></li>{% endif %}
 					{% elif v %}
@@ -306,7 +308,6 @@
 						<li id="comment-{{c.id}}-up" tabindex="0" class="list-inline-item arrow-up d-inline-block d-md-none mr-2" onclick="location.href='/login';"></li>
 					{% endif %}
 					
-					<li class="list-inline-item d-inline-block d-md-none mr-2"><span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{score}}</span></span></li>
 				</ul>
 			</div>
 			{% endif %}
