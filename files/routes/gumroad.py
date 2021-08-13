@@ -1,7 +1,8 @@
-from files.__main__ import app
 from flask import *
+from files.__main__ import app
 
-@app.post("/gumroad_ping")
+
+@app.post("/gumroad")
 def gumroad():
 
 	data = request.json
@@ -9,8 +10,4 @@ def gumroad():
 	print(data)
 	print(request.data)
 
-	return "OK", 200
-
-@app.post("/gumroad")
-def gumroad_get():
 	return "OK", 200
