@@ -361,14 +361,27 @@
 						<label class="btn btn-secondary format d-inline-block m-0" for="emoji-reply-btn">
 							<div id="emoji-reply-btn" onclick="loadEmojis('post-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam"></i></div>
 						</label>
-						<div class="input-group my2">
+<!--						<div class="input-group my2">
 								<select id='post-tag' class="form-control" name="tag" type="text" form="submitform">
-								 {% for entry in ["other", "news", "oc", "video", "music", "picture", "meta", "meme"] %}
+								 {% for entry in ["other", "news", "oc", "video", "music", "picture", "meta", "discussion", "rant", "review", "question", "breaking-news"] %}
 									 <option value="{{entry}}">
 										{{entry}}
 									</option>
 								{% endfor %}
 							 </select>
+							 
+							</div>-->
+							<div class="py-3">
+							<label for="url" class="mt-3">Post Tag (Optional)</label>
+							<br>
+
+							{% for tag in ["news", "oc", "video", "music", "picture", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
+								<div style="width: max-content; display: inline-block;" class="tag-container">
+									<div class="{{tag}}-tag inline-block" style="width: max-content; position:relative;">
+										<input type="radio" id="{{tag}}-radio" name="tag" value="{{tag}}" class="tag-radio">
+									</div>
+								</div>
+							{% endfor %}
 							</div>
 						<a href="/formatting" target="_blank" class="float-right">Formatting help</a>
 						<pre></pre>
