@@ -558,6 +558,7 @@ def submit_post(v):
 	if "i.imgur.com" in url: url = url.replace(".png", "_d.png").replace(".jpg", "_d.jpg").replace(".jpeg", "_d.jpeg") + "?maxwidth=8888"
 	
 	body = request.form.get("body", "")
+	tag = request.form.get("tag", "")
 	# check for duplicate
 	dup = g.db.query(Submission).join(Submission.submission_aux).filter(
 
@@ -565,7 +566,8 @@ def submit_post(v):
 		Submission.deleted_utc == 0,
 		SubmissionAux.title == title,
 		SubmissionAux.url == url,
-		SubmissionAux.body == body
+		SubmissionAux.body == body,
+		SubmissionAux.tag == tag,
 	).first()
 
 	if dup:
@@ -786,7 +788,8 @@ def submit_post(v):
 								 body_html=body_html,
 								 embed_url=embed,
 								 title=title,
-								 title_html=title_html
+								 title_html=title_html,
+								 tag=request.headers.get("tag","")
 								 )
 	g.db.add(new_post_aux)
 	g.db.flush()

@@ -361,7 +361,15 @@
 						<label class="btn btn-secondary format d-inline-block m-0" for="emoji-reply-btn">
 							<div id="emoji-reply-btn" onclick="loadEmojis('post-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam"></i></div>
 						</label>
-						
+						<div class="input-group my2">
+								<select id='post-tag' class="form-control" name="tag" type="text" form="submitform">
+								 {% for entry in ["other", "news", "oc", "video", "music", "picture", "meta", "meme"] %}
+									 <option value="{{entry}}">
+										{{entry}}
+									</option>
+								{% endfor %}
+							 </select>
+							</div>
 						<a href="/formatting" target="_blank" class="float-right">Formatting help</a>
 						<pre></pre>
 
