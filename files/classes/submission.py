@@ -114,7 +114,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	@property
 	@lazy
 	def score_active(self):
-		return (self.upvotes + 1)
+		return (self.upvotes + 1 + self.comments)
 
 	@property
 	@lazy
