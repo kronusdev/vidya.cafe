@@ -25,6 +25,7 @@ class SubmissionAux(Base):
 	body_html = Column(String(20000), default="")
 	ban_reason = Column(String(128), default="")
 	embed_url = Column(String(256), default="")
+	tag = Column(String, default="")
 
 
 class Submission(Base, Stndrd, Age_times, Scores):
@@ -69,7 +70,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	upvotes = Column(Integer, default=1)
 	app_id=Column(Integer, ForeignKey("oauth_apps.id"))
 	oauth_app=relationship("OauthApp")
-
+	
 	approved_by = relationship(
 		"User",
 		uselist=False,
