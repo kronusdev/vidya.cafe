@@ -7,6 +7,8 @@ $accent: #86b9ec;
 $danger: #da3633;
 $white: #c9d1d9;
 $black: #c9d1d9;
+$actually-black: #000000;
+
 $light: #b1bac4;
 $success: #3fb950;
 $muted: #c9d1d9;
@@ -43,6 +45,19 @@ $offline: rgba(#aaaaaa, 0.6);
 
 $gold: #ECC94B;
 $reddit: #ED4630;
+
+$news-tag: #F28181;
+$oc-tag: #ECC94B;
+$video-tag: #ffafaf;
+$music-tag: #17d860;
+$picture-tag: #CCE3DF;
+$meta-tag: $primary;
+$discussion-tag: #7A83FF;
+$rant-tag: #BB6FEE;
+$review-tag: #C6EE6F;
+$question-tag: #EE98E9;
+$breaking-news-tag: #ff0000;
+$none-tag: #E1E1E1;
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
