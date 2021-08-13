@@ -149,7 +149,7 @@ def settings_profile_post(v):
 	theme = request.values.get("theme")
 	if theme:
 		v.theme = theme
-		elif theme =="hackernews": v.themecolor = "ff6600"
+		if theme =="hackernews": v.themecolor = "ff6600"
 
 		g.db.add(v)
 		return "", 204
