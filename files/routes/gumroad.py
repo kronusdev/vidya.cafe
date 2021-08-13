@@ -5,9 +5,9 @@ from files.__main__ import app
 @app.post("/gumroad")
 def gumroad():
 
-	# data = request.json
+	data = request.json
 
-	# print(data)
-	# print(request.data)
+	print(data)
+	print(request.data)
 
 	return "OK", 200
