@@ -179,7 +179,8 @@ CREATE TABLE public.users (
     rent_utc integer,
     patron integer,
     zzz boolean DEFAULT false,
-    background character varying(512) DEFAULT 'pixelart/bg-1'::character varying
+    background character varying(512) DEFAULT 'pixelart/bg-1'::character varying,
+    last_active integer DEFAULT 0
 );
 
 
