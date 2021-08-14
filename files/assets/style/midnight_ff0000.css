@@ -21351,6 +21351,9 @@ ul.comment-section {
   margin-left: auto;
   margin-right: auto; }
 
+.info-popup > .text-muted {
+  color: #c9d1d9 !important; }
+
 #settings .bg-gray-300 {
   background-color: #8b949e !important; }
 
