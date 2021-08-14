@@ -55,7 +55,7 @@ $oc-tag: #ECC94B;
 $video-tag: #ffafaf;
 $music-tag: #17d860;
 $picture-tag: #CCE3DF;
-$meta-tag: $primary;
+$meta-tag: #47a3ff;
 $discussion-tag: #7A83FF;
 $rant-tag: #BB6FEE;
 $review-tag: #C6EE6F;
@@ -118,4 +118,8 @@ $none-tag: #E1E1E1;
 
 .post-title, .user-name, .text-small-extra.text-muted, #actual-comments > .text-muted, .text-left.pl-2 {
 	color: $black !important;
+}
+
+.arrow-up::before {
+	color: $muted;
 }

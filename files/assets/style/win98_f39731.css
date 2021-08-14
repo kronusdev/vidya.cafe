@@ -20551,7 +20551,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .meta-tag::before {
   content: "Meta \f129";
   font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #000000;
+  background-color: #f39731;
   color: #000000;
   padding: 2px;
   margin: 0 0.4rem;
@@ -22725,5 +22725,8 @@ img.emoji {
 
 .post-title, .user-name, .text-small-extra.text-muted, #actual-comments > .text-muted, .text-left.pl-2 {
   color: #000000 !important; }
+
+.arrow-up::before {
+  color: #404040; }
 
 /*# sourceMappingURL=win98_f39731.css.map */
