@@ -20462,7 +20462,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card {
   background-color: rgba(28, 34, 41, 0.5);
-  transition: 0.15s;
+  transition: transform 0.15s;
   margin: 0.25rem 0 0.25rem;
   border-radius: 0.25rem !important; }
 
@@ -21350,6 +21350,9 @@ ul.comment-section {
   width: 20rem;
   margin-left: auto;
   margin-right: auto; }
+
+.info-popup > .text-muted {
+  color: #E1E1E1 !important; }
 
 #settings .bg-gray-300 {
   background-color: #2B353D !important; }
@@ -22252,9 +22255,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   #thread .card {
     background-color: rgba(21, 26, 31, 0.7); }
 
-  .card {
-    background-color: rgba(21, 26, 31, 0.7); }
-
   .posts, #thread #main-content-col {
     box-shadow: none;
     border: none;
@@ -22448,21 +22448,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; } }
-.bg-white {
-  background-color: rgba(21, 26, 31, 0.7) !important; }
-
 .text-muted {
-  color: #E1E1E1 !important; }
-
-.text-primary {
-  color: #62ca56 !important; }
-
-.text-gray-400, .text-gray-500 {
-  color: #323C47 !important; }
-
-.white-overlay {
-  background-color: rgba(0, 0, 0, 0.5) !important;
-  background-image: linear-gradient(180deg, #ffffff00 25%, rgba(21, 26, 31, 0.7) 100%) !important; }
+  color: #E1E1E1; }
 
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;
@@ -22681,7 +22668,8 @@ img.emoji {
   color: #62ca56 !important; }
 
 .card-blank, .card, .comment-section, .navbar, .btn, .page-item, .nav, .info-popup, .submit-container, .form-control {
-  backdrop-filter: blur(10px); }
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); }
 
 .comment.collapsed .comment-collapse::before {
   color: #62ca56 !important; }
@@ -22695,5 +22683,8 @@ img.emoji {
 
 *:not(.comment-collapse-desktop):not(.comment) {
   border: none !important; }
+
+.text-muted {
+  color: #E1E1E1 !important; }
 
 /*# sourceMappingURL=blur_62ca56.css.map */

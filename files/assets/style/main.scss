@@ -1927,7 +1927,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card {
 	background-color: $gray-500;
-    transition: 0.15s;
+    transition: transform 0.15s;
     margin: 0.25rem 0 0.25rem;
     border-radius: $border-radius !important;
 }
@@ -3055,6 +3055,10 @@ ul.comment-section {
 	margin-right: auto;
 }
 
+.info-popup > .text-muted {
+	color: $muted !important;
+}
+
 //.info-popup-text {
 	//background: $gray-200;
 	//position: absolute;
@@ -3805,10 +3809,6 @@ body, #settings, #notifications, #submit {
 	background-color: $gray-600;
 }
 
-.card {
-	background-color: $gray-600;
-}
-
 .posts, #thread #main-content-col {
 	box-shadow: none;
 	border: none;
@@ -4063,26 +4063,26 @@ textarea, input[type=text] {
 
 // Dark Mode
 
-.bg-white {
-	background-color: $gray-600!important;
-}
+//.bg-white {
+	//background-color: $gray-600!important;
+//}
 
 .text-muted {
-	color: $muted !important;
+	color: $muted;
 }
 
-.text-primary {
-	color: $primary!important;
-}
+//.text-primary {
+	//color: $primary!important;
+//}
 
-.text-gray-400, .text-gray-500 {
-	color: $gray-200!important;
-}
+//.text-gray-400, .text-gray-500 {
+	//color: $gray-200!important;
+//}
 
-.white-overlay {
-	background-color: rgba(0, 0, 0, 0.5)!important;
-	background-image: linear-gradient(180deg, #ffffff00 25%, $gray-600 100%)!important;
-}
+//.white-overlay {
+	//background-color: rgba(0, 0, 0, 0.5)!important;
+	//background-image: linear-gradient(180deg, #ffffff00 25%, $gray-600 100%)!important;
+//}
 
 // Scroll bar
 

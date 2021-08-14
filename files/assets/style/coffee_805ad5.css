@@ -20463,7 +20463,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card {
   background-color: #DDD2C4;
-  transition: 0.15s;
+  transition: transform 0.15s;
   margin: 0.25rem 0 0.25rem;
   border-radius: 0.25rem !important; }
 
@@ -21351,6 +21351,9 @@ ul.comment-section {
   width: 20rem;
   margin-left: auto;
   margin-right: auto; }
+
+.info-popup > .text-muted {
+  color: #AA9881 !important; }
 
 #settings .bg-gray-300 {
   background-color: #3E2C18 !important; }
@@ -22253,9 +22256,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   #thread .card {
     background-color: #DDD2C4; }
 
-  .card {
-    background-color: #DDD2C4; }
-
   .posts, #thread #main-content-col {
     box-shadow: none;
     border: none;
@@ -22449,21 +22449,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; } }
-.bg-white {
-  background-color: #DDD2C4 !important; }
-
 .text-muted {
-  color: #AA9881 !important; }
-
-.text-primary {
-  color: #805ad5 !important; }
-
-.text-gray-400, .text-gray-500 {
-  color: #433434 !important; }
-
-.white-overlay {
-  background-color: rgba(0, 0, 0, 0.5) !important;
-  background-image: linear-gradient(180deg, #ffffff00 25%, #DDD2C4 100%) !important; }
+  color: #AA9881; }
 
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;

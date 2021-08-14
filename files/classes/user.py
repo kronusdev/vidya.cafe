@@ -458,7 +458,7 @@ class User(Base, Stndrd, Age_times):
 
 	@cache.memoize(0)
 	def defaultpicture(self):
-		return f"https://robohash.org/{self.username}"
+		return f"https://robohash.org/{self.username}?bgset=bg2"
 
 	@property
 	def profile_url(self):
