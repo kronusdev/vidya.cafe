@@ -22665,7 +22665,8 @@ img.emoji {
   color: #ec72de !important; }
 
 .card-blank, .card, .comment-section, .navbar, .btn, .page-item, .nav, .info-popup, .submit-container, .form-control {
-  backdrop-filter: blur(10px); }
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); }
 
 .comment.collapsed .comment-collapse::before {
   color: #ec72de !important; }
@@ -22679,5 +22680,8 @@ img.emoji {
 
 *:not(.comment-collapse-desktop):not(.comment) {
   border: none !important; }
+
+.text-muted {
+  color: #E1E1E1 !important; }
 
 /*# sourceMappingURL=blur_ec72de.css.map */
