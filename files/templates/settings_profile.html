@@ -25,7 +25,7 @@
 							<p>Change the theme for the website.</p>
 							<div class="input-group mb2">
 								<select id='theme' class="form-control" form="profile-settings" name="theme" onchange="post('/settings/profile?theme='+document.getElementById('theme').value, function(){window.location.reload(true);})">
-								 {% for entry in ["dark", "light", "coffee", "tron", "hackernews", "4chan", "blur", "win98", "midnight"] %}
+								 {% for entry in ["dark", "light", "coffee", "tron", "hackernews", "4chan", "blur", "midnight"] %}
 									 <option value="{{entry}}" {% if v.theme==entry %} selected {% endif %}>
 										{{entry}}
 									</option>
@@ -46,7 +46,7 @@
 					 <form action="/settings/themecolor" id="themecolor-form" method="post" class="color-picker" style="line-height: 0">
 							<input type="hidden" name="formkey" value="{{v.formkey}}">
 
-							{% for themecolor in ['47a3ff','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','adf1d2','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
+							{% for themecolor in ['47a3ff','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','adf1d2','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600'] %}
 							<input type="radio" name="themecolor" id="themecolor-{{themecolor}}" value="{{themecolor}}" {% if v.themecolor == themecolor %}checked{% endif %} onclick="document.getElementById('themecolor-form').submit()"/>
 							<label class="color-radio" for="themecolor-{{themecolor}}">
 								<span style="background-color: #{{themecolor}}">
@@ -121,7 +121,6 @@
 											"bg-2",
 											"bg-3",
 											"bg-4",
-											"bg-5",
 										]
 									},
 									{
@@ -390,7 +389,7 @@
 									<form action="/settings/namecolor" id="color-form" method="post" class="color-picker" style="line-height: 0">
 											<input type="hidden" name="formkey" value="{{v.formkey}}">
 
-											{% for color in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
+											{% for color in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600'] %}
 											<input type="radio" name="color" id="color-{{color}}" value="{{color}}" {% if v.namecolor == color %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
 											<label class="color-radio" for="color-{{color}}">
 												<span style="background-color: #{{color}}">
@@ -458,7 +457,7 @@
 								 <form action="/settings/titlecolor" id="titlecolor-form" method="post" class="color-picker" style="line-height: 0">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 
-										{% for titlecolor in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
+										{% for titlecolor in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600'] %}
 										<input type="radio" name="titlecolor" id="titlecolor-{{titlecolor}}" value="{{titlecolor}}" {% if v.titlecolor == titlecolor %}checked{% endif %} onclick="document.getElementById('titlecolor-form').submit()"/>
 										<label class="color-radio" for="titlecolor-{{titlecolor}}">
 											<span style="background-color: #{{titlecolor}}">
