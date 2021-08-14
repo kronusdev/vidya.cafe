@@ -4068,7 +4068,7 @@ textarea, input[type=text] {
 }
 
 .text-muted {
-	color: $muted;
+	color: $muted !important;
 }
 
 .text-primary {

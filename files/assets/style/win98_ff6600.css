@@ -22452,7 +22452,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   background-color: #ffffff !important; }
 
 .text-muted {
-  color: #404040; }
+  color: #404040 !important; }
 
 .text-primary {
   color: #000000 !important; }
