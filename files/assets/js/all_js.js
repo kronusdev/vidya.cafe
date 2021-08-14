@@ -142,10 +142,10 @@ document.body.addEventListener('keydown', function(event) {
 						for (var i = 0; i < gifs.length; i++) {
 							container.innerHTML += ('<div class="card bg-white" style="overflow: hidden" data-dismiss="modal" aria-label="Close" onclick="insertGIF(\'' + gifs[i].url + '\',\'' + commentFormID + '\')"><div class="gif-cat-overlay"></div><img class="img-fluid" src="' + gifs[i].preview + '"></div>');
 							noGIFs.innerHTML = null;
-							loadGIFs.innerHTML = '<div class="text-center py-3"><div class="mb-3"><i class="fad fa-grin-beam-sweat text-gray-500" style="font-size: 3.5rem;"></i></div><p class="font-weight-bold text-gray-500 mb-0">Thou&#39;ve reached the end of the list!</p></div>';
+							loadGIFs.innerHTML = '<div class="text-center py-3"><div class="mb-3"><i class="fad fa-grin-beam-sweat text-primary" style="font-size: 3.5rem;"></i></div><p class="font-weight-bold text-black mb-0">Thou&#39;ve reached the end of the list!</p></div>';
 						}
 					} else {
-						noGIFs.innerHTML = '<div class="text-center py-3 mt-3"><div class="mb-3"><i class="fad fa-frown text-gray-500" style="font-size: 3.5rem;"></i></div><p class="font-weight-bold text-gray-500 mb-0">Aw shucks. No GIFs found...</p></div>';
+						noGIFs.innerHTML = '<div class="text-center py-3 mt-3"><div class="mb-3"><i class="fad fa-frown text-primary" style="font-size: 3.5rem;"></i></div><p class="font-weight-bold text-black mb-0">Aw shucks. No GIFs found...</p></div>';
 						container.innerHTML = null;
 						loadGIFs.innerHTML = null;
 					}

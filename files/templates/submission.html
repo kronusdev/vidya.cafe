@@ -89,7 +89,7 @@
 			<div class="modal-header p-3">
 				<h5 class="col modal-title text-center h6">More options</h5>
 				<button type="button" class="close position-absolute py-3" style="right: 1rem;" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times-circle text-gray-500"></i></span>
+					<span aria-hidden="true"><i class="fas fa-times-circle text-gray-200"></i></span>
 				</button>
 			</div>
 			<div class="modal-body">
@@ -415,7 +415,7 @@
 					{% endif %}
 
 			</div>
-			<div class="post-actions d-md-none bg-gray-500 overflow-hidden rounded">
+			<div class="post-actions d-md-none bg-gray-200 overflow-hidden rounded">
 				<ul class="list-inline text-right d-flex">
 
 					<li class="list-inline-item mr-auto"><a href="{{p.permalink}}"><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
@@ -570,8 +570,8 @@
  {% elif not p.replies and p.deleted_utc == 0 %}
  <div id="actual-comments" class="comment-section text-center py-7">
 	<span class="fa-stack fa-2x text-muted mb-4">
-		<i class="fas fa-square text-gray-500 opacity-25 fa-stack-2x"></i>
-		<i class="fas text-gray-500 fa-ghost fa-stack-1x text-lg"></i>
+		<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
+		<i class="fas text-primary fa-ghost fa-stack-1x text-lg"></i>
 	</span>
 	<h2 class="h5">Be the first to comment!</h2>
 	{% if v %}

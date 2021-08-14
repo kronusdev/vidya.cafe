@@ -20462,7 +20462,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card {
   background-color: #f6f6ef;
-  transition: 0.15s;
+  transition: transform 0.15s;
   margin: 0.25rem 0 0.25rem;
   border-radius: 0 !important; }
 
@@ -22252,9 +22252,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   #thread .card {
     background-color: #ffffff; }
 
-  .card {
-    background-color: #ffffff; }
-
   .posts, #thread #main-content-col {
     box-shadow: none;
     border: none;
@@ -22448,21 +22445,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; } }
-.bg-white {
-  background-color: #ffffff !important; }
-
 .text-muted {
-  color: #828282 !important; }
-
-.text-primary {
-  color: #9a9a9a !important; }
-
-.text-gray-400, .text-gray-500 {
-  color: #47a3ff !important; }
-
-.white-overlay {
-  background-color: rgba(0, 0, 0, 0.5) !important;
-  background-image: linear-gradient(180deg, #ffffff00 25%, #ffffff 100%) !important; }
+  color: #828282; }
 
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;

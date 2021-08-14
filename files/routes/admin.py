@@ -56,7 +56,7 @@ def flagged_posts(v):
 	listing = get_posts(listing, v=v)
 
 	return render_template("admin/flagged_posts.html",
-						   next_exists=next_exists, listing=listing, page=page, v=v)
+						   next_exists=next_exists, listing=listing, page=page, v=v, time=time.time())
 
 
 @app.get("/admin/image_posts")
