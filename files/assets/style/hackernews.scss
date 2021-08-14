@@ -140,3 +140,7 @@ body {
 .arrow-up::before {
 	color: $primary !important;
 }
+
+blockquote {
+	background-color: $muted !important;
+}

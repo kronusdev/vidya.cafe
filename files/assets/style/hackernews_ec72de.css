@@ -22741,4 +22741,7 @@ body {
 .arrow-up::before {
   color: #9a9a9a !important; }
 
+blockquote {
+  background-color: #828282 !important; }
+
 /*# sourceMappingURL=hackernews_ec72de.css.map */
