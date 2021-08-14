@@ -278,7 +278,7 @@
 
 {% block mobileUserBanner %}
 <!-- Mobile -->
-<div class="container-fluid text-center bg-white d-md-none">
+<div class="container-fluid text-center bg-gray-500 d-md-none">
 	<div class="row">
 		<div class="col px-0">
 			<img src="{{u.banner_url}}" style="width: 100%; height: 65px; object-fit: cover;">
@@ -287,7 +287,7 @@
 	<div class="row border-bottom">
 		<div class="col">
 			<div style="margin-top: -34px;">
-				<a href="{% if u.highres %}{{u.highres}}{% else %}{{u.profile_url}}{% endif %}"><img src="{{u.profile_url}}" class="profile-pic-65 bg-white border-2 border-white mb-2"></a>
+				<a href="{% if u.highres %}{{u.highres}}{% else %}{{u.profile_url}}{% endif %}"><img src="{{u.profile_url}}" class="profile-pic-65 bg-gray-500 border-2 border-white mb-2"></a>
 			</div>
 			<div class="mt-n3 py-3">
 				{% if u.is_suspended %}

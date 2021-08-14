@@ -20463,7 +20463,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card {
   background-color: #00001f;
-  transition: 0.15s;
+  transition: transform 0.15s;
   margin: 0.25rem 0 0.25rem;
   border-radius: 0.25rem !important; }
 
@@ -22253,9 +22253,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   #thread .card {
     background-color: #00001f; }
 
-  .card {
-    background-color: #00001f; }
-
   .posts, #thread #main-content-col {
     box-shadow: none;
     border: none;
@@ -22449,21 +22446,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; } }
-.bg-white {
-  background-color: #00001f !important; }
-
 .text-muted {
-  color: #f0f0f0 !important; }
-
-.text-primary {
-  color: #eb4963 !important; }
-
-.text-gray-400, .text-gray-500 {
-  color: #c3213b !important; }
-
-.white-overlay {
-  background-color: rgba(0, 0, 0, 0.5) !important;
-  background-image: linear-gradient(180deg, #ffffff00 25%, #00001f 100%) !important; }
+  color: #f0f0f0; }
 
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;
@@ -22725,5 +22709,8 @@ img.emoji {
 
 .badge-count {
   color: #00001f; }
+
+.text-small-extra.text-muted {
+  color: #f0f0f0 !important; }
 
 /*# sourceMappingURL=tron_eb4963.css.map */
