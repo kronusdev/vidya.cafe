@@ -228,9 +228,9 @@
 					</div>
 					
 					{% if p.realurl(v) %}
-						<h1 id="post-title" class="card-title post-title text-left mb-md-3"><a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.realurl(v)}}" rel="nofollow noopener">{{p.realtitle(v) | safe}}</a></h1>					
+						<h1 id="post-title" class="{{p.tag}}-tag card-title post-title text-left mb-md-3"><a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.realurl(v)}}" rel="nofollow noopener">{{p.realtitle(v) | safe}}</a></h1>					
 					{% else %}
-						<h1 id="post-title" class="card-title post-title text-left mb-md-3">{{p.realtitle(v) | safe}}</h1>
+						<h1 id="post-title" class="{{p.tag}}-tag card-title post-title text-left mb-md-3">{{p.realtitle(v) | safe}}</h1>
 					{% endif %}
 
 					<div id="post-body" class="post-body mt-3">
@@ -387,6 +387,8 @@
 								{% endif %}
 							{% endif %}
 						{% endif %}
+							{% if p.url %}<li class="list-inline-item"><a href="https://web.archive.org/{{p.url}}" target="_blank" name="snappy"><i class="fas fa-archive"></i>Archive</a></li>{% endif %}
+
 												
 			</ul>
 							</div>

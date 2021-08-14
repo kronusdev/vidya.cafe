@@ -4,6 +4,7 @@ from sqlalchemy import *
 from flask import *
 from files.__main__ import app, cache
 import random
+import time
 
 query_regex=re.compile("(\w+):(\S+)")
 valid_params=[
@@ -233,7 +234,8 @@ def searchposts(v):
 						   t=t,
 						   next_exists=next_exists,
 						   domain=domain,
-						   domain_obj=domain_obj
+						   domain_obj=domain_obj,
+						   time=time.time(),
 						   )
 
 @app.get("/search/comments")
@@ -258,7 +260,7 @@ def searchcomments(v):
 	comments = get_comments(ids, v=v)
 
 	if request.headers.get("Authorization"): return [x.json for x in comments]
-	else: return render_template("search_comments.html", v=v, query=query, total=total, page=page, comments=comments, sort=sort, t=t, next_exists=next_exists)
+	else: return render_template("search_comments.html", v=v, query=query, total=total, page=page, comments=comments, sort=sort, t=t, next_exists=next_exists, time=time.time(),)
 
 
 @app.get("/search/users")
@@ -287,4 +289,4 @@ def searchusers(v):
 	
 	
 	if request.headers.get("Authorization"): return [x.json for x in users]
-	else: return render_template("search_users.html", v=v, query=query, total=total, page=page, users=users, sort=sort, t=t, next_exists=next_exists)
+	else: return render_template("search_users.html", v=v, query=query, total=total, page=page, users=users, sort=sort, t=t, next_exists=next_exists, time=time.time())

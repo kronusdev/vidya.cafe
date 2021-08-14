@@ -7,6 +7,8 @@ $accent: #4c4c8f;
 $danger: #47a3ff;
 $white: #f0f0f0;
 $black: #f0f0f0;
+$actually-black: #000000;
+
 $light: #00001f;
 $success: #38A169;
 $muted: #f0f0f0;
@@ -43,6 +45,18 @@ $offline: rgba(#aaaaaa, 0.6);
 $gold: #ECC94B;
 $reddit: #ED4630;
 
+$news-tag: #F28181;
+$oc-tag: #ECC94B;
+$video-tag: #ffafaf;
+$music-tag: #17d860;
+$picture-tag: #CCE3DF;
+$meta-tag: $primary;
+$discussion-tag: #7A83FF;
+$rant-tag: #BB6FEE;
+$review-tag: #C6EE6F;
+$question-tag: #EE98E9;
+$breaking-news-tag: #ff0000;
+$none-tag: #E1E1E1;
 
 @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:400,600,700';
 

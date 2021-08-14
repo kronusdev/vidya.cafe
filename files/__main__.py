@@ -37,6 +37,7 @@ app.config['DATABASE_URL'] = environ.get("DATABASE_CONNECTION_POOL_URL",environ.
 
 app.config['SECRET_KEY'] = environ.get('MASTER_KEY')
 app.config["SERVER_NAME"] = environ.get("DOMAIN").strip()
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 60*10
 
 app.config["SESSION_COOKIE_NAME"] = "vidya"
 app.config["VERSION"] = "1.0.0"
@@ -214,6 +215,9 @@ def before_request():
 
 	g.timestamp = int(time.time())
 
+	#do not access session for static files
+	if request.path.startswith("/assets"): return
+
 	session.permanent = True
 
 	ua_banned, response_tuple = get_useragent_ban_response(
@@ -256,8 +260,7 @@ def after_request(response):
 		abort(500)
 
 	response.headers.add('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth")
-	response.headers.remove("Cache-Control")
-	response.headers.add("Cache-Control", "public, max-age=31536000")
+	
 	response.headers.add("Access-Control-Allow-Origin", app.config["SERVER_NAME"])
 
 	response.headers.add("Strict-Transport-Security", "max-age=31536000")

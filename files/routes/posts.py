@@ -29,7 +29,7 @@ def publish(pid, v):
 	if not post.author_id == v.id: abort(403)
 	post.private = False
 	g.db.add(post)
-	
+
 	cache.delete_memoized(frontlist)
 	v.last_active = int(time.time());
 
@@ -40,7 +40,7 @@ def publish(pid, v):
 def submit_get(v):
 	v.last_active = time.time()
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-		
+
 	return render_template("submit.html",
 						   v=v)
 
@@ -54,7 +54,7 @@ def post_id(pid, anything=None, v=None):
 	if v: defaultsortingcomments = v.defaultsortingcomments
 	else: defaultsortingcomments = "top"
 	sort=request.args.get("sort", defaultsortingcomments)
-	
+
 	try: pid = int(pid)
 	except:
 		try: pid = int(pid, 36)
@@ -77,7 +77,7 @@ def post_id(pid, anything=None, v=None):
 		)
 		if v.admin_level >=4:
 			comments=comments.options(joinedload(Comment.oauth_app))
- 
+
 		comments=comments.filter(
 			Comment.parent_submission == post.id
 		).join(
@@ -195,7 +195,7 @@ def post_id(pid, anything=None, v=None):
 		if request.headers.get("Authorization"): return {"error":"Must be 18+ to view"}, 451
 		else: return render_template("errors/nsfw.html", v=v)
 
-	
+
 	post.tree_comments()
 
 	if request.headers.get("Authorization"): return post.json
@@ -227,12 +227,12 @@ def edit_post(pid, v):
 		reason = f"Remove the {ban.domain} link from your post and try again."
 		if ban.reason:
 			reason += f" {ban.reason}"
-			
+
 		#auto ban for digitally malicious content
 		if any([x.reason==4 for x in bans]):
 			v.ban(days=30, reason="Digitally malicious content is not allowed.")
 			abort(403)
-			
+
 		return {"error": reason}, 403
 
 	# check spam
@@ -294,9 +294,9 @@ def edit_post(pid, v):
 		g.db.flush()
 
 		body = f"""Hi @{v.username},\n\nYour post has been automatically removed because you forgot
-				to include `trans lives matter`.\n\nDon't worry, we're here to help! We 
-				won't let you post or comment anything that doesn't express your love and acceptance towards 
-				the trans community. Feel free to resubmit your post with `trans lives matter` 
+				to include `trans lives matter`.\n\nDon't worry, we're here to help! We
+				won't let you post or comment anything that doesn't express your love and acceptance towards
+				the trans community. Feel free to resubmit your post with `trans lives matter`
 				included. \n\n*This is an automated message; if you need help,
 				you can message us [here](/contact).*"""
 
@@ -313,15 +313,15 @@ def edit_post(pid, v):
 		g.db.flush()
 		n = Notification(comment_id=c_jannied.id, user_id=v.id)
 		g.db.add(n)
-	
+
 	notify_users = set()
-	
+
 	soup = BeautifulSoup(body_html, features="html.parser")
 	for mention in soup.find_all("a", href=re.compile("^/@(\w+)")):
 		username = mention["href"].split("@")[1]
 		user = g.db.query(User).filter_by(username=username).first()
 		if user and not v.any_block_exists(user) and user.id != v.id: notify_users.add(user)
-		
+
 	for x in notify_users: send_notification(1, x, f"@{v.username} has mentioned you: https://{site}{p.permalink}")
 
 	return redirect(p.permalink)
@@ -399,13 +399,13 @@ def thumbs(new_post):
 			]
 
 		for tag_name in meta_tags:
-			
+
 
 
 			tag = soup.find(
-				'meta', 
+				'meta',
 				attrs={
-					"name": tag_name, 
+					"name": tag_name,
 					"content": True
 					}
 				)
@@ -509,7 +509,7 @@ def submit_post(v):
 	title = title.replace("\t", "")
 
 	url = request.form.get("url", "")
-	
+
 	if url:
 		repost = g.db.query(Submission).join(Submission.submission_aux).filter(
 			SubmissionAux.url.ilike(url),
@@ -518,7 +518,7 @@ def submit_post(v):
 		).first()
 	else:
 		repost = None
-	
+
 	if repost:
 		return redirect(repost.permalink)
 
@@ -556,8 +556,9 @@ def submit_post(v):
 		url = ""
 
 	if "i.imgur.com" in url: url = url.replace(".png", "_d.png").replace(".jpg", "_d.jpg").replace(".jpeg", "_d.jpeg") + "?maxwidth=8888"
-	
+
 	body = request.form.get("body", "")
+	tag = request.values.get("tag", "")
 	# check for duplicate
 	dup = g.db.query(Submission).join(Submission.submission_aux).filter(
 
@@ -580,7 +581,7 @@ def submit_post(v):
 
 	# check ban status
 	domain_obj = get_domain(domain)
-	if domain_obj:		  
+	if domain_obj:
 		if domain_obj.reason==4:
 			v.ban(days=30, reason="Digitally malicious content")
 		elif domain_obj.reason==7:
@@ -596,7 +597,7 @@ def submit_post(v):
 	elif "youtu" in domain:
 		yt_id = re.match(re.compile("^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|\&v=)([^#\&\?]*).*"), url).group(2)
 		if not yt_id or len(yt_id) != 11: embed = None
-		else: 
+		else:
 			params = parse_qs(urlparse(url).query)
 			t = params.get('t', params.get('start', [0]))[0]
 			if t: embed = f"https://youtube.com/embed/{yt_id}?start={t}"
@@ -717,12 +718,12 @@ def submit_post(v):
 		reason = f"Remove the {ban.domain} link from your post and try again."
 		if ban.reason:
 			reason += f" {ban.reason}"
-			
+
 		#auto ban for digitally malicious content
 		if any([x.reason==4 for x in bans]):
 			v.ban(days=30, reason="Digitally malicious content is not allowed.")
 			abort(403)
-			
+
 		if request.headers.get("Authorization"): return {"error": reason}, 403
 		else: return render_template("submit.html", v=v, error=reason, title=title, url=url, body=request.form.get("body", "")), 403
 
@@ -770,13 +771,13 @@ def submit_post(v):
 
 	g.db.add(new_post)
 	g.db.flush()
-	
+
 	for rd in ["https://reddit.com/", "https://new.reddit.com/", "https://www.reddit.com/", "https://redd.it/"]:
 		url = url.replace(rd, "https://old.reddit.com/")
-			
+
 	url = url.replace("https://mobile.twitter.com", "https://twitter.com")
-	
-	# if url.startswith("https://old.reddit.com/") and '/comments/' in url and '?' not in url: url += "?sort=controversial" 
+
+	# if url.startswith("https://old.reddit.com/") and '/comments/' in url and '?' not in url: url += "?sort=controversial"
 
 	title_html = sanitize(title, linkgen=True, flair=True)
 
@@ -786,7 +787,8 @@ def submit_post(v):
 								 body_html=body_html,
 								 embed_url=embed,
 								 title=title,
-								 title_html=title_html
+								 title_html=title_html,
+								 tag=request.form.get("tag", "")
 								 )
 	g.db.add(new_post_aux)
 	g.db.flush()
@@ -818,26 +820,26 @@ def submit_post(v):
 		g.db.add(new_post)
 		g.db.add(new_post.submission_aux)
 		g.db.commit()
-	
+
 	g.db.commit()
 
     # spin off thumbnail generation and csam detection as  new threads
 	if (new_post.url or request.files.get('file')) and (v.is_activated or request.headers.get('cf-ipcountry')!="T1"): thumbs(new_post)
 
-	
+
 	cache.delete_memoized(User.userpagelisting)
 	g.db.commit()
 
 	notify_users = set()
-	
+
 	soup = BeautifulSoup(body_html, features="html.parser")
 	for mention in soup.find_all("a", href=re.compile("^/@(\w+)")):
 		username = mention["href"].split("@")[1]
 		user = g.db.query(User).filter_by(username=username).first()
 		if user and not v.any_block_exists(user) and user.id != v.id: notify_users.add(user)
-		
+
 	for x in notify_users: send_notification(1, x, f"@{v.username} has mentioned you: https://{site}{new_post.permalink}")
-		
+
 	if not new_post.private:
 		for follow in v.followers:
 			user = get_account(follow.user_id)
@@ -846,46 +848,46 @@ def submit_post(v):
 	g.db.add(new_post)
 	g.db.commit()
 
-	if v.agendaposter and "trans lives matter" not in new_post_aux.body_html.lower():
+	#if v.agendaposter and "trans lives matter" not in new_post_aux.body_html.lower():
 
-		new_post.is_banned = True
-		new_post.ban_reason = "ToS Violation"
+		#new_post.is_banned = True
+		#new_post.ban_reason = "ToS Violation"
 
-		g.db.add(new_post)
+		#g.db.add(new_post)
 
-		c_jannied = Comment(author_id=23,
-			parent_submission=new_post.id,
-			level=1,
-			over_18=False,
-			is_bot=True,
-			app_id=None,
-			is_pinned=True,
-			distinguish_level=6
-		)
+		#c_jannied = Comment(author_id=23,
+			#parent_submission=new_post.id,
+			#level=1,
+			#over_18=False,
+			#is_bot=True,
+			#app_id=None,
+			#is_pinned=True,
+			#distinguish_level=6
+		#)
 
-		g.db.add(c_jannied)
-		g.db.flush()
+		#g.db.add(c_jannied)
+		#g.db.flush()
 
-		body = f"""Hi @{v.username},\n\nYour post has been automatically removed because you forgot
-				to include `trans lives matter`.\n\nDon't worry, we're here to help! We 
-				won't let you post or comment anything that doesn't express your love and acceptance towards 
-				the trans community. Feel free to resubmit your post with `trans lives matter` 
-				included. \n\n*This is an automated message; if you need help,
-				you can message us [here](/contact).*"""
+		#body = f"""Hi @{v.username},\n\nYour post has been automatically removed because you forgot
+				#to include `trans lives matter`.\n\nDon't worry, we're here to help! We
+				#won't let you post or comment anything that doesn't express your love and acceptance towards
+				#the trans community. Feel free to resubmit your post with `trans lives matter`
+				#included. \n\n*This is an automated message; if you need help,
+				#you can message us [here](/contact).*"""
 
-		with CustomRenderer(post_id=new_post.id) as renderer:
-			body_md = renderer.render(mistletoe.Document(body))
+		#with CustomRenderer(post_id=new_post.id) as renderer:
+			#body_md = renderer.render(mistletoe.Document(body))
 
-		body_jannied_html = sanitize(body_md)
-		c_aux = CommentAux(
-			id=c_jannied.id,
-			body_html=body_jannied_html,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c_jannied.id, user_id=v.id)
-		g.db.add(n)
+		#body_jannied_html = sanitize(body_md)
+		#c_aux = CommentAux(
+			#id=c_jannied.id,
+			#body_html=body_jannied_html,
+			#body=body
+		#)
+		#g.db.add(c_aux)
+		#g.db.flush()
+		#n = Notification(comment_id=c_jannied.id, user_id=v.id)
+		#g.db.add(n)
 
 	if new_post.url:
 		c = Comment(author_id=21,
@@ -899,22 +901,22 @@ def submit_post(v):
 
 		g.db.add(c)
 		g.db.flush()
-		body = f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{new_post.url})\n* [archive.org](https://web.archive.org/{new_post.url})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
+		#body = f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{new_post.url})\n* [archive.org](https://web.archive.org/{new_post.url})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
 		gevent.spawn(archiveorg, new_post.url)
-		with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
-		body_html = sanitize(body_md, linkgen=True)
-		c_aux = CommentAux(
-			id=c.id,
-			body_html=body_html,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c.id, user_id=v.id)
-		g.db.add(n)
-		g.db.commit()
+		#with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
+		#body_html = sanitize(body_md, linkgen=True)
+		#c_aux = CommentAux(
+			#id=c.id,
+			#body_html=body_html,
+			#body=body
+		#)
+		#g.db.add(c_aux)
+		#g.db.flush()
+		#n = Notification(comment_id=c.id, user_id=v.id)
+		#g.db.add(n)
+		#g.db.commit()
 	#send_message(f"https://{site}{new_post.permalink}")
-	
+
 	v.post_count = v.submissions.filter_by(is_banned=False, deleted_utc=0).count()
 	g.db.add(v)
 
@@ -967,7 +969,7 @@ def toggle_comment_nsfw(cid, v):
 	comment.over_18 = not comment.over_18
 	g.db.add(comment)
 	return "", 204
-	
+
 @app.post("/toggle_post_nsfw/<pid>")
 @is_not_banned
 @validate_formkey
@@ -1017,5 +1019,5 @@ def unsave_post(pid, v):
 	save=g.db.query(SaveRelationship).filter_by(user_id=v.id, submission_id=post.id, type=1).first()
 
 	g.db.delete(save)
-	
+
 	return "", 204

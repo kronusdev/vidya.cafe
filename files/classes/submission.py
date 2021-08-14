@@ -25,6 +25,7 @@ class SubmissionAux(Base):
 	body_html = Column(String(20000), default="")
 	ban_reason = Column(String(128), default="")
 	embed_url = Column(String(256), default="")
+	tag = Column(String(128), default="")
 
 
 class Submission(Base, Stndrd, Age_times, Scores):
@@ -98,7 +99,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 
 	@property
 	@lazy
-	def score(self): 
+	def score(self):
 		return self.upvotes # just sips for now, this needs to change when adding reactions
 
 	@property
@@ -119,8 +120,8 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	@property
 	@lazy
 	def fullname(self):
-		return f"t2_{self.id}"	
-		
+		return f"t2_{self.id}"
+
 	@property
 	@lazy
 	def permalink(self):
@@ -275,14 +276,14 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	def json(self):
 
 		data=self.json_core
-		
+
 		if self.deleted_utc > 0 or self.is_banned:
 			return data
 
 		data["author"]=self.author.json_core
 		data["comment_count"]=self.comment_count
 
-	
+
 		if "replies" in self.__dict__:
 			data["replies"]=[x.json_core for x in self.replies]
 
@@ -301,6 +302,10 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	@property
 	def title(self):
 		return self.submission_aux.title
+
+	@property
+	def tag(self):
+		return self.submission_aux.tag
 
 	@title.setter
 	def title(self, x):
@@ -323,7 +328,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 			if v and not v.oldreddit: return self.url.replace("old.reddit.com", "reddit.com")
 			if self.url: return self.url
 		return ""
- 
+
 	@property
 	def body(self):
 		return self.submission_aux.body
@@ -398,7 +403,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	def meta_description(self, x):
 		self.submission_aux.meta_description=x
 		g.db.add(self.submission_aux)
-	
+
 	@property
 	def is_blocked(self):
 		return self.__dict__.get('_is_blocked', False)
