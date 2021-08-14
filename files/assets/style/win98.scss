@@ -123,3 +123,8 @@ $none-tag: #E1E1E1;
 .arrow-up::before {
 	color: $muted;
 }
+
+blockquote {
+	background-color: white !important;
+	border-bottom: 2px solid $black;
+}

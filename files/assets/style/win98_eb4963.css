@@ -22729,4 +22729,8 @@ img.emoji {
 .arrow-up::before {
   color: #404040; }
 
+blockquote {
+  background-color: white !important;
+  border-bottom: 2px solid #000000; }
+
 /*# sourceMappingURL=win98_eb4963.css.map */
