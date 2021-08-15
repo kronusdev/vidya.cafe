@@ -53,18 +53,18 @@ $border-color: #f6f6ef;
 $border-width: 4px;
 $border-radius: 0;
 
-$news-tag: #F28181;
-$oc-tag: #ECC94B;
-$video-tag: #ffafaf;
-$music-tag: #17d860;
-$picture-tag: #CCE3DF;
+$news-tag: $muted;
+$oc-tag: $muted;
+$video-tag: $muted;
+$music-tag: $muted;
+$picture-tag: $muted;
 $meta-tag: $primary;
-$discussion-tag: #7A83FF;
-$rant-tag: #BB6FEE;
-$review-tag: #C6EE6F;
-$question-tag: #EE98E9;
-$breaking-news-tag: #ff0000;
-$none-tag: #E1E1E1;
+$discussion-tag: $muted;
+$rant-tag: $muted;
+$review-tag: $muted;
+$question-tag: $muted;
+$breaking-news-tag: $muted;
+$none-tag: $muted;
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
@@ -110,7 +110,7 @@ body {
 	border: 1px solid #ced4da;
 }
 
-#posts .card-header {
+#posts .card-header, .profile-pic-25 {
 	display: none !important;
 }
 
