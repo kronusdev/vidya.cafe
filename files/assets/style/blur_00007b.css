@@ -20466,10 +20466,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   margin: 0.25rem 0 0.25rem;
   border-radius: 0.25rem !important; }
 
-.card:hover {
-  transform: scale(1.005);
-  z-index: 1000; }
-
+@media (min-width: 768px) {
+  .card:hover {
+    transform: scale(1.005); } }
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type, #settings-guild .posts .card:first-of-type {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem; }
