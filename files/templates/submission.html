@@ -128,7 +128,7 @@
 					{% elif v %}
 						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/save_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save text-center text-muted mr-3"></i>Save</a></button>
 					{% endif %}
-
+						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="https://web.archive.org/{{p.url}}" target="_blank" name="snappy"><i class="fas fa-archive text-center text-muted mr-3"></i>Archive</a></button>
 					{% if v %}
 						{% if v.admin_level >=3 %}
 							<button class="btn btn-link btn-block btn-lg text-left" id="sticky-post-{{p.id}}" href="javascript:void(0)" onclick="post('/sticky/{{p.id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-thumbtack text-center mr-3"></i>{% if p.stickied %}Unpin{% else %}Pin{% endif %}</button>
