@@ -21350,9 +21350,6 @@ ul.comment-section {
   margin-left: auto;
   margin-right: auto; }
 
-.info-popup > .text-muted {
-  color: #E1E1E1 !important; }
-
 #settings .bg-gray-300 {
   background-color: #2B353D !important; }
 
@@ -22665,5 +22662,8 @@ img.emoji {
 
 .text-info {
   color: #805ad5 !important; }
+
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted {
+  color: #E1E1E1 !important; }
 
 /*# sourceMappingURL=dark_805ad5.css.map */

@@ -21351,9 +21351,6 @@ ul.comment-section {
   margin-left: auto;
   margin-right: auto; }
 
-.info-popup > .text-muted {
-  color: #AA9881 !important; }
-
 #settings .bg-gray-300 {
   background-color: #3E2C18 !important; }
 
@@ -22666,6 +22663,9 @@ img.emoji {
 
 .text-info {
   color: #eb4963 !important; }
+
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted {
+  color: #AA9881 !important; }
 
 .card-header > * {
   color: #B38686; }

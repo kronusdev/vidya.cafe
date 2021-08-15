@@ -3057,10 +3057,6 @@ ul.comment-section {
 	margin-right: auto;
 }
 
-.info-popup > .text-muted {
-	color: $muted !important;
-}
-
 //.info-popup-text {
 	//background: $gray-200;
 	//position: absolute;
@@ -4393,4 +4389,9 @@ img.emoji {
 
 .text-info {
 	color: $primary !important;
+}
+
+
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted {
+	color: $muted !important;
 }
