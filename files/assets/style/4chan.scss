@@ -124,6 +124,6 @@ blockquote p {
 	color: #3300EE !important;
 }
 
-#frontpage .post-title a:visited {
-	color: #800;
+#frontpage .post-title a:visited, .arrow-up::before {
+	color: #800 !important;
 }
