@@ -3,15 +3,15 @@
 $primary: #47a3ff;
 $dark: #3E2C18;
 $secondary: #F0E0D6;
-$accent: #B38686;
+$accent: #800;
 $danger: #E53E3E;
-$white: #F1E7D0;
+$white: #ffffff;
 $black: #433434;
 $actually-black: #000000;
 
 $light: #F0E0D6;
 $success: #47a3ff;
-$muted: #AA9881;
+$muted: #800;
 $info: #168EEA;
 
 $purple: #47a3ff;
@@ -20,12 +20,12 @@ $gray: #AA9881;
 $green: #47a3ff;
 
 $gray-100: #817261;
-$gray-200: #433434;
+$gray-200: #F0E0D6;
 $gray-300: #433434;
-$gray-400: #F0E0D6;
+$gray-400: #FFFFEE;
 $gray-500: #F0E0D6;
-$gray-600: #F0E0D6;
-$gray-700: #F0E0D6;
+$gray-600: #FFFFEE;
+$gray-700: #FFFFEE;
 $gray-800: #F0E0D6;
 $gray-900: #F0E0D6;
 
@@ -57,72 +57,69 @@ $question-tag: #EE98E9;
 $breaking-news-tag: #ff0000;
 $none-tag: #E1E1E1;
 
+$border-radius: 0;
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
 
+* {
+	box-shadow: none !important;
+	transition: none !important;
+	border-radius: 0 !important;
+	font: 13px/1.231 "font awesome 5 pro", "font awesome 5 brands" ,arial,helvetica,clean,sans-serif !important;
+}
+
+*:not(.comment-collapse-desktop):not(.comment) {
+	border: none !important;
+}
+
+body {
+	background: #ffe url(https://s.4cdn.org/image/fade.png) top center repeat-x !important;
+}
+.card {
+	transform: none !important;
+	background-color: $gray-500 !important;
+}
+
 blockquote {
-	background-color: #c0c0c0;
+	background-color: transparent !important;
+	color: #789922 !important;
 }
 
-.text-muted {
-	color: $black !important;
+blockquote::before {
+	content:">";
+	color: #789922 !important;
 }
 
-.text-white {
-	color: $primary !important;
+blockquote p {
+	display: inline;
+}
+.navbar-light {
+	background-color: #880000 !important;
 }
 
-.modal .comment-actions a {
-	color: $gray-500;
-}
-.card-header > * {
-	color: $accent;
-}
-//.navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-	//color: $black;
-//}
-
-.dropdown-item:hover, .dropdown-item:focus, .dropdown-item.active {
-    background-color: #bda78e !important;
+.navbar-light *{
+	color: $white !important;
 }
 
-html * {
-    font-family: arial, helvetica, sans-serif;
-    color: #800000
-    }
-//body, #main-content-col, .sidebar {
-    //background-color: $secondary !important;
-    //}
-.border-right, .border-left, .border-top, .border-bottom, .border {
-    border-color: #D9BFB7 !important
-    }
-.card-header {
-    border-color: #D9BFB7 !important
-    }
-#guild .pseudo-submit-form.card {
-    background-color: $secondary !important;
-    border: 1px solid #D9BFB7 !important;
-    }
-.post-title a {
-    color: #800000 !important;
-    }
-.comment, .card {
-    background-color: $secondary !important;
-    border-color: #D9BFB7 !important;
-    }
-.form-control {
-    border-color: #D9BFB7 !important;
-    }
-.comment .comment-collapse::before {
-    border-color: #D9BFB7 !important;
-    }
-.comment .comment-collapse:hover::before {
-    border-left-color: #800000 !important
-    }
-.post-actions *:hover, .comment-actions *:hover, .comment-actions .copy-link:hover {
-    color: #F00 !important
-    }
-a {
-    color: $primary;
+.comment {
+	background-color: #F0E0D6 !important;
+}
+
+.user-name {
+	color: #117743 !important;
+}
+
+#settings .text-muted {
+	color: $muted !important;
+}
+
+.dropdown-menu, .btn:hover {
+	background: #880000 !important;
+	color: $actually-black !important;
+}
+
+.comment-text a {
+	text-decoration: underline !important;
+	color: #3300EE !important;
 }
