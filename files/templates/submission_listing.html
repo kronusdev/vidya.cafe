@@ -84,7 +84,7 @@
 				{% if p.stickied %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned post"></i>&nbsp;{% endif %}
 				{% if p.distinguish_level %}<i class="fas fa-broom text-admin" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{"SITE_NAME" | app_config}} Admin, speaking officially"></i>&nbsp;{% endif %}
 				{% if p.is_pinned and request.path.startswith('/@') %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned to profile"></i>&nbsp;{% endif %}
-				{% if p.over_18 %}&nbsp;<span class="badge badge-danger text-small-extra mr-1">+18</span>{% endif %}
+				{% if p.over_18 %}&nbsp;<span class="badge badge-danger text-small-extra mr-1">NSFW</span>{% endif %}
 				{% if p.is_bot %} <i class="fad fa-robot text-info" data-toggle="tooltip" data-placement="bottom"	data-original-title="Bot"></i>{% endif %}
 				{% if p.is_blocking %}<i class="fas fa-user-minus text-warning" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You're blocking this user, but you can see this post because {{'it\'s an admin post' if p.distinguish_level else 'you\'re an admin'}}."></i>{% endif %}
 				{% if p.is_blocked %}<i class="fas fa-user-minus text-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This user is blocking you."></i>{% endif %}
@@ -178,7 +178,7 @@
 
 							{% if v and (v.id==p.author_id or v.admin_level>=3) %}
 
-							<li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-evil"></i>Toggle +18</a></li>
+							<li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-evil"></i>Toggle NSFW</a></li>
 
 							{% endif %}
 
@@ -314,7 +314,7 @@
 						{% endif %}
 
 						{% if v and (v.id==p.author_id or v.admin_level>=3) %}
-							<button class="btn btn-link btn-block btn-lg text-left text-danger" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="far fa-eye-evil text-center mr-3"></i>Toggle +18</button>
+							<button class="btn btn-link btn-block btn-lg text-left text-danger" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="far fa-eye-evil text-center mr-3"></i>Toggle NSFW</button>
 						{% endif %}
 
 						{% if v.admin_level >=3 and v.id!=p.author_id %}
