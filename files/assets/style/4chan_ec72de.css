@@ -22716,4 +22716,7 @@ blockquote p {
   text-decoration: underline !important;
   color: #3300EE !important; }
 
+#frontpage .post-title a:visited {
+  color: #800; }
+
 /*# sourceMappingURL=4chan_ec72de.css.map */
