@@ -69,10 +69,10 @@ $none-tag: #E1E1E1;
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss"; 
 
-//.card-blank, .card, .comment-section, .navbar, .page-item, .nav, .info-popup, .submit-container, .form-control {
-	//backdrop-filter: blur(10px);
-	//-webkit-backdrop-filter: blur(10px);
-//}
+.card-blank, .card, .comment-section, .navbar, .page-item, .nav, .info-popup, .submit-container, .form-control {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
 
 //.comment.collapsed .comment-collapse::before {
 	//color: $primary !important;
