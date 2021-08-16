@@ -22675,8 +22675,12 @@ img.emoji {
 .info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #E1E1E1 !important; }
 
-.card-blank, .card, .row.border-md-0.comment-section.pb-3.post-top:not(.emojiModal), .navbar, .page-item, .nav, .info-popup, .submit-container, .form-control {
+.card-blank, .card, .comment-section, .navbar, .page-item, .nav, .info-popup, .submit-container, .form-control {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); }
+
+#emojiModal {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important; }
 
 /*# sourceMappingURL=blur_00007b.css.map */
