@@ -37,6 +37,7 @@ $settings: (
 
 $tag-colors: (
 	"news-tag": $news-tag,
+	"trailer-tag": $trailer-tag,
 	"oc-tag": $oc-tag,
 	"video-tag": $video-tag,
 	"music-tag": $music-tag,
@@ -1927,13 +1928,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card {
 	background-color: $gray-500;
-    transition: 0.15s;
+    transition: transform 0.15s;
     margin: 0.25rem 0 0.25rem;
     border-radius: $border-radius !important;
 }
-.card:hover {
-    transform: scale(1.005);
-    z-index: 1000;
+@media (min-width: 768px) {
+	.card:hover {
+	transform: scale(1.005);
+	//z-index: 1000;
+	}
 }
 
 //#thread .card {
@@ -1990,6 +1993,16 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	content:"News \f1ea";
 	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
 	background-color: $news-tag;
+	color: $actually-black;
+	padding: 2px;
+	margin: 0 0.4rem;
+	border-radius: $border-radius;
+}
+
+.trailer-tag::before {
+	content:"Trailer \f04b";
+	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	background-color: $trailer-tag;
 	color: $actually-black;
 	padding: 2px;
 	margin: 0 0.4rem;
@@ -2291,7 +2304,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 		right: 0;
 		bottom: 0;
 		left: 0;
-		z-index: 1030;
+		z-index: 100;
 	}
 
 	.modal.modal-sm-bottom .modal-content {
@@ -2654,7 +2667,7 @@ blockquote {
 	color: $black;
 	font-size: $font-size-base;
 	font-weight: $font-weight-normal;
-	background-color: #46444a;
+	background-color: $gray-100;
 	padding: 0.5rem 1rem;
 	margin: 0.5rem 0rem 1rem 0.5rem;
 }
@@ -3805,10 +3818,6 @@ body, #settings, #notifications, #submit {
 	background-color: $gray-600;
 }
 
-.card {
-	background-color: $gray-600;
-}
-
 .posts, #thread #main-content-col {
 	box-shadow: none;
 	border: none;
@@ -4063,26 +4072,26 @@ textarea, input[type=text] {
 
 // Dark Mode
 
-.bg-white {
-	background-color: $gray-600!important;
-}
+//.bg-white {
+	//background-color: $gray-600!important;
+//}
 
 .text-muted {
-	color: $muted!important;
+	color: $muted;
 }
 
-.text-primary {
-	color: $primary!important;
-}
+//.text-primary {
+	//color: $primary!important;
+//}
 
-.text-gray-400, .text-gray-500 {
-	color: $gray-200!important;
-}
+//.text-gray-400, .text-gray-500 {
+	//color: $gray-200!important;
+//}
 
-.white-overlay {
-	background-color: rgba(0, 0, 0, 0.5)!important;
-	background-image: linear-gradient(180deg, #ffffff00 25%, $gray-600 100%)!important;
-}
+//.white-overlay {
+	//background-color: rgba(0, 0, 0, 0.5)!important;
+	//background-image: linear-gradient(180deg, #ffffff00 25%, $gray-600 100%)!important;
+//}
 
 // Scroll bar
 
@@ -4391,4 +4400,9 @@ img.emoji {
 
 .text-info {
 	color: $primary !important;
+}
+
+
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
+	color: $muted !important;
 }

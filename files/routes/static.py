@@ -142,20 +142,6 @@ def badges(v):
 						   v=v,
 						   badges=badges)
 
-@app.get("/blocks")
-@auth_desired
-def blocks(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
-	blocks=g.db.query(UserBlock).all()
-	users = []
-	targets = []
-	for x in blocks:
-		users.append(get_account(x.user_id))
-		targets.append(get_account(x.target_id))
-
-	return render_template("blocks.html", v=v, users=users, targets=targets)
-
 @app.get("/banned")
 @auth_desired
 def banned(v):
@@ -208,7 +194,8 @@ def dismiss_mobile_tip():
 @app.post("/gitpull")
 def gitpull():
 	branch = (request.json["ref"]).split("/")[-1]
-	if branch != "master": return "OK", 200
+	print(branch)
+	if branch != environ.get("GITHUB_PULL_BRANCH").strip(): return "OK", 200
 
 	sig_header = 'X-Hub-Signature-256'
 	if sig_header in request.headers:

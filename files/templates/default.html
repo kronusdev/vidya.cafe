@@ -300,7 +300,7 @@
 
  </head>
 
- <body id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}" style="overflow-x: hidden; {% if v %} background:url(/assets/images/custombackgrounds/{{ v.background }}) {% else %} background:url(/assets/images/custombackgrounds/pixelart/bg-1) {% endif %} no-repeat center center fixed">
+ <body id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}" style="overflow-x: hidden; {% if v %} background:url({{ v.background }}) {% else %} background:url(/assets/images/custombackgrounds/pixelart/bg-1) {% endif %} no-repeat center center fixed">
 
 {% include "header.html" %}
 

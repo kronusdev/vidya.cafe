@@ -50,6 +50,7 @@ $border-color: #1C2229;
 $border-width: 4px;
 
 $news-tag: #F28181;
+$trailer-tag: #FFAF5A;
 $oc-tag: #ECC94B;
 $video-tag: #ffafaf;
 $music-tag: #17d860;
@@ -64,3 +65,7 @@ $none-tag: #E1E1E1;
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
+
+.text-muted{
+	color: $muted !important;
+}

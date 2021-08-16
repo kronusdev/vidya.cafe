@@ -328,7 +328,7 @@
 						</div>
 						</div>
 
-						<label for="body" class="mt-3">Text<i class="fas fa-info-circle text-gray-400 ml-1" data-toggle="tooltip" data-placement="top" title="Uses markdown. Limited to 10000 characters."></i></label>
+						<label for="body" class="mt-3">Text<i class="fas fa-info-circle ml-1" data-toggle="tooltip" data-placement="top" title="Uses markdown. Limited to 10000 characters."></i></label>
 
 						<div class="input-group">
 
@@ -375,7 +375,7 @@
 							<label for="url" class="mt-3">Post Tag (Optional)</label>
 							<br>
 
-							{% for tag in ["news", "oc", "video", "music", "picture", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
+							{% for tag in ["news", "trailer", "oc", "video", "music", "picture", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
 								<div style="width: max-content; display: inline-block;" class="tag-container">
 									<div class="{{tag}}-tag inline-block" style="width: max-content; position:relative;">
 										<input type="radio" id="{{tag}}-radio" name="tag" value="{{tag}}" class="tag-radio">
@@ -393,7 +393,7 @@
 
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="nsfwCheck" name="over_18">
-								<label class="custom-control-label" for="nsfwCheck">+18</label>
+								<label class="custom-control-label" for="nsfwCheck">NSFW</label>
 							</div>
 
 							<div class="custom-control custom-checkbox">

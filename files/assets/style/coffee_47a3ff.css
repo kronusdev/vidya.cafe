@@ -20463,14 +20463,13 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card {
   background-color: #DDD2C4;
-  transition: 0.15s;
+  transition: transform 0.15s;
   margin: 0.25rem 0 0.25rem;
   border-radius: 0.25rem !important; }
 
-.card:hover {
-  transform: scale(1.005);
-  z-index: 1000; }
-
+@media (min-width: 768px) {
+  .card:hover {
+    transform: scale(1.005); } }
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type, #settings-guild .posts .card:first-of-type {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem; }
@@ -20508,6 +20507,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   content: "News \f1ea";
   font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: #F28181;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
+.trailer-tag::before {
+  content: "Trailer \f04b";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #FFAF5A;
   color: #000000;
   padding: 2px;
   margin: 0 0.4rem;
@@ -20761,7 +20769,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1030; }
+    z-index: 100; }
 
   .modal.modal-sm-bottom .modal-content {
     position: absolute;
@@ -21043,7 +21051,7 @@ blockquote {
   color: #433434;
   font-size: 1rem;
   font-weight: 400;
-  background-color: #46444a;
+  background-color: #817261;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0rem 1rem 0.5rem; }
 
@@ -22253,9 +22261,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   #thread .card {
     background-color: #DDD2C4; }
 
-  .card {
-    background-color: #DDD2C4; }
-
   .posts, #thread #main-content-col {
     box-shadow: none;
     border: none;
@@ -22449,21 +22454,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; } }
-.bg-white {
-  background-color: #DDD2C4 !important; }
-
 .text-muted {
-  color: #AA9881 !important; }
-
-.text-primary {
-  color: #47a3ff !important; }
-
-.text-gray-400, .text-gray-500 {
-  color: #433434 !important; }
-
-.white-overlay {
-  background-color: rgba(0, 0, 0, 0.5) !important;
-  background-image: linear-gradient(180deg, #ffffff00 25%, #DDD2C4 100%) !important; }
+  color: #AA9881; }
 
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;
@@ -22680,6 +22672,9 @@ img.emoji {
 
 .text-info {
   color: #47a3ff !important; }
+
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
+  color: #AA9881 !important; }
 
 .card-header > * {
   color: #B38686; }

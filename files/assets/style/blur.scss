@@ -53,6 +53,7 @@ $border-color: #1C2229;
 $border-width: 4px;
 
 $news-tag: #F28181;
+$trailer-tag: #FFAF5A;
 $oc-tag: #ECC94B;
 $video-tag: #ffafaf;
 $music-tag: #17d860;
@@ -70,6 +71,7 @@ $none-tag: #E1E1E1;
 
 .card-blank, .card, .comment-section, .navbar, .btn, .page-item, .nav, .info-popup, .submit-container, .form-control {
 	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 }
 
 .comment.collapsed .comment-collapse::before {
@@ -85,4 +87,8 @@ $none-tag: #E1E1E1;
 
 *:not(.comment-collapse-desktop):not(.comment) {
 	border: none !important;
+}
+
+.text-muted{
+	color: $muted !important;
 }

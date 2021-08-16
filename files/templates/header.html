@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light shadow shadow-md fixed-top" id="navbar">
 	<div class="container-fluid">
-		<div class="flex-grow-1"><a href="/" class="navbar-brand"><img src="/assets/images/cafe.png" height="32"> Vidya.cafe<span class="text-small-extra text-uppercase text-gray-400"> kappa</span></a></div>
+		<div class="flex-grow-1"><a href="/" class="navbar-brand"><img src="/assets/images/cafe.png" height="32"> Vidya.cafe<span class="text-small-extra text-uppercase"> kappa</span></a></div>
 		<div class="flex-grow-1 d-fl d-none d-md-block">
 			<form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search/posts/" method="get">
 				<input class="form-control w-100" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request.args.get('q', '')}}">
@@ -32,7 +32,10 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarResponsive">
 		<ul class="navbar-nav ml-auto d-none d-md-flex">
-
+			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
+				<a class="nav-link" href="/changelog" data-toggle="tooltip" data-placement="bottom" title="Changelog"><i class="fas fa-clipboard"></i></a>
+			</li>
+			
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
 				<a class="nav-link" href="/random/" data-toggle="tooltip" data-placement="bottom" title="Random Post"><i class="fas fa-random"></i></a>
 			</li>
@@ -68,7 +71,7 @@
 			</li>
 
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-				<a class="nav-link" href="/leaderboard" data-toggle="tooltip" data-placement="bottom" title="Users"><i class="fas fa-trophy"></i></a>
+				<a class="nav-link" href="/leaderboard" data-toggle="tooltip" data-placement="bottom" title="Leaderboards"><i class="fas fa-trophy"></i></a>
 			</li>
 
 			<li class="nav-item d-flex align-items-center justify-content-center text-center">

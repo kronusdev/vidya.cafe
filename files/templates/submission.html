@@ -89,7 +89,7 @@
 			<div class="modal-header p-3">
 				<h5 class="col modal-title text-center h6">More options</h5>
 				<button type="button" class="close position-absolute py-3" style="right: 1rem;" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times-circle text-gray-500"></i></span>
+					<span aria-hidden="true"><i class="fas fa-times-circle text-gray-200"></i></span>
 				</button>
 			</div>
 			<div class="modal-body">
@@ -128,7 +128,7 @@
 					{% elif v %}
 						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/save_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save text-center text-muted mr-3"></i>Save</a></button>
 					{% endif %}
-
+						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="https://web.archive.org/{{p.url}}" target="_blank" name="snappy"><i class="fas fa-archive text-center text-muted mr-3"></i>Archive</a></button>
 					{% if v %}
 						{% if v.admin_level >=3 %}
 							<button class="btn btn-link btn-block btn-lg text-left" id="sticky-post-{{p.id}}" href="javascript:void(0)" onclick="post('/sticky/{{p.id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-thumbtack text-center mr-3"></i>{% if p.stickied %}Unpin{% else %}Pin{% endif %}</button>
@@ -154,7 +154,7 @@
 					{% endif %}
 
 					{% if v and (v.id==p.author_id or v.admin_level>=3) %}
-						<button class="btn btn-link btn-block btn-lg text-left text-danger" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="far fa-eye-evil text-center text-danger mr-3"></i>Toggle +18</button>
+						<button class="btn btn-link btn-block btn-lg text-left text-danger" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="far fa-eye-evil text-center text-danger mr-3"></i>Toggle NSFW</button>
 					{% endif %}
 
 					{% if v and v.admin_level == 6 and v.id!=p.author_id %}
@@ -215,7 +215,7 @@
 						{% if p.distinguish_level %} <i class="fas fa-broom text-admin" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{"SITE_NAME" | app_config}} Admin, speaking officially"></i>&nbsp;{% endif %}
 						{% if p.is_bot %} <i class="fad fa-robot text-info" data-toggle="tooltip" data-placement="bottom"	data-original-title="Bot"></i>{% endif %}
 						&nbsp;
-						{% if p.over_18 %}<span class="badge badge-danger text-small-extra mr-1">+18</span>{% endif %}
+						{% if p.over_18 %}<span class="badge badge-danger text-small-extra mr-1">NSFW</span>{% endif %}
 						{% if p.private %}<span class="badge border-warning border-1 text-small-extra">unlisted</span>{% endif %}
 						{% if p.active_flags %}<a class="btn btn-primary" href="javascript:void(0)" style="padding:1px 5px; font-size:10px;" onclick="document.getElementById('flaggers').classList.toggle('d-none')">{{p.active_flags}} Reports</a>{% endif %}
 						&nbsp;<a {% if p.author.animatedname %}class="{% if p.author.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} href="{{p.author.url}}" style="color: #{{p.author.namecolor}}; font-weight: bold; {% if p.author.show_activity %}{% if p.author.last_active+420 > time %} online {%else %} offline {% endif %}{% endif %}" class="user-name {% if p.author.show_activity %}{% if p.author.last_active+420 > time %} online {%else %} offline {% endif %}{% endif %}">&nbsp;&nbsp;<img src="{{p.author.profile_url}}" class="profile-pic-25 mr-2"/>{{p.author.username}}</a>{% if p.author.customtitle %}&nbsp;<bdi style="color: #{{p.author.titlecolor}}">&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}
@@ -356,7 +356,7 @@
 							{% endif %}
 
 							{% if v.id == p.author_id or v.admin_level >= 3 %}
-								<li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-evil"></i>Toggle +18</a></li>
+								<li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-evil"></i>Toggle NSFW</a></li>
 							{% endif %}
 
 							{% if v.admin_level >= 4 and p.oauth_app %}
@@ -387,6 +387,8 @@
 								{% endif %}
 							{% endif %}
 						{% endif %}
+							{% if p.url %}<li class="list-inline-item"><a href="https://web.archive.org/{{p.url}}" target="_blank" name="snappy"><i class="fas fa-archive"></i>Archive</a></li>{% endif %}
+
 												
 			</ul>
 							</div>
@@ -413,7 +415,7 @@
 					{% endif %}
 
 			</div>
-			<div class="post-actions d-md-none bg-gray-500 overflow-hidden rounded">
+			<div class="post-actions d-md-none bg-gray-200 overflow-hidden rounded">
 				<ul class="list-inline text-right d-flex">
 
 					<li class="list-inline-item mr-auto"><a href="{{p.permalink}}"><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
@@ -531,12 +533,7 @@
 					<div id="filename-show-reply-{{p.id}}"><i class="far fa-image"></i></div>
 					<input id="file-upload-reply-{{p.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{p.id}}').innerHTML='image';" hidden>
 				</label>
-<!-- 			&nbsp;&nbsp;
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" id="nsfwCheck-{{p.fullname}}" name="over_18" form="reply-to-{{p.fullname}}">
-					<label class="custom-control-label" for="nsfwCheck">+18</label>
-				</div>
- -->				<a id="save-reply-to-{{p.fullname}}" href="javascript:void(0)" form="reply-to-{{p.fullname}}" class="btn btn-primary text-whitebtn ml-auto" onclick="post_comment('{{p.fullname}}')">Comment</a>
+ 				<a id="save-reply-to-{{p.fullname}}" href="javascript:void(0)" form="reply-to-{{p.fullname}}" class="btn btn-primary text-whitebtn ml-auto" onclick="post_comment('{{p.fullname}}')">Comment</a>
 			</div>
 		</form>
 	</div>
@@ -568,8 +565,8 @@
  {% elif not p.replies and p.deleted_utc == 0 %}
  <div id="actual-comments" class="comment-section text-center py-7">
 	<span class="fa-stack fa-2x text-muted mb-4">
-		<i class="fas fa-square text-gray-500 opacity-25 fa-stack-2x"></i>
-		<i class="fas text-gray-500 fa-ghost fa-stack-1x text-lg"></i>
+		<i class="fas fa-square text-primary opacity-25 fa-stack-2x"></i>
+		<i class="fas text-primary fa-ghost fa-stack-1x text-lg"></i>
 	</span>
 	<h2 class="h5">Be the first to comment!</h2>
 	{% if v %}

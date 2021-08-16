@@ -848,46 +848,46 @@ def submit_post(v):
 	g.db.add(new_post)
 	g.db.commit()
 
-	if v.agendaposter and "trans lives matter" not in new_post_aux.body_html.lower():
+	#if v.agendaposter and "trans lives matter" not in new_post_aux.body_html.lower():
 
-		new_post.is_banned = True
-		new_post.ban_reason = "ToS Violation"
+		#new_post.is_banned = True
+		#new_post.ban_reason = "ToS Violation"
 
-		g.db.add(new_post)
+		#g.db.add(new_post)
 
-		c_jannied = Comment(author_id=23,
-			parent_submission=new_post.id,
-			level=1,
-			over_18=False,
-			is_bot=True,
-			app_id=None,
-			is_pinned=True,
-			distinguish_level=6
-		)
+		#c_jannied = Comment(author_id=23,
+			#parent_submission=new_post.id,
+			#level=1,
+			#over_18=False,
+			#is_bot=True,
+			#app_id=None,
+			#is_pinned=True,
+			#distinguish_level=6
+		#)
 
-		g.db.add(c_jannied)
-		g.db.flush()
+		#g.db.add(c_jannied)
+		#g.db.flush()
 
-		body = f"""Hi @{v.username},\n\nYour post has been automatically removed because you forgot
-				to include `trans lives matter`.\n\nDon't worry, we're here to help! We
-				won't let you post or comment anything that doesn't express your love and acceptance towards
-				the trans community. Feel free to resubmit your post with `trans lives matter`
-				included. \n\n*This is an automated message; if you need help,
-				you can message us [here](/contact).*"""
+		#body = f"""Hi @{v.username},\n\nYour post has been automatically removed because you forgot
+				#to include `trans lives matter`.\n\nDon't worry, we're here to help! We
+				#won't let you post or comment anything that doesn't express your love and acceptance towards
+				#the trans community. Feel free to resubmit your post with `trans lives matter`
+				#included. \n\n*This is an automated message; if you need help,
+				#you can message us [here](/contact).*"""
 
-		with CustomRenderer(post_id=new_post.id) as renderer:
-			body_md = renderer.render(mistletoe.Document(body))
+		#with CustomRenderer(post_id=new_post.id) as renderer:
+			#body_md = renderer.render(mistletoe.Document(body))
 
-		body_jannied_html = sanitize(body_md)
-		c_aux = CommentAux(
-			id=c_jannied.id,
-			body_html=body_jannied_html,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c_jannied.id, user_id=v.id)
-		g.db.add(n)
+		#body_jannied_html = sanitize(body_md)
+		#c_aux = CommentAux(
+			#id=c_jannied.id,
+			#body_html=body_jannied_html,
+			#body=body
+		#)
+		#g.db.add(c_aux)
+		#g.db.flush()
+		#n = Notification(comment_id=c_jannied.id, user_id=v.id)
+		#g.db.add(n)
 
 	if new_post.url:
 		c = Comment(author_id=21,
@@ -901,20 +901,20 @@ def submit_post(v):
 
 		g.db.add(c)
 		g.db.flush()
-		body = f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{new_post.url})\n* [archive.org](https://web.archive.org/{new_post.url})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
+		#body = f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{new_post.url})\n* [archive.org](https://web.archive.org/{new_post.url})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
 		gevent.spawn(archiveorg, new_post.url)
-		with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
-		body_html = sanitize(body_md, linkgen=True)
-		c_aux = CommentAux(
-			id=c.id,
-			body_html=body_html,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c.id, user_id=v.id)
-		g.db.add(n)
-		g.db.commit()
+		#with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
+		#body_html = sanitize(body_md, linkgen=True)
+		#c_aux = CommentAux(
+			#id=c.id,
+			#body_html=body_html,
+			#body=body
+		#)
+		#g.db.add(c_aux)
+		#g.db.flush()
+		#n = Notification(comment_id=c.id, user_id=v.id)
+		#g.db.add(n)
+		#g.db.commit()
 	#send_message(f"https://{site}{new_post.permalink}")
 
 	v.post_count = v.submissions.filter_by(is_banned=False, deleted_utc=0).count()
