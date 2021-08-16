@@ -22675,24 +22675,4 @@ img.emoji {
 .info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #E1E1E1 !important; }
 
-.card-blank, .card, .comment-section, .navbar, .page-item, .nav, .info-popup, .submit-container, .form-control {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); }
-
-.comment.collapsed .comment-collapse::before {
-  color: #805ad5 !important; }
-
-.dropdown-menu {
-  background-color: #151A1F; }
-
-#actual-comments {
-  background: transparent !important;
-  backdrop-filter: none; }
-
-*:not(.comment-collapse-desktop):not(.comment) {
-  border: none !important; }
-
-.text-muted {
-  color: #E1E1E1 !important; }
-
 /*# sourceMappingURL=blur_805ad5.css.map */
