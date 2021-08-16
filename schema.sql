@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner:
+-- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
@@ -38,7 +38,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner:
+-- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
@@ -52,7 +52,7 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION pg_trgm; Type: COMMENT; Schema: -; Owner:
+-- Name: EXTENSION pg_trgm; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION pg_trgm IS 'text similarity measurement and index searching based on trigrams';
@@ -980,7 +980,7 @@ CREATE TABLE public.submissions_aux (
     meta_title character varying(512),
     meta_description character varying(1024),
     title_html text,
-    tag character varying(128)
+    tag character varying DEFAULT 'none'::character varying
 );
 
 
@@ -2382,3 +2382,4 @@ ALTER TABLE ONLY public.notifications
 --
 -- PostgreSQL database dump complete
 --
+
