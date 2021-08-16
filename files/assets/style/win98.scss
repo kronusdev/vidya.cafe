@@ -120,7 +120,7 @@ $none-tag: #E1E1E1;
 	color: $black !important;
 }
 
-.arrow-up::before {
+.arrow-up::before, .score {
 	color: $muted;
 }
 

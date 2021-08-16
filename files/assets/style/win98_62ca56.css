@@ -22712,7 +22712,7 @@ img.emoji {
 .post-title, .user-name, .text-small-extra.text-muted, #actual-comments > .text-muted, .text-left.pl-2 {
   color: #000000 !important; }
 
-.arrow-up::before {
+.arrow-up::before, .score {
   color: #404040; }
 
 blockquote {
