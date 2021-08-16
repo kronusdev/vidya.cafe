@@ -125,6 +125,6 @@ $none-tag: #E1E1E1;
 	color: $light;
 }
 
-.text-small-extra.text-muted {
+.text-small-extra.text-muted, .list-inline-item > .text-muted {
 	color: $muted !important;
 }
