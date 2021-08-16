@@ -37,6 +37,7 @@ $settings: (
 
 $tag-colors: (
 	"news-tag": $news-tag,
+	"trailer-tag": $trailer-tag,
 	"oc-tag": $oc-tag,
 	"video-tag": $video-tag,
 	"music-tag": $music-tag,
@@ -1992,6 +1993,16 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	content:"News \f1ea";
 	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
 	background-color: $news-tag;
+	color: $actually-black;
+	padding: 2px;
+	margin: 0 0.4rem;
+	border-radius: $border-radius;
+}
+
+.trailer-tag::before {
+	content:"Trailer \f04b";
+	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	background-color: $trailer-tag;
 	color: $actually-black;
 	padding: 2px;
 	margin: 0 0.4rem;
