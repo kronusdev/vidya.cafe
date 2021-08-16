@@ -366,7 +366,6 @@ class Submission(Base, Stndrd, Age_times, Scores):
 		if self.title_html: title = self.title_html
 		else: title = self.title
 		if not v or v.slurreplacer: title = title.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
-		if v and not v.oldreddit: body = body.replace("old.reddit.com", "reddit.com")
 		return title
 
 	@property
