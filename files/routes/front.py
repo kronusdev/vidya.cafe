@@ -172,7 +172,8 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 @app.get("/")
 @auth_desired
 def front_all(v):
-	v.last_active = time.time();
+	if(v):
+		v.last_active = time.time();
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	try: page = int(request.args.get("page") or 1)
