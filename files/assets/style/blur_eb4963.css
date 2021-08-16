@@ -22679,4 +22679,20 @@ img.emoji {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); }
 
+.comment.collapsed .comment-collapse::before {
+  color: #eb4963 !important; }
+
+.dropdown-menu {
+  background-color: #151A1F; }
+
+#actual-comments {
+  background: transparent !important;
+  backdrop-filter: none; }
+
+*:not(.comment-collapse-desktop):not(.comment) {
+  border: none !important; }
+
+.text-muted {
+  color: #E1E1E1 !important; }
+
 /*# sourceMappingURL=blur_eb4963.css.map */

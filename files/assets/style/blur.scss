@@ -74,25 +74,21 @@ $none-tag: #E1E1E1;
 	-webkit-backdrop-filter: blur(10px);
 }
 
-//#actual-comments {
-	//backdrop-filter: none !important;
-	//-webkit-backdrop-filter: none !important;
-//}
-//.comment.collapsed .comment-collapse::before {
-	//color: $primary !important;
-//}
-//.dropdown-menu {
-	//background-color: #151A1F;
-//}
-//#actual-comments {
-	//background: transparent !important;
-	//backdrop-filter: none;
-//}
+.comment.collapsed .comment-collapse::before {
+	color: $primary !important;
+}
+.dropdown-menu {
+	background-color: #151A1F;
+}
+#actual-comments {
+	background: transparent !important;
+	backdrop-filter: none;
+}
 
-//*:not(.comment-collapse-desktop):not(.comment) {
-	//border: none !important;
-//}
+*:not(.comment-collapse-desktop):not(.comment) {
+	border: none !important;
+}
 
-//.text-muted{
-	//color: $muted !important;
-//}
+.text-muted{
+	color: $muted !important;
+}
