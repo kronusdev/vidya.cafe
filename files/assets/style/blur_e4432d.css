@@ -22679,7 +22679,7 @@ img.emoji {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); }
 
-#emojiModal {
+#actual-comments {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important; }
 
