@@ -194,7 +194,8 @@ def dismiss_mobile_tip():
 @app.post("/gitpull")
 def gitpull():
 	branch = (request.json["ref"]).split("/")[-1]
-	if branch != "master": return "OK", 200
+	print(branch)
+	if branch != environ.get("GITHUB_PULL_BRANCH").strip(): return "OK", 200
 
 	sig_header = 'X-Hub-Signature-256'
 	if sig_header in request.headers:
