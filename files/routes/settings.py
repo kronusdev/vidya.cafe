@@ -154,7 +154,7 @@ def settings_profile_post(v):
 		elif theme =="hackernews": v.themecolor = "ff6600"
 		elif theme == "win98": 
 			v.themecolor = "00007b"
-			v.background = "other/bg-5"
+			v.background = "/assets/images/custombackgrounds/other/bg-5"
 
 		g.db.add(v)
 		return "", 204
