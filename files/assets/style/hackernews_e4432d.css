@@ -22672,7 +22672,7 @@ img.emoji {
 .text-info {
   color: #9a9a9a !important; }
 
-.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted {
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #828282 !important; }
 
 * {

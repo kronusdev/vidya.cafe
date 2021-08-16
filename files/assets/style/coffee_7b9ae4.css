@@ -22673,7 +22673,7 @@ img.emoji {
 .text-info {
   color: #7b9ae4 !important; }
 
-.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted {
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #AA9881 !important; }
 
 .card-header > * {

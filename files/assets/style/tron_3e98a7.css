@@ -22673,7 +22673,7 @@ img.emoji {
 .text-info {
   color: #3e98a7 !important; }
 
-.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted {
+.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #f0f0f0 !important; }
 
 .comment {
@@ -22721,7 +22721,7 @@ img.emoji {
 .badge-count {
   color: #00001f; }
 
-.text-small-extra.text-muted, .list-inline-item > .text-muted {
+.text-small-extra.text-muted {
   color: #f0f0f0 !important; }
 
 /*# sourceMappingURL=tron_3e98a7.css.map */
