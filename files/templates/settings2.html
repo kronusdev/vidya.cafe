@@ -87,10 +87,7 @@
 										<a class="nav-link{% if request.path.endswith('/log') %} active{% endif %}" href="/log"><i class="fas fa-scroll-old"></i>Moderation Log</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link{% if request.path.endswith('/banned') %} active{% endif %}" href="/banned"><i class="fas fa-user-slash"></i>Permabanned Users</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link{% if request.path.endswith('/blocks') %} active{% endif %}" href="/blocks"><i class="fas fa-user-slash"></i>Blocks</a>
+										<a class="nav-link{% if request.path.endswith('/banned') %} active{% endif %}" href="/banned"><i class="fas fa-user-slash"></i>Banned Users</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link{% if request.path.endswith('/changelog') %} active{% endif %}" href="/changelog"><i class="fas fa-clipboard"></i>Changelog</a>
@@ -122,9 +119,6 @@
 							<a style="padding: 0.75rem 1rem;" class="nav-link{% if request.path.endswith('/banned') %} active{% endif %}" href="/banned"><i class="fas fa-user-slash text-lg mr-0"></i></a>
 						</li>
 						<li class="nav-item">
-							<a style="padding: 0.75rem 1rem;" class="nav-link{% if request.path.endswith('/blocks') %} active{% endif %}" href="/blocks"><i class="fas fa-eye-slash text-lg mr-0"></i></a>
-						</li>
-						<li class="nav-item">
 							<a style="padding: 0.75rem 1rem;" class="nav-link{% if request.path.endswith('/changelog') %} active{% endif %}" href="/changelog"><i class="fas fa-clipboard text-lg mr-0"></i></a>
 						</li>
 					</ul>
@@ -136,7 +130,7 @@
 	{% endblock %}
 
 	<!-- Settings content -->
-	<div class="{% if request.path == '/banned' or request.path == '/blocks' %}container-fluid{% else %}container{% endif %} mt-3 {% if request.path == '/leaderboard' %}px-0{% endif %}">
+	<div class="{% if request.path == '/banned' %}container-fluid{% else %}container{% endif %} mt-3 {% if request.path == '/leaderboard' %}px-0{% endif %}">
 
 	 {% block content %}
 	 {% endblock %}
