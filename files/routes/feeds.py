@@ -16,6 +16,7 @@ def feeds_user(sort='hot', t='all'):
 		sort=sort,
 		page=page,
 		t=t,
+		ids_only=False,
 		v=None,
 		)
 
