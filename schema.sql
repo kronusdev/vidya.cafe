@@ -142,6 +142,7 @@ CREATE TABLE public.users (
     is_nofollow boolean DEFAULT false,
     custom_filter_list character varying(1000) DEFAULT ''::character varying,
     discord_id character varying(64),
+    steam_id character varying(64),
     stored_subscriber_count integer DEFAULT 0,
     ban_evade integer DEFAULT 0,
     original_username character varying(255),
@@ -179,7 +180,7 @@ CREATE TABLE public.users (
     rent_utc integer,
     patron integer,
     zzz boolean DEFAULT false,
-    background character varying(512) DEFAULT 'pixelart/bg-1'::character varying,
+    background character varying(512) DEFAULT '/assets/images/custombackgrounds/'::character varying,
     last_active integer DEFAULT 0,
     show_activity boolean DEFAULT true
 );
