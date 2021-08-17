@@ -12,6 +12,8 @@ def feeds_user(sort='hot', t='all'):
 
 	page = int(request.args.get("page", 1))
 
+	map(session.refresh, iter(session))
+
 	posts = frontlist(
 		sort=sort,
 		page=page,
@@ -19,7 +21,7 @@ def feeds_user(sort='hot', t='all'):
 		ids_only=False,
 		v=None,
 		)
-		
+
 	domain = environ.get(
 	"DOMAIN", environ.get(
 		"SERVER_NAME", None)).strip()
