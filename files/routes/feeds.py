@@ -19,9 +19,7 @@ def feeds_user(sort='hot', t='all'):
 		ids_only=False,
 		v=None,
 		)
-
-	print(posts)
-
+		
 	domain = environ.get(
 	"DOMAIN", environ.get(
 		"SERVER_NAME", None)).strip()
