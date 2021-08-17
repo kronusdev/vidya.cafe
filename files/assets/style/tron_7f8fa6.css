@@ -20361,6 +20361,14 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   object-fit: cover;
   background-color: #00001f; }
 
+.profile-pic-120 {
+  width: 120px;
+  height: 120px;
+  border-radius: 0.25rem;
+  text-align: center;
+  object-fit: cover;
+  background-color: #00001f; }
+
 .profile-pic-overlap {
   margin-left: -1rem; }
 
@@ -20875,7 +20883,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .jumbotron-guild .jumbotron-overlay {
   background-color: transparent;
-  background-image: linear-gradient(180deg, #fff0 0%, rgba(0, 0, 0, 0.8) 50%);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -21359,6 +21366,23 @@ ul.comment-section {
   width: 20rem;
   margin-left: auto;
   margin-right: auto; }
+
+.userpage-header {
+  display: grid;
+  grid-template-columns: 3fr 2fr 1fr;
+  grid-column-gap: 2rem; }
+
+.user-info-widget::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  background: #00001f;
+  z-index: -1;
+  mix-blend-mode: multiply;
+  border-radius: 0.35rem;
+  right: -1rem;
+  bottom: -1rem; }
 
 #settings .bg-gray-300 {
   background-color: #00001f !important; }
