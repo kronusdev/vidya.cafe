@@ -164,6 +164,8 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 					db.add(post)
 
 		posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:26]
+		
+		db.expire_all()
 
 		if ids_only:
 			posts = [x.id for x in posts]
