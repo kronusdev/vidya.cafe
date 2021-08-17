@@ -15,6 +15,7 @@ valid_password_regex = re.compile("^.{8,100}$")
 
 YOUTUBE_KEY = environ.get("YOUTUBE_KEY").strip()
 COINS_NAME = environ.get("COINS_NAME").strip()
+STEAM_KEY = environ.get("STEAM_KEY",'').strip()
 
 @app.post("/settings/profile")
 @auth_required
@@ -205,6 +206,19 @@ def titlecolor(v):
 	titlecolor = str(request.form.get("titlecolor", "")).strip()
 	if titlecolor not in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b']: abort(400)
 	v.titlecolor = titlecolor
+	g.db.add(v)
+	return redirect("/settings/profile")
+
+@app.post("/settings/set_steam")
+@auth_required
+@validate_formkey
+def set_steam(v):
+	steam_id = str(request.form.get("steam_id", "")).strip()
+	steam_api_response = requests.get(f"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_KEY}&steamids={steam_id}").json()
+	v.steam_avatar_link = str(steam_api_response['response']['players'][0]['avatar']).strip()
+	v.steam_username = str(steam_api_response['response']['players'][0]['personaname']).strip()
+	v.steam_profile_link = str(steam_api_response['response']['players'][0]['profileurl']).strip()
+	v.steam_id = steam_id
 	g.db.add(v)
 	return redirect("/settings/profile")
 

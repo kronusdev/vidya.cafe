@@ -11,6 +11,7 @@ from files.helpers.markdown import *
 from files.mail import *
 from flask import *
 from files.__main__ import app, limiter
+from files.helpers.steam import get_steam_info, get_steam_games
 # from pusher_push_notifications import PushNotifications, PusherAuthError
 
 site = environ.get("DOMAIN").strip()
@@ -315,7 +316,9 @@ def u_username(username, v=None):
 				ids = [p.id] + ids
 
 	listing = get_posts(ids, v=v)
-
+	
+	steam_info = get_steam_info(u)
+	
 	if u.unban_utc:
 		if request.headers.get("Authorization"): {"data": [x.json for x in listing]}
 		else: return render_template("userpage.html",
@@ -328,6 +331,7 @@ def u_username(username, v=None):
 												t=t,
 												time=time.time(),
 												next_exists=next_exists,
+												steam=steam_info,
 												is_following=(v and u.has_follower(v)))
 
 
@@ -342,6 +346,7 @@ def u_username(username, v=None):
 									t=t,
 									time=time.time(),
 									next_exists=next_exists,
+									steam=steam_info,
 									is_following=(v and u.has_follower(v)))
 
 
