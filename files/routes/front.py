@@ -73,101 +73,102 @@ def notifications(v):
 @cache.memoize(timeout=1500)
 def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
 
-	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
-	if v and v.admin_level == 0:
-		blocking = g.db.query(
-			UserBlock.target_id).filter_by(
-			user_id=v.id).subquery()
-		blocked = g.db.query(
-			UserBlock.user_id).filter_by(
-			target_id=v.id).subquery()
-		posts = posts.filter(
-			Submission.author_id.notin_(blocking),
-			Submission.author_id.notin_(blocked)
-		)
+	with g.db as db:
+		posts = db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
+		if v and v.admin_level == 0:
+			blocking = db.query(
+				UserBlock.target_id).filter_by(
+				user_id=v.id).subquery()
+			blocked = db.query(
+				UserBlock.user_id).filter_by(
+				target_id=v.id).subquery()
+			posts = posts.filter(
+				Submission.author_id.notin_(blocking),
+				Submission.author_id.notin_(blocked)
+			)
 
-	if not (v and v.changelogsub):
-		posts=posts.join(Submission.submission_aux)
-		posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%')))
+		if not (v and v.changelogsub):
+			posts=posts.join(Submission.submission_aux)
+			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%')))
 
-	if v and filter_words:
-		for word in filter_words:
-			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
+		if v and filter_words:
+			for word in filter_words:
+				posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
 
-	if t != 'all':
-		cutoff = 0
-		now = int(time.time())
-		if t == 'hour':
-			cutoff = now - 3600
-		elif t == 'day':
-			cutoff = now - 86400
-		elif t == 'week':
-			cutoff = now - 604800
-		elif t == 'month':
-			cutoff = now - 2592000
-		elif t == 'year':
-			cutoff = now - 31536000
-		posts = posts.filter(Submission.created_utc >= cutoff)
+		if t != 'all':
+			cutoff = 0
+			now = int(time.time())
+			if t == 'hour':
+				cutoff = now - 3600
+			elif t == 'day':
+				cutoff = now - 86400
+			elif t == 'week':
+				cutoff = now - 604800
+			elif t == 'month':
+				cutoff = now - 2592000
+			elif t == 'year':
+				cutoff = now - 31536000
+			posts = posts.filter(Submission.created_utc >= cutoff)
 
-	gt = kwargs.get("gt")
-	lt = kwargs.get("lt")
+		gt = kwargs.get("gt")
+		lt = kwargs.get("lt")
 
-	if gt:
-		posts = posts.filter(Submission.created_utc > gt)
+		if gt:
+			posts = posts.filter(Submission.created_utc > gt)
 
-	if lt:
-		posts = posts.filter(Submission.created_utc < lt)
+		if lt:
+			posts = posts.filter(Submission.created_utc < lt)
 
-	if sort == "hot":
-		posts = sorted(posts.all(), key=lambda x: x.hotscore, reverse=True)
-	elif sort == "new":
-		posts = posts.order_by(Submission.created_utc.desc()).all()
-	elif sort == "old":
-		posts = posts.order_by(Submission.created_utc.asc()).all()
-	elif sort == "controversial":
-		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
-	elif sort == "top":
-		posts = sorted(posts.all(), key=lambda x: x.score, reverse=True)
-	elif sort == "bottom":
-		posts = sorted(posts.all(), key=lambda x: x.score)
-	elif sort == "comments":
-		posts = sorted(posts.all(), key=lambda x: x.comment_count, reverse=True)
-	elif sort == "active":
-		posts = sorted(posts.all(), key=lambda x: x.score_active, reverse=True)
-	elif sort == "random":
-		posts = posts.all()
-		posts = random.sample(posts, k=len(posts))
-	else:
-		abort(400)
+		if sort == "hot":
+			posts = sorted(posts.all(), key=lambda x: x.hotscore, reverse=True)
+		elif sort == "new":
+			posts = posts.order_by(Submission.created_utc.desc()).all()
+		elif sort == "old":
+			posts = posts.order_by(Submission.created_utc.asc()).all()
+		elif sort == "controversial":
+			posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
+		elif sort == "top":
+			posts = sorted(posts.all(), key=lambda x: x.score, reverse=True)
+		elif sort == "bottom":
+			posts = sorted(posts.all(), key=lambda x: x.score)
+		elif sort == "comments":
+			posts = sorted(posts.all(), key=lambda x: x.comment_count, reverse=True)
+		elif sort == "active":
+			posts = sorted(posts.all(), key=lambda x: x.score_active, reverse=True)
+		elif sort == "random":
+			posts = posts.all()
+			posts = random.sample(posts, k=len(posts))
+		else:
+			abort(400)
 
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+1000
-	posts = posts[firstrange:secondrange]
+		firstrange = 25 * (page - 1)
+		secondrange = firstrange+1000
+		posts = posts[firstrange:secondrange]
 
-	if v and v.hidevotedon: posts = [x for x in posts if x.voted == 0]
+		if v and v.hidevotedon: posts = [x for x in posts if x.voted == 0]
 
-	if page == 1: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
+		if page == 1: posts = db.query(Submission).filter_by(stickied=True).all() + posts
 
-	if random.random() < 0.02:
-		for post in posts:
-			if post.author and post.author.shadowbanned:
-				rand = random.randint(500,1400)
-				vote = Vote(user_id=rand,
-					vote_type=random.choice([-1, 1]),
-					submission_id=post.id)
-				g.db.add(vote)
-				try: g.db.flush()
-				except: g.db.rollback()
-				post.upvotes = g.db.query(Vote).filter_by(submission_id=post.id, vote_type=1).count()
-				post.views = post.views + random.randint(7,10)
-				g.db.add(post)
+		if random.random() < 0.02:
+			for post in posts:
+				if post.author and post.author.shadowbanned:
+					rand = random.randint(500,1400)
+					vote = Vote(user_id=rand,
+						vote_type=random.choice([-1, 1]),
+						submission_id=post.id)
+					db.add(vote)
+					try: db.flush()
+					except: db.rollback()
+					post.upvotes = db.query(Vote).filter_by(submission_id=post.id, vote_type=1).count()
+					post.views = post.views + random.randint(7,10)
+					db.add(post)
 
-	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:26]
+		posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:26]
 
-	if ids_only:
-		posts = [x.id for x in posts]
+		if ids_only:
+			posts = [x.id for x in posts]
+			return posts
 		return posts
-	return posts
 
 @app.get("/")
 @auth_desired
