@@ -35,7 +35,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	id = Column(BigInteger, primary_key=True)
 	submission_aux = relationship(
 		"SubmissionAux",
-		lazy="subquery",
+		lazy="joined",
 		uselist=False,
 		innerjoin=True,
 		primaryjoin="Submission.id==SubmissionAux.id")
