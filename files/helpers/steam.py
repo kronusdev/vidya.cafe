@@ -11,7 +11,7 @@ def get_steam_games(u):
 		owned_games.append(appid_to_details(steam_api_owned_games['games'][game]['appid']))
 	return owned_games
 
-@cache.memoize(timeout=300)
+#@cache.memoize(timeout=300)
 def get_steam_info(u):
 	steam_id = u.steam_id
 	steam_api_response = requests.get(f"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_KEY}&steamids={steam_id}").json()['response']['players'][0]
