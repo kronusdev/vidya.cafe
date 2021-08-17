@@ -11,18 +11,17 @@ from files.__main__ import app
 def feeds_user(sort='hot', t='all'):
 
 	page = int(request.args.get("page", 1))
-
-	ids, next_exists = frontlist(
+	
+	posts = frontlist(
 		sort=sort,
 		page=page,
 		t=t,
+		ids_only=False,
 		v=None,
 		)
-	
-	posts = get_posts(ids)
 
 	domain = environ.get(
-	"domain", environ.get(
+	"DOMAIN", environ.get(
 		"SERVER_NAME", None)).strip()
 
 	doc, tag, text = Doc().tagtext()
