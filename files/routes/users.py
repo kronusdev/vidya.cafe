@@ -316,8 +316,10 @@ def u_username(username, v=None):
 				ids = [p.id] + ids
 
 	listing = get_posts(ids, v=v)
-	
-	steam_info = get_steam_info(u)
+	try:
+		steam_info = get_steam_info(u)
+	except:
+		steam_info = ""
 	
 	if u.unban_utc:
 		if request.headers.get("Authorization"): {"data": [x.json for x in listing]}

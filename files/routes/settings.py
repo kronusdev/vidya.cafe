@@ -214,10 +214,6 @@ def titlecolor(v):
 @validate_formkey
 def set_steam(v):
 	steam_id = str(request.form.get("steam_id", "")).strip()
-	steam_api_response = requests.get(f"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_KEY}&steamids={steam_id}").json()
-	v.steam_avatar_link = str(steam_api_response['response']['players'][0]['avatar']).strip()
-	v.steam_username = str(steam_api_response['response']['players'][0]['personaname']).strip()
-	v.steam_profile_link = str(steam_api_response['response']['players'][0]['profileurl']).strip()
 	v.steam_id = steam_id
 	g.db.add(v)
 	return redirect("/settings/profile")
