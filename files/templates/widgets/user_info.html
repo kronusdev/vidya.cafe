@@ -70,7 +70,7 @@
 			<hr>
 			{% if u.bio_html %}
 			<pre></pre>
-			<div class="text-muted font-weight-bolder" style="overflow-x:scroll; max-height: 300px;">{{u.bio_html | safe}}
+			<div class="text-muted font-weight-bolder">{{u.bio_html | safe}}
 			</div>
 			{% else %}
 			<p class="text-muted">No bio...</p>
