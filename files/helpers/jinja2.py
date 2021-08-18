@@ -1,7 +1,7 @@
 from os import environ, path
 from .get import *
 from files.__main__ import app, cache
-
+import time
 
 @app.template_filter("total_users")
 @cache.memoize(timeout=60)
@@ -49,3 +49,11 @@ def js_str_escape(s):
 @app.template_filter("app_config")
 def app_config(x):
 	return app.config.get(x)
+
+@app.template_filter('to_hours')
+def unix_to_hours(s):
+	if(s>0):
+		return round((time.time() - s)/3600, 1)
+	else:
+		return 0
+    #return time.ctime(s) # datetime.datetime.fromtimestamp(s)

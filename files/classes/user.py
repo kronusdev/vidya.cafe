@@ -25,7 +25,7 @@ class User(Base, Stndrd, Age_times):
 	customtitleplain = Column(String)
 	titlecolor = Column(String, default='ff66ac')
 	theme = Column(String, default='dark')
-	background = Column(String, default='pixelart/bg-1')
+	background = Column(String, default='/assets/images/custombackgrounds/pixelart/bg-1')
 	themecolor = Column(String, default='47a3ff')
 	song = Column(String)
 	highres = Column(String)
@@ -92,6 +92,8 @@ class User(Base, Stndrd, Age_times):
 	is_nofollow = Column(Boolean, default=False)
 	custom_filter_list = Column(String(1000), default="")
 	discord_id = Column(String(64))
+	steam_id = Column(String(64))
+
 	ban_evade = Column(Integer, default=0)
 	original_username = deferred(Column(String(255)))
 	subscriptions = relationship("Subscription")

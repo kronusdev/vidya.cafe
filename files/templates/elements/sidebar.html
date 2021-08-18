@@ -1,0 +1,23 @@
+<div class="card-blank sidebar d-none d-xl-block">
+    <div class="card-header">
+        <h5>User Badges</h5>
+    </div>
+    <div class="m-1">
+        {% include "widgets/badges.html" %}
+    </div>
+    <div class="card-header">
+        <h5>Steam Account</h5>
+    </div>
+    <div class="m-1">
+        {% include "widgets/steam_info.html" %}
+    </div>
+</div> 
+
+<style>
+    .sidebar {
+        margin: 1rem;
+        height: max-content;
+        grid-column: 3;
+        grid-row: 1;
+    }
+</style>

@@ -1,0 +1,18 @@
+<div class="card-blank p-3"
+	style="height:max-content; background:url({{ steam['current_game_bg'] }}); background-size:cover;">
+	<div class="steam-upper">
+		<a href="{{steam['profile_url']}}">
+			<img class="profile-pic-35" src="{{steam['avatar']}}">
+			<p class="d-inline m-0">{{steam['persona_name']}}</p>
+		</a>
+		<p class="d-inline-block m-0">Lvl {{steam['player_level']}}</p>
+	</div>
+	{% if steam['persona_state'] == 0 and steam['last_log_off'] != 0%}
+		<p>Last online {{steam['last_log_off'] | to_hours}} hours ago</p>
+	{% else %}
+		<p class="m-0">Online</p>
+		{% if steam['current_game'] %}
+		<p class="m-0">Now Playing: {{steam['current_game']}}</p>
+		{% endif %}
+	{% endif %}
+</div>

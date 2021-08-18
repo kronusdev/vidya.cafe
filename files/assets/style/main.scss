@@ -150,11 +150,19 @@ html {
 
 body {
 	color: $black;
-	padding-top: 49px;
+	padding-top: 4.8rem;
     background: linear-gradient(135deg, $primary, $secondary) no-repeat center center fixed;
     background-size: cover !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	@media(min-width: 1200px){	
+		display: grid;
+    	grid-template-columns: 1fr 4fr 1fr;
+	}
+}
+
+.container, #submitform {
+	grid-column: 2;
 }
 
 @media (min-width: 1200px) {
@@ -228,19 +236,6 @@ body.using-mouse :focus {
 	font-weight: $font-weight-bold;
 	line-height: 3rem;
 	margin-top: 2rem;
-}
-
-// Hide sidebar on all error pages
-
-#error-400 .sidebar, #error-401 .sidebar, #error-403 .sidebar, #error-404 .sidebar, #error-405 .sidebar, #error-409 .sidebar,
-#error-410 .sidebar, #error-422 .sidebar, #error-429 .sidebar, #error-451 .sidebar, #error-500 .sidebar {
-	display: none!important;
-}
-
-// Message pages
-
-#message .sidebar, #message-success .sidebar {
-	display: none;
 }
 
 // Padding and Margins
@@ -950,14 +945,6 @@ th {
 	transform: rotate(-45deg);
 }
 
-.sidebar-right .fa, .sidebar-right .fas, .sidebar-right .far, .sidebar-right .fab, .sidebar-right .fal, .sidebar .fad {
-	font-size: $small-font-size;
-}
-
-.sidebar .title .fa, .sidebar .title .fas, .sidebar .title .far, .sidebar .title .fab, .sidebar .title .fal, .sidebar-section .title .fad {
-	font-size: $small-font-size;
-}
-
 .icon::before {
 	display: inline-block;
 	font-style: normal;
@@ -1230,218 +1217,6 @@ color: $dark;
 //	margin: 0 15px;
 //}
 
-// Left Sidebar (Terms pages)
-
-.scrollspy.sidebar-sticky {
-	position: sticky;
-	overflow-y: auto;
-	top: 7rem;
-	height: calc(100vh - 4rem);
-}
-
-.scrollspy.sidebar-sticky .list-group {
-	border-left: 0.1px solid $border-color;
-}
-.scrollspy.sidebar-sticky .list-group .list-group-item {
-	position: relative;
-	display: block;
-	background-color: transparent;
-	font-size: $font-size-base;
-	font-weight: $font-weight-bold;
-	color: $muted;
-	padding: 0.5rem 1rem;
-	border: none;
-	border-left: 2px solid transparent;
-	border-radius: 0;
-}
-
-.scrollspy.sidebar-sticky .list-group .list-group-item:focus, .scrollspy.sidebar-sticky .list-group .list-group-item:hover {
-	color: $primary;
-	border-left: 2px solid $primary;
-}
-
-.scrollspy.sidebar-sticky .list-group .list-group-item.active {
-	background-color: transparent;
-	color: $primary;
-	font-weight: $font-weight-bold;
-	left: -0.1px;
-	border-left: solid 2px $primary;
-	z-index: 2;
-}
-
-// Sidebar content
-
-.sidebar {
-	-ms-flex: 0 0 300px;
-	flex: 0 0 300px;
-	background-color: $gray-600!important;
-}
-
-.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6 {
-	margin-bottom: 1rem;
-}
-
-.sidebar .sidebar-section .title {
-	font-size: $small-font-size;
-	font-weight: $font-weight-bold;
-	letter-spacing: 0.025rem;
-	color: $white;
-	background-color: $primary;
-	padding: 0.75rem 1rem;
-	text-transform: uppercase;
-}
-
-.sidebar .sidebar-section .body {
-	padding: 1rem;
-	color: $black;
-	//border: solid $border-color;
-	border-width: 0 0.1px 0.1px 0.1px;
-	border-bottom-left-radius: .35rem;
-	border-bottom-right-radius: .35rem;
-}
-
-.sidebar-section {
-	margin-bottom: 1rem;
-	background-color: $gray-700;
-	//border: 0.1px solid $border-color;
-	//box-shadow: $box-shadow-sm;
-	border-radius: $border-radius;
-	overflow: hidden;
-	word-break: break-word;
-
-	& .profile-pic.profile-stacked {
-		box-shadow: 0 0 0px 3px $gray-700;
-	}
-}
-
-.sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
-	margin-bottom: 1rem;
-	padding-bottom: 1rem;
-	color: $muted;
-	font-weight: $font-weight-bold;
-	border-bottom: 0.1px solid $border-color;
-}
-
-.sidebar-section.sidebar-trending .trending-hashtag:last-child, .sidebar-section.sidebar-trending .trending-guild:last-of-type {
-	margin-bottom: 0;
-	padding-bottom: 0;
-	border-bottom: none;
-}
-
-.sidebar-section.sidebar-alert {
-	color: $black;
-	background-color: $light;
-	border: none;
-}
-
-// Sidebar Left Collapsed
-
-.sidebar.sidebar-left.sidebar-collapsed {
-	flex: 0 0 65px;
-	text-align: center;
-}
-
-.sidebar-left.sidebar-collapsed .sidebar-collapsed-hidden {
-	display: none;
-}
-
-.sidebar-left.sidebar-collapsed .sidebar-collapsed-visible {
-	display: block;
-}
-
-.sidebar-left .sidebar-collapsed-visible {
-	display: none;
-}
-
-.sidebar-left .collapsed-toggle::before {
-	cursor: pointer;
-	font-size: 1rem;
-	color: $muted;
-	font-family: "Font Awesome 5 Pro";
-	font-weight: 900;
-	content: "\f348";
-}
-
-.sidebar-left.sidebar-collapsed .collapsed-toggle::before {
-	cursor: pointer;
-	font-size: 1rem;
-	color: $black;
-	font-family: "Font Awesome 5 Pro";
-	font-weight: 900;
-	content: "\f347";
-}
-
-@media (max-width: 1199.98px) {
-	.sidebar-left .sidebar-collapsed-hidden {
-		display: none;
-	}
-	.sidebar-left .sidebar-collapsed-visible {
-		display: block;
-	}
-	.sidebar.sidebar-left {
-		flex: 0 0 65px;
-		text-align: center;
-	}
-	.sidebar-left .collapsed-toggle-parent {
-		display: none!important;
-	}
-}
-
-// Sidebar Left
-
-.sidebar.sidebar-left {
-	position: -webkit-sticky;
-	position: sticky;
-	top: 49px;
-	z-index: 1000;
-	height: calc(100vh - 49px);
-	overflow-y: auto;
-	overflow-x: hidden;
-	background-color: $gray-600!important;
-}
-
-@media (min-width: 1199.98px) {
-	.sidebar.sidebar-left {
-		-ms-flex: 0 0 240px;
-		flex: 0 0 240px;
-	}
-}
-
-.sidebar-left .sidebar-section {
-	border: 0;
-	box-shadow: none;
-	background-color: transparent;
-}
-
-.sidebar.sidebar-left .sidebar-section .body {
-	border: 0;
-}
-
-.sidebar-section.sidebar-alert {
-	border: 0.1px solid $border-color;
-	//box-shadow: $box-shadow-sm;
-}
-
-.sidebar-left .sidebar-section.sidebar-filters {
-	margin-bottom: 1rem;
-	background-color: transparent;
-	box-shadow: none;
-	border-radius: 0;
-}
-
-.sidebar.sidebar-left .sidebar-section .title {
-	border-bottom: none;
-	color: $muted;
-}
-
-.sidebar-section.sidebar-filters .body {
-	padding: 0;
-}
-
-.sidebar-filters .filter-list {
-	list-style: none;
-}
-
 .filter-list .filter-item {
 	color: $muted;
 	text-decoration: none;
@@ -1489,16 +1264,6 @@ color: $dark;
 
 // Guild recommendations section
 
-//.sidebar-left .sidebar-section.sidebar-guild-recommendations {
-//	margin-bottom: 1rem;
-//	 background-color: transparent;
-//	box-shadow: none;
-//	border-radius: 0;
-//}
-
-.sidebar-guild-recommendations .guild-recommendations-list {
-	list-style: none;
-}
 
 .guild-recommendations-list .guild-recommendations-item {
 	color: $muted;
@@ -1553,16 +1318,6 @@ color: $dark;
 
 // Sidebar Left Dashboard Section
 
-.sidebar-left .sidebar-section.sidebar-dashboard {
-	margin-bottom: 1rem;
-	background-color: transparent;
-	box-shadow: none;
-	border-radius: 0;
-}
-
-.sidebar-section.sidebar-dashboard .body {
-	padding: 0;
-}
 
 
 .dashboard-list .dashboard-item {
@@ -1804,6 +1559,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-100 {
 	width: 100px;
 	height: 100px;
+    border-radius: $border-radius;
+	text-align: center;
+	object-fit: cover;
+	background-color: $gray-600;
+}
+
+.profile-pic-120 {
+	width: 120px;
+	height: 120px;
     border-radius: $border-radius;
 	text-align: center;
 	object-fit: cover;
@@ -2442,7 +2206,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .jumbotron-guild .jumbotron-overlay {
 	background-color: transparent;
-	background-image: linear-gradient(180deg, #fff0 0%, rgba(0, 0, 0, 0.8) 50%);
+	// background-image: linear-gradient(180deg, #fff0 0%, rgba(0, 0, 0, 0.8) 50%);
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -2951,33 +2715,6 @@ ul.comment-section {
 	color: $purple
 }
 
-// Sidebar
-
-.sidebar-post-meta .score {
-	font-size: $h5-font-size;
-	font-weight: $font-weight-bold;
-}
-
-.sidebar-post-meta .score-percent {
-	font-size: $extra-small-font-size;
-	color: $gray-600;
-	font-weight: $font-weight-normal;
-}
-
-.sidebar-post-meta .shortlink, .sidebar-post-meta .submission-date {
-	font-size: $small-font-size;
-	color: $muted;
-	font-weight: $font-weight-normal;
-	text-transform: lowercase;
-}
-
-.sidebar-post-meta .link, .sidebar-post-meta .date{
-	font-size: $small-font-size;
-	color: $black;
-	font-weight: $font-weight-normal;
-	text-transform: capitalize;
-}
-
 // Login Page
 
 #login {
@@ -3068,6 +2805,24 @@ ul.comment-section {
 	margin-right: auto;
 }
 
+.userpage-header {
+	display: grid;
+	grid-template-columns: 3fr 2fr 1fr;
+	grid-column-gap: 2rem;
+}
+
+.user-info-widget::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    background: $gray-500;
+    z-index: -1;
+    mix-blend-mode: multiply;
+    border-radius: 0.35rem;
+    right: -1rem;
+    bottom: -1rem;
+}
 //.info-popup-text {
 	//background: $gray-200;
 	//position: absolute;
@@ -4108,10 +3863,6 @@ textarea, input[type=text] {
 
 // Adam's additions
 
-.sidebar-adminpanel input[type="submit"] {
-	width:100%
-}
-
 .noshow {
 	display: none;
 }
@@ -4146,9 +3897,6 @@ div.deleted.banned {
 	max-width: 100px !important;
 }
 
-.sidebar-left .btn:focus {
-	box-shadow: none;
-}
 
 .onboarding-card {
 	height: 180px;

@@ -1,0 +1,55 @@
+<div class="ml-3 w-100" style="align-self: end">
+    <div class="d-flex justify-content-between align-items-center text-white">
+        <div>
+            {% if v and v.id != u.id %}
+            <a id="button-unsub"
+                class="btn btn-secondary {% if not is_following %}d-none{% endif %}"
+                href="javascript:void(0)"
+                onclick="post('/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>
+            <a id="button-sub"
+                class="btn btn-primary {% if is_following or u.is_nofollow or u.is_blocked %}d-none{% endif %}"
+                href="javascript:void(0)"
+                onclick="post('/follow/{{u.username}}', callback=function(){document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');})">Follow</a>
+
+            <a class="btn btn-primary" href="javascript:void(0)"
+                onclick="document.getElementById('message').classList.toggle('d-none')">Message</a>
+
+            <form class="d-none" id="message" action="/@{{u.username}}/message" method="post">
+                <pre></pre>
+                <textarea id="input-message" form="message" name="message" rows="3"
+                    class="form-control" required></textarea>
+                <pre></pre>
+                <pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold"
+                    aria-hidden="true" onclick="makeBold('input-message')" data-toggle="tooltip"
+                    data-placement="bottom" title="Bold"></pre>
+                &nbsp;
+                <pre class="btn btn-secondary format d-inline-block m-0 fas fa-italic"
+                    aria-hidden="true" onclick="makeItalics('input-message')"
+                    data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
+                &nbsp;
+                <pre class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right"
+                    aria-hidden="true" onclick="makeQuote('input-message')"
+                    data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
+                &nbsp;
+                <pre style="line-height:1;"
+                    class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase"
+                    onclick="commentForm('input-message');getGif()" aria-hidden="true"
+                    data-toggle="modal" data-target="#gifModal" data-toggle="tooltip"
+                    data-placement="bottom" title="Add GIF">GIF</pre>
+                &nbsp;
+                <pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam"
+                    onclick="loadEmojis('input-message')" aria-hidden="true" data-toggle="modal"
+                    data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"
+                    title="Add Emoji"></pre>
+                &nbsp;
+                <input type="submit" value="Submit" class="btn btn-primary mt-3">
+            </form>
+
+            {% elif v and v.id == u.id %}
+            <a href="/settings/profile" class="btn btn-secondary">Edit profile</a>
+            <a href="/views" class="btn btn-secondary">Profile views</a>
+            {% endif %}
+        </div>
+    </div>
+
+</div> 
