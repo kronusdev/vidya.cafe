@@ -76,7 +76,7 @@ def settings_profile_post(v):
 		bio = request.values.get("bio")[:1500]
 
 		if bio == v.bio:
-			return render_template("settings_profile.html",
+			return render_template("settings_profile.php",
 								   v=v,
 								   error="You didn't change anything")
 
@@ -102,7 +102,7 @@ def settings_profile_post(v):
 		v.bio = bio
 		v.bio_html=bio_html
 		g.db.add(v)
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 							   v=v,
 							   msg="Your bio has been updated.")
 
@@ -111,13 +111,13 @@ def settings_profile_post(v):
 		filters=request.values.get("filters")[:1000].strip()
 
 		if filters==v.custom_filter_list:
-			return render_template("settings_profile.html",
+			return render_template("settings_profile.php",
 								   v=v,
 								   error="You didn't change anything")
 
 		v.custom_filter_list=filters
 		g.db.add(v)
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 							   v=v,
 							   msg="Your custom filters have been updated.")
 
@@ -364,7 +364,7 @@ def settings_images_profile(v):
 	v.profileurl = imageurl
 	g.db.add(v)
 
-	return render_template("settings_profile.html", v=v, msg="Profile picture successfully updated.")
+	return render_template("settings_profile.php", v=v, msg="Profile picture successfully updated.")
 
 
 @app.post("/settings/images/banner")
@@ -381,7 +381,7 @@ def settings_images_banner(v):
 		v.bannerurl = imageurl
 		g.db.add(v)
 
-	return render_template("settings_profile.html", v=v, msg="Banner successfully updated.")
+	return render_template("settings_profile.php", v=v, msg="Banner successfully updated.")
 
 
 @app.post("/settings/delete/profile")
@@ -391,7 +391,7 @@ def settings_delete_profile(v):
 
 	v.profileurl = None
 	g.db.add(v)
-	return render_template("settings_profile.html", v=v,
+	return render_template("settings_profile.php", v=v,
 						   msg="Profile picture successfully removed.")
 
 @app.post("/settings/delete/banner")
@@ -402,7 +402,7 @@ def settings_delete_banner(v):
 	v.bannerurl = None
 	g.db.add(v)
 
-	return render_template("settings_profile.html", v=v,
+	return render_template("settings_profile.php", v=v,
 						   msg="Banner successfully removed.")
 
 
@@ -567,13 +567,13 @@ def settings_name_change(v):
 
 	#make sure name is different
 	if new_name==v.username:
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 						   v=v,
 						   error="You didn't change anything")
 
 	#verify acceptability
 	if not re.match(valid_username_regex, new_name):
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 						   v=v,
 						   error=f"This isn't a valid username.")
 
@@ -590,7 +590,7 @@ def settings_name_change(v):
 		).first()
 
 	if x and x.id != v.id:
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 						   v=v,
 						   error=f"Username `{new_name}` is already in use.")
 
@@ -624,7 +624,7 @@ def settings_song_change(v):
 	elif song.startswith("https://youtu.be/"):
 		id = song.split("https://youtu.be/")[1]
 	else:
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 					v=v,
 					error=f"Not a youtube link.")
 
@@ -644,14 +644,14 @@ def settings_song_change(v):
 		print(req)
 		abort(400)
 	if "H" in duration:
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 					v=v,
 					error=f"Duration of the video must not exceed 10 minutes.")
 
 	if "M" in duration:
 		duration = int(duration.split("PT")[1].split("M")[0])
 		if duration > 10:
-			return render_template("settings_profile.html",
+			return render_template("settings_profile.php",
 						v=v,
 						error=f"Duration of the video must not exceed 10 minutes.")
 
@@ -673,7 +673,7 @@ def settings_song_change(v):
 		try: ydl.download([f"https://youtube.com/watch?v={id}"])
 		except Exception as e:
 			print(e)
-			return render_template("settings_profile.html",
+			return render_template("settings_profile.php",
 						   v=v,
 						   error=f"Age-restricted videos aren't allowed.")
 
@@ -698,13 +698,13 @@ def settings_title_change(v):
 
 	#verify acceptability
 	if not re.match(valid_title_regex, new_name):
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 						   v=v,
 						   error=f"This isn't a valid flair.")
 
 	#make sure name is different
 	if new_name==v.customtitle:
-		return render_template("settings_profile.html",
+		return render_template("settings_profile.php",
 						   v=v,
 						   error="You didn't change anything")
 
