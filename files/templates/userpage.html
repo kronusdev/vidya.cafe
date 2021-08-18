@@ -73,7 +73,7 @@
 				<div class="container-fluid">
 					<div class="userpage-header text-center text-md-left">
 						{% include "widgets/user_info.html" %}
-							{% include "widgets/admin_stuff.html" %}
+						{% include "widgets/admin_stuff.html" %}
 						{% include "widgets/profile_actions.html" %}
 						<!-- {% include "widgets/badges.html" %} -->
 						<!-- {% include "widgets/admin_stuff.html" %} -->
@@ -184,6 +184,10 @@
 		</div>
 	</div>
 </div>
+{% if v.steam_id %}
+	{% include "widgets/steam_info.html" %}
+{% endif %}
+{% include "widgets/admin_stuff.html" %}
 {% endblock %}
 
 {% block content %}
