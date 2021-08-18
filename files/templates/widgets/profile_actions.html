@@ -3,15 +3,15 @@
         <div>
             {% if v and v.id != u.id %}
             <a id="button-unsub"
-                class="btn btn-secondary {% if not is_following %}d-none{% endif %}"
+                class="btn btn-secondary my-2 {% if not is_following %}d-none{% endif %}"
                 href="javascript:void(0)"
                 onclick="post('/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>
             <a id="button-sub"
-                class="btn btn-primary {% if is_following or u.is_nofollow or u.is_blocked %}d-none{% endif %}"
+                class="btn btn-primary my-2 {% if is_following or u.is_nofollow or u.is_blocked %}d-none{% endif %}"
                 href="javascript:void(0)"
                 onclick="post('/follow/{{u.username}}', callback=function(){document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');})">Follow</a>
 
-            <a class="btn btn-primary" href="javascript:void(0)"
+            <a class="btn btn-primary my-2" href="javascript:void(0)"
                 onclick="document.getElementById('message').classList.toggle('d-none')">Message</a>
 
             <form class="d-none" id="message" action="/@{{u.username}}/message" method="post">
@@ -46,8 +46,8 @@
             </form>
 
             {% elif v and v.id == u.id %}
-            <a href="/settings/profile" class="btn btn-secondary">Edit profile</a>
-            <a href="/views" class="btn btn-secondary">Profile views</a>
+            <a href="/settings/profile" class="btn btn-secondary my-2">Edit profile</a>
+            <a href="/views" class="btn btn-secondary my-2">Profile views</a>
             {% endif %}
         </div>
     </div>
