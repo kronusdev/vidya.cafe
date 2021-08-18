@@ -7,7 +7,7 @@
 		</a>
 		<p class="d-inline-block m-0">Lvl {{steam['player_level']}}</p>
 	</div>
-	{% if steam['persona_state'] == 0 %}
+	{% if steam['persona_state'] == 0 and steam['last_log_off'] != 0%}
 		<p>Last online {{steam['last_log_off'] | to_hours}} hours ago</p>
 	{% else %}
 		<p class="m-0">Online</p>
