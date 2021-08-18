@@ -6,13 +6,17 @@
 {% include "emoji_modal.html" %}
 {% include "gif_modal.html" %}
 
+<?php
+	require 'steamauth/steamauth.php';
+?>
+
 <div class="row">
 
 	<div class="col col-lg-10">
 
 		<div class="settings">
 
-			
+
 
 			<div class="card-blank rounded">
 				<h2 class="h5 card-header" name="referral">Theme</h2>
@@ -62,7 +66,7 @@
 					</form>
 
 				</div>
-				
+
 				</div>
 					<div class="body d-lg-flex border-bottom">
 					<div class="title w-lg-25">
@@ -73,14 +77,14 @@
 								function updatebgselection(){
 								var bgselector = document.getElementById("backgroundSelector");
 								var selection = bgselector.options[bgselector.selectedIndex].text;
-								
+
 								//var paragraph = document.getElementById("testp");
 								//paragraph.innerHTML = selection;
-								
+
 								const backgrounds = [
 									{
 										folder: "fantasy",
-										backgrounds: 
+										backgrounds:
 										[
 											"bg-1",
 											"bg-2",
@@ -90,7 +94,7 @@
 									},
 									{
 										folder: "solarpunk",
-										backgrounds: 
+										backgrounds:
 										[
 											"bg-1",
 											"bg-2",
@@ -164,7 +168,7 @@
 								<a class="btn btn-primary ml-auto" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
 							</div>
 							<div id="bgcontainer"></div>
-							
+
 						</div>
 				</div>
 			</div>
@@ -314,7 +318,7 @@
 						  </div>
 
 						</div>
-						
+
 						<div class="body d-lg-flex border-bottom">
 
 							<label for="bio" class="text-black w-lg-25">Steam</label>
@@ -376,7 +380,7 @@
 								</div>
 
 							</div>
-							
+
 <!--							<div class="body d-lg-flex border-bottom">
 
 								<label for="bio" class="text-black w-lg-25">Profile Anthem</label>
@@ -395,7 +399,7 @@
 								</div>
 
 							</div>
--->							
+-->
 							<div class="body d-lg-flex border-bottom">
 
 								<label for="bio" class="text-black w-lg-25">Name Color</label>
@@ -421,9 +425,9 @@
 									</form>
 
 								</div>
-							
-							</div>							
-							
+
+							</div>
+
 
 						<!--	<div class="body d-lg-flex border-bottom">
 
@@ -440,7 +444,7 @@
 								</div>
 
 							</div>
-						-->		
+						-->
 
 							{% if not v.flairchanged %}
 							<div class="body d-lg-flex border-bottom">
@@ -506,7 +510,7 @@
 											placeholder="Tell the community a bit about yourself."
 											rows="3" name="bio" form="profile-bio" maxlength="1500">{{v.bio}}</textarea>
 										</div>
-										
+
 										<div class="d-flex">
 											<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 											&nbsp;
@@ -519,9 +523,9 @@
 											<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('bio-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
 											&nbsp;
 										</div>
-										
+
 										<pre></pre>
-										
+
 										<div class="d-flex">
 											<small>Limit of 1500 characters</small>
 											<input class="btn btn-primary ml-auto" id="bioSave" type="submit" value="Save Changes">
@@ -530,7 +534,7 @@
 								</div>
 
 							</div>
-							
+
 							<div class="body d-lg-flex border-bottom">
 								<label class="text-black w-lg-25">Badges</label>
 
