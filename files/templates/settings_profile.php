@@ -323,14 +323,15 @@
 
 							<label for="bio" class="text-black w-lg-25">Steam</label>
 							<div class="w-lg-100">
-								<form action="/settings/set_steam" method="post">
-									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input type="text" name="steam_id" class="form-control" value="{{v.steam_id}}">
-									<small>input your steam ID to link it to your account</small>
-									<div class="d-flex mt-2">
-										<input class="btn btn-primary ml-auto" type="submit" value="Change Your Steam ID">
-									</div>
-								</form>
+							<?php
+								if(!isset($_SESSION['steam_id'])){
+									loginbutton("rectangle"); //display login button
+								}
+								else 
+								{
+									logoutbutton(); //display logout button
+								}
+							?>
 							</div>
 						</div>
 					  </div>
