@@ -52,5 +52,8 @@ def app_config(x):
 
 @app.template_filter('to_hours')
 def unix_to_hours(s):
-    return round((time.time() - s)/3600, 1)
+	if(s>0):
+		return round((time.time() - s)/3600, 1)
+	else:
+		return 0
     #return time.ctime(s) # datetime.datetime.fromtimestamp(s)
