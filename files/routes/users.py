@@ -3,6 +3,7 @@ import io
 import time
 import traceback
 import sys
+from datetime import datetime
 
 from files.classes.user import ViewerRelationship
 from files.helpers.alerts import *
@@ -316,10 +317,10 @@ def u_username(username, v=None):
 				ids = [p.id] + ids
 
 	listing = get_posts(ids, v=v)
-	try:
-		steam_info = get_steam_info(u)
-	except:
-		steam_info = ""
+	#try:
+	steam_info = get_steam_info(u)
+	#except:
+	#	steam_info = ""
 	
 	if u.unban_utc:
 		if request.headers.get("Authorization"): {"data": [x.json for x in listing]}

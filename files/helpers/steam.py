@@ -20,18 +20,20 @@ def get_steam_info(u):
 	try:
 		current_game = steam_api_response['gameextrainfo']
 	except:
-		currnet_game = ""
+		current_game = ""
 	try:
 		current_game_bg = appid_to_details(steam_api_response['gameid'])['background']
 	except:
-		current_game_bg = ""
+		current_game_bg = "https://community.cloudflare.steamstatic.com/public/images//skin_1/forum_op_gradient.png?v=3"
 	try:
 		current_game_image = appid_to_details(steam_api_response['gameid'])['image']
 	except:
 		current_game_image = ""
-
-	last_log_off = steam_api_response['lastlogoff']
 	persona_state = steam_api_response['personastate']
+	try:
+		last_log_off = steam_api_response['lastlogoff']
+	except:
+		last_log_off = 0
 	avatar = steam_api_response['avatar']
 	persona_name = steam_api_response['personaname']
 	profile_url = steam_api_response['profileurl']
