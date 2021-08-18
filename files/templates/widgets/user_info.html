@@ -70,10 +70,10 @@
 			<hr>
 			{% if u.bio_html %}
 			<pre></pre>
-			<div class="text-muted font-weight-bolder">{{u.bio_html | safe}}
+			<div class="font-weight-bolder">{{u.bio_html | safe}}
 			</div>
 			{% else %}
-			<p class="text-muted">No bio...</p>
+			<p>No bio...</p>
 			{% endif %}
 			{% if u.bio_html and v %}
 			{% endif %}
