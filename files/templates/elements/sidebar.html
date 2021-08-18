@@ -5,12 +5,14 @@
     <div class="m-1">
         {% include "widgets/badges.html" %}
     </div>
-    <div class="card-header">
-        <h5>Steam Account</h5>
-    </div>
-    <div class="m-1">
-        {% include "widgets/steam_info.html" %}
-    </div>
+    {% if v.steam_id != "None" %}
+        <div class="card-header">
+            <h5>Steam Account</h5>
+        </div>
+        <div class="m-1">
+            {% include "widgets/steam_info.html" %}
+        </div>
+    {% endif %}
 </div> 
 
 <style>
