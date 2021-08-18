@@ -19098,6 +19098,9 @@ body {
       display: grid;
       grid-template-columns: 1fr 4fr 1fr; } }
 
+.container, #submitform {
+  grid-column: 2; }
+
 @media (min-width: 1200px) {
   .container {
     max-width: 1240px; } }

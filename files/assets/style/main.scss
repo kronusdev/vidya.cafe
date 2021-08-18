@@ -161,6 +161,10 @@ body {
 	}
 }
 
+.container, #submitform {
+	grid-column: 2;
+}
+
 @media (min-width: 1200px) {
 	.container{
 		max-width: 1240px;

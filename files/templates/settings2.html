@@ -69,7 +69,7 @@
 {% if True %}
 	{% set mod = (v.admin_level==6) %}
 	<!-- Desktop -->
-	<div class="container-fluid bg-gray-400 sticky d-none d-md-block">
+	<div class="container-fluid bg-gray-400 sticky d-none d-md-block" style="grid-column: 1/4; grid-row: 1">
 		<div class="row box-shadow-bottom">
 			<div class="col">
 				<div class="container">
@@ -130,7 +130,7 @@
 	{% endblock %}
 
 	<!-- Settings content -->
-	<div class="{% if request.path == '/banned' %}container-fluid{% else %}container{% endif %} mt-3 {% if request.path == '/leaderboard' %}px-0{% endif %}">
+	<div class="container mt-3 {% if request.path == '/leaderboard' %}px-0{% endif %}">
 
 	 {% block content %}
 	 {% endblock %}
