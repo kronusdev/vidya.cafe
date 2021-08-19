@@ -10,14 +10,15 @@ def kofi():
 
 	if request.args.get('token') != environ.get("KOFI_WEBHOOK_TOKEN"): return "OK", 200
 
-	data = json.loads(request.form['data'])
+	data_json = request.form['data']
+	data = json.loads(data_json)
 
 	donation = Donation(
-		amount = int(data.amount),
-		currency = data.currency,
-		purchase_id = data.kofi_transaction_id,
-		purchase_email = data.email,
-		data = data,
+		amount = int(data['amount']),
+		currency = data['currency'],
+		purchase_id = data['kofi_transaction_id]'],
+		purchase_email = data['email'],
+		data = data_json,
 		payment_company = "kofi"
 	)
 
