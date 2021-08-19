@@ -14,5 +14,5 @@ from .users import *
 from .votes import *
 from .feeds import *
 from .awards import *
-from .gumroad import *
+from .donate import *
 from .steam import *
