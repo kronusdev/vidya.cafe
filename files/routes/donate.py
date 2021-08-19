@@ -16,7 +16,7 @@ def kofi():
 	donation = Donation(
 		amount = int(float(data['amount'])),
 		currency = data['currency'],
-		purchase_id = data['kofi_transaction_id]'],
+		purchase_id = data['kofi_transaction_id'],
 		purchase_email = data['email'],
 		data = data_json,
 		payment_company = "kofi"
