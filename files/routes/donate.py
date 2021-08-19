@@ -14,7 +14,7 @@ def kofi():
 	data = json.loads(data_json)
 
 	donation = Donation(
-		amount = int(data['amount']),
+		amount = int(float(data['amount'])),
 		currency = data['currency'],
 		purchase_id = data['kofi_transaction_id]'],
 		purchase_email = data['email'],
