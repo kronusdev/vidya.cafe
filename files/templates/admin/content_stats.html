@@ -2,24 +2,28 @@
 
 {% block title %}
 <title>{{"SITE_NAME" | app_config}}</title>
-<meta name="description" content="{{"SITE_NAME" | app_config}} Help">
+<meta name="description" content="{{" SITE_NAME" | app_config}} Help">
 {% endblock %}
 
 {% block content %}
-<pre></pre>
-<table class="table table-striped mb-5">
-<thead class="bg-primary text-white">
-	<tr>
-		<th>Statistic</th>
-		<th>Value</th>
-	</tr>
-</thead>
-{% for entry in data %}
-	<tr>
-		<td>{{entry}}</td>
-		<td>{{data[entry]}}</td>
-	</tr>
-{% endfor %}
-</table>
+<div class="card-blank">
+	<div class="p-3">
+		<pre></pre>
+		<table class="table table-striped mb-5">
+			<thead class="bg-primary text-white">
+				<tr>
+					<th>Statistic</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			{% for entry in data %}
+			<tr>
+				<td>{{entry}}</td>
+				<td>{{data[entry]}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
 
 {% endblock %}

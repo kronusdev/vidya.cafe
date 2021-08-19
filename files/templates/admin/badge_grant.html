@@ -8,67 +8,95 @@
 
 {% block content %}
 
-		{% if error %}
-		<div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
-			<i class="fas fa-exclamation-circle my-auto"></i>
-			<span>
-				{{error}}
-			</span>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true"><i class="far fa-times"></i></span>
-			</button>
-		</div>
-		{% endif %}
-		{% if msg %}
-		<div class="alert alert-success alert-dismissible fade show my-3" role="alert">
-			<i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
-			<span>
-				{{msg}}
-			</span>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true"><i class="far fa-times"></i></span>
-			</button>
-		</div>
-		{% endif %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+	<i class="fas fa-exclamation-circle my-auto"></i>
+	<span>
+		{{error}}
+	</span>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true"><i class="far fa-times"></i></span>
+	</button>
+</div>
+{% endif %}
+{% if msg %}
+<div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+	<i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
+	<span>
+		{{msg}}
+	</span>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true"><i class="far fa-times"></i></span>
+	</button>
+</div>
+{% endif %}
+<div class="card-blank">
+	<div class="p-3">
+		<pre></pre>
+		<pre></pre>
+		<h5>Badge Grant</h5>
 
-<pre></pre>
-<pre></pre>
-<h5>Badge Grant</h5>
-
-<form action="/admin/badge_grant", method="post">
-<input type="hidden" name="formkey" value="{{v.formkey}}">
+		<form action="/admin/badge_grant" , method="post">
+			<input type="hidden" name="formkey" value="{{v.formkey}}">
 
 
-<label for="input-username">Username</label><br>
-<input id="input-username" class="form-control" type="text" name="username" required>
+			<label for="input-username">Username</label><br>
+			<input id="input-username" class="form-control" type="text" name="username" required>
 
-<table class="table table-striped">
-<thead class="bg-primary text-white">
-		<tr>
-			<th scope="col">Select</th>
-			<th scope="col">Image</th>
-			<th scope="col">Name</th>
-			<th scope="col">Default Description</th>
-		</tr>
-	</thead>
-	<tbody>
-{% for badge in badge_types %}
-<tr>
-	<td><input type="radio" id="badge-{{badge.id}}" name="badge_id" value="{{badge.id}}"></td>
-	<td><label for="badge-{{badge.id}}"><img class="d-block" src="{{badge.path}}" width="70px" height="70px"></label></td>
-	<td>{{badge.name}}</td>
-	<td>{{badge.description}}</td>
-</tr>
-{% endfor %}
-</table>
+			<table class="table table-striped">
+				<thead class="bg-primary text-white">
+					<tr>
+						<th scope="col">Select</th>
+						<th scope="col">Image</th>
+						<th scope="col">Name</th>
+						<th scope="col">Default Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for badge in badge_types %}
+					<tr>
+						<td><input type="radio" id="badge-{{badge.id}}" name="badge_id" value="{{badge.id}}"></td>
+						<td><label for="badge-{{badge.id}}"><img class="d-block" src="{{badge.path}}" width="70px"
+									height="70px"></label></td>
+						<td>{{badge.name}}</td>
+						<td>{{badge.description}}</td>
+					</tr>
+					{% endfor %}
+			</table>
 
-<label for="input-url">URL</label><br>
-<input id="input-url" class="form-control" type="text" name="url" placeholder="Optional">
+			<label for="input-url">URL</label><br>
+			<input id="input-url" class="form-control" type="text" name="url" placeholder="Optional">
 
-<label for="input-description">Custom description</label><br>
-<input id="input-description" class="form-control" type="text" name="description" placeholder="Leave blank for badge default">
+			<label class="my-2" for="input-description">Custom description</label><br>
+			<input id="input-description" class="my-2 form-control" type="text" name="description"
+				placeholder="Leave blank for badge default">
 
-<input class="btn btn-primary" type="submit">
+			<input class="my-2 btn btn-primary" type="submit">
 
+		</form>
+	</div>
+</div>
+<div class="card-blank">
+	<div class="card-header">
+		<h5>Add Badges to the site</h5>
+	</div>
+<div class="p-3">
+<form action="/admin/add_badge_to_site" , method="post">
+	<label for="input-badge_name">Name</label><br>
+	<input id="input-badge_name" class="form-control" type="text" name="badge_name" placeholder="Mandatory">
+	<label for="input-badge_desc">Description</label><br>
+	<input id="input-badge_desc" class="form-control" type="text" name="badge_desc" placeholder="Optional">
+	<label for="input-badge_icon">Icon File (in badges folder in assets)</label><br>
+	<input id="input-badge_icon" class="form-control" type="text" name="badge_icon" placeholder="Mandatory">
+	<label for="input-badge_kind">Badge Kind</label><br>
+	<input id="input-badge_kind" class="form-control" type="text" name="badge_kind" placeholder="Optional">
+	<label for="input-badge_rank">Badge Rank</label><br>
+	<input id="input-badge_rank" class="form-control" type="text" name="badge_rank" placeholder="Optional">
+	<label for="input-badge_qualification_expr">Qualification Expr (?)</label><br>
+	<input id="input-badge_qualification_expr" class="form-control" type="text" name="badge_qualification_expr"
+		placeholder="idk what this is lol">
+	<input class="my-2 btn btn-primary" type="submit">
 </form>
+</div>
+</div>
 {% endblock %}

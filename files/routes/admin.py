@@ -141,7 +141,6 @@ def badge_grant_get(v):
 							   "msg") else None
 						   )
 
-
 @app.post("/admin/badge_grant")
 @admin_level_required(4)
 @validate_formkey
@@ -222,6 +221,29 @@ def badge_grant_post(v):
 		g.db.add(user)
 	
 	return redirect(user.url)
+
+@app.post("/admin/add_badge_to_site")
+@admin_level_required(4)
+def add_badge_to_site(v):
+	new_id = g.db.query(BadgeDef).order_by(BadgeDef.id).first().id +1
+	badge_name = request.form.get("badge_name")
+	badge_desc = request.form.get("badge_desc")
+	badge_icon = request.form.get("badge_icon")
+	badge_kind = request.form.get("badge_kind")
+	badge_rank = int(request.form.get("badge_rank"))
+	badge_qualification_expr = request.form.get("badge_qualification_expr")
+
+	new_badge = BadgeDef(
+		id = new_id,
+		name = badge_name,
+		description = badge_desc,
+		icon = badge_icon,
+		kind = badge_kind,
+		rank = badge_rank,
+		qualification_expr = badge_qualification_expr
+	)
+	g.db.add(new_badge)
+	return redirect("/admin/badge_grant")
 
 
 @app.get("/admin/users")
