@@ -1,11 +1,8 @@
 from flask import request
 from files.__main__ import app
 
-
+@app.get("/ko-fi")
 @app.post("/ko-fi")
 def kofi():
-	print(request.headers)
-	print(request.json)
-	print(request.data)
-	print(request.form)
+	print(request.form['data'])
 	return "OK", 200
