@@ -13,7 +13,7 @@ def kofi():
 	data = json.loads(request.form['data'])
 
 	donation = Donation(
-		amount = float(data.amount),
+		amount = int(data.amount),
 		currency = data.currency,
 		purchase_id = data.kofi_transaction_id,
 		purchase_email = data.email,
