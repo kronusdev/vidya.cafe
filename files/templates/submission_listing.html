@@ -40,7 +40,7 @@
 			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 			{% else %}
-			<div id="post-{{p.id}}-up" tabindex="0" class="mx-auto arrow-up" onclick="location.href='/login';"></div>
+			<div id="post-{{p.id}}-up" tabindex="0" class="mx-auto arrow-up upvote-button" onclick="location.href='/login';"></div>
 
 			<span id="post-{{p.id}}-score-none" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
@@ -247,7 +247,7 @@
 				<span id="post-score-{{p.id}}-mobile" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="top" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
 
 				<span id="arrow-{{p.id}}-mobile-up" tabindex="0" class="mr-2 arrow-mobile-up" onclick="location.href='/login';">
-					<i class="arrow-up mx-0" aria-hidden="true"></i>
+					<i class="ml-2 arrow-up upvote-button" aria-hidden="true"></i>
 				</span>
 
 			</li>

@@ -1,3 +1,4 @@
+{% if steam %}
 <div class="card-blank p-3"
 	style="height:max-content; background:url({{ steam['current_game_bg'] }}); background-size:cover;">
 	<div class="steam-upper">
@@ -20,3 +21,4 @@
 		{% endif %}
 	{% endif %}
 </div>
+{% endif %}

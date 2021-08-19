@@ -219,7 +219,7 @@
 					</li>
 
 					{% else %}
-					<li id="comment-{{c.id}}-up" tabindex="0" class="list-inline-item arrow-up d-none d-md-inline-block mr-2" onclick="location.href='/login';">
+					<li id="comment-{{c.id}}-up" tabindex="0" class="list-inline-item arrow-up upvote-button d-none d-md-inline-block mr-2" onclick="location.href='/login';">
 					</li>
 
 					{% endif %}
@@ -310,7 +310,7 @@
 					{% elif v %}
 						<li id="comment-{{c.id}}-up" tabindex="0" class="list-inline-item arrow-up upvote-button d-inline-block d-md-none mr-2 comment-{{c.id}}-up {% if voted==1 %}active{% endif %}" data-id-up="{{c.id}}" data-content-type="comment"></li>
 					{% else %}
-						<li id="comment-{{c.id}}-up" tabindex="0" class="list-inline-item arrow-up d-inline-block d-md-none mr-2" onclick="location.href='/login';"></li>
+						<li id="comment-{{c.id}}-up" tabindex="0" class="list-inline-item arrow-up upvote-button d-inline-block d-md-none mr-2" onclick="location.href='/login';"></li>
 					{% endif %}
 					
 					
