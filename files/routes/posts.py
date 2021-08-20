@@ -273,47 +273,6 @@ def edit_post(pid, v):
 	if int(time.time()) - p.created_utc > 60 * 3: p.edited_utc = int(time.time())
 	g.db.add(p)
 
-	if v.agendaposter and "trans lives matter" not in body_html.lower():
-
-		p.is_banned = True
-		p.ban_reason = "ToS Violation"
-
-		g.db.add(p)
-
-		c_jannied = Comment(author_id=23,
-			parent_submission=p.id,
-			level=1,
-			over_18=False,
-			is_bot=True,
-			app_id=None,
-			is_pinned=True,
-			distinguish_level=6
-			)
-
-		g.db.add(c_jannied)
-		g.db.flush()
-
-		body = f"""Hi @{v.username},\n\nYour post has been automatically removed because you forgot
-				to include `trans lives matter`.\n\nDon't worry, we're here to help! We
-				won't let you post or comment anything that doesn't express your love and acceptance towards
-				the trans community. Feel free to resubmit your post with `trans lives matter`
-				included. \n\n*This is an automated message; if you need help,
-				you can message us [here](/contact).*"""
-
-		with CustomRenderer(post_id=p.id) as renderer:
-			body_md = renderer.render(mistletoe.Document(body))
-
-		body_jannied_html = sanitize(body_md)
-		c_aux = CommentAux(
-			id=c_jannied.id,
-			body_html=body_jannied_html,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c_jannied.id, user_id=v.id)
-		g.db.add(n)
-
 	notify_users = set()
 
 	soup = BeautifulSoup(body_html, features="html.parser")
@@ -847,48 +806,7 @@ def submit_post(v):
 
 	g.db.add(new_post)
 	g.db.commit()
-
-	#if v.agendaposter and "trans lives matter" not in new_post_aux.body_html.lower():
-
-		#new_post.is_banned = True
-		#new_post.ban_reason = "ToS Violation"
-
-		#g.db.add(new_post)
-
-		#c_jannied = Comment(author_id=23,
-			#parent_submission=new_post.id,
-			#level=1,
-			#over_18=False,
-			#is_bot=True,
-			#app_id=None,
-			#is_pinned=True,
-			#distinguish_level=6
-		#)
-
-		#g.db.add(c_jannied)
-		#g.db.flush()
-
-		#body = f"""Hi @{v.username},\n\nYour post has been automatically removed because you forgot
-				#to include `trans lives matter`.\n\nDon't worry, we're here to help! We
-				#won't let you post or comment anything that doesn't express your love and acceptance towards
-				#the trans community. Feel free to resubmit your post with `trans lives matter`
-				#included. \n\n*This is an automated message; if you need help,
-				#you can message us [here](/contact).*"""
-
-		#with CustomRenderer(post_id=new_post.id) as renderer:
-			#body_md = renderer.render(mistletoe.Document(body))
-
-		#body_jannied_html = sanitize(body_md)
-		#c_aux = CommentAux(
-			#id=c_jannied.id,
-			#body_html=body_jannied_html,
-			#body=body
-		#)
-		#g.db.add(c_aux)
-		#g.db.flush()
-		#n = Notification(comment_id=c_jannied.id, user_id=v.id)
-		#g.db.add(n)
-
+	
 	if new_post.url:
 		c = Comment(author_id=21,
 			distinguish_level=6,

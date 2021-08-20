@@ -74,21 +74,7 @@
     {% endif %}
 
     <pre></pre>
-
-    {% if u.agendaposter %}
-    <a class="btn btn-success" href="javascript:void(0)"
-        onclick="post('/agendaposter/{{u.id}}?toast', function(){window.location.reload(true);})">Disable
-        Agendaposter Theme</a>
-    {% else %}
-    <form action="/agendaposter/{{u.id}}" method="post">
-        <input type="hidden" name="formkey" , value="{{v.formkey}}">
-        <input type="number" name="days" class="form-control" placeholder="Days (0 or blank = permanent)" />
-        <input type="submit" class="btn btn-danger" value="Lock Agendaposter Theme" />
-    </form>
-    {% endif %}
-
-    <pre></pre>
-
+    
     {% if u.shadowbanned %}
     <a class="btn btn-success" href="javascript:void(0)"
         onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
@@ -194,20 +180,6 @@
                     alts</label>
             </div>
             <input id="user-ban-submit" type="submit" class="btn btn-danger" value="Ban user" disabled>
-        </form>
-        {% endif %}
-
-        <pre></pre>
-
-        {% if u.agendaposter %}
-        <a class="btn btn-success" href="javascript:void(0)"
-            onclick="post('/agendaposter/{{u.id}}?toast', function(){window.location.reload(true);})">Disable
-            Agendaposter Theme</a>
-        {% else %}
-        <form action="/agendaposter/{{u.id}}" method="post">
-            <input type="hidden" name="formkey" , value="{{v.formkey}}">
-            <input type="number" name="days" class="form-control" placeholder="Days (0 or blank = permanent)" />
-            <input type="submit" class="btn btn-danger" value="Lock Agendaposter Theme" />
         </form>
         {% endif %}
 

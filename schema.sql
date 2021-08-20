@@ -168,8 +168,6 @@ CREATE TABLE public.users (
     css text,
     profilecss text,
     coins integer,
-    agendaposter boolean,
-    agendaposter_expires_utc integer DEFAULT 0,
     resized boolean,
     animatedname boolean,
     suicide_utc integer,

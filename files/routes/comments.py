@@ -352,47 +352,6 @@ def api_comment(v):
 	g.db.add(c_aux)
 	g.db.flush()
 
-	if v.agendaposter and "trans lives matter" not in c_aux.body_html.lower():
-
-		c.is_banned = True
-		c.ban_reason = "ToS Violation"
-
-		g.db.add(c)
-
-		c_jannied = Comment(author_id=23,
-			parent_submission=parent_submission,
-			distinguish_level=6,
-			parent_comment_id=c.id,
-			level=level+1,
-			is_bot=True,
-			)
-
-		g.db.add(c_jannied)
-		g.db.flush()
-
-		body = f"""Hi @{v.username},\n\nYour comment has been automatically removed because you forgot
-				to include `trans lives matter`.\n\nDon't worry, we're here to help! We 
-				won't let you post or comment anything that doesn't express your love and acceptance towards 
-				the trans community. Feel free to resubmit your comment with `trans lives matter` 
-				included. \n\n*This is an automated message; if you need help,
-				you can message us [here](/contact).*"""
-
-		#body = body.replace("\n", "\n\n").replace("\n\n\n\n\n\n", "\n\n").replace("\n\n\n\n", "\n\n").replace("\n\n\n", "\n\n")
-		with CustomRenderer(post_id=parent_id) as renderer:
-			body_md = renderer.render(mistletoe.Document(body))
-
-		body_jannied_html = sanitize(body_md)
-		c_aux = CommentAux(
-			id=c_jannied.id,
-			body_html=body_jannied_html,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c_jannied.id, user_id=v.id)
-		g.db.add(n)
-
-
 	if not v.shadowbanned:
 		# queue up notification for parent author
 		notify_users = set()
@@ -584,46 +543,7 @@ def edit_comment(cid, v):
 
 	c.body = body
 	c.body_html = body_html
-
-	if v.agendaposter and "trans lives matter" not in c.body_html.lower():
-
-		c.is_banned = True
-		c.ban_reason = "ToS Violation"
-
-		g.db.add(c)
-
-		c_jannied = Comment(author_id=23,
-			parent_submission=c.parent_submission,
-			distinguish_level=6,
-			parent_comment_id=c.id,
-			level=c.level+1,
-			is_bot=True,
-			)
-
-		g.db.add(c_jannied)
-		g.db.flush()
-
-		body = f"""Hi @{v.username},\n\nYour comment has been automatically removed because you forgot
-				to include `trans lives matter`.\n\nDon't worry, we're here to help! We 
-				won't let you post or comment anything that doesn't express your love and acceptance towards 
-				the trans community. Feel free to resubmit your comment with `trans lives matter` 
-				included. \n\n*This is an automated message; if you need help,
-				you can message us [here](/contact).*"""
-
-		with CustomRenderer(post_id=c.parent_submission) as renderer:
-			body_md = renderer.render(mistletoe.Document(body))
-
-		body_jannied_html = sanitize(body_md)
-		c_aux = CommentAux(
-			id=c_jannied.id,
-			body_html=body_jannied_html,
-			body=body
-		)
-		g.db.add(c_aux)
-		g.db.flush()
-		n = Notification(comment_id=c_jannied.id, user_id=v.id)
-		g.db.add(n)
-
+	
 	if int(time.time()) - c.created_utc > 60 * 3: c.edited_utc = int(time.time())
 
 	g.db.add(c)

@@ -26,16 +26,6 @@ def shadowbanned(v):
 	users = [x for x in g.db.query(User).filter_by(shadowbanned = True).all()]
 	return render_template("banned.html", v=v, users=users)
 
-
-@app.get("/admin/agendaposters")
-@auth_required
-def agendaposters(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	if not (v and v.admin_level == 6): abort(404)
-	users = [x for x in g.db.query(User).filter_by(agendaposter = True).all()]
-	return render_template("banned.html", v=v, users=users)
-
-
 @app.get("/admin/flagged/posts")
 @admin_level_required(3)
 def flagged_posts(v):
@@ -524,49 +514,6 @@ def admin_image_ban(v):
 	g.db.commit()
 
 	return render_template("admin/image_ban.html", v=v, success=True)
-
-
-@app.post("/agendaposter/<user_id>")
-@admin_level_required(6)
-@validate_formkey
-def agendaposter(user_id, v):
-	user = g.db.query(User).filter_by(id=user_id).first()
-
-	expiry = request.form.get("days", 0)
-	if expiry:
-		expiry = int(expiry)
-		expiry = g.timestamp + expiry*60*60*24
-	else:
-		expiry = 0
-
-	user.agendaposter = not user.agendaposter
-	user.agendaposter_expires_utc = expiry
-	g.db.add(user)
-	for alt in user.alts:
-		if alt.admin_level > 0: break
-		alt.agendaposter = user.agendaposter
-		alt.agendaposter_expires_utc = expiry
-		g.db.add(alt)
-
-	note = None
-
-	if not user.agendaposter: kind = "unagendaposter"
-	else:
-		kind = "agendaposter"
-		note = f"for {request.form.get('days')} days" if expiry else "never expires"
-
-	ma = ModAction(
-		kind=kind,
-		user_id=v.id,
-		target_user_id=user.id,
-		note = note
-	)
-	g.db.add(ma)
-
-	if 'toast' in request.args:
-		return "", 204
-	else:
-		return redirect(user.url)
 
 @app.post("/shadowban/<user_id>")
 @admin_level_required(6)
