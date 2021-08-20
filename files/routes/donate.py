@@ -1,10 +1,7 @@
 from os import environ
-from files.classes.donation import Donation
-from flask import request
-from files.__main__ import app
+from files.__main__ import *
 import json
 
-@app.get("/ko-fi")
 @app.post("/ko-fi")
 def kofi():
 
