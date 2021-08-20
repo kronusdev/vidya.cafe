@@ -1,6 +1,7 @@
 from os import environ
 from files.__main__ import *
 import json
+from files.classes.donation import Donation
 
 @app.post("/ko-fi")
 def kofi():
