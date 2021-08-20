@@ -35,7 +35,6 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	created_utc = Column(Integer, default=0)
 	edited_utc = Column(Integer, default=0)
 	is_banned = Column(Boolean, default=False)
-	shadowbanned = Column(Boolean, default=False)
 	distinguish_level = Column(Integer, default=0)
 	deleted_utc = Column(Integer, default=0)
 	is_approved = Column(Integer, default=0)
@@ -97,7 +96,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 		return (self.upvotes+1)
 
 	def children(self, v):
-		return sorted([x for x in self.child_comments if not x.author.shadowbanned or (v and v.id == x.author_id)], key=lambda x: x.score, reverse=True)
+		return sorted([x for x in self.child_comments if v and v.id == x.author_id], key=lambda x: x.score, reverse=True)
 
 	@property
 	@lazy

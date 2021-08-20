@@ -18,14 +18,6 @@ import matplotlib.pyplot as plt
 from files.__main__ import app, cache
 from .front import frontlist
 
-@app.get("/admin/shadowbanned")
-@auth_required
-def shadowbanned(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	if not (v and v.admin_level == 6): abort(404)
-	users = [x for x in g.db.query(User).filter_by(shadowbanned = True).all()]
-	return render_template("banned.html", v=v, users=users)
-
 @app.get("/admin/flagged/posts")
 @admin_level_required(3)
 def flagged_posts(v):
@@ -514,54 +506,6 @@ def admin_image_ban(v):
 	g.db.commit()
 
 	return render_template("admin/image_ban.html", v=v, success=True)
-
-@app.post("/shadowban/<user_id>")
-@admin_level_required(6)
-@validate_formkey
-def shadowban(user_id, v):
-	user = g.db.query(User).filter_by(id=user_id).first()
-	if user.admin_level != 0: abort(403)
-	user.shadowbanned = True
-	g.db.add(user)
-	for alt in user.alts:
-		if alt.admin_level > 0: break
-		alt.shadowbanned = True
-		g.db.add(alt)
-	ma = ModAction(
-		kind="shadowban",
-		user_id=v.id,
-		target_user_id=user.id,
-	)
-	g.db.add(ma)
-	
-	cache.delete_memoized(frontlist)
-
-	return "", 204
-
-
-@app.post("/unshadowban/<user_id>")
-@admin_level_required(6)
-@validate_formkey
-def unshadowban(user_id, v):
-	user = g.db.query(User).filter_by(id=user_id).first()
-	if user.admin_level != 0: abort(403)
-	user.shadowbanned = False
-	g.db.add(user)
-	for alt in user.alts:
-		alt.shadowbanned = False
-		g.db.add(alt)
-
-	ma = ModAction(
-		kind="unshadowban",
-		user_id=v.id,
-		target_user_id=user.id,
-	)
-	g.db.add(ma)
-	
-	cache.delete_memoized(frontlist)
-
-	return "", 204
-
 
 @app.post("/admin/title_change/<user_id>")
 @admin_level_required(6)
