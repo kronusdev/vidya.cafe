@@ -177,18 +177,6 @@ ACTIONTYPES={
 		"color": "bg-muted",
 		"title": 'unshadowbanned {self.target_user.username}'
 	},
-	"agendaposter": {
-		"str": "set agendaposter theme on {self.target_link}",
-		"icon": "fa-user-slash",
-		"color": "bg-muted",
-		"title": "set agendaposter theme on {self.target_link}"
-	},
-	"unagendaposter": {
-		"str": "removed agendaposter theme from {self.target_link}",
-		"icon": "fa-user-slash",
-		"color": "bg-muted",
-		"title": "removed agendaposter theme from {self.target_link}"
-	},
 	"set_flair_locked":{
 		"str":"set {self.target_link}'s flair (locked)",
 		"icon": "fa-user-slash",

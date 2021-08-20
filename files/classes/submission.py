@@ -322,9 +322,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 		g.db.add(self.submission_aux)
 
 	def realurl(self, v):
-		if v and v.agendaposter and random.randint(1, 10) < 4:
-			return 'https://secure.actblue.com/donate/ms_blm_homepage_2019'
-		elif self.url:
+		if self.url:
 			if v and not v.oldreddit: return self.url.replace("old.reddit.com", "reddit.com")
 			if self.url: return self.url
 		return ""
