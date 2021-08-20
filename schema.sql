@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3 (Ubuntu 13.3-1.pgdg18.04+1)
--- Dumped by pg_dump version 13.3 (Ubuntu 13.3-1.pgdg18.04+1)
+-- Dumped from database version 13.4 (Ubuntu 13.4-1.pgdg20.04+1)
+-- Dumped by pg_dump version 13.4 (Ubuntu 13.4-1.pgdg20.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -142,7 +142,6 @@ CREATE TABLE public.users (
     is_nofollow boolean DEFAULT false,
     custom_filter_list character varying(1000) DEFAULT ''::character varying,
     discord_id character varying(64),
-    steam_id character varying(64),
     stored_subscriber_count integer DEFAULT 0,
     ban_evade integer DEFAULT 0,
     original_username character varying(255),
@@ -180,9 +179,10 @@ CREATE TABLE public.users (
     rent_utc integer,
     patron integer,
     zzz boolean DEFAULT false,
-    background character varying(512) DEFAULT '/assets/images/custombackgrounds/'::character varying,
+    background character varying(512) DEFAULT 'pixelart/bg-1'::character varying,
     last_active integer DEFAULT 0,
-    show_activity boolean DEFAULT true
+    show_activity boolean DEFAULT true,
+    steam_id character varying(64)
 );
 
 
@@ -699,6 +699,45 @@ ALTER TABLE public.domains_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.domains_id_seq OWNED BY public.banneddomains.id;
+
+
+--
+-- Name: donations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.donations (
+    id integer NOT NULL,
+    amount integer,
+    currency character varying(5),
+    purchase_id character varying(50),
+    purchase_email character varying(255),
+    data character varying,
+    payment_company character varying
+);
+
+
+ALTER TABLE public.donations OWNER TO postgres;
+
+--
+-- Name: donations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.donations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.donations_id_seq OWNER TO postgres;
+
+--
+-- Name: donations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.donations_id_seq OWNED BY public.donations.id;
 
 
 --
@@ -1318,6 +1357,13 @@ ALTER TABLE ONLY public.comments_aux ALTER COLUMN key_id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.commentvotes ALTER COLUMN id SET DEFAULT nextval('public.commentvotes_id_seq'::regclass);
+
+
+--
+-- Name: donations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.donations ALTER COLUMN id SET DEFAULT nextval('public.donations_id_seq'::regclass);
 
 
 --
