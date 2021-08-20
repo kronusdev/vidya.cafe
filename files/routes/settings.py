@@ -363,7 +363,7 @@ def add_kofi_email(v):
 				)
 
 	return redirect("/settings/security?msg=" + escape(
-		f"Check your email and click the verification link to complete the email change. {link} {now} {token}"))
+		f"Check your email and click the verification link to complete the email change."))
 
 @app.post("/settings/log_out_all_others")
 @auth_required
