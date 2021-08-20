@@ -148,7 +148,21 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 
 	if page == 1: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
 
-	posts = [x for x in posts if v and v.id == x.author_id][:26]
+	if random.random() < 0.02:
+		for post in posts:
+			if post.author and post.author.shadowbanned:
+				rand = random.randint(500,1400)
+				vote = Vote(user_id=rand,
+					vote_type=random.choice([-1, 1]),
+					submission_id=post.id)
+				g.db.add(vote)
+				try: g.db.flush()
+				except: g.db.rollback()
+				post.upvotes = g.db.query(Vote).filter_by(submission_id=post.id, vote_type=1).count()
+				post.views = post.views + random.randint(7,10)
+				g.db.add(post)
+
+	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:26]
 
 	if ids_only:
 		posts = [x.id for x in posts]
@@ -370,7 +384,7 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 	secondrange = firstrange+100
 	comments = comments[firstrange:secondrange]
 
-	comments = [x.id for x in comments if v and v.id == x.author_id]
+	comments = [x.id for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 
 	return comments[:26]
 

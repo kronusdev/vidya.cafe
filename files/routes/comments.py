@@ -131,6 +131,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 			output = []
 			for c in comments:
 				comment = c[0]
+				if comment.author and comment.author.shadowbanned and not (v and v.id == comment.author_id): continue
 				comment._voted = c[1] or 0
 				comment._is_blocking = c[2] or 0
 				comment._is_blocked = c[3] or 0
@@ -323,7 +324,8 @@ def api_comment(v):
 				level=level,
 				over_18=parent_post.over_18 or request.form.get("over_18","")=="true",
 				is_bot=is_bot,
-				app_id=v.client.application.id if v.client else None
+				app_id=v.client.application.id if v.client else None,
+				shadowbanned=v.shadowbanned
 				)
 	g.db.add(c)
 	g.db.flush()
@@ -350,50 +352,51 @@ def api_comment(v):
 	g.db.add(c_aux)
 	g.db.flush()
 
-	# queue up notification for parent author
-	notify_users = set()
+	if not v.shadowbanned:
+		# queue up notification for parent author
+		notify_users = set()
 		
-	for x in g.db.query(Subscription.user_id).filter_by(submission_id=c.parent_submission).all():
-		notify_users.add(x)
+		for x in g.db.query(Subscription.user_id).filter_by(submission_id=c.parent_submission).all():
+			notify_users.add(x)
 		
-	if parent.author.id != v.id: notify_users.add(parent.author.id)
+		if parent.author.id != v.id: notify_users.add(parent.author.id)
 
-	soup = BeautifulSoup(body_html, features="html.parser")
-	mentions = soup.find_all("a", href=re.compile("^/@(\w+)"))
-	for mention in mentions:
-		username = mention["href"].split("@")[1]
+		soup = BeautifulSoup(body_html, features="html.parser")
+		mentions = soup.find_all("a", href=re.compile("^/@(\w+)"))
+		for mention in mentions:
+			username = mention["href"].split("@")[1]
 
-		user = g.db.query(User).filter_by(username=username).first()
+			user = g.db.query(User).filter_by(username=username).first()
 
-		if user:
-			if v.any_block_exists(user):
-				continue
-			if user.id != v.id:
-				notify_users.add(user.id)
+			if user:
+				if v.any_block_exists(user):
+					continue
+				if user.id != v.id:
+					notify_users.add(user.id)
 
-	for x in notify_users:
-		n = Notification(comment_id=c.id, user_id=x)
-		g.db.add(n)
-		try: g.db.flush()
-		except: g.db.rollback()
+		for x in notify_users:
+			n = Notification(comment_id=c.id, user_id=x)
+			g.db.add(n)
+			try: g.db.flush()
+			except: g.db.rollback()
 
-	# if parent.author.id != v.id:
-	# 	try:
-	# 		beams_client.publish_to_interests(
-	# 		  interests=[str(parent.author.id)],
-	# 		  publish_body={
-	# 			'web': {
-	# 			  'notification': {
-	# 					'title': f'New reply by @{v.username}',
-	# 					'body': c.body,
-	# 					'deep_link': f'https://{site}{c.permalink}?context=5#context',
-	# 			  },
-	# 			},
-	# 		  },
-	# 		)
-	# 	except PusherAuthError as e:
-	# 		sys.stderr.write(traceback.format_exc())
-	# 		sys.stderr.flush()
+		# if parent.author.id != v.id:
+		# 	try:
+		# 		beams_client.publish_to_interests(
+		# 		  interests=[str(parent.author.id)],
+		# 		  publish_body={
+		# 			'web': {
+		# 			  'notification': {
+		# 					'title': f'New reply by @{v.username}',
+		# 					'body': c.body,
+		# 					'deep_link': f'https://{site}{c.permalink}?context=5#context',
+		# 			  },
+		# 			},
+		# 		  },
+		# 		)
+		# 	except PusherAuthError as e:
+		# 		sys.stderr.write(traceback.format_exc())
+		# 		sys.stderr.flush()
 
 
 

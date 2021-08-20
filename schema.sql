@@ -109,6 +109,8 @@ CREATE FUNCTION public.comment_count(public.submissions) RETURNS bigint
 
         AND parent_submission = $1.id
 
+        AND shadowbanned = false
+
       $_$;
 
 
@@ -157,6 +159,7 @@ CREATE TABLE public.users (
     theme text,
     song text,
     slurreplacer boolean,
+    shadowbanned boolean,
     newtabexternal boolean,
     customtitleplain text,
     themecolor text,
@@ -227,7 +230,8 @@ CREATE TABLE public.comments (
     is_bot boolean DEFAULT false,
     is_pinned boolean DEFAULT false,
     app_id integer,
-    sentto integer
+    sentto integer,
+    shadowbanned boolean
 );
 
 
