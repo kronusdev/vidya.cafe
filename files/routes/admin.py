@@ -215,7 +215,7 @@ def badge_grant_post(v):
 @app.post("/admin/add_badge_to_site")
 @admin_level_required(4)
 def add_badge_to_site(v):
-	new_id = g.db.query(BadgeDef).order_by(BadgeDef.id).first().id +1
+	new_id = g.db.query(BadgeDef).order_by(-BadgeDef.id).first().id +1
 	badge_name = request.form.get("badge_name")
 	badge_desc = request.form.get("badge_desc")
 	badge_icon = request.form.get("badge_icon")

@@ -7,11 +7,14 @@
 {% block pagetype %}message-success{% endblock %}
 
 {% block content %}
-<div class="text-center py-7 py-md-8">
-
-	<img src="/assets/images/ruckus.png" class="empty-state-img mb-3" alt="success state">
-	<div class="font-weight-bold text-muted mb-4">{{title}}</div>
-	<p class="text-muted">{{text}}</p>
-
+<div class="row justify-content-center">
+	<div class="col-10 col-md-5">
+	<div class="text-center px-3 my-8 info-popup">
+			<i class="fas fa-user-check text-muted mb-5" style="font-size: 5rem;"></i>
+			<h1 class="h5">{{title}}</h1>
+			<p class="text-muted mb-5">{{text}}</p>
+			<div><a href="/" class="btn btn-primary">Go to frontpage</a></div>
+		</div>
+	</div>
 </div>
 {% endblock %}

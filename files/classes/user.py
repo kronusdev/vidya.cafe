@@ -34,6 +34,8 @@ class User(Base, Stndrd, Age_times):
 	patron = Column(Integer, default=0)
 	animatedname = Column(Boolean, default=False)
 	email = Column(String)
+	kofi_email = Column(String)
+	kofi_verified = Column(Boolean, default=False)
 	css = deferred(Column(String))
 	profilecss = deferred(Column(String))
 	passhash = deferred(Column(String))

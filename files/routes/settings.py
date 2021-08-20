@@ -8,6 +8,7 @@ from files.mail import *
 from files.__main__ import app, cache
 import youtube_dl
 from .front import frontlist
+import time
 
 valid_username_regex = re.compile("^[a-zA-Z0-9_\-]{3,25}$")
 valid_title_regex = re.compile("^((?!<).){3,100}$")
@@ -322,6 +323,47 @@ def settings_security_post(v):
 
 		return redirect("/settings/security?msg=" +
 						escape("Two-factor authentication disabled."))
+
+@app.post("/settings/add_ko-fi_email")
+@auth_required
+@validate_formkey
+def add_kofi_email(v):
+	new_email = request.form.get("new_email","").strip()
+	#counteract gmail username+2 and extra period tricks - convert submitted email to actual inbox
+	if new_email.endswith("@gmail.com"):
+		gmail_username=new_email.split('@')[0]
+		gmail_username=gmail_username.split("+")[0]
+		gmail_username=gmail_username.replace('.','')
+		new_email=f"{gmail_username}@gmail.com"
+	if new_email == v.kofi_email:
+		return redirect("/settings/security?error=" +
+						escape("That email is already yours!"))
+
+	# check to see if email is in use
+	existing = g.db.query(User).filter(User.id != v.id,
+										func.lower(User.kofi_email) == new_email.lower()).first()
+	if existing:
+		return redirect("/settings/security?error=" +
+						escape("That email address is already in use."))
+
+	url = f"https://{app.config['SERVER_NAME']}/verify_ko-fi"
+
+	now = int(time.time())
+
+	token = generate_hash(f"{new_email}+{v.id}+{now}")
+	params = f"?email={quote(new_email)}&id={v.id}&time={now}&token={token}"
+
+	link = url + params
+
+	send_mail(to_address=new_email,
+				subject="Verify your email address.",
+				html=render_template("email/email_add_ko-fi.html",
+									action_url=link,
+									v=v)
+				)
+
+	return redirect("/settings/security?msg=" + escape(
+		f"Check your email and click the verification link to complete the email change. {link} {now} {token}"))
 
 @app.post("/settings/log_out_all_others")
 @auth_required

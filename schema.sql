@@ -124,6 +124,8 @@ CREATE TABLE public.users (
     id integer NOT NULL,
     username character varying(255) NOT NULL,
     email character varying(255),
+    kofi_email character varying(255),
+    kofi_verified boolean DEFAULT false,
     passhash character varying(255) NOT NULL,
     created_utc integer NOT NULL,
     admin_level integer,
