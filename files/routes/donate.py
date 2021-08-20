@@ -31,7 +31,7 @@ def kofi():
 		user_id = g.db.query(User).filter_by(kofi_email=data['email']).id,
 		description = f"Donated {amount}{currency} - Thanks a lot!"
 	)
-	g.db.add(donation)
+	g.db.add(granted_badge)
 	g.db.commit()
 
 	return "OK", 200
