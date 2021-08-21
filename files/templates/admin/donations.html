@@ -14,7 +14,7 @@
                 <th style="font-weight:bold;">Amount</th>
                 <th style="font-weight:bold;">email</th>
                 <th style="font-weight:bold;">Payment Company</th>
-                <th style="font-weight:bold;">Date</th>
+                <th style="font-weight:bold;">User with matching email</th>
             </tr>
         </thead>
         {% for donation in donations %}
@@ -22,7 +22,7 @@
 			<td style="font-weight:bold;">{{donation.amount}} {{donation.currency}}</td>
             <td style="font-weight:bold;">{{donation.purchase_email}}</td>
 			<td style="font-weight:bold;">{{donation.payment_company}}</td>
-			<td style="font-weight:bold; text-align:right;">{{donation.data['timestamp']}}</td>
+			<td style="font-weight:bold; text-align:right;">{{donation.data}}</td>
 		</tr>
         {% endfor %}
     </table>
