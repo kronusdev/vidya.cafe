@@ -365,6 +365,34 @@ def add_kofi_email(v):
 	return redirect("/settings/security?msg=" + escape(
 		f"Check your email and click the verification link to complete the email change."))
 
+
+@app.post("/settings/add_switch_friend_code")
+@auth_required
+def add_steam_friend_code(v):
+	
+	switch_code = request.form.get("switch_code", "").strip()
+	
+	if len(switch_code) != 12:
+		return redirect("/settings/security?error=" +
+						escape("Friend Code must be 12 digits in length"))
+	
+	if not switch_code.isdigit():
+				return redirect("/settings/security?error=" +
+						escape("Friend Code must be numbers only, no letters"))
+
+	formatted_code = f"SW-{switch_code[0:4]}-{switch_code[4:8]}-{switch_code[8:12]}"
+
+	user = g.db.query(User).filter(User.id==v.id).first()
+	if not user:
+		abort(404)
+
+	user.switch_code = formatted_code
+
+	g.db.add(user)
+	g.db.commit()
+
+	return render_template("settings_profile.html", v=v, msg="Switch Friend Code updated.")
+
 @app.post("/settings/log_out_all_others")
 @auth_required
 @validate_formkey

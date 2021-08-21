@@ -89,6 +89,14 @@ class User(Base, Stndrd, Age_times):
 	last_active = Column(Integer, default=0)
 	show_activity = Column(Boolean, default=True)
 
+	# connections
+	twitch_channel = Column(String(200))
+	youtube_channel = Column(String(200))
+	xbox_gamertag = Column(String(50))
+	discord_name = Column(String(64))
+	switch_code = Column(String(18))
+	playstation_name = Column(String(50))
+
 	is_nofollow = Column(Boolean, default=False)
 	custom_filter_list = Column(String(1000), default="")
 	discord_id = Column(String(64))

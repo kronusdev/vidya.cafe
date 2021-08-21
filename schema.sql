@@ -182,9 +182,14 @@ CREATE TABLE public.users (
     background character varying(512) DEFAULT 'pixelart/bg-1'::character varying,
     last_active integer DEFAULT 0,
     show_activity boolean DEFAULT true,
+    twitch_channel character varying(200),
+    youtube_channel character varying(200),
+    xbox_gamertag character varying(50),
+    discord_name character varying(64),
+    switch_code character varying(18),
+    playstation_name character varying(50),
     steam_id character varying(64)
 );
-
 
 ALTER TABLE public.users OWNER TO postgres;
 
