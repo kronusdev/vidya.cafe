@@ -20,7 +20,7 @@
         {% for donation in donations %}
         <tr>
 			<td style="font-weight:bold;">{{donation.amount}} {{donation.currency}}</td>
-            <td style="font-weight:bold;">{{donation.email}}</td>
+            <td style="font-weight:bold;">{{donation.purchase_email}}</td>
 			<td style="font-weight:bold;">{{donation.payment_company}}</td>
 			<td style="font-weight:bold; text-align:right;">{{donation.data['timestamp']}}</td>
 		</tr>
