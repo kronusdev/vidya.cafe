@@ -29,7 +29,7 @@ def kofi():
 	granted_badge = Badge(
 		badge_id = donor_badge.id,
 		user_id = g.db.query(User).filter_by(kofi_email=data['email']).id,
-		description = f"Donated {amount}{currency} - Thanks a lot!"
+		description = f"Donated {donation.amount}{donation.currency} - Thanks a lot!"
 	)
 	g.db.add(granted_badge)
 	g.db.commit()
