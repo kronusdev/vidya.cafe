@@ -10,3 +10,4 @@ class Donation(Base):
 	purchase_email = Column(String)
 	data = Column(String)
 	payment_company = Column(String)
+	from_name = Column(String)

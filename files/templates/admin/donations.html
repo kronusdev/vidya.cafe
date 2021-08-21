@@ -22,7 +22,7 @@
 			<td style="font-weight:bold;">{{donation.amount}} {{donation.currency}}</td>
             <td style="font-weight:bold;">{{donation.purchase_email}}</td>
 			<td style="font-weight:bold;">{{donation.payment_company}}</td>
-			<td style="font-weight:bold; text-align:right;">{{donation.data.json()['timestamp']}}</td>
+			<td style="font-weight:bold; text-align:right;">{{donation.from_name}}</td>
 		</tr>
         {% endfor %}
     </table>

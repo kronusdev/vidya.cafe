@@ -20,7 +20,8 @@ def kofi():
 		purchase_id = data['kofi_transaction_id'],
 		purchase_email = data['email'],
 		data = data_json,
-		payment_company = "kofi"
+		payment_company = "kofi",
+		from_name = data["from_name"]
 	)
 
 	g.db.add(donation)

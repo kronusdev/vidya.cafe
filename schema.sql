@@ -712,7 +712,8 @@ CREATE TABLE public.donations (
     purchase_id character varying(50),
     purchase_email character varying(255),
     data character varying,
-    payment_company character varying
+    payment_company character varying,
+    from_name character varying
 );
 
 
