@@ -42,6 +42,7 @@ $tag-colors: (
 	"video-tag": $video-tag,
 	"music-tag": $music-tag,
 	"picture-tag": $picture-tag,
+	"funnty-tag": $funny-tag,
 	"meta-tag": $meta-tag,
 	"discussion-tag": $discussion-tag,
 	"rant-tag": $rant-tag,
@@ -1804,6 +1805,16 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 .picture-tag::before {
 	content:"Picture \f302";
+	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	background-color: $picture-tag;
+	color: $actually-black;
+	padding: 2px;
+	margin: 0 0.4rem;
+	border-radius: $border-radius;
+}
+
+.funny-tag::before {
+	content:"Funny \f586";
 	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
 	background-color: $picture-tag;
 	color: $actually-black;

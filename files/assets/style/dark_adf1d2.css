@@ -20380,6 +20380,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   margin: 0 0.4rem;
   border-radius: 0.35rem; }
 
+.funny-tag::before {
+  content: "Funny \f586";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #CCE3DF;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.35rem; }
+
 .meta-tag::before {
   content: "Meta \f129";
   font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
