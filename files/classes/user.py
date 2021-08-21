@@ -93,7 +93,6 @@ class User(Base, Stndrd, Age_times):
 	twitch_channel = Column(String(200))
 	youtube_channel = Column(String(200))
 	xbox_gamertag = Column(String(50))
-	discord_name = Column(String(64))
 	switch_code = Column(String(18))
 	playstation_name = Column(String(50))
 

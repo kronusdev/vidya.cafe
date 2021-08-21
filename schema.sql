@@ -185,7 +185,6 @@ CREATE TABLE public.users (
     twitch_channel character varying(200),
     youtube_channel character varying(200),
     xbox_gamertag character varying(50),
-    discord_name character varying(64),
     switch_code character varying(18),
     playstation_name character varying(50),
     steam_id character varying(64)
