@@ -409,7 +409,7 @@ def add_xbox_gamertag(v):
 		return redirect("/settings/profile?error=" + 
 			escape("Gamertag cannot start or end with a space."))
 	
-	user = g.db.filter(User.id==v.id).first()
+	user = g.db.query(User).filter(User.id==v.id).first()
 	if not user:
 		abort(404)
 	
@@ -451,7 +451,7 @@ def add_psn_name(v):
 					return redirect("/settings/profile?error=" + 
 						escape("PSN Name can only contain characters, numbers, hyphens, and dashes"))
 
-	user = g.db.filter_by(id=v.id).first()
+	user = g.db.query(User).filter(User.id==v.id).first()
 	if not user:
 		abort(404)
 	
