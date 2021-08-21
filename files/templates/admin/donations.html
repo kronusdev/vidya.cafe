@@ -1,0 +1,31 @@
+{% extends "default.html" %}
+
+{% block pagetitle %}Admin - Donations {% endblock %}
+
+{% block content %}
+
+<div class="card-blank">
+    <div class="card-header">
+        <h5>Donations on vidya.cafe - ko-fi</h5>
+    </div>
+	<table class="table table-striped mb-5">
+        <thead class="bg-gray-200 text-white">
+            <tr>
+                <th style="font-weight:bold;">Amount</th>
+                <th style="font-weight:bold;">email</th>
+                <th style="font-weight:bold;">Payment Company</th>
+                <th style="font-weight:bold;">Date</th>
+            </tr>
+        </thead>
+        {% for donation in donations %}
+        <tr>
+			<td style="font-weight:bold;">{{donation.amount}} {{donation.currency}}</td>
+            <td style="font-weight:bold;">{{donation.email}}</td>
+			<td style="font-weight:bold;">{{donation.payment_company}}</td>
+			<td style="font-weight:bold; text-align:right;">{{donation.data['timestamp']}}</td>
+		</tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
