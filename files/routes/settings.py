@@ -366,6 +366,67 @@ def add_kofi_email(v):
 		f"Check your email and click the verification link to complete the email change."))
 
 
+@app.post("/settings/add_xbox_gamertag")
+@auth_required
+def add_xbox_gamertag(v):
+
+	gamertag = request.form.get("gamertag", "").strip()
+
+	# suffix is required (for adding other people on Xbox)
+	if len(gamertag.split("#")) == 1:
+		return redirect("/settings/profile?error=" + 
+			escape("Please add your Gamertag Suffix (Example: #1234)"))
+	
+	# suffix can only be numeric
+	if not gamertag.split("#")[1].isdigit():
+		return redirect("/settings/profile?error=" + 
+			escape("Gamertag Suffix must be all numbers"))
+
+	# suffix can't be more than 5 digits
+	if len(gamertag.split("#")[1]) > 5:
+		return redirect("/settings/profile?error=" + 
+			escape("Gamertag Suffix cannot be more than 5 digits"))
+
+	# gamertag can't be more than 15 digits
+	if len(gamertag.split("#")[0]) > 15:
+		return redirect("/settings/profile?error=" +
+			escape("Gamertag must be less than 15 characters."))
+	
+	# gamertag can only have 1 space
+	gtag_arr = gamertag.split(" ")
+	if len(gtag_arr) > 2:
+		return redirect("/settings/profile?error=" +
+			escape("Gamertag can only have a single space."))
+
+	# gamertag cannot start or end with a space, cannot start with a number
+	first_char = gamertag.split("#")[0][0]
+	last_char = gamertag.split("#")[0][-1] 
+	if first_char.isdigit():
+		return redirect("/settings/profile?error=" + 
+			escape("Gamertag cannot start with a number."))
+	if first_char == " " or last_char == " ":
+		return redirect("/settings/profile?error=" + 
+			escape("Gamertag cannot start or end with a space."))
+	
+	user = g.db.filter(User.id==v.id).first()
+	if not user:
+		abort(404)
+	
+	user.xbox_gamertag = gamertag
+
+	g.db.add(user)
+	g.db.commit()
+
+	return render_template("settings_profile.html", v=v, msg="Xbox Gamertag updated.")
+
+@app.post("/settings/add_psn_name")
+@auth_required
+def add_psn_name(v):
+
+	psn_name = request.form.get("psn_name", "").strip()
+
+
+
 @app.post("/settings/add_switch_friend_code")
 @auth_required
 def add_steam_friend_code(v):
@@ -373,11 +434,11 @@ def add_steam_friend_code(v):
 	switch_code = request.form.get("switch_code", "").strip()
 	
 	if len(switch_code) != 12:
-		return redirect("/settings/security?error=" +
+		return redirect("/settings/profile?error=" +
 						escape("Friend Code must be 12 digits in length"))
 	
 	if not switch_code.isdigit():
-				return redirect("/settings/security?error=" +
+				return redirect("/settings/profile?error=" +
 						escape("Friend Code must be numbers only, no letters"))
 
 	formatted_code = f"SW-{switch_code[0:4]}-{switch_code[4:8]}-{switch_code[8:12]}"
