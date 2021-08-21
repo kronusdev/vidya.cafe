@@ -35,7 +35,7 @@ document.body.addEventListener('keydown', function(event) {
 
 	}
 
-	function loadEmojis(form) {
+	function loadEmojis(form, isUpdate) {
 
 		const emojis = [
 		{
@@ -58,6 +58,8 @@ document.body.addEventListener('keydown', function(event) {
 			'tfwyougettrolled','trollolol','truestorybro','xallthey']
 		}
 		]
+		let search_bar = document.getElementById("emoji_search");
+		let search_container = document.getElementById(`emoji-tab-search`)
 
 		for (i=0; i < emojis.length; i++) {
 
@@ -66,12 +68,29 @@ document.body.addEventListener('keydown', function(event) {
 			let arr = emojis[i].emojis
 
 			for (j=0; j < arr.length; j++) {
-				console.log(arr[j]) 
 				str += `<button class="btn m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:40px; overflow: hidden; border: none;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 			}
 
 			container.innerHTML = str
 		}
+		if(isUpdate){
+			let str = ''
+			for (i=0; i < emojis.length; i++) {				
+				let arr = emojis[i].emojis
+
+				for (j=0; j < arr.length; j++) {
+					if(arr[j].match(search_bar.value)){
+					str += `<button class="btn m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:40px; overflow: hidden; border: none;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+					}
+				}
+			}
+			if(search_bar.value != ""){
+			search_container.innerHTML = str
+			}else{
+				search_container.innerHTML = "";
+			}
+		}
+		search_bar.onchange = function(){loadEmojis(form, true);};
 	}
 
 

@@ -16,12 +16,14 @@
 						</li>
 					</ul>
 				</div>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<input class="form-control w-auto" type="text" id="emoji_search">
+				<button type="button" class="close p-0 m-0" data-dismiss="modal" aria-label="Close">
 					<i class="fal fa-times text-muted"></i>
 				</button>
 			</div>
 			<div style="overflow-y: scroll;">
 				<div class="modal-body p-0" id="emoji-modal-body">
+					<div id="emoji-tab-search"></div>
 					<div id="no-emojis-found"></div>
 					<div class="tab-content">
 						<div class="tab-pane fade show active" id="emoji-tab-classic">
@@ -39,3 +41,10 @@
 		</div>
 	</div>
 </div>
+<script>
+	function updateEmojis(form){
+		// form gets passed in from the loadEmojis function
+		searchBar = document.getElementById("emoji_search");
+		loadEmojis(form, searchBar.value);
+	}
+</script>
