@@ -24,7 +24,7 @@ STEAM_KEY = environ.get("STEAM_KEY",'').strip()
 @validate_formkey
 def settings_profile_post(v):
 	updated = False
-	
+
 	if request.values.get("background", v.background) != v.background:
 		updated = True
 		v.background= request.values.get("background", None)
@@ -451,7 +451,7 @@ def add_psn_name(v):
 					return redirect("/settings/profile?error=" + 
 						escape("PSN Name can only contain characters, numbers, hyphens, and dashes"))
 
-	user = g.db.filter(User.id==v.id).first()
+	user = g.db.filter_by(id=v.id).first()
 	if not user:
 		abort(404)
 	
