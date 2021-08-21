@@ -24,7 +24,7 @@ STEAM_KEY = environ.get("STEAM_KEY",'').strip()
 @validate_formkey
 def settings_profile_post(v):
 	updated = False
-
+	
 	if request.values.get("background", v.background) != v.background:
 		updated = True
 		v.background= request.values.get("background", None)
