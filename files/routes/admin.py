@@ -227,7 +227,11 @@ def add_badge_to_site(v):
 	g.db.add(new_badge)
 	return redirect("/admin/badge_grant")
 
-
+@app.get("/admin/donations")
+@admin_level_required(4)
+def list_donations(v):
+	donations = g.db.query(Donation).order_by(Donation.id)
+	return render_template("admin/donations.html")
 @app.get("/admin/users")
 @admin_level_required(2)
 def users_list(v):
