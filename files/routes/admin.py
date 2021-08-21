@@ -231,7 +231,7 @@ def add_badge_to_site(v):
 @admin_level_required(4)
 def list_donations(v):
 	donations = g.db.query(Donation).order_by(Donation.id)
-	return render_template("admin/donations.html")
+	return render_template("admin/donations.html", donations=donations)
 @app.get("/admin/users")
 @admin_level_required(2)
 def users_list(v):
