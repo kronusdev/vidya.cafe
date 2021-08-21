@@ -1,0 +1,11 @@
+{% if u.switch_code %}
+<div class="card-blank p-3 m-0" id="nintendo-card">
+    <b><p id="nintendo-code" class="bg-gray-200 p-1 m-auto rounded text-center">{{u.switch_code}}</p></b>
+</div>
+{% endif %}
+
+<style>
+    #nintendo-card {
+        background: linear-gradient(135deg, #f27781, #66171d);
+    }
+</style>

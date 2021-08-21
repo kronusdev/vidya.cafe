@@ -7,9 +7,6 @@
     </div>
 
     {% if steam or v.steam_id or v.switch_code %}
-    <div class="card-header">
-        <h5>Connections</h5>
-    </div>
     {% endif %}
 
     {% if steam %}
@@ -27,7 +24,9 @@
         <div class="card-header">
             <h5>Switch Friend Code</h5>
         </div>
-        <p class ="mx-auto">{{u.switch_code}}</p>
+        <div class="m-1">
+        {% include "widgets/nintendo_info.html" %}
+        </div>
     {% endif %}
  
     
