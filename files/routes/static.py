@@ -114,11 +114,14 @@ def settings(v):
 @app.get("/settings/profile")
 @auth_required
 def settings_profile(v):
+
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("settings_profile.html",
-						   v=v)
-
+						  v=v,
+						  error=request.args.get("error") or None,
+						  msg=request.args.get("msg") or None
+						  )
 
 @app.get("/titles")
 @auth_desired
