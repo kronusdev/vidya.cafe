@@ -16,7 +16,7 @@ def join_discord(v):
 	now = int(time.time())
 	state=generate_hash(f"{now}+{v.id}+discord")
 	state=f"{now}.{state}"
-	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord&response_type=code&scope=identify%20guilds.join&state={state}")
+	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord_redirect&response_type=code&scope=identify%20guilds.join&state={state}")
 
 @app.get("/discord_redirect")
 @auth_required
