@@ -59,5 +59,6 @@ nano /vidya.cafe/docker-compose.yml
 
 
 **Enjoying vidya.cafe? Consider supporting us on ko-fi ❤️☕️**
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N65V0XC)
  
