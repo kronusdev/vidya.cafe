@@ -5,19 +5,13 @@
     <div class="m-1">
         {% include "widgets/badges.html" %}
     </div>
-
-    {% if steam or v.steam_id or v.switch_code %}
-    {% endif %}
-
-    {% if steam %}
-        {% if v.steam_id %}
-            <div class="card-header">
-                <h5>Steam Account</h5>
-            </div>
-            <div class="m-1">
-                {% include "widgets/steam_info.html" %}
-            </div>
-        {% endif %}
+    {% if u.steam_id and steam %}
+        <div class="card-header">
+            <h5>Steam Account</h5>
+        </div>
+        <div class="m-1">
+            {% include "widgets/steam_info.html" %}
+        </div>
     {% endif %}
 
     {% if u.xbox_gamertag %}
@@ -46,8 +40,8 @@
         {% include "widgets/nintendo_info.html" %}
         </div>
     {% endif %}
- 
-    
+
+       
 </div> 
 
 <style>
