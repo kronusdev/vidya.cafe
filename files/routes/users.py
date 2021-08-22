@@ -433,8 +433,13 @@ def u_username_comments(username, v=None):
 
 	is_following = (v and user.has_follower(v))
 
+	try:
+		steam_info = get_steam_info(u)
+	except:
+		steam_info = ""
+
 	if request.headers.get("Authorization"): return {"data": [c.json for c in listing]}
-	else: return render_template("userpage_comments.html", u=user, v=v, listing=listing, page=page, sort=sort, t=t,next_exists=next_exists, is_following=is_following, standalone=True, time=time.time())
+	else: return render_template("userpage_comments.html", steam=steam_info,u=user, v=v, listing=listing, page=page, sort=sort, t=t,next_exists=next_exists, is_following=is_following, standalone=True, time=time.time())
 
 @app.get("/@<username>/info")
 @auth_desired
@@ -516,6 +521,10 @@ def saved_posts(v, username):
 	ids=ids[:25]
 
 	listing = get_posts(ids, v=v)
+	try:
+		steam_info = get_steam_info(u)
+	except:
+		steam_info = ""
 
 	if request.headers.get("Authorization"): return {"data": [x.json for x in listing]}
 	else: return render_template("userpage.html",
@@ -525,6 +534,7 @@ def saved_posts(v, username):
 											page=page,
 											next_exists=next_exists,
 											time=time.time(),
+											steam=steam_info,
 											)
 
 
@@ -542,7 +552,10 @@ def saved_comments(v, username):
 
 	listing = get_comments(ids, v=v)
 
-
+	try:
+		steam_info = get_steam_info(u)
+	except:
+		steam_info = ""
 	if request.headers.get("Authorization"): return {"data": [x.json for x in listing]}
 	else: return render_template("userpage_comments.html",
 											u=v,
@@ -551,4 +564,5 @@ def saved_comments(v, username):
 											page=page,
 											next_exists=next_exists,
 											standalone=True,
-											time=time.time())
+											time=time.time(),
+											steam=steam_info)
