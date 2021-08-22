@@ -5,46 +5,42 @@
     <div class="m-1">
         {% include "widgets/badges.html" %}
     </div>
-
-    {% if u.steam_id or u.xbox_gamertag or u.playstation_name or u.switch_code %}
-        {% if steam %}
-            {% if u.steam_id %}
-                <div class="card-header">
-                    <h5>Steam Account</h5>
-                </div>
-                <div class="m-1">
-                    {% include "widgets/steam_info.html" %}
-                </div>
-            {% endif %}
-        {% endif %}
-
-        {% if u.xbox_gamertag %}
-            <div class="card-header">
-                <h5>Xbox Gamertag</h5>
-            </div>
-            <div class="m-1">
-            {% include "widgets/xbox_info.html" %}
-            </div>
-        {% endif %}
-        
-        {% if u.playstation_name %}
-            <div class="card-header">
-                <h5>Playstation Network Name</h5>
-            </div>
-            <div class="m-1">
-            {% include "widgets/playstation_info.html" %}
-            </div>
-        {% endif %}
-
-        {% if u.switch_code %}
-            <div class="card-header">
-                <h5>Switch Friend Code</h5>
-            </div>
-            <div class="m-1">
-            {% include "widgets/nintendo_info.html" %}
-            </div>
-        {% endif %}
+    {% if u.steam_id and steam %}
+        <div class="card-header">
+            <h5>Steam Account</h5>
+        </div>
+        <div class="m-1">
+            {% include "widgets/steam_info.html" %}
+        </div>
     {% endif %}
+
+    {% if u.xbox_gamertag %}
+        <div class="card-header">
+            <h5>Xbox Gamertag</h5>
+        </div>
+        <div class="m-1">
+        {% include "widgets/xbox_info.html" %}
+        </div>
+    {% endif %}
+    
+    {% if u.playstation_name %}
+        <div class="card-header">
+            <h5>Playstation Network Name</h5>
+        </div>
+        <div class="m-1">
+        {% include "widgets/playstation_info.html" %}
+        </div>
+    {% endif %}
+
+    {% if u.switch_code %}
+        <div class="card-header">
+            <h5>Switch Friend Code</h5>
+        </div>
+        <div class="m-1">
+        {% include "widgets/nintendo_info.html" %}
+        </div>
+    {% endif %}
+
        
 </div> 
 
