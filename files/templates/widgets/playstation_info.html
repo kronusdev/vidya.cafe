@@ -1,0 +1,11 @@
+{% if u.playstation_name %}
+<div class="card-blank p-3 m-0" id="psn-card">
+    <b><p id="psn-name" class="bg-gray-200 p-1 m-auto rounded text-center">{{u.playstation_name}}</p></b>
+</div>
+{% endif %}
+
+<style>
+    #psn-card {
+        background: linear-gradient(135deg, #003791, #ffffff);
+    }
+</style>

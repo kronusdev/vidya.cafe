@@ -376,7 +376,7 @@ def add_xbox_gamertag(v):
 	# suffix is required (for adding other people on Xbox)
 	if len(gamertag.split("#")) == 1:
 		return redirect("/settings/profile?error=" + 
-			escape("Please add your Gamertag Suffix (Example: #1234)"))
+			escape("Please add your Gamertag Suffix"))
 	
 	# suffix can only be numeric
 	if not gamertag.split("#")[1].isdigit():
