@@ -13,6 +13,9 @@
             {% include "widgets/steam_info.html" %}
         </div>
     {% endif %}
+    {% if u.discord_id %}
+        {% include "widgets/discord_info.html" %}
+    {% endif %}
 
     {% if u.xbox_gamertag %}
         <div class="card-header">

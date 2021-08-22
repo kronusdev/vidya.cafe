@@ -13,6 +13,7 @@ from files.mail import *
 from flask import *
 from files.__main__ import app, limiter
 from files.helpers.steam import get_steam_info, get_steam_games
+from files.helpers.discord import get_discord_info
 # from pusher_push_notifications import PushNotifications, PusherAuthError
 
 site = environ.get("DOMAIN").strip()
@@ -322,6 +323,8 @@ def u_username(username, v=None):
 	except:
 		steam_info = ""
 	
+	discord_info = get_discord_info()
+	
 	if u.unban_utc:
 		if request.headers.get("Authorization"): {"data": [x.json for x in listing]}
 		else: return render_template("userpage.html",
@@ -335,6 +338,7 @@ def u_username(username, v=None):
 												time=time.time(),
 												next_exists=next_exists,
 												steam=steam_info,
+												discord=discord_info,
 												is_following=(v and u.has_follower(v)))
 
 
@@ -350,6 +354,7 @@ def u_username(username, v=None):
 									time=time.time(),
 									next_exists=next_exists,
 									steam=steam_info,
+									discord=discord_info,
 									is_following=(v and u.has_follower(v)))
 
 
