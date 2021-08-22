@@ -73,7 +73,9 @@ def discord_redirect(v):
 	x=requests.get(url, headers=headers)
 
 	x=x.json()
-
+	v.discord_id=x["id"]
+	g.db.add(v)
+	g.db.commit()
 
 
 	#add user to discord
@@ -90,9 +92,7 @@ def discord_redirect(v):
 	if g.db.query(User).filter(User.id!=v.id, User.discord_id==x["id"]).first():
 		return render_template("message.html", title="Discord account already linked.", error="That Discord account is already in use by another user.", v=v)
 
-	v.discord_id=x["id"]
-	g.db.add(v)
-	g.db.commit()
+
 
 	url=f"https://discord.com/api/guilds/{SERVER_ID}/members/{x['id']}"
 
