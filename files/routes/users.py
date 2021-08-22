@@ -522,7 +522,7 @@ def saved_posts(v, username):
 
 	listing = get_posts(ids, v=v)
 	try:
-		steam_info = get_steam_info(u)
+		steam_info = get_steam_info(v)
 	except:
 		steam_info = ""
 
@@ -553,7 +553,7 @@ def saved_comments(v, username):
 	listing = get_comments(ids, v=v)
 
 	try:
-		steam_info = get_steam_info(u)
+		steam_info = get_steam_info(v)
 	except:
 		steam_info = ""
 	if request.headers.get("Authorization"): return {"data": [x.json for x in listing]}
