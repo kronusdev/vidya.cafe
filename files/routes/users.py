@@ -323,7 +323,10 @@ def u_username(username, v=None):
 	except:
 		steam_info = ""
 	
+	try:
 	discord_info = get_discord_info()
+		except:
+	discord_info = ""
 	
 	if u.unban_utc:
 		if request.headers.get("Authorization"): {"data": [x.json for x in listing]}
