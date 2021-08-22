@@ -21,9 +21,9 @@ services:
       - MAILGUN_DOMAIN=asdf
       - FORCE_HTTPS=0
       - DISCORD_SERVER_ID=vcxvdfgfc6r554etrgd
-      - DISCORD_CLIENT_ID=879034137279856761
-      - DISCORD_CLIENT_SECRET=VXRavo3giiktja_PluU-nX1ONTMhklAk
-      - DISCORD_BOT_TOKEN=ODc5MDM0MTM3Mjc5ODU2NzYx.YSJ2VQ.q2ZmLojxg27g4ai006XwUz-Uebw
+      - DISCORD_CLIENT_ID=vcxvdfgfc6r554etrgd
+      - DISCORD_CLIENT_SECRET=vcxvdfgfc6r554etrgd
+      - DISCORD_BOT_TOKEN=vcxvdfgfc6r554etrgd
       - FACEBOOK_TOKEN=vcxvdfgfc6r554etrgd
       - STEAM_KEY=B9470579F3988522EA673CE54FA084BC
      #- HCAPTCHA_SITEKEY=vcxvdfgfc6r554etrgd
