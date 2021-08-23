@@ -42,7 +42,7 @@ $tag-colors: (
 	"video-tag": $video-tag,
 	"music-tag": $music-tag,
 	"picture-tag": $picture-tag,
-	"funnty-tag": $funny-tag,
+	"meme-tag": $meme-tag,
 	"meta-tag": $meta-tag,
 	"discussion-tag": $discussion-tag,
 	"rant-tag": $rant-tag,
@@ -1813,10 +1813,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	border-radius: $border-radius;
 }
 
-.funny-tag::before {
-	content:"Funny \f586";
+.meme-tag::before {
+	content:"Meme \f586";
 	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
-	background-color: $funny-tag;
+	background-color: $meme-tag;
 	color: $actually-black;
 	padding: 2px;
 	margin: 0 0.4rem;
