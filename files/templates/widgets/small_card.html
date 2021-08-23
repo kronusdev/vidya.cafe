@@ -1,0 +1,35 @@
+<a href="{{p.permalink}}">
+<div class="card-blank m-2" ">
+    <div class="p-1">
+        <h5 class="{{p.tag}}-tag text-left"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" {% if p.author.is_private %} rel="nofollow"{% endif %}>
+            {{p.realtitle(v) | safe}}</a>
+        </h5>
+        <p class="text-small" style="display:inline">{{p.age_string}}</p>
+        <p class="text-small" style="display:inline"></p>({% if p.realurl(v) %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})</p>
+            <!-- Voting, Comments, ect.-->
+            {% if v and request.path.startswith('/@') and v.admin_level == 0 %}
+
+			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+
+			{% if voted==1 %}
+			<div class="mr-2 arrow-up post-{{p.id}}-up active inline-block" style="width: max-content"></div>
+			{% endif %}
+
+			{% elif v %}
+			<div id="post-{{p.id}}-up" tabindex="0" data-id-up="{{p.id}}" data-content-type="post" class="mr-2 arrow-up upvote-button post-{{p.id}}-up {% if voted==1 %}active{% endif %}" style="width: max-content; display:inline-block"></div>
+
+			<span id="post-score-{{p.id}}" class="score post-score-{{p.id}} {% if voted==1 %}score-up{% endif %}"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+
+			{% else %}
+			<div id="post-{{p.id}}-up" tabindex="0" class="mr-2 arrow-up upvote-button" style="width: max-content; display:inline-block" onclick="location.href='/login';"></div>
+
+			<span id="post-{{p.id}}-score-none" class="score"{% if not p.is_banned %} data-toggle="tooltip" data-placement="right" data-original-title="{{ups}} Sips"{% endif %}>{{score}}</span>
+
+			{% endif %}
+            
+            <li class="mx-2 list-inline-item"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}"><i class="mx-2 fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
+            <li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{p.permalink | full_link}}"><i class="mx-2 fas fa-copy"></i>Copy link</a></li>
+
+    </div>
+</div> 
+</a>

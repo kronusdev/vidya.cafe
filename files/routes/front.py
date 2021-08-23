@@ -207,9 +207,40 @@ def front_all(v):
 
 	# check if ids exist
 	posts = get_posts(ids, v=v)
+	
+	changelog_page = int(request.args.get("page") or 1)
+	changelog_page = max(page, 1)
+
+	changelog_sort=("new")
+	changelog_t=("all")
+
+	ids = changeloglist(sort=sort,
+					page=changelog_page,
+					t=changelog_t,
+					v=v,
+					gt=int(request.args.get("utc_greater_than", 0)),
+					lt=int(request.args.get("utc_less_than", 0)),
+					)
+
+	# check existence of next page
+	changelog_next_exists = (len(ids) == 6)
+	changelog_ids = ids[:5]
+
+	# check if ids exist
+	changelog_posts = get_posts(changelog_ids, v=v)
 
 	if request.headers.get("Authorization"): return {"data": [x.json for x in posts], "next_exists": next_exists}
-	else: return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort=sort, t=t, page=page, time=time.time())
+	else: return render_template("home.html", 
+								v=v, 
+								listing=posts, 
+								sidebar_listing=changelog_posts, 
+								changelog_next_exists=changelog_next_exists, 
+								next_exists=next_exists, 
+								sort=sort, 
+								t=t, 
+								page=page, 
+								changelog_page=changelog_page,
+								time=time.time())
 
 @cache.memoize(timeout=1500)
 def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
