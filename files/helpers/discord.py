@@ -20,6 +20,11 @@ def discord_wrap(f):
 
 	def wrapper(*args, **kwargs):
 
+		user=args[0]
+		if not user.discord_id:
+			return
+
+
 		thread=threading.Thread(target=f, args=args, kwargs=kwargs)
 		thread.start()
 
@@ -54,26 +59,6 @@ def set_nick(user, nick):
 	headers = {"Authorization": f"Bot {BOT_TOKEN}"}
 	data={"nick": nick}
 	requests.patch(url, headers=headers, json=data)
-
-
-
-# discord_wrap breaks this lol
-def get_discord_info():
-	url=f"https://discordapp.com/api/users/291956736787742721"
-	
-	headers = {'Authorization': f"Bot ODMyMjIzMzg3NzMyMTQ4MjQ0.YHgqbQ.Y0IpiyJ7CjdVm_ehQ5WuPoAWMnQ"}
-	discord_user = requests.get(url, headers=headers).json()
-	avatar_hash = discord_user['avatar']
-	avatar_url=f"https://cdn.discordapp.com/avatars/291956736787742721/{avatar_hash}.png"
-	try: 
-		banner_hash = discord_user['banner']
-		banner_url=f"https://cdn.discordapp.com/banners/291956736787742721/{banner_hash}.png"
-	except:
-		banner_url = ""
-	username = discord_user['username']
-	digits = discord_user['discriminator']
-
-	return {'username': username, 'digits': digits, 'avatar_url': avatar_url, 'banner_url': banner_url}
 
 def send_message(message):
 	url=f"https://discordapp.com/api/channels/850266802449678366/messages"
