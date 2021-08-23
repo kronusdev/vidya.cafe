@@ -152,7 +152,7 @@ html {
 body {
 	color: $black;
 	padding-top: 4.8rem;
-    background: linear-gradient(135deg, $primary, $secondary) no-repeat center center fixed;
+    background: $gray-900;
     background-size: cover !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -191,7 +191,6 @@ body.using-mouse :focus {
 
 #settings, #submit {
 	padding-top: 98px;
-	background-color: $gray-600;
 }
 
 #page {

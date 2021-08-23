@@ -159,10 +159,8 @@
 									{% endfor %}
 								</select>
 							</div>
-							<div class="d-flex mt-2">
-								<!--<input class="btn btn-primary ml-auto" value="Load Backgrounds" onclick="updatebgselection();">-->
-								<a class="btn btn-primary ml-auto" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
-							</div>
+							<a class="btn btn-primary ml-3 mt-3 float-right" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
+							<a class="btn btn-primary mx-0 mt-3 float-right" id="nobg" href="javascript:void(0)" onclick="post('/settings/profile?background=(())', function(){window.location.reload(true);})">Remove Background</a>
 							<div id="bgcontainer"></div>
 							
 						</div>

@@ -19088,7 +19088,7 @@ html {
 body {
   color: #000000;
   padding-top: 4.8rem;
-  background: linear-gradient(135deg, #000000, #000000) no-repeat center center fixed;
+  background: #c0c0c0;
   background-size: cover !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -19123,8 +19123,7 @@ body.using-mouse :focus {
   outline: none; }
 
 #settings, #submit {
-  padding-top: 98px;
-  background-color: #ffffff; }
+  padding-top: 98px; }
 
 #page {
   padding-top: 49px;

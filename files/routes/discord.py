@@ -16,7 +16,7 @@ def join_discord(v):
 	now = int(time.time())
 	state=generate_hash(f"{now}+{v.id}+discord")
 	state=f"{now}.{state}"
-	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord&response_type=code&scope=identify%20guilds.join&state={state}")
+	return redirect(f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https%3A%2F%2Fvidya.cafe%2Fdiscord_redirect&response_type=code&scope=identify%20guilds.join&state={state}")
 
 @app.get("/discord_redirect")
 @auth_required
@@ -73,7 +73,9 @@ def discord_redirect(v):
 	x=requests.get(url, headers=headers)
 
 	x=x.json()
-
+	v.discord_id=x["id"]
+	g.db.add(v)
+	g.db.commit()
 
 
 	#add user to discord
@@ -90,9 +92,7 @@ def discord_redirect(v):
 	if g.db.query(User).filter(User.id!=v.id, User.discord_id==x["id"]).first():
 		return render_template("message.html", title="Discord account already linked.", error="That Discord account is already in use by another user.", v=v)
 
-	v.discord_id=x["id"]
-	g.db.add(v)
-	g.db.commit()
+
 
 	url=f"https://discord.com/api/guilds/{SERVER_ID}/members/{x['id']}"
 
