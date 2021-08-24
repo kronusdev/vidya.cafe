@@ -1,3 +1,34 @@
+
+
+
+<script>
+
+function toggleDropdownVisibility(){
+	var dropdown = document.getElementById("tagSortDropdown");
+	if (dropdown.style.display === "none") {
+		dropdown.style.display = "block";
+	} else {
+		dropdown.style.display = "none";
+	}
+}
+
+
+</script>
+<div class="card-header">
+	<div class="dropdown dropdown-actions d-inline-block">
+		<button onclick="toggleDropdownVisibility()" class="bg-transparent btn btn-secondary dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow:none";>
+			<div class="{{sidebar_tag}}-tag d-inline-block"></div>
+		</button>
+		<div id="tagSortDropdown" class="dropdown-menu-noboot" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; top: 32px; left: 0px; display:none;">
+			{% for tag in ["news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
+			<a class="{{tag}}-tag dropdown-item" href="?sidebar_tag={{tag}}"></a>
+			{% endfor %}
+			<a class="changelog-tag dropdown-item" href="?sidebar_tag=changelog">Changelog</a>
+		</div>
+	</div>
+	<h5 class="float-right d-inline-block">Custom Feed</h5>
+</div>
+<!-- Cards -->
 {% for p in sidebar_listing %}
 
 <script>

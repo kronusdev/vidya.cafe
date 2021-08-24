@@ -19658,6 +19658,12 @@ label.terms {
   background-color: rgba(21, 26, 31, 0.7);
   border-radius: 0.25rem; }
 
+.dropdown-menu-noboot {
+  padding: 0.5rem;
+  color: #E1E1E1;
+  background-color: rgba(21, 26, 31, 0.7);
+  border-radius: 0.25rem; }
+
 .user-profile > .dropdown-toggle::after {
   display: none; }
 

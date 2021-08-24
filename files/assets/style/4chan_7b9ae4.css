@@ -19658,6 +19658,12 @@ label.terms {
   background-color: #FFFFEE;
   border-radius: 0; }
 
+.dropdown-menu-noboot {
+  padding: 0.5rem;
+  color: #ffffff;
+  background-color: #FFFFEE;
+  border-radius: 0; }
+
 .user-profile > .dropdown-toggle::after {
   display: none; }
 

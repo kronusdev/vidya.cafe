@@ -2,7 +2,7 @@ from files.helpers.wrappers import *
 from files.helpers.get import *
 import time
 from files.__main__ import app, cache
-from files.classes.submission import Submission
+from files.classes import *
 
 @app.get("/post/")
 def slash_post():
@@ -213,13 +213,15 @@ def front_all(v):
 
 	changelog_sort=("new")
 	changelog_t=("all")
+	sort=request.args.get("sort", defaultsorting)
 
-	ids = changeloglist(sort=sort,
+	ids = feedlist(sort=sort,
 					page=changelog_page,
 					t=changelog_t,
+					tag=request.args.get("sidebar_tag", "changelog"),
 					v=v,
 					gt=int(request.args.get("utc_greater_than", 0)),
-					lt=int(request.args.get("utc_less_than", 0)),
+					lt=int(request.args.get("utc_less_than", 0))
 					)
 
 	# check existence of next page
@@ -228,7 +230,15 @@ def front_all(v):
 
 	# check if ids exist
 	changelog_posts = get_posts(changelog_ids, v=v)
-
+	last_comments_output = get_recent_posts(v)
+	#last_comments_output = []
+	#for c in last_comments:
+#		comment = c[0]
+#		if comment.author and comment.author.shadowbanned and not (v and v.id == comment.author_id): continue
+#		comment._voted = c[1] or 0
+#		comment._is_blocking = c[2] or 0
+#		comment._is_blocked = c[3] or 0
+#		last_comments_output.append(comment)
 	if request.headers.get("Authorization"): return {"data": [x.json for x in posts], "next_exists": next_exists}
 	else: return render_template("home.html", 
 								v=v, 
@@ -240,10 +250,12 @@ def front_all(v):
 								t=t, 
 								page=page, 
 								changelog_page=changelog_page,
+								sidebar_tag=request.args.get("sidebar_tag", "changelog"),
+								last_comments=last_comments_output,
 								time=time.time())
 
 @cache.memoize(timeout=1500)
-def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
+def feedlist(v=None, sort="new", page=1 ,t="all",  tag="changelog", **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
 
@@ -260,7 +272,10 @@ def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 		)
 
 	posts=posts.join(Submission.submission_aux).join(Submission.author)
-	posts=posts.filter(SubmissionAux.title.ilike(f'%[changelog]%', User.admin_level == 6))
+	if (tag == "changelog"):
+		posts=posts.filter(SubmissionAux.title.ilike(f'%[changelog]%'), User.admin_level == 6)
+	else:
+		posts=posts.filter(SubmissionAux.tag == tag)
 
 	if t != 'all':
 		cutoff = 0
@@ -326,12 +341,13 @@ def changelog(v):
 	sort=request.args.get("sort", "new")
 	t=request.args.get('t', "all")
 
-	ids = changeloglist(sort=sort,
+	ids = feedlist(sort=sort,
 					page=page,
 					t=t,
 					v=v,
+					tag="changelog",
 					gt=int(request.args.get("utc_greater_than", 0)),
-					lt=int(request.args.get("utc_less_than", 0)),
+					lt=int(request.args.get("utc_less_than", 0))
 					)
 
 	# check existence of next page

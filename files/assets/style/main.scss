@@ -890,6 +890,14 @@ label.terms {
 	border-radius: $border-radius;
 }
 
+.dropdown-menu-noboot {
+	padding: 0.5rem;
+	color: $white;
+	background-color: $gray-600;
+	border-radius: $border-radius;
+}
+
+
 .user-profile > .dropdown-toggle::after {
 	display:none;
 }
