@@ -209,7 +209,7 @@ def front_all(v):
 	posts = get_posts(ids, v=v)
 	
 	custom_feed_page = int(request.args.get("custom_feed_page") or 1)
-	custom_feed_page = max(page, 1)
+	custom_feed_page = max(custom_feed_page, 1)
 
 	try:
 		custom_feed_sort=json.loads(v.sidebar_settings)['custom_feed_sort']
