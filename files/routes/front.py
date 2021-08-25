@@ -229,7 +229,7 @@ def front_all(v):
 	# sidebar
 	custom_feed_posts = ""
 	custom_feed_next_exists = ""
-	custom_feed_tag = ""
+	custom_feed_tag = "all"
 	last_comments_output = "" # useless for now (25.08.2021)
 	if v:
 		try:
