@@ -20331,6 +20331,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   text-decoration: none;
   color: #c9d1d9; }
 
+.all-tag::before {
+  content: "All Posts \f039";
+  font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #fff;
+  color: #000000;
+  padding: 2px;
+  margin: 0 0.4rem;
+  border-radius: 0.25rem; }
+
 .news-tag::before {
   content: "News \f1ea";
   font-family: "Font Awesome 5 Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

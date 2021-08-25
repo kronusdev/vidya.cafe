@@ -52,7 +52,7 @@ $tag-colors: (
 	"breaking-news-tag": $breaking-news-tag,
 	"none-tag": $none-tag,
 );
-
+$all-tag: #fff;
 // Borders
 
 $input-border-color: $gray-400;
@@ -1762,6 +1762,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	color: $black;
 }
 
+.all-tag::before {
+	content:"All Posts \f039";
+	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	background-color: $all-tag;
+	color: $actually-black;
+	padding: 2px;
+	margin: 0 0.4rem;
+	border-radius: $border-radius;
+}
 
 .news-tag::before {
 	content:"News \f1ea";

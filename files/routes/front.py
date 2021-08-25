@@ -283,6 +283,8 @@ def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="change
 	posts=posts.join(Submission.submission_aux).join(Submission.author)
 	if (tag == "changelog"):
 		posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
+	elif (tag == "all"):
+		posts=posts
 	else:
 		posts=posts.filter(SubmissionAux.tag == tag)
 

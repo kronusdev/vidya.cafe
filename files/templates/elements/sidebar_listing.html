@@ -24,7 +24,7 @@ function toggleDropdownVisibility(dropdownName){
 			<div class="{{custom_feed_tag}}-tag d-inline-block"></div>
 		</button>
 		<div id="tagSortDropdown" class="dropdown-menu-noboot" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; top: 32px; left: 0px; display:none;">
-			{% for tag in ["changelog", "news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
+			{% for tag in ["all", "changelog", "news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
 			<a class="{{tag}}-tag dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_tag={{tag}}',  function(){window.location.reload(true);})"></a>
 			{% endfor %}
 		</div>
