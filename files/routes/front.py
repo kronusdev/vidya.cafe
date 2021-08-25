@@ -71,7 +71,7 @@ def notifications(v):
 						   time=time.time())
 
 @cache.memoize(timeout=1500)
-def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
+def frontlist(v=None, sort="active", page=1,t="all", ids_only=True, filter_words='', **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
 	if v and v.admin_level == 0:
@@ -186,7 +186,7 @@ def front_all(v):
 		defaultsorting = v.defaultsorting
 		defaulttime = v.defaulttime
 	else:
-		defaultsorting = "hot"
+		defaultsorting = "active"
 		defaulttime = "all"
 
 	sort=request.args.get("sort", defaultsorting)
