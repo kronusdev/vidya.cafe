@@ -1,8 +1,9 @@
+{% if v %}
 <div class="card-blank sidebar d-none d-xl-block bg-gray-700" style="margin-top: 4.8rem; overflow: visible">
     <div>
-        {% if v %}
+        
         {% include "elements/sidebar_listing.html" %}
-        {% endif %}
+        
     </div>
 </div> 
 
@@ -14,6 +15,7 @@
         grid-row: 1;
     }
 </style>
+{% endif %}
 <!-- TODO -->
 <!-- changelog - DONE -->
 <!-- other feeds - IN PROGRESS -->
