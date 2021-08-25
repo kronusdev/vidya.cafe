@@ -208,7 +208,7 @@ def front_all(v):
 	# check if ids exist
 	posts = get_posts(ids, v=v)
 	
-	changelog_page = int(request.args.get("page") or 1)
+	changelog_page = int(request.args.get("changelog_page") or 1)
 	changelog_page = max(page, 1)
 
 	try:
