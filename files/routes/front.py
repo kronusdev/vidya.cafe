@@ -227,7 +227,7 @@ def front_all(v):
 		try:
 			custom_feed_tag = json.loads(v.sidebar_settings)['custom_feed_tag']
 		except:
-			custom_feed_tag = "changelog"
+			custom_feed_tag = "all"
 		ids = feedlist(sort=custom_feed_sort,
 						page=custom_feed_page,
 						posts_per_page=5,
