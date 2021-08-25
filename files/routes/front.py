@@ -229,7 +229,7 @@ def front_all(v):
 	# sidebar
 	custom_feed_posts = ""
 	custom_feed_next_exists = ""
-	last_comments_output = ""
+	custom_feed_tag = ""
 	if v:
 		try:
 			custom_feed_tag = json.loads(v.sidebar_settings)['custom_feed_tag']
