@@ -230,6 +230,7 @@ def front_all(v):
 	custom_feed_posts = ""
 	custom_feed_next_exists = ""
 	custom_feed_tag = ""
+	last_comments_output = "" # useless for now (25.08.2021)
 	if v:
 		try:
 			custom_feed_tag = json.loads(v.sidebar_settings)['custom_feed_tag']
