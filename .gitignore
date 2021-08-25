@@ -117,3 +117,4 @@ package-lock.json
 local.txt
 *.scssc
 .idea/*
+files/assets/images/badges/blank.png
