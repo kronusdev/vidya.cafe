@@ -208,8 +208,8 @@ def front_all(v):
 	# check if ids exist
 	posts = get_posts(ids, v=v)
 	
-	changelog_page = int(request.args.get("changelog_page") or 1)
-	changelog_page = max(page, 1)
+	custom_feed_page = int(request.args.get("custom_feed_page") or 1)
+	custom_feed_page = max(page, 1)
 
 	try:
 		custom_feed_sort=json.loads(v.sidebar_settings)['custom_feed_sort']
@@ -221,8 +221,8 @@ def front_all(v):
 		custom_feed_time="all"
 	sort=request.args.get("sort", defaultsorting)
 	# sidebar
-	changelog_posts = ""
-	changelog_next_exists = ""
+	custom_feed_posts = ""
+	custom_feed_next_exists = ""
 	last_comments_output = ""
 	if v:
 		try:
@@ -230,7 +230,7 @@ def front_all(v):
 		except:
 			custom_feed_tag = "changelog"
 		ids = feedlist(sort=custom_feed_sort,
-						page=changelog_page,
+						page=custom_feed_page,
 						t=custom_feed_time,
 						tag=custom_feed_tag,
 						v=v,
@@ -239,24 +239,24 @@ def front_all(v):
 						)
 
 		# check existence of next page
-		changelog_next_exists = (len(ids) == 6)
-		changelog_ids = ids[:5]
+		custom_feed_next_exists = (len(ids) == 6)
+		custom_feed_ids = ids[:5]
 
 		# check if ids exist
-		changelog_posts = get_posts(changelog_ids, v=v)
+		custom_feed_posts = get_posts(custom_feed_ids, v=v)
 		last_comments_output = get_recent_posts(v)
 
 	if request.headers.get("Authorization"): return {"data": [x.json for x in posts], "next_exists": next_exists}
 	else: return render_template("home.html", 
 								v=v, 
 								listing=posts, 
-								sidebar_listing=changelog_posts, 
-								changelog_next_exists=changelog_next_exists, 
+								sidebar_listing=custom_feed_posts, 
+								custom_feed_next_exists=custom_feed_next_exists, 
 								next_exists=next_exists, 
 								sort=sort, 
 								t=t, 
 								page=page, 
-								changelog_page=changelog_page,
+								custom_feed_page=custom_feed_page,
 								custom_feed_tag=custom_feed_tag,
 								custom_feed_time=custom_feed_time,
 								custom_feed_sort=custom_feed_sort,
