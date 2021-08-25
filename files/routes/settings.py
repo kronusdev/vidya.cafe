@@ -181,6 +181,21 @@ def changelogsub(v):
 
 	return "", 204
 
+@app.post("/settings/sidebar_settings")
+@auth_required
+@validate_formkey
+def sidebar_settings(v):
+	if not v.sidebar_settings:
+		sidebar_settings = json.loads("{}")
+	else:
+		sidebar_settings = json.loads(v.sidebar_settings)
+	
+	if request.values.get("custom_feed_tag"):
+		sidebar_settings['custom_feed_tag'] = request.values.get("custom_feed_tag").strip()
+	v.sidebar_settings = sidebar_settings
+	g.db.add(v)
+	return redirect("/")
+
 @app.post("/settings/namecolor")
 @auth_required
 @validate_formkey

@@ -186,12 +186,12 @@ def front_all(v):
 		defaultsorting = v.defaultsorting
 		defaulttime = v.defaulttime
 	else:
-		defaultsorting = "hot"
+		defaultsorting = "active"
 		defaulttime = "all"
 
 	sort=request.args.get("sort", defaultsorting)
 	t=request.args.get('t', defaulttime)
-
+	# front page
 	ids = frontlist(sort=sort,
 					page=page,
 					t=t,
@@ -214,31 +214,25 @@ def front_all(v):
 	changelog_sort=("new")
 	changelog_t=("all")
 	sort=request.args.get("sort", defaultsorting)
+	# sidebar
+	if v:
+		ids = feedlist(sort=sort,
+						page=changelog_page,
+						t=changelog_t,
+						tag=request.args.get("sidebar_tag", "changelog"),
+						v=v,
+						gt=int(request.args.get("utc_greater_than", 0)),
+						lt=int(request.args.get("utc_less_than", 0))
+						)
 
-	ids = feedlist(sort=sort,
-					page=changelog_page,
-					t=changelog_t,
-					tag=request.args.get("sidebar_tag", "changelog"),
-					v=v,
-					gt=int(request.args.get("utc_greater_than", 0)),
-					lt=int(request.args.get("utc_less_than", 0))
-					)
+		# check existence of next page
+		changelog_next_exists = (len(ids) == 6)
+		changelog_ids = ids[:5]
 
-	# check existence of next page
-	changelog_next_exists = (len(ids) == 6)
-	changelog_ids = ids[:5]
+		# check if ids exist
+		changelog_posts = get_posts(changelog_ids, v=v)
+		last_comments_output = get_recent_posts(v)
 
-	# check if ids exist
-	changelog_posts = get_posts(changelog_ids, v=v)
-	last_comments_output = get_recent_posts(v)
-	#last_comments_output = []
-	#for c in last_comments:
-#		comment = c[0]
-#		if comment.author and comment.author.shadowbanned and not (v and v.id == comment.author_id): continue
-#		comment._voted = c[1] or 0
-#		comment._is_blocking = c[2] or 0
-#		comment._is_blocked = c[3] or 0
-#		last_comments_output.append(comment)
 	if request.headers.get("Authorization"): return {"data": [x.json for x in posts], "next_exists": next_exists}
 	else: return render_template("home.html", 
 								v=v, 
