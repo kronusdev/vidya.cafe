@@ -88,7 +88,7 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", ids_only=True, filte
 
 	if not (v and v.changelogsub):
 		posts=posts.join(Submission.submission_aux)
-		posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%')))
+		posts=posts.filter(not_(SubmissionAux.tag == "changelog"))
 
 	if v and filter_words:
 		for word in filter_words:
@@ -373,7 +373,7 @@ def changelog(v):
 
 	# check existence of next page
 	next_exists = (len(ids) == 26)
-	ids = ids[:25]
+	ids = ids
 
 	# check if ids exist
 	posts = get_posts(ids, v=v)
