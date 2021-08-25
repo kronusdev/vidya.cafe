@@ -240,7 +240,7 @@ def front_all(v):
 
 		# check existence of next page
 		custom_feed_next_exists = (len(ids) == 6)
-		custom_feed_ids = ids[:5]
+		custom_feed_ids = ids
 
 		# check if ids exist
 		custom_feed_posts = get_posts(custom_feed_ids, v=v)
