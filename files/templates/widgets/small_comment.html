@@ -1,0 +1,36 @@
+{% set score=c.score %}
+
+
+<!-- I couldn't get voting to work :( -->
+<div class="card-blank m-2">
+    <div class="p-1">
+        <!-- User Info Stuff -->
+        {% if c.active_flags %}&nbsp;<a class="btn btn-primary" style="padding:1px 5px; font-size:10px;" href="javascript:void(0)" onclick="document.getElementById('flaggers-{{c.id}}').classList.toggle('d-none')">{{c.active_flags}} Reports</a>&nbsp;{% endif %}
+        {% if c.over_18 %}<span class="badge badge-danger text-small-extra mr-1">NSFW</span>&nbsp;{% endif %}
+        {% if v and v.admin_level==6 and c.author.shadowbanned %}<i class="fas fa-user-times text-admin" data-toggle="tooltip" data-placement="bottom" title="Shadowbanned user"></i>&nbsp;{% endif %}
+        {% if c.is_pinned %}<i class="text-admin fas fa-thumbtack fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Pinned comment"></i>&nbsp;{% endif %}
+        {% if c.distinguish_level %}<i class="fas fa-broom text-admin" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{"SITE_NAME" | app_config}} Admin, speaking officially"></i>&nbsp;{% endif %}
+        {% if c.is_op %}<i class="fas fa-microphone-stand text-info" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="OP"></i>&nbsp;{% endif %}
+        {% if c.is_bot %}<i class="fad fa-robot text-info" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Bot"></i>&nbsp;{% endif %}
+        {% if c.is_blocking %}<i class="fas fa-user-minus text-warning" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{% if v and v.admin_level >= 2 %}You're blocking this user, but you can see this comment because {{'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}.{% else %}Comment author is banned{% endif %}"></i>&nbsp;{% endif %}
+        {% if c.is_blocked %}<i class="fas fa-user-minus text-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This user is blocking you, but you can see this comment because {{'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}."></i>&nbsp;{% endif %}
+
+        <a class="{% if c.author.show_activity %}{% if c.author.last_active+420 > time %} online {%else %} offline {% endif %}{% endif %}"{% if c.author.animatedname %}class="{% if c.author.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} style="color:#{{c.author.namecolor}}; font-size:12px; font-weight:bold;" href="/@{{c.author.username}}"><img src="{{c.author.profile_url}}" class="profile-pic-25 mr-2"/>{{c.author.username}}</a>{% if c.author.customtitle %}&nbsp;<bdi style="color: #{{c.author.titlecolor}}">&nbsp;{{c.author.customtitle | safe}}</bdi>{% endif %}
+
+        <span id="timestamp-{{c.id}}" data-toggle="tooltip" data-placement="bottom" title="" class="time-stamp">&nbsp;{{c.age_string}}</span>
+        {% if c.edited_utc %}
+        <span class="time-edited"><span>&#183;</span> <span class="font-italic">Edited {{c.edited_string}}</span></span>
+        {% endif %}
+        <!-- Comment Body -->
+        <div class="mx-3">
+            {{ c.body_html | safe}}
+        </div>
+        <li class="list-inline-item text-muted d-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}?context=99#context"><i class="mx-2 fas fa-copy"></i>Copy link</a></li>
+
+        <li class="list-inline-item d-inline-block mr-2">
+            <span class="points" data-toggle="tooltip" data-placement="top" data-original-title="{{c.upvotes}} Sips"><span id="comment-score-{{c.id}}" class="score comment-score-{{c.id}} {% if voted==1 %}score-up{% endif %}">{{c.upvotes}}</span></span>
+        </li>
+        <i class="fas fa-mug-hot"></i>
+        </li>
+    </div>
+</div> 

@@ -84,7 +84,7 @@ class User(Base, Stndrd, Age_times):
 	is_private = Column(Boolean, default=False)
 	stored_subscriber_count = Column(Integer, default=0)
 	defaultsortingcomments = Column(String, default="top")
-	defaultsorting = Column(String, default="hot")
+	defaultsorting = Column(String, default="active")
 	defaulttime = Column(String, default="all")
 	last_active = Column(Integer, default=0)
 	show_activity = Column(Boolean, default=True)
@@ -100,6 +100,7 @@ class User(Base, Stndrd, Age_times):
 	custom_filter_list = Column(String(1000), default="")
 	discord_id = Column(String(64))
 	steam_id = Column(String(64))
+	sidebar_settings = Column(String)
 
 	ban_evade = Column(Integer, default=0)
 	original_username = deferred(Column(String(255)))

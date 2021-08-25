@@ -1,6 +1,9 @@
-<div class="card-blank sidebar d-none d-xl-block bg-gray-700">
+{% if v %}
+<div class="card-blank sidebar d-none d-xl-block bg-gray-700" style="margin-top: 4.8rem; overflow: visible">
     <div>
+        
         {% include "elements/sidebar_listing.html" %}
+        
     </div>
 </div> 
 
@@ -12,3 +15,12 @@
         grid-row: 1;
     }
 </style>
+{% endif %}
+<!-- TODO -->
+<!-- changelog - DONE -->
+<!-- other feeds - IN PROGRESS -->
+    <!--  Dropdown to choose tag/changelog -->
+<!-- notifications? -->
+<!-- recent comments/posts? -->
+<!-- saved comments/posts? -->
+<!-- ability to pick which one u want? -->

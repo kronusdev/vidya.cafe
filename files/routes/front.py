@@ -2,7 +2,7 @@ from files.helpers.wrappers import *
 from files.helpers.get import *
 import time
 from files.__main__ import app, cache
-from files.classes.submission import Submission
+from files.classes import *
 
 @app.get("/post/")
 def slash_post():
@@ -71,7 +71,7 @@ def notifications(v):
 						   time=time.time())
 
 @cache.memoize(timeout=1500)
-def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
+def frontlist(v=None, sort="hot", tag="all",page=1,t="all", ids_only=True, filter_words='', **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
 	if v and v.admin_level == 0:
@@ -93,6 +93,12 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	if v and filter_words:
 		for word in filter_words:
 			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
+	if (tag == "changelog"):
+		posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
+	elif (tag == "all"):
+		posts=posts
+	else:
+		posts=posts.filter(SubmissionAux.tag == tag)
 
 	if t != 'all':
 		cutoff = 0
@@ -186,13 +192,14 @@ def front_all(v):
 		defaultsorting = v.defaultsorting
 		defaulttime = v.defaulttime
 	else:
-		defaultsorting = "hot"
+		defaultsorting = "active"
 		defaulttime = "all"
-
+	frontpage_tag=request.args.get("frontpage_tag", "all")
 	sort=request.args.get("sort", defaultsorting)
 	t=request.args.get('t', defaulttime)
-
+	# front page
 	ids = frontlist(sort=sort,
+					tag=frontpage_tag,
 					page=page,
 					t=t,
 					v=v,
@@ -208,42 +215,65 @@ def front_all(v):
 	# check if ids exist
 	posts = get_posts(ids, v=v)
 	
-	changelog_page = int(request.args.get("page") or 1)
-	changelog_page = max(page, 1)
+	custom_feed_page = int(request.args.get("custom_feed_page") or 1)
+	custom_feed_page = max(custom_feed_page, 1)
 
-	changelog_sort=("new")
-	changelog_t=("all")
+	try:
+		custom_feed_sort=json.loads(v.sidebar_settings)['custom_feed_sort']
+	except:
+		custom_feed_sort="new"
+	try:
+		custom_feed_time=json.loads(v.sidebar_settings)['custom_feed_time']
+	except:
+		custom_feed_time="all"
+	# sidebar
+	custom_feed_posts = ""
+	custom_feed_next_exists = ""
+	custom_feed_tag = "all"
+	last_comments_output = "" # useless for now (25.08.2021)
+	if v:
+		try:
+			custom_feed_tag = json.loads(v.sidebar_settings)['custom_feed_tag']
+		except:
+			custom_feed_tag = "all"
+		ids = feedlist(sort=custom_feed_sort,
+						page=custom_feed_page,
+						posts_per_page=5,
+						t=custom_feed_time,
+						tag=custom_feed_tag,
+						v=v,
+						gt=int(request.args.get("utc_greater_than", 0)),
+						lt=int(request.args.get("utc_less_than", 0))
+						)
 
-	ids = changeloglist(sort=sort,
-					page=changelog_page,
-					t=changelog_t,
-					v=v,
-					gt=int(request.args.get("utc_greater_than", 0)),
-					lt=int(request.args.get("utc_less_than", 0)),
-					)
+		# check existence of next page
+		custom_feed_next_exists = (len(ids) == 6)
+		custom_feed_ids = ids
 
-	# check existence of next page
-	changelog_next_exists = (len(ids) == 6)
-	changelog_ids = ids[:5]
-
-	# check if ids exist
-	changelog_posts = get_posts(changelog_ids, v=v)
+		# check if ids exist
+		custom_feed_posts = get_posts(custom_feed_ids, v=v)
+		last_comments_output = get_recent_posts(v)
 
 	if request.headers.get("Authorization"): return {"data": [x.json for x in posts], "next_exists": next_exists}
 	else: return render_template("home.html", 
 								v=v, 
 								listing=posts, 
-								sidebar_listing=changelog_posts, 
-								changelog_next_exists=changelog_next_exists, 
 								next_exists=next_exists, 
 								sort=sort, 
 								t=t, 
 								page=page, 
-								changelog_page=changelog_page,
+								frontpage_tag=frontpage_tag,
+								custom_feed_next_exists=custom_feed_next_exists, 
+								sidebar_listing=custom_feed_posts, 
+								custom_feed_page=custom_feed_page,
+								custom_feed_tag=custom_feed_tag,
+								custom_feed_time=custom_feed_time,
+								custom_feed_sort=custom_feed_sort,
+								last_comments=last_comments_output,
 								time=time.time())
 
 @cache.memoize(timeout=1500)
-def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
+def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="changelog", **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
 
@@ -260,7 +290,12 @@ def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 		)
 
 	posts=posts.join(Submission.submission_aux).join(Submission.author)
-	posts=posts.filter(SubmissionAux.title.ilike(f'%[changelog]%', User.admin_level == 6))
+	if (tag == "changelog"):
+		posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
+	elif (tag == "all"):
+		posts=posts
+	else:
+		posts=posts.filter(SubmissionAux.tag == tag)
 
 	if t != 'all':
 		cutoff = 0
@@ -308,8 +343,8 @@ def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 	else:
 		abort(400)
 
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+26
+	firstrange = posts_per_page * (page - 1)
+	secondrange = firstrange+posts_per_page+1
 	posts = posts[firstrange:secondrange]
 
 	posts = [x.id for x in posts]
@@ -326,12 +361,14 @@ def changelog(v):
 	sort=request.args.get("sort", "new")
 	t=request.args.get('t', "all")
 
-	ids = changeloglist(sort=sort,
+	ids = feedlist(sort=sort,
 					page=page,
+					posts_per_page=25,
 					t=t,
 					v=v,
+					tag="changelog",
 					gt=int(request.args.get("utc_greater_than", 0)),
-					lt=int(request.args.get("utc_less_than", 0)),
+					lt=int(request.args.get("utc_less_than", 0))
 					)
 
 	# check existence of next page

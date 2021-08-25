@@ -1,0 +1,24 @@
+<div class="card-blank bg-gray-700">
+    {% for c1 in last_comments %}
+        <span style="opacity: 0.6;">
+            {% if c1.parent_comment %}
+                {% set c = c1.parent_comment %}
+                {% include "widgets/small_comment.html" %}        
+            {% else %}
+                {% set p = c1.post %}
+                {% include "widgets/small_card.html" %}        
+            {% endif %}
+        </span>    
+        {% set c = c1 %}
+        {% include "widgets/small_comment.html" %}
+        {% if c1.child_comments %}
+            {% for child in c1.child_comments %}
+                {% set c = child %}
+                <div style="margin-left: calc(0.3rem * {{ c.level }})">
+                {% include "widgets/small_comment.html" %}        
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    <hr>
+</div> 

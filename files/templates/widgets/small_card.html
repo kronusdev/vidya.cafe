@@ -1,3 +1,8 @@
+{% if v %}
+	{% set voted=p.voted %}
+{% else %}
+	{% set voted=-2 %}
+{% endif %}
 <a href="{{p.permalink}}">
 <div class="card-blank m-2" ">
     <div class="p-1">

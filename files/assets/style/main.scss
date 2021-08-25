@@ -37,6 +37,7 @@ $settings: (
 
 $tag-colors: (
 	"news-tag": $news-tag,
+	"changelog-tag": $changelog-tag,
 	"trailer-tag": $trailer-tag,
 	"oc-tag": $oc-tag,
 	"video-tag": $video-tag,
@@ -51,7 +52,7 @@ $tag-colors: (
 	"breaking-news-tag": $breaking-news-tag,
 	"none-tag": $none-tag,
 );
-
+$all-tag: #fff;
 // Borders
 
 $input-border-color: $gray-400;
@@ -889,6 +890,14 @@ label.terms {
 	background-color: $gray-600;
 	border-radius: $border-radius;
 }
+
+.dropdown-menu-noboot {
+	padding: 0.5rem;
+	color: $white;
+	background-color: $gray-600;
+	border-radius: $border-radius;
+}
+
 
 .user-profile > .dropdown-toggle::after {
 	display:none;
@@ -1753,10 +1762,30 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	color: $black;
 }
 
+.all-tag::before {
+	content:"All Posts \f039";
+	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	background-color: $all-tag;
+	color: $actually-black;
+	padding: 2px;
+	margin: 0 0.4rem;
+	border-radius: $border-radius;
+}
+
 .news-tag::before {
 	content:"News \f1ea";
 	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
 	background-color: $news-tag;
+	color: $actually-black;
+	padding: 2px;
+	margin: 0 0.4rem;
+	border-radius: $border-radius;
+}
+
+.changelog-tag::before {
+	content:"Changelog \f328";
+	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	background-color: $changelog-tag;
 	color: $actually-black;
 	padding: 2px;
 	margin: 0 0.4rem;

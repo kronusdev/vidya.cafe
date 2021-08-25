@@ -1,7 +1,7 @@
 from files.classes import *
 from flask import g
 from sqlalchemy.orm import joinedload, aliased
-
+import time
 import re
 
 
@@ -273,3 +273,8 @@ def get_domain(s):
 	doms = sorted(doms, key=lambda x: len(x.domain), reverse=True)
 
 	return doms[0]
+
+def get_recent_posts(v):
+	age_cutoff = time.time() - 86400 #1 day
+	recent_comments = v.comments.filter(Comment.created_utc>=age_cutoff).filter(Comment.parent_submission != None)
+	return recent_comments
