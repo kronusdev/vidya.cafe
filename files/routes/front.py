@@ -219,7 +219,6 @@ def front_all(v):
 		custom_feed_time=json.loads(v.sidebar_settings)['custom_feed_time']
 	except:
 		custom_feed_time="all"
-	sort=request.args.get("sort", defaultsorting)
 	# sidebar
 	custom_feed_posts = ""
 	custom_feed_next_exists = ""
@@ -231,6 +230,7 @@ def front_all(v):
 			custom_feed_tag = "changelog"
 		ids = feedlist(sort=custom_feed_sort,
 						page=custom_feed_page,
+						posts_per_page=5,
 						t=custom_feed_time,
 						tag=custom_feed_tag,
 						v=v,
@@ -250,12 +250,12 @@ def front_all(v):
 	else: return render_template("home.html", 
 								v=v, 
 								listing=posts, 
-								sidebar_listing=custom_feed_posts, 
-								custom_feed_next_exists=custom_feed_next_exists, 
 								next_exists=next_exists, 
 								sort=sort, 
 								t=t, 
 								page=page, 
+								custom_feed_next_exists=custom_feed_next_exists, 
+								sidebar_listing=custom_feed_posts, 
 								custom_feed_page=custom_feed_page,
 								custom_feed_tag=custom_feed_tag,
 								custom_feed_time=custom_feed_time,
@@ -264,7 +264,7 @@ def front_all(v):
 								time=time.time())
 
 @cache.memoize(timeout=1500)
-def feedlist(v=None, sort="new", page=1 ,t="all",  tag="changelog", **kwargs):
+def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="changelog", **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
 
@@ -332,8 +332,8 @@ def feedlist(v=None, sort="new", page=1 ,t="all",  tag="changelog", **kwargs):
 	else:
 		abort(400)
 
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+26
+	firstrange = posts_per_page * (page - 1)
+	secondrange = firstrange+posts_per_page+1
 	posts = posts[firstrange:secondrange]
 
 	posts = [x.id for x in posts]
@@ -352,6 +352,7 @@ def changelog(v):
 
 	ids = feedlist(sort=sort,
 					page=page,
+					posts_per_page=25,
 					t=t,
 					v=v,
 					tag="changelog",
