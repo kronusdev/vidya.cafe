@@ -188,7 +188,7 @@ CREATE TABLE public.users (
     switch_code character varying(18),
     playstation_name character varying(50),
     steam_id character varying(64),
-    sidebar_settings text,
+    sidebar_settings text
 );
 
 ALTER TABLE public.users OWNER TO postgres;

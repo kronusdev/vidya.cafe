@@ -71,7 +71,7 @@ def notifications(v):
 						   time=time.time())
 
 @cache.memoize(timeout=1500)
-def frontlist(v=None, sort="active", page=1,t="all", ids_only=True, filter_words='', **kwargs):
+def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
 	if v and v.admin_level == 0:
@@ -211,15 +211,28 @@ def front_all(v):
 	changelog_page = int(request.args.get("page") or 1)
 	changelog_page = max(page, 1)
 
-	changelog_sort=("new")
-	changelog_t=("all")
+	try:
+		custom_feed_sort=json.loads(v.sidebar_settings)['custom_feed_sort']
+	except:
+		custom_feed_sort="new"
+	try:
+		custom_feed_time=json.loads(v.sidebar_settings)['custom_feed_time']
+	except:
+		custom_feed_time="all"
 	sort=request.args.get("sort", defaultsorting)
 	# sidebar
+	changelog_posts = ""
+	changelog_next_exists = ""
+	last_comments_output = ""
 	if v:
-		ids = feedlist(sort=sort,
+		try:
+			custom_feed_tag = json.loads(v.sidebar_settings)['custom_feed_tag']
+		except:
+			custom_feed_tag = "changelog"
+		ids = feedlist(sort=custom_feed_sort,
 						page=changelog_page,
-						t=changelog_t,
-						tag=request.args.get("sidebar_tag", "changelog"),
+						t=custom_feed_time,
+						tag=custom_feed_tag,
 						v=v,
 						gt=int(request.args.get("utc_greater_than", 0)),
 						lt=int(request.args.get("utc_less_than", 0))
@@ -244,7 +257,9 @@ def front_all(v):
 								t=t, 
 								page=page, 
 								changelog_page=changelog_page,
-								sidebar_tag=request.args.get("sidebar_tag", "changelog"),
+								custom_feed_tag=custom_feed_tag,
+								custom_feed_time=custom_feed_time,
+								custom_feed_sort=custom_feed_sort,
 								last_comments=last_comments_output,
 								time=time.time())
 
@@ -267,7 +282,7 @@ def feedlist(v=None, sort="new", page=1 ,t="all",  tag="changelog", **kwargs):
 
 	posts=posts.join(Submission.submission_aux).join(Submission.author)
 	if (tag == "changelog"):
-		posts=posts.filter(SubmissionAux.title.ilike(f'%[changelog]%'), User.admin_level == 6)
+		posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
 	else:
 		posts=posts.filter(SubmissionAux.tag == tag)
 

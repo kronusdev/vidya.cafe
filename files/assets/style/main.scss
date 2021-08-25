@@ -37,6 +37,7 @@ $settings: (
 
 $tag-colors: (
 	"news-tag": $news-tag,
+	"changelog-tag": $changelog-tag,
 	"trailer-tag": $trailer-tag,
 	"oc-tag": $oc-tag,
 	"video-tag": $video-tag,
@@ -1761,10 +1762,21 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	color: $black;
 }
 
+
 .news-tag::before {
 	content:"News \f1ea";
 	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
 	background-color: $news-tag;
+	color: $actually-black;
+	padding: 2px;
+	margin: 0 0.4rem;
+	border-radius: $border-radius;
+}
+
+.changelog-tag::before {
+	content:"Changelog \f328";
+	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	background-color: $changelog-tag;
 	color: $actually-black;
 	padding: 2px;
 	margin: 0 0.4rem;
