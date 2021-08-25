@@ -71,7 +71,7 @@ def notifications(v):
 						   time=time.time())
 
 @cache.memoize(timeout=1500)
-def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
+def frontlist(v=None, sort="hot", tag="all",page=1,t="all", ids_only=True, filter_words='', **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
 	if v and v.admin_level == 0:
@@ -93,6 +93,12 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	if v and filter_words:
 		for word in filter_words:
 			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
+	if (tag == "changelog"):
+		posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
+	elif (tag == "all"):
+		posts=posts
+	else:
+		posts=posts.filter(SubmissionAux.tag == tag)
 
 	if t != 'all':
 		cutoff = 0
@@ -188,11 +194,12 @@ def front_all(v):
 	else:
 		defaultsorting = "active"
 		defaulttime = "all"
-
+	frontpage_tag=request.args.get("frontpage_tag", "all")
 	sort=request.args.get("sort", defaultsorting)
 	t=request.args.get('t', defaulttime)
 	# front page
 	ids = frontlist(sort=sort,
+					tag=frontpage_tag,
 					page=page,
 					t=t,
 					v=v,
@@ -254,6 +261,7 @@ def front_all(v):
 								sort=sort, 
 								t=t, 
 								page=page, 
+								frontpage_tag=frontpage_tag,
 								custom_feed_next_exists=custom_feed_next_exists, 
 								sidebar_listing=custom_feed_posts, 
 								custom_feed_page=custom_feed_page,
