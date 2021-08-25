@@ -105,14 +105,14 @@ function toggleDropdownVisibility(dropdownName){
 {% if sidebar_listing %}
 <nav aria-label="Page navigation">
 	<ul class="pagination pagination-sm mb-0">
-		{% if changelog_page>1 %}
+		{% if custom_feed_page>1 %}
 		<li class="page-item">
 			<small><a class="page-link" href="?sort={{sort}}&custom_feed_page={{custom_feed_page-1}}&t={{t}}{% if only %}&only={{only}}{% endif %}" tabindex="-1">Prev</a></small>
 		</li>
 		{% else %}
 		<li class="page-item disabled"><span class="page-link">Prev</span></li>
 		{% endif %}
-		{% if changelog_next_exists %}
+		{% if custom_feed_next_exists %}
 		<li class="page-item">
 			<small><a class="page-link" href="?sort={{sort}}&custom_feed_page={{custom_feed_page+1}}&t={{t}}{% if only %}&only={{only}}{% endif %}">Next</a></small>
 		</li>
