@@ -84,7 +84,7 @@ class User(Base, Stndrd, Age_times):
 	is_private = Column(Boolean, default=False)
 	stored_subscriber_count = Column(Integer, default=0)
 	defaultsortingcomments = Column(String, default="top")
-	defaultsorting = Column(String, default="hot")
+	defaultsorting = Column(String, default="active")
 	defaulttime = Column(String, default="all")
 	last_active = Column(Integer, default=0)
 	show_activity = Column(Boolean, default=True)
