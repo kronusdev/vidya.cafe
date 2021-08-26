@@ -61,10 +61,8 @@
 			if (audio.paused) audio.play();
 		}, { once: true });
 	}
-
 </script>
 <textarea id="userid" style="display: none;">{% if u.song %}{{u.id}}{% else %}nosong{% endif %}</textarea>
-<audio id="profileAudio" autoplay controls loop></audio>
 <div class="row d-none d-md-block rounded overflow-hidden">
 	<div class="col px-0">
 		<div class="jumbotron jumbotron-fluid jumbotron-guild d-none d-md-block"
