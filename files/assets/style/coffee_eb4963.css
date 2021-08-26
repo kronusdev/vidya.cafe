@@ -19095,7 +19095,6 @@ body {
   -moz-osx-font-smoothing: grayscale; }
   @media (min-width: 1200px) {
     body {
-      display: grid;
       grid-template-columns: 1fr 4fr 1fr; } }
 
 .container, #submitform {
