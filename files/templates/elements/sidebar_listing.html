@@ -20,7 +20,7 @@ function toggleDropdownVisibility(dropdownName){
 	<!-- Tag Sort -->
 	<div class="dropdown dropdown-actions d-inline-block">
 		<input type="hidden" name="formkey" value="{{v.formkey}}">
-		<button onclick="toggleDropdownVisibility('tagSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow:none";>
+		<button onclick="toggleDropdownVisibility('tagSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0 transition-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow:none";>
 			<div class="{{custom_feed_tag}}-tag d-inline-block"></div>
 		</button>
 		<div id="tagSortDropdown" class="dropdown-menu-noboot" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; top: 32px; left: 0px; display:none;">
@@ -32,7 +32,7 @@ function toggleDropdownVisibility(dropdownName){
 	<!-- Time Sort -->
 	<div class="dropdown dropdown-actions d-inline-block ml-1">
 		<input type="hidden" name="formkey" value="{{v.formkey}}">
-		<button onclick="toggleDropdownVisibility('timeSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow:none";>
+		<button onclick="toggleDropdownVisibility('timeSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0 transition-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow:none";>
 				{% if custom_feed_time=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
 				{% if custom_feed_time=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
 				{% if custom_feed_time=="week" %}<i class="fas fa-calendar-week mr-1"></i>{% endif %}
@@ -53,7 +53,7 @@ function toggleDropdownVisibility(dropdownName){
 	<!-- Algo Sort -->
 	<div class="dropdown dropdown-actions d-inline-block ml-1">
 		<input type="hidden" name="formkey" value="{{v.formkey}}">
-		<button onclick="toggleDropdownVisibility('sortSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow:none";>
+		<button onclick="toggleDropdownVisibility('sortSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0 transition-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow:none";>
 			{% if custom_feed_sort=="hot" %}<i class="fas fa-fire mr-1"></i>{% endif %}
 			{% if custom_feed_sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
 			{% if custom_feed_sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
@@ -77,6 +77,29 @@ function toggleDropdownVisibility(dropdownName){
 	</div>
 </div>
 <!-- Cards -->
+{% for p in sidebar_listing %}
+
+<script>
+	var date = new Date('{{p.created_datetime}}');
+	document.getElementById('timestamp-{{p.id}}').title = date.toString();
+	{% if p.edited_utc %}
+		var date = new Date('{{p.edited_datetime}}');
+		document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
+	{% endif %}
+</script>
+
+{% set ups=p.upvotes %}
+{% set score=ups %}
+
+{% if v %}
+	{% set voted=p.voted %}
+{% else %}
+	{% set voted=-2 %}
+{% endif %}
+
+{% include "widgets/small_card.html" %}
+
+{% endfor %}
 
 {% include "delete_post_modal.html" %}
 {% if sidebar_listing %}
