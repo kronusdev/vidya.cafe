@@ -395,10 +395,6 @@ window.onload = function () {
 }
 }
 
-// Tooltips
-
-
-
 
 $('.mention-user').click(function (event) {
 
