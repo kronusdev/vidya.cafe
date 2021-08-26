@@ -397,9 +397,7 @@ window.onload = function () {
 
 // Tooltips
 
-$(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip(); 
-});
+
 
 
 $('.mention-user').click(function (event) {
