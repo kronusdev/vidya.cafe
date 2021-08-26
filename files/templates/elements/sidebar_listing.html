@@ -15,67 +15,7 @@ function toggleDropdownVisibility(dropdownName){
 
 
 </script>
-<div class="card-header">
-	<h5>Custom Feed</h5>
-	<!-- Tag Sort -->
-	<div class="dropdown dropdown-actions d-inline-block">
-		<input type="hidden" name="formkey" value="{{v.formkey}}">
-		<button onclick="toggleDropdownVisibility('tagSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transition:none; box-shadow:none";>
-			<div class="{{custom_feed_tag}}-tag d-inline-block"></div>
-		</button>
-		<div id="tagSortDropdown" class="dropdown-menu-noboot" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; top: 32px; left: 0px; display:none;">
-			{% for tag in ["all", "changelog", "news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news"] %}
-			<a class="{{tag}}-tag dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_tag={{tag}}',  function(){window.location.reload(true);})"></a>
-			{% endfor %}
-		</div>
-	</div>
-	<!-- Time Sort -->
-	<div class="dropdown dropdown-actions d-inline-block ml-1">
-		<input type="hidden" name="formkey" value="{{v.formkey}}">
-		<button onclick="toggleDropdownVisibility('timeSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transition:none; box-shadow:none";>
-				{% if custom_feed_time=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
-				{% if custom_feed_time=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
-				{% if custom_feed_time=="week" %}<i class="fas fa-calendar-week mr-1"></i>{% endif %}
-				{% if custom_feed_time=="month" %}<i class="fas fa-calendar-alt mr-1"></i>{% endif %}
-				{% if custom_feed_time=="year" %}<i class="fas fa-calendar mr-1"></i>{% endif %}
-				{% if custom_feed_time=="all" %}<i class="fas fa-infinity mr-1"></i>{% endif %}
-				{{custom_feed_time | capitalize}}
-		</button>
-		<div id="timeSortDropdown" class="dropdown-menu-noboot" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; top: 32px; left: 0px; display:none;">
-			{% if not custom_feed_time=="hour" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_time=hour',  function(){window.location.reload(true);})"><i class="fas fa-calendar-day mr-2"></i>Hour</a>{% endif %}
-			{% if not custom_feed_time=="day" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_time=day',  function(){window.location.reload(true);})"><i class="fas fa-calendar-day mr-2"></i>Day</a>{% endif %}
-			{% if not custom_feed_time=="week" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_time=week',  function(){window.location.reload(true);})"><i class="fas fa-calendar-week mr-2"></i>Week</a>{% endif %}
-			{% if not custom_feed_time=="month" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_time=month',  function(){window.location.reload(true);})"><i class="fas fa-calendar-alt mr-2"></i>Month</a>{% endif %}
-			{% if not custom_feed_time=="year" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_time=year',  function(){window.location.reload(true);})"><i class="fas fa-calendar mr-2"></i>Year</a>{% endif %}
-			{% if not custom_feed_time=="all" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_time=all',  function(){window.location.reload(true);})"><i class="fas fa-infinity mr-2"></i>All</a>{% endif %}
-		</div>
-	</div>
-	<!-- Algo Sort -->
-	<div class="dropdown dropdown-actions d-inline-block ml-1">
-		<input type="hidden" name="formkey" value="{{v.formkey}}">
-		<button onclick="toggleDropdownVisibility('sortSortDropdown')" class="bg-transparent btn btn-secondary dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transition:none; box-shadow:none";>
-			{% if custom_feed_sort=="hot" %}<i class="fas fa-fire mr-1"></i>{% endif %}
-			{% if custom_feed_sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
-			{% if custom_feed_sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
-			{% if custom_feed_sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}
-			{% if custom_feed_sort=="old" %}<i class="fas fa-book mr-1"></i>{% endif %}
-			{% if custom_feed_sort=="controversial" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
-			{% if custom_feed_sort=="active" %}<i class="fas fa-chart-line mr-1"></i>{% endif %}
-			{% if custom_feed_sort=="comments" %}<i class="fas fa-comments mr-1"></i>{% endif %}
-			{{custom_feed_sort | capitalize}}
-		</button>
-		<div id="sortSortDropdown" class="dropdown-menu-noboot" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; top: 32px; left: 0px; display:none;">
-			{% if not custom_feed_sort=="hot" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=hot',  function(){window.location.reload(true);})"><i class="fas fa-fire mr-1"></i>Hot</a>{% endif %}
-			{% if not custom_feed_sort=="top" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=top',  function(){window.location.reload(true);})"><i class="fas fa-arrow-alt-circle-up mr-1"></i>Top</a>{% endif %}
-			{% if not custom_feed_sort=="bottom" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=bottom',  function(){window.location.reload(true);})"><i class="fas fa-arrow-alt-circle-down mr-1"></i>Bottom</a>{% endif %}
-			{% if not custom_feed_sort=="new" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=new',  function(){window.location.reload(true);})"><i class="fas fa-sparkles mr-1"></i>New</a>{% endif %}
-			{% if not custom_feed_sort=="old" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=old',  function(){window.location.reload(true);})"><i class="fas fa-book mr-1"></i>Old</a>{% endif %}
-			{% if not custom_feed_sort=="controversial" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=controversial',  function(){window.location.reload(true);})"><i class="fas fa-bullhorn mr-1"></i>Controversial</a>{% endif %}
-			{% if not custom_feed_sort=="active" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=active',  function(){window.location.reload(true);})"><i class="fas fa-chart-line mr-1"></i>Active</a>{% endif %}
-			{% if not custom_feed_sort=="comments" %}<a class="dropdown-item" href="javascript:void(0)" onclick="post('/settings/sidebar_settings?custom_feed_sort=comments',  function(){window.location.reload(true);})"><i class="fas fa-comments mr-1"></i>Comments</a>{% endif %}
-		</div>
-	</div>
-</div>
+
 <!-- Cards -->
 {% for p in sidebar_listing %}
 
