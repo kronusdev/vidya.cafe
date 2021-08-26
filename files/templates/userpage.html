@@ -64,7 +64,7 @@
 
 	var vid = "3r_Z5AYJJd4",
     audio_streams = {},
-    audio_tag = document.getElementById('youtube');
+    audio_tag = document.getElementById('profileAudio');
 
 	fetch("https://"+vid+"-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=https%3A%2F%2Fwww.youtube.com%2Fget_video_info%3Fvideo_id%3D" + vid).then(response => {
 		if (response.ok) {
@@ -111,6 +111,7 @@
 	}
 </script>
 <textarea id="userid" style="display: none;">{% if u.song %}{{u.id}}{% else %}nosong{% endif %}</textarea>
+<audio id="profileAudio" autoplay controls loop></audio>
 <div class="row d-none d-md-block rounded overflow-hidden">
 	<div class="col px-0">
 		<div class="jumbotron jumbotron-fluid jumbotron-guild d-none d-md-block"
