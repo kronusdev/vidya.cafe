@@ -88,17 +88,6 @@ function toggleDropdownVisibility(dropdownName){
 	{% endif %}
 </script>
 
-{% set ups=p.upvotes %}
-{% set score=ups %}
-
-{% if v %}
-	{% set voted=p.voted %}
-{% else %}
-	{% set voted=-2 %}
-{% endif %}
-
-
-{% endfor %}
 
 {% include "delete_post_modal.html" %}
 {% if sidebar_listing %}
