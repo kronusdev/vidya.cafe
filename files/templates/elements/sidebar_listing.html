@@ -1,7 +1,20 @@
 
 
 
+<script>
 
+function toggleDropdownVisibility(dropdownName){
+	var dropdown = document.getElementById(dropdownName);
+	
+	if (dropdown.style.display === "none") {
+		dropdown.style.display = "block";
+	} else {
+		dropdown.style.display = "none";
+	}
+}
+
+
+</script>
 <div class="card-header">
 	<h5>Custom Feed</h5>
 	<!-- Tag Sort -->
@@ -64,6 +77,29 @@
 	</div>
 </div>
 <!-- Cards -->
+{% for p in sidebar_listing %}
+
+<script>
+	var date = new Date('{{p.created_datetime}}');
+	document.getElementById('timestamp-{{p.id}}').title = date.toString();
+	{% if p.edited_utc %}
+		var date = new Date('{{p.edited_datetime}}');
+		document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
+	{% endif %}
+</script>
+
+{% set ups=p.upvotes %}
+{% set score=ups %}
+
+{% if v %}
+	{% set voted=p.voted %}
+{% else %}
+	{% set voted=-2 %}
+{% endif %}
+
+{% include "widgets/small_card.html" %}
+
+{% endfor %}
 
 {% include "delete_post_modal.html" %}
 {% if sidebar_listing %}
