@@ -20618,6 +20618,13 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .close .far, .close .fab, .close .fal, .close .fas {
   font-size: 1.25rem; }
 
+@media (min-width: 767.98px) {
+  .modal-dialog {
+    max-width: 65% !important; }
+
+  #emoji_search {
+    margin-left: auto;
+    margin-right: 1rem; } }
 @media (max-width: 767.98px) {
   .modal.modal.modal-sm-bottom .modal-dialog {
     position: fixed;
