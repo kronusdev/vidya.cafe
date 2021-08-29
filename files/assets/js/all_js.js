@@ -44,7 +44,7 @@ document.body.addEventListener('keydown', function(event) {
 		},
 		{
 			type:'marsey',
-			emojis: ['marseywave','marseysmug','marseythumbsup','marseysipping','marseysleep','marseyshook','marseysick','marseysad','marseysadcat','marseyscarf','marseyrentfree','marseyretard','marseyreading','marseyready','marseypat','marseyrain','marseyparty','marseymermaid','marseylaugh','marseylove','marseymad','marseyjamming','marseyjanny','marseyinabox','marseygift','marseyglam','marseyexcited','marseyfacepalm','marseydepressed','marseycowboy','marseycry','marseydead','marseyburger','marseyblowkiss','marseyangel','marseybingus','marseypipe', 'marseycope', 'marseyfrench', 'marseydoomer', 'marseyburn', 'marseypainter', 'marseypirate', 'marseytroll', 'marmsey']
+			emojis: ['marseyjam','marseyhmm','marseyhmmm','marseythonk','marseyworried','marseysus','marsey420','marsey4chan','marseyandmarcus','marseybluecheck','marseybong','marseybooba','marseybride','marseychonker','marseyconfused','marseydespair','marseyjunkie','marseylizard','marseylolcow','marseymommy','marseyneckbeard','marseyowow','marseyproctologist','marseyrowling','marseyschizo','marseyspider','marseyuwuw','marseyvaxmaxx','marseyxd','marsoyhype','marmsey','marsey1984','marseyakshually','marseycanned','marseycoomer','marseycope','marseydeux','marseydoomer','marseyflamewar','marseyfug','marseygasp','marseyglow','marseygoodnight','marseyhacker','marseyking','marseylawlz','marseylifting','marseymanlet','marseymaoist','marseymouse','marseyniqab','marseynpc','marseyorthodox','marseypainter','marseypeacekeeper','marseypickle','marseypipe','marseypirate','marseypope','marseyrat','marseyrick','marseyrope','marseyseethe','marseysneed','marseysociety','marseysrdine','marseytaliban','marseytank','marseytankushanka','marseytrans','marseytroll','marseyunabomber','marseyvan','marseyyeezus','marsoy','marseyasian','marseyblm','marseyburger','marseydildo','marseyfacepalm','marseygrilling','marseyjanny','marseymermaid','marseyrentfree','marseyretard','marseysadcat','marseysick','marseysmug','marseytrain', 'marseysipping', 'marseyjamming','marseyangel','marseyblowkiss','marseycry','marseydead','marseyexcited','marseygift','marseyinabox','marseylaugh','marseylove','marseymad','marseyparty','marseyrain','marseyreading','marseyready','marseysad','marseyscarf','marseyshook','marseysleep','marseythumbsup','marseywave', 'marsey69', 'marseycomrade', 'marseyira', 'marseyisis', 'marseymerchant', 'marseynut', 'marseyreich', 'marseyglam', 'marseycowboy', 'marseypat', 'marseypanties', 'marseybingus', 'marseydepressed']
 		},
 		{
 			type:'rage',
@@ -74,7 +74,7 @@ document.body.addEventListener('keydown', function(event) {
 
 				for (j=0; j < arr.length; j++) {
 					if(arr[j].match(search_bar.value)){
-						str += `<button class="btn m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:40px; overflow: hidden; border: none;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+						str += `<button class="btn m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden; border: none;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 					}
 				}
 
