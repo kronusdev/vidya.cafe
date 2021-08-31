@@ -19,8 +19,10 @@
 				<td style="font-weight: bold">{{users.index(user)+1}}</td>
 				<td><a {% if user.animatedname %}class="{% if user.patron %}patron{% else %}leaderboard{% endif %}"{% endif %} style="color:#{{user.namecolor}}; font-weight:bold;" href="/@{{user.username}}"><img src="/uid/{{user.id}}/pic/profile" class="profile-pic-20 mr-1">{{user.username}}</a></td>
 				<td>
+					{% if v.id != user.id %}
 					<a id="button-unsub" class="btn btn-secondary {% if not is_following %}d-none{% endif %}" href="javascript:void(0)" onclick="post('/unfollow/{{user.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>
 					<a id="button-sub" class="btn btn-primary my-2 {% if is_following or user.is_nofollow or user.is_blocked %}d-none{% endif %}" href="javascript:void(0)" onclick="post('/follow/{{user.username}}', callback=function(){document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');})">Follow</a>
+					{% endif %}
 				</td>
 				
 			</tr>
