@@ -42,6 +42,38 @@ _allowed_tags = tags = ['b',
 						'span',
 						]
 
+no_images = ['b',
+			'blockquote',
+			'br',
+			'code',
+			'del',
+			'em',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'hr',
+			'i',
+			'li',
+			'ol',
+			'p',
+			'pre',
+			'strong',
+			'sub',
+			'sup',
+			'table',
+			'tbody',
+			'th',
+			'thead',
+			'td',
+			'tr',
+			'ul',
+			'marquee',
+			'a',
+			'span']
+
 _allowed_attributes = {
 	'*': ['href', 'style', 'src', 'class', 'title', 'rel', 'data-original-name']
 	}
@@ -107,10 +139,22 @@ _clean_w_links = bleach.Cleaner(tags=_allowed_tags,
 								)
 
 
-def sanitize(text, linkgen=False, flair=False):
+def sanitize(text, linkgen=False, flair=False, noimages=False):
 
 	text = text.replace("\ufeff", "").replace("m.youtube.com", "youtube.com")
 	
+	if noimages:
+		text = bleach.Cleaner(tags=no_images, 
+							  attributes=_allowed_attributes,
+							  protocols=_allowed_protocols,
+							  styles=_allowed_styles,
+							  filters=[partial(LinkifyFilter,
+							  				   skip_tags=["pre"],
+											   parse_email=False,
+											   callbacks=[a_modify]
+											   )
+											]	
+										).clean(text)
 	if linkgen:
 		sanitized = _clean_w_links.clean(text)
 
