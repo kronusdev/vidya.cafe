@@ -1,5 +1,6 @@
 from random import vonmisesvariate
 from sqlalchemy.sql import visitors
+import os
 from werkzeug.wrappers.response import Response as RespObj
 from .get import *
 from .alerts import send_notification
@@ -24,6 +25,9 @@ def get_logged_in_user():
 		if not uid: x= (None, None)
 		v = g.db.query(User).filter_by(id=uid).first()
 
+		if v:
+			check_strikes_for_ban(v)
+
 		if v and (nonce < v.login_nonce):
 			x= (None, None)
 		else:
@@ -34,14 +38,36 @@ def get_logged_in_user():
 
 	return x[0]
 
+def check_strikes_for_ban(v):
 
+	strike_limit = int(os.environ.get('STRIKE_LIMIT'))
+
+	if not v or not v.ban_evade or v.admin_level > 0:
+		return
+	
+	active_strikes = len([x for x in g.db.query(Strikes).filter_by(user_id=v.id).all() if x.is_active])
+
+	if active_strikes >= strike_limit:
+		v.ban(reason=f"@{v.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned.")
+		send_notification(1, v, f"Your account has been permanently suspended for reaching or exceeding {strike_limit} strikes.")
+
+		ma=ModAction(
+			kind="exile_user",
+			user_id=1,
+			target_user_id=v.id,
+			note=f"@{v.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned."
+		)
+		g.db.add(ma)
+		g.db.commit()
+
+		
 def check_ban_evade(v):
 
 	if not v or not v.ban_evade or v.admin_level > 0:
 		return
 	
 	if random.randint(0,30) < v.ban_evade:
-		v.ban(reason="ban evasion")
+		v.ban(reason="Ban Evasion")
 		send_notification(1, v, "Your account has been permanently suspended for the following reason:\n\n> ban evasion")
 
 		for post in g.db.query(Submission).filter_by(author_id=v.id).all():

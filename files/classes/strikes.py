@@ -10,6 +10,7 @@ class Strikes(Base):
     user_id = Column(BigInteger, ForeignKey("users.id"))
     strike_reason = Column(String(500))
     strike_utc = Column(Integer, default=0)
+    strike_expires_utc = Column(Integer, default=0)
 
 
     user = relationship(
@@ -35,9 +36,9 @@ class Strikes(Base):
     def strike_utc(self):
         return self.strike_utc
     
-    @property
-    def strike_expires_utc(self):
-        return int((datetime.utcfromtimestamp(self.strike_utc) + timedelta(days=30)).timestamp())
+#    @property
+#    def strike_expires_utc(self):
+#        return int((datetime.utcfromtimestamp(self.strike_utc) + timedelta(days=30)).timestamp())
     
     @property
     def strike_timestamp(self):
@@ -46,4 +47,8 @@ class Strikes(Base):
 
     @property
     def strike_expires_timestamp(self):
-        return (datetime.utcfromtimestamp(self.strike_utc) + timedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S') 
+        return (datetime.utcfromtimestamp(self.strike_utc) + timedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S')
+
+    @property
+    def is_active(self):
+        return self.strike_expires_utc < int(time.time())
