@@ -206,14 +206,6 @@ def user_id(id):
 def redditor_moment_redirect(username):
 	return redirect(f"/@{username}")
 
-# @app.get("/rentoids")
-# @auth_desired
-# def rentoids(v):
-# 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
-# 	users = g.db.query(User).filter(User.rent_utc > 0).all()
-# 	return render_template("rentoids.html", v=v, users=users)
-
 @app.get("/@<username>/followers")
 @auth_required
 def followers(username, v):
@@ -229,6 +221,15 @@ def visitors(v):
 	if v.admin_level < 1 and not v.patron: return render_template("errors/patron.html", v=v)
 	viewers=sorted(v.viewers, key = lambda x: x.last_view_utc, reverse=True)
 	return render_template("viewers.html", v=v, viewers=viewers)
+
+@app.get("/@<username>/strikes")
+@auth_required
+def strikes(username, v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
+	u = get_user(username, v=v)
+	strikes = [x.strike for x in u.strikes]
+	return render_template("strikes.html", v=v, u=u, strikes=strikes)
 
 @app.get("/@<username>")
 @auth_desired
