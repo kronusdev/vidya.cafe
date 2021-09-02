@@ -14,14 +14,21 @@
         <table class="table table-striped mb-5">
         <thead class="bg-primary text-white">
             <tr>
-                <th style="font-weight: bold;">Strike #</th>
-                <th style="font-weight: bold;">Strike Reason</th>
-                <th style="font-weight: bold;">Expires On</th>
+                <th style="font-weight: bold">Strike #</th>
+                <th style="font-weight: bold">Strike Reason</th>
+                <th style="font-weight: bold">Creation Date</th>
+                <th style="font-weight: bold">Expiration Date</th>
             </tr>
         </thead>    
+        {% for strike in strikes %}
+        <tr>
+            <td style="font-weight: bold">{{strikes.index(strike)+1}}</td>
+            <td style="font-weight: bold">{{strike.strike_reason}}</td>
+            <td style="font-weight: bold">{{strike.strike_timestamp}}</td>
+            <td style="font-weight: bold">{{strike.strike_expires_timestamp}}</td>
+        </tr>
+        {% endfor %}
         </table>
-
-
     </div>
 </div>
 {% endblock %}
