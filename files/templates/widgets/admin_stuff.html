@@ -2,7 +2,6 @@
     {% if v %}
     {% if v.admin_level > 1 %}
     <script>
-
         function toggleVisibility(eventsender, idOfObjectToToggle){
             var myNewState = "none";
             if (eventsender.checked === true){
@@ -11,7 +10,7 @@
 
             }
             document.getElementById(idOfObjectToToggle).style.display = myNewState;
-        }       
+        }
     </script>
     <input type="checkbox" id="toggleAdminStuff" name="toggleAdminStuff"
         onClick="JavaScript:toggleVisibility(this,'admin_widget');" />
