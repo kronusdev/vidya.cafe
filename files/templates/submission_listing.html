@@ -121,22 +121,21 @@
 							<li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#deletePostModal" onclick="delete_postModal('{{p.id}}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
 						{% endif %}
 					{% endif %}
+					<input class="post-actions" type="checkbox" id="admin-actions-checkbox-{{p.id}}" onClick="toggleVisibilityForAdminActions({{p.id}})">
 				</ul>
 			</div>
 			<!-- Admin actions on desktop -->
 			{% if v and v.admin_level > 0 %}
 			<script>
-				function toggleVisibility(){
+				function toggleVisibilityForAdminActions(postId){
 					var myNewState = "none";
-					eventsender = document.getElementById("admin-actions-checkbox-{{p.id}}")
+					eventsender = document.getElementById("admin-actions-checkbox-" + postId)
 					if (eventsender.checked === true){
 						myNewState = "block";
 					}
-					document.getElementById("admin-actions-{{p.id}}").style.display = myNewState;
+					document.getElementById("admin-actions-" + postId).style.display = myNewState;
 				}
-			</script>
-		    <input class="post-actions" type="checkbox" id="admin-actions-checkbox-{{p.id}}" onClick="toggleVisibility()">
-		
+			</script>		
 			<div class="post-actions" id="admin-actions-{{p.id}}" style="display:none;">
 				<ul class="list-inline text-right d-flex">
 					{% if v.admin_level >=3 %}
