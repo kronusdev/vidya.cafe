@@ -36,8 +36,9 @@ class Strikes(Base):
     def strike_utc(self):
         return self.strike_utc
     
-#    @property
-#    def strike_expires_utc(self):
+    @property
+    def strike_expires_utc(self):
+        return self.strike_expires_utc
 #        return int((datetime.utcfromtimestamp(self.strike_utc) + timedelta(days=30)).timestamp())
     
     @property
@@ -47,7 +48,7 @@ class Strikes(Base):
 
     @property
     def strike_expires_timestamp(self):
-        return (datetime.utcfromtimestamp(self.strike_utc) + timedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S')
+        return datetime.utcfromtimestamp(self.strike_expires_utc).strftime('%Y-%m-%d %H:%M:%S')
 
     @property
     def is_active(self):
