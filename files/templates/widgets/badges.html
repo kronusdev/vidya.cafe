@@ -1,6 +1,6 @@
 <div>
 	{% if v.id == u.id %}
-	<a href="javascript:void(0)" onclick="post('/recalculate_badges')" class="btn btn-secondary my-2">Update Badges</a>
+	<a href="javascript:void(0)" onclick="post('/recalculate_badges', function(){window.location.reload(true);})" class="btn btn-secondary my-2">Update Badges</a>
 	{% endif %}
 	{% for b in u.badges %}
 	{% if b.url %}
