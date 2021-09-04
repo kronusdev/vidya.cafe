@@ -1,4 +1,7 @@
 <div>
+	{% if v.id == u.id %}
+	<a href="javascript:void(0)" onclick="post('/recalculate_badges')" class="btn btn-secondary my-2">Update Badges</a>
+	{% endif %}
 	{% for b in u.badges %}
 	{% if b.url %}
 	<a href="{{b.url}}"><img style="width: 60px; height: 60px" src="{{b.path}}"
