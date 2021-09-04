@@ -1023,7 +1023,6 @@ CREATE TABLE public.submissions_aux (
     embed_url character varying(10000),
     ban_reason character varying(128),
     key_id integer NOT NULL,
-    meta_title character varying(512),
     meta_description character varying(1024),
     title_html text,
     tag character varying DEFAULT 'none'::character varying
