@@ -52,6 +52,12 @@ def get_profilecss(username):
 	resp.headers.add("Content-Type", "text/css")
 	return resp
 
+@app.post("/recalculate_badges")
+@auth_required
+def reclaculate_badges(v):
+	v.refresh_selfset_badges()
+	return "OK", 200
+
 @app.post("/@<username>/reply/<id>")
 @auth_required
 def messagereply(v, username, id):

@@ -331,7 +331,7 @@
 
 						<div class="input-group">
 
-							<textarea v-model="post_body" form="submitform" id="post-text" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="3" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
+							<textarea v-model="post_body" v-on:input="toggleOn" form="submitform" id="post-text" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="3" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
 
 							<span class="position-absolute text-small font-weight-bold" id="character-count-submit-text-form" style="right: 1rem; bottom: 0.5rem; z-index: 3;"></span>
 
@@ -449,12 +449,24 @@
 			},
 			computed: {
 				post_body_markdown: function(){
-					return md.render(this.post_body)
+					markdown = md.render(this.post_body)
+					emojis = Array.from(markdown.matchAll(/:(.{1,30}?):/gi))
+					if(emojis != null){
+						for(i = 0; i < emojis.length; i++){
+							markdown = markdown.replace(emojis[i][0], "<img height=30 src='/assets/images/emojis/" + emojis[i][1] + ".gif'>")
+						}
+					}
+					return markdown
 				}
 			},
 			methods: {
 				togglePreview() {
 					this.show_preview = !this.show_preview
+				},
+				toggleOn(){
+					if(this.post_body.length < 5){
+						this.show_preview = true
+					}
 				}
 			}
 		})
