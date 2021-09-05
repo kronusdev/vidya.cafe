@@ -1,9 +1,11 @@
 import time
 import calendar
+from requests.api import post
 from sqlalchemy.orm import lazyload
 import imagehash
-from os import remove
+from os import *
 from PIL import Image as IMAGE
+from datetime import datetime, timedelta
 
 from files.helpers.wrappers import *
 from files.helpers.alerts import *
@@ -253,6 +255,66 @@ def users_list(v):
 						   next_exists=next_exists,
 						   page=page,
 						   )
+
+@app.get("/admin/give_strike/post/<post_id>")
+@admin_level_required(4)
+def give_strike(post_id, v):
+	return render_template("admin/give_strike.html", v=v, post_id=post_id)
+
+@app.get("/admin/give_strike/comment/<comment_id>")
+@admin_level_required(4)
+def give_strike(comment_id, v):
+	return render_template("admin/give_strike.html", v=v, comment_id=comment_id)
+
+@app.post('/admin/strike/post/<post_id>')
+@admin_level_required(4)
+@validate_formkey
+def strike_post(post_id, v):
+	if not request.args.get("reason"):
+		return render_template("admin/give_strike/post/{{post_id}}", v=v, post_id=post_id)
+	
+	strike_utc = int(time.time())
+	strike_expires_utc = int((datetime.utcfromtimestamp(strike_utc) + timedelta(days=30)).timestamp())
+	strike_reason = request.args.get("reason")
+	strike_url = f"https://{os.environ.get('DOMAIN')}/post/{post_id}"
+	user_id = g.db.query(Submission).filter_by(Submission.id==post_id).first().author_id
+
+	new_strike = Strikes(
+		user_id = user_id,
+		strike_reason = strike_reason,
+		strike_utc = strike_utc,
+		strike_expires_utc = strike_expires_utc,
+		strike_url = strike_url
+	)
+
+	g.db.add(new_strike)
+	g.db.commit()
+
+@app.post('/admin/strike/comment/<comment_id>')
+@admin_level_required(4)
+@validate_formkey
+def strike_comment(comment_id, v):
+	if not request.args.get("reason"):
+		return render_template("admin/give_strike/comment/{{comment_id}}", v=v, comment_id=comment_id)
+	
+	strike_utc = int(time.time())
+	strike_expires_utc = int((datetime.utcfromtimestamp(strike_utc) + timedelta(days=30)).timestamp())
+	strike_reason = request.args.get("reason")
+	strike_url = f"https://{os.environ.get('DOMAIN')}/comment/{comment_id}"
+	user_id = g.db.query(Comment).filter_by(Comment.id==comment_id).first().author_id
+
+	new_strike = Strikes(
+		user_id = user_id,
+		strike_reason = strike_reason,
+		strike_utc = strike_utc,
+		strike_expires_utc = strike_expires_utc,
+		strike_url = strike_url
+	)
+
+	g.db.add(new_strike)
+	g.db.commit()	
+
+
 
 
 @app.get("/admin/content_stats")

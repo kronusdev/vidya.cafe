@@ -1,0 +1,32 @@
+{% extends "default.html" %}
+
+{% block title %}
+<title>{{"SITE_NAME" | app_config}} - Give Strike</title>
+<meta name="description" content="{{"SITE_NAME" | app_config}} Help">
+{% endblock %}
+
+{% block content %}
+
+<div class="card-blank rounded">
+    <div class="m-3">       
+        <pre></pre>
+        <h5>Striking {% if post_id %}Post {{post_id}}{%endif%}{% if comment_id %}Comment {{comment_id}}{% endif %}</h5>
+        <pre></pre>
+
+        {% if post_id %}
+            <form action="/admin/strike/post/{{post_id}}" method="post" class="mb-6">
+                <label for="link-input">Strike Reason</label>
+                <input id="link-input" type="text" class="form-control mb-2" name="reason" value="{{strike_reason if reason else ''}}" placeholder="Strike Reason...">
+                <input type="submit" value="Submit Strike" class="btn btn-primary">
+            </form>
+        {% endif %}
+        {% if comment_id %}
+        <form action="/admin/strike/comment/{{comment_id}}" method="post" class="mb-6">
+            <label for="link-input">Strike Reason</label>
+            <input id="link-input" type="text" class="form-control mb-2" name="reason" value="{{strike_reason if reason else ''}}" placeholder="Strike Reason...">
+            <input type="submit" value="Submit Strike" class="btn btn-primary">
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

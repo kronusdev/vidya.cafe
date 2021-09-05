@@ -11,7 +11,7 @@ class Strikes(Base):
     strike_reason = Column(String(500))
     strike_utc = Column(Integer, default=0)
     strike_expires_utc = Column(Integer, default=0)
-
+    strike_url = Column(String(250))
 
     user = relationship(
         "User",
@@ -51,5 +51,10 @@ class Strikes(Base):
         return datetime.utcfromtimestamp(self.strike_expires_utc).strftime('%Y-%m-%d %H:%M:%S')
 
     @property
+    def strike_url(self):
+        return self.strike_url
+    
+    @property
     def is_active(self):
         return self.strike_expires_utc < int(time.time())
+    
