@@ -1,14 +1,5 @@
 {% for p in listing %}
 
-<script>
-	var date = new Date('{{p.created_datetime}}');
-	document.getElementById('timestamp-{{p.id}}').title = date.toString();
-	{% if p.edited_utc %}
-		var date = new Date('{{p.edited_datetime}}');
-		document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
-	{% endif %}
-</script>
-
 {% set ups=p.upvotes %}
 {% set score=ups %}
 
@@ -373,6 +364,16 @@
 	</div>
 	{% endif %}
 </div>
+
+<script>
+	var date = new Date('{{p.created_datetime}}');
+	document.getElementById('timestamp-{{p.id}}').title = date.toString();
+	{% if p.edited_utc %}
+		var date = new Date('{{p.edited_datetime}}');
+		document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
+	{% endif %}
+</script>
+
 {% endfor %}
 
 {% include "delete_post_modal.html" %}
