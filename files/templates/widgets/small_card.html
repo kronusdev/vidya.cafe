@@ -9,7 +9,7 @@
         <h5 class="{{p.tag}}-tag text-left"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" {% if p.author.is_private %} rel="nofollow"{% endif %}>
             {{p.realtitle(v) | safe}}</a>
         </h5>
-        <p id="timestamp-{{p.id}}" class="text-small" style="display:inline">{{p.age_string}}</p>
+        <p id="timestamp-{{p.id}}" data-toggle="tooltip" class="text-small" style="display:inline">{{p.age_string}}</p>
         <p class="text-small" style="display:inline"></p>({% if p.realurl(v) %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})</p>
             <!-- Voting, Comments, ect.-->
             {% if v and request.path.startswith('/@') and v.admin_level == 0 %}
