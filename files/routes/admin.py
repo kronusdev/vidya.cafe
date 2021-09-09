@@ -256,20 +256,24 @@ def users_list(v):
 						   page=page,
 						   )
 
-@app.get("/admin/give_strike/post/<post_id>")
+@app.get("/admin/give_strike")
 @admin_level_required(4)
-def give_strike(post_id, v):
-	return render_template("admin/give_strike.html", v=v, post_id=post_id)
+def give_strike(v):
 
-@app.get("/admin/give_strike/comment/<comment_id>")
-@admin_level_required(4)
-def give_strike(comment_id, v):
-	return render_template("admin/give_strike.html", v=v, comment_id=comment_id)
+	target = request.args.get("target")
+	if not target: abort(400)
+	try:
+		if "t2" in target: link = get_post(int(target.split("t2_")[1]), v=v)
+		if "t3" in target: link = get_comment(int(target.split("t3_")[1]), v=v)
+		else: abort(400)
+	except: abort(400)
+	
+	return render_template("admin/give_strike.html", v=v, link=link)
 
-@app.post('/admin/strike/post/<post_id>')
+@app.post('/admin/strike')
 @admin_level_required(4)
 @validate_formkey
-def strike_post(post_id, v):
+def strike(v):
 	if not request.args.get("reason"):
 		return render_template("admin/give_strike/post/{{post_id}}", v=v, post_id=post_id)
 	
@@ -289,33 +293,6 @@ def strike_post(post_id, v):
 
 	g.db.add(new_strike)
 	g.db.commit()
-
-@app.post('/admin/strike/comment/<comment_id>')
-@admin_level_required(4)
-@validate_formkey
-def strike_comment(comment_id, v):
-	if not request.args.get("reason"):
-		return render_template("admin/give_strike/comment/{{comment_id}}", v=v, comment_id=comment_id)
-	
-	strike_utc = int(time.time())
-	strike_expires_utc = int((datetime.utcfromtimestamp(strike_utc) + timedelta(days=30)).timestamp())
-	strike_reason = request.args.get("reason")
-	strike_url = f"https://{os.environ.get('DOMAIN')}/comment/{comment_id}"
-	user_id = g.db.query(Comment).filter_by(Comment.id==comment_id).first().author_id
-
-	new_strike = Strikes(
-		user_id = user_id,
-		strike_reason = strike_reason,
-		strike_utc = strike_utc,
-		strike_expires_utc = strike_expires_utc,
-		strike_url = strike_url
-	)
-
-	g.db.add(new_strike)
-	g.db.commit()	
-
-
-
 
 @app.get("/admin/content_stats")
 @admin_level_required(2)

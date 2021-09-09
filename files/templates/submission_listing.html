@@ -156,7 +156,7 @@
 					{% endif %}
 
 					{% if v and v.admin_level >= 4 %}
-						<li class="list-inline-item"><a class="text-danger" href="/admin/give_strike/post/{{p.id}}"><i class="fas fa-exclamation-triangle"></i>Give Strike</a></li>
+						<li class="list-inline-item"><a class="text-danger" href="/admin/give_strike?target={{p.fullname}}"><i class="fas fa-exclamation-triangle"></i>Strike Post</a></li>
 					{% endif %}
 
 					{% if v.admin_level >=3 and v.id!=p.author_id %}
@@ -279,6 +279,9 @@
 						{% endif %}
 						{% if v and (v.id==p.author_id or v.admin_level>=3) %}
 							<button class="btn btn-link btn-block btn-lg text-left text-danger" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="far fa-eye-evil text-center mr-3"></i>Toggle NSFW</button>
+						{% endif %}
+						{% if v and v.admin_level >= 4 %}
+							<button class="btn btn-link btn-block btn-lg text-left text-danger"><a class="text-danger" href="/admin/give_strike?target={{p.fullname}}"><i class="fas fa-exclamation-triangle"></i>Strike Post</a></button>
 						{% endif %}
 						{% if v.admin_level >=3 and v.id!=p.author_id %}
 							{% if p.author.is_banned %}
