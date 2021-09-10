@@ -275,7 +275,7 @@
 						{% elif "instagram.com" in p.domain %}
 							{% include "embeds/instagram.html" %}
 						{% elif "SERVER_NAME" | app_config in p.domain %}
-							{{ p.id | post_embed | safe }}
+							{{ p.domain | post_embed | safe }}
 						{% endif %}
 
 					</div>
