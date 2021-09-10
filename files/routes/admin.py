@@ -266,7 +266,7 @@ def give_strike(v):
 		if "t2" in target:
 			link = get_post(int(target.lstrip("t2").strip('_')), v=v)
 		elif "t3" in target:
-			link = get_comment(int(target.lstrip("t3_")), v=v)
+			link = get_comment(int(target.lstrip("t3").strip('_')), v=v)
 		else: abort(400)
 	except Exception as e:
 		print(str(e))
