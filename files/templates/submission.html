@@ -274,7 +274,7 @@
 							{% include "embeds/youtube.html" %}
 						{% elif "instagram.com" in p.domain %}
 							{% include "embeds/instagram.html" %}
-						{% elif app.config['SERVER_NAME'] in p.domain %}
+						{% elif "dev.vidya.cafe" in p.domain %}
 							{% include "embeds/post.html" %}
 						{% endif %}
 
