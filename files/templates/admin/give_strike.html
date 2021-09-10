@@ -12,21 +12,16 @@
         <pre></pre>
         <h5>Giving @{{link.author.username}} A Strike</h5>
         <pre></pre>
-
-        {% if post_id %}
-            <form action="/admin/strike/post/{{post_id}}" method="post" class="mb-6">
-                <label for="link-input">Strike Reason</label>
-                <input id="link-input" type="text" class="form-control mb-2" name="reason" value="{{strike_reason if reason else ''}}" placeholder="Strike Reason...">
-                <input type="submit" value="Submit Strike" class="btn btn-primary">
-            </form>
-        {% endif %}
-        {% if comment_id %}
-        <form action="/admin/strike/comment/{{comment_id}}" method="post" class="mb-6">
-            <label for="link-input">Strike Reason</label>
-            <input id="link-input" type="text" class="form-control mb-2" name="reason" value="{{strike_reason if reason else ''}}" placeholder="Strike Reason...">
+        <pre></pre>
+        <form action="/admin/strike?uid={{link.author_id}}" method="post" class="mb-6">
+            <label for="s-user">User</label>
+            <input id="s-user" type="text" class="form-control mb-2" name="user" value="{{link.author.username}}">
+            <label for="s-reason">Strike Reason</label>
+            <input id="s-reason" type="text" class="form-control mb-2" name="reason" value="{{strike_reason if reason else ''}}" placeholder="Strike Reason...">
+            <label for="s-link">Strike URL</label>
+            <input id="s-link" type="text" class="form-control mb-2" name="link" value="{{link.permalink}}">
             <input type="submit" value="Submit Strike" class="btn btn-primary">
         </form>
-        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -272,31 +272,32 @@ def give_strike(v):
 		print(str(e))
 		abort(400)
 	
-	return render_template("admin/give_strike.html", v=v, link=link, post_id=link.id)
+	return render_template("admin/give_strike.html", v=v, link=link, target=target)
 
 @app.post('/admin/strike')
 @admin_level_required(4)
 @validate_formkey
 def strike(v):
-	if not request.args.get("reason"):
-		return render_template("admin/give_strike/post/{{post_id}}", v=v, post_id=post_id)
-	
-	strike_utc = int(time.time())
-	strike_expires_utc = int((datetime.utcfromtimestamp(strike_utc) + timedelta(days=30)).timestamp())
-	strike_reason = request.args.get("reason")
-	strike_url = f"https://{os.environ.get('DOMAIN')}/post/{post_id}"
-	user_id = g.db.query(Submission).filter_by(Submission.id==post_id).first().author_id
+	try:
+		if not request.values.get("reason"):
+			if request.referrer:
+				return redirect(request.referrer)
 
-	new_strike = Strikes(
-		user_id = user_id,
-		strike_reason = strike_reason,
-		strike_utc = strike_utc,
-		strike_expires_utc = strike_expires_utc,
-		strike_url = strike_url
-	)
+		username = request.values.get("user")
 
-	g.db.add(new_strike)
-	g.db.commit()
+		new_strike = Strikes(
+			user_id = request.args.get("uid"),
+			strike_reason = request.values.get("reason"),
+			strike_utc = int(time.time()),
+			strike_expires_utc = int((datetime.utcfromtimestamp(int(time.time())) + timedelta(days=30)).timestamp()),
+			strike_url = f"https://{os.environ.get('DOMAIN')}" + request.values.get("link")
+		)
+
+		g.db.add(new_strike)
+		g.db.commit()
+
+		return {"message": f"@{username} was banned"}
+	except: abort(400)
 
 @app.get("/admin/content_stats")
 @admin_level_required(2)
