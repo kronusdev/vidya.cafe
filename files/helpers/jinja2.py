@@ -2,6 +2,7 @@ from os import environ, path
 from .get import *
 from files.__main__ import app, cache
 import time
+import re
 
 @app.template_filter("total_users")
 @cache.memoize(timeout=60)
