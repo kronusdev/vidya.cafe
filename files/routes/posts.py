@@ -564,7 +564,9 @@ def submit_post(v):
 
 	elif "instagram.com" in domain:
 		embed = requests.get("https://graph.facebook.com/v9.0/instagram_oembed", params={"url":url,"access_token":environ.get("FACEBOOK_TOKEN","").strip(),"omitscript":'true'}, headers={"User-Agent": app.config["UserAgent"]}).json()["html"]
-	
+	elif ".mp4" in domain:
+		embed = "https://dev.vidya.cafe/embed/post/2"
+
 	elif app.config['SERVER_NAME'] in domain:
 		try:
 			matches = re.match(re.compile(f"^.*{domain}/post/+\w+/(\w+)(/\w+/(\w+))?"), url)
