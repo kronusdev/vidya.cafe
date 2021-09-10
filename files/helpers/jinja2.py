@@ -2,6 +2,7 @@ from os import environ, path
 from .get import *
 from files.__main__ import app, cache
 import time
+import re
 
 @app.template_filter("total_users")
 @cache.memoize(timeout=60)
@@ -49,6 +50,18 @@ def js_str_escape(s):
 @app.template_filter("app_config")
 def app_config(x):
 	return app.config.get(x)
+
+
+@app.template_filter("post_embed")
+def post_embed(url):
+	regex = "/\/([0-9].)$/gm"
+	post_id = re.match(re.compile(regex), url).group(1)
+	p = get_post(post_id)
+	return render_template(
+		"embeds/post.html",
+		p=p, 
+		time=time.time()
+	)
 
 @app.template_filter('to_hours')
 def unix_to_hours(s):
