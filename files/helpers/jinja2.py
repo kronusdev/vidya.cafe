@@ -50,6 +50,25 @@ def js_str_escape(s):
 def app_config(x):
 	return app.config.get(x)
 
+@app.template_filter("post_embed")
+def crosspost_embed(url):
+
+    matches = re.match(post_regex, url)
+
+    b36id = matches.group(1)
+
+    p = get_post(b36id, v=g.v, graceful=True)
+
+    if not p or p.is_deleted or p.is_banned or not p.is_public:
+        return ""
+
+    return render_template(
+        "embeds/post.html",
+        listing=[p],
+        v=g.v
+        )
+
+
 @app.template_filter('to_hours')
 def unix_to_hours(s):
 	if(s>0):
