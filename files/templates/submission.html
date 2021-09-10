@@ -274,8 +274,8 @@
 							{% include "embeds/youtube.html" %}
 						{% elif "instagram.com" in p.domain %}
 							{% include "embeds/instagram.html" %}
-						{% elif "dev.vidya.cafe" in p.domain %}
-							{% include "embeds/post.html" %}
+						{% elif "SERVER_NAME" | app_config in p.domain %}
+							{% p.url | post_embed | safe %}
 						{% endif %}
 
 					</div>
