@@ -56,7 +56,7 @@ def post_embed(id):
 	p = get_post(id)
 	return render_template(
 		"embeds/post.html",
-		listing=[p]
+		p=p
 	)
 
 @app.template_filter('to_hours')
