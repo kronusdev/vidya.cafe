@@ -40,7 +40,7 @@ def get_logged_in_user():
 
 def check_strikes_for_ban(v):
 
-	strike_limit = int(os.environ.get('STRIKE_LIMIT'))
+	strike_limit = int(os.environ.get('STRIKE_LIMIT', 5))
 
 	if not v or not v.ban_evade or v.admin_level > 0:
 		return
