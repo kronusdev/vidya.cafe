@@ -274,6 +274,8 @@
 							{% include "embeds/youtube.html" %}
 						{% elif "instagram.com" in p.domain %}
 							{% include "embeds/instagram.html" %}
+						{% elif ".mp4" in p.url %}
+							{% include "embeds/video.html" %}
 						{% elif "SERVER_NAME" | app_config in p.domain %}
 							{{ p.embed_url | post_embed | safe }}
 						{% endif %}
