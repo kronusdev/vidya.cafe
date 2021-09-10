@@ -53,8 +53,8 @@ def app_config(x):
 
 @app.template_filter("post_embed")
 def post_embed(url):
-	re = "/\/([0-9].)$/gm"
-	post_id = re.match(re, url).group(1)
+	regex = "/\/([0-9].)$/gm"
+	post_id = re.match(re.compile(regex), url).group(1)
 	p = get_post(post_id)
 	return render_template(
 		"embeds/post.html",
