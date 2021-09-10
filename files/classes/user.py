@@ -108,8 +108,7 @@ class User(Base, Stndrd, Age_times):
 
 	following = relationship("Follow", primaryjoin="Follow.user_id==User.id")
 	followers = relationship("Follow", primaryjoin="Follow.target_id==User.id")
-
-	strikes = relationship("Strikes", primaryjoin="Strikes.user_id=User.id")
+	strikes = relationship("Strikes", primaryjoin="Strikes.user_id==User.id")
 
 	viewers = relationship("ViewerRelationship", primaryjoin="User.id == ViewerRelationship.user_id")
 

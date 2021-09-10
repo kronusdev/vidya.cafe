@@ -1097,6 +1097,7 @@ CREATE TABLE public.strikes (
   strike_reason character varying(500),
   strike_utc integer DEFAULT 0,
   strike_expires_utc integer DEFAULT 0,
+  strike_url character varying(250)
 );
 
 CREATE SEQUENCE public.strikes_id_seq
