@@ -2,7 +2,6 @@ from sqlalchemy import *
 from sqlalchemy.orm import relationship
 from datetime import datetime, timedelta
 from files.__main__ import Base
-from files.classes.user import *
 import time
 
 
@@ -25,6 +24,9 @@ class Strikes(Base):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+    def __repr__(self):
+        return f"<Strikes({self.id})>"
     
     @property
     def is_active(self):
