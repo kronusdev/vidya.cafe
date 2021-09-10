@@ -442,7 +442,7 @@ def embed_post_pid(pid):
 
     post = get_post(pid)
 
-    return render_template("embeds/post.html", p=post)
+    return render_template("embeds/post.html", p=post, time=time.time())
 
 
 @app.route("/embed/comment/<cid>", methods=["GET"])
