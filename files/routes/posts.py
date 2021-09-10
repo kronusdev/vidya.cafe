@@ -564,8 +564,6 @@ def submit_post(v):
 
 	elif "instagram.com" in domain:
 		embed = requests.get("https://graph.facebook.com/v9.0/instagram_oembed", params={"url":url,"access_token":environ.get("FACEBOOK_TOKEN","").strip(),"omitscript":'true'}, headers={"User-Agent": app.config["UserAgent"]}).json()["html"]
-	elif re.match("*.mp4", domain):
-		embed = "vid"
 
 	elif app.config['SERVER_NAME'] in domain:
 		try:
