@@ -263,12 +263,16 @@ def give_strike(v):
 	target = request.args.get("target")
 	if not target: abort(400)
 	try:
-		if "t2" in target: link = get_post(int(target.split("t2_")[1]), v=v)
-		if "t3" in target: link = get_comment(int(target.split("t3_")[1]), v=v)
+		if "t2" in target:
+			link = get_post(int(target.lstrip("t2").strip('_')), v=v)
+		elif "t3" in target:
+			link = get_comment(int(target.lstrip("t3_")), v=v)
 		else: abort(400)
-	except: abort(400)
+	except Exception as e:
+		print(str(e))
+		abort(400)
 	
-	return render_template("admin/give_strike.html", v=v, link=link)
+	return render_template("admin/give_strike.html", v=v, link=link, post_id=link.id)
 
 @app.post('/admin/strike')
 @admin_level_required(4)
