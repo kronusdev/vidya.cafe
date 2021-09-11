@@ -234,7 +234,9 @@ def strikes(username, v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	u = get_user(username, v=v)
-	strikes = [x.strike for x in u.strikes]
+
+	strikes = g.db.query(Strikes).filter_by(user_id=u.id).all()
+
 	return render_template("strikes.html", v=v, u=u, strikes=strikes)
 
 @app.get("/@<username>")
