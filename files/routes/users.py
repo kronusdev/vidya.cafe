@@ -231,8 +231,8 @@ def visitors(v):
 @app.get("/@<username>/strikes")
 @auth_required
 def strikes(username, v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	u = get_user(username, v=v)
-	if v.id != u.id or v.admin_level < 4: abort(401)
 	strikes = g.db.query(Strikes).filter_by(user_id=u.id).all()
 	return render_template("strikes.html", u=u, v=v, strikes=strikes)
 

@@ -26,7 +26,8 @@ def get_logged_in_user():
 		v = g.db.query(User).filter_by(id=uid).first()
 
 		if v:
-			check_strikes_for_ban(v)
+			if not v.is_suspended:
+				check_strikes_for_ban(v)
 
 		if v and (nonce < v.login_nonce):
 			x= (None, None)
@@ -42,7 +43,7 @@ def check_strikes_for_ban(v):
 
 	strike_limit = int(os.environ.get('STRIKE_LIMIT', 5))
 
-	if not v or not v.ban_evade or v.admin_level > 0:
+	if not v or v.admin_level > 0:
 		return
 	
 	active_strikes = len([x for x in g.db.query(Strikes).filter_by(user_id=v.id).all() if x.is_active])

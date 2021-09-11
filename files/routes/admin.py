@@ -278,26 +278,36 @@ def give_strike(v):
 @admin_level_required(4)
 @validate_formkey
 def strike(v):
-	try:
-		if not request.values.get("reason"):
-			if request.referrer:
-				return redirect(request.referrer)
+	# return if there is no reason
+	if not request.values.get("reason"):
+		if request.referrer:
+			return redirect(request.referrer)
 
-		username = request.values.get("user")
+	# initialize vars
+	username = request.values.get("user")
+	domain = os.environ.get("DOMAIN")
 
-		new_strike = Strikes(
-			user_id = request.args.get("uid"),
-			strike_reason = request.values.get("reason"),
-			strike_utc = int(time.time()),
-			strike_expires_utc = int((datetime.utcfromtimestamp(int(time.time())) + timedelta(days=30)).timestamp()),
-			strike_url = f"https://{os.environ.get('DOMAIN')}" + request.values.get("link")
-		)
+	# build the strike object to insert into the strikes tablw
+	new_strike = Strikes(
+		user_id = request.args.get("uid"),
+		strike_reason = request.values.get("reason"),
+		strike_utc = int(time.time()),
+		strike_expires_utc = int((datetime.utcfromtimestamp(int(time.time())) + timedelta(days=30)).timestamp()),
+		strike_url = f"https://{domain}" + request.values.get("link")
+	)
+	
+	# insert new strike
+	g.db.add(new_strike)
+	g.db.commit()
 
-		g.db.add(new_strike)
-		g.db.commit()
+	# notify user of strike
+	u = get_user(username, v=v)
+	body = f"You have received a content strike for: {new_strike.strike_url}\n\nReason: {new_strike.strike_reason}\n\nYou can view your active strikes via the Content Strikes button on your profile, getting {os.environ.get('STRIKE_LIMIT', '5')} strikes will result in a ban and strikes also expire after 30 days.\n\nPlease review our rules located at: https://{domain}/rules"
+	send_notification(1, u, body)
 
-		return {"message": f"@{username} got striked!"}
-	except: abort(400)
+	# redirect to success screen
+	return render_template("admin/result/strike_success.html", v=v, username=username, reason=new_strike.strike_reason)
+	
 
 @app.get("/admin/content_stats")
 @admin_level_required(2)

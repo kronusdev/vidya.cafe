@@ -109,8 +109,9 @@ def login_post():
 	else:
 		abort(400)
 
-	if account.is_banned and account.unban_utc > 0 and time.time() > account.unban_utc:
-		account.unban()
+	if account.unban_utc:
+		if account.is_banned and account.unban_utc > 0 and time.time() > account.unban_utc:
+			account.unban()
 
 	# set session and user id
 	session["user_id"] = account.id
