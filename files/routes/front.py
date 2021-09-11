@@ -13,9 +13,6 @@ def slash_post():
 @app.get("/notifications")
 @auth_required
 def notifications(v):
-
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	page = int(request.args.get('page', 1))
 	all_ = request.args.get('all', False)
 	messages = request.args.get('messages', False)
@@ -180,8 +177,6 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", ids_only=True, filte
 def front_all(v):
 	if(v):
 		v.last_active = time.time();
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	try: page = int(request.args.get("page") or 1)
 	except: abort(400)
 
@@ -353,8 +348,6 @@ def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="change
 @app.get("/changelog")
 @auth_desired
 def changelog(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	page = int(request.args.get("page") or 1)
 	page = max(page, 1)
 
@@ -385,7 +378,7 @@ def changelog(v):
 @app.get("/random")
 @auth_desired
 def random_post(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False)
 
@@ -459,8 +452,6 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 @app.get("/comments")
 @auth_desired
 def all_comments(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	page = int(request.args.get("page", 1))
 
 	sort=request.args.get("sort", "new")

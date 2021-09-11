@@ -140,7 +140,7 @@ CREATE TABLE public.users (
     reserved character varying(256),
     mfa_secret character varying(32),
     is_private boolean,
-    unban_utc integer,
+    unban_utc integer DEFAULT 0,
     is_nofollow boolean DEFAULT false,
     custom_filter_list character varying(1000) DEFAULT ''::character varying,
     discord_id character varying(64),

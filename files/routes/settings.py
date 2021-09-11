@@ -606,7 +606,7 @@ def update_announcement(v):
 @app.get("/settings/blocks")
 @auth_required
 def settings_blockedpage(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	#users=[x.target for x in v.blocked]
 
@@ -616,7 +616,7 @@ def settings_blockedpage(v):
 @app.get("/settings/css")
 @auth_required
 def settings_css_get(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return render_template("settings_css.html", v=v)
 
@@ -631,7 +631,7 @@ def settings_css(v):
 @app.get("/settings/profilecss")
 @auth_required
 def settings_profilecss_get(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 	if v.coins < 1000 and not v.patron: return f"You must have +1000 {COINS_NAME} or be a patron to set profile css."
 	return render_template("settings_profilecss.html", v=v)
 
@@ -712,7 +712,7 @@ def settings_unblock_user(v):
 @app.get("/settings/apps")
 @auth_required
 def settings_apps(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return render_template("settings_apps.html", v=v)
 
@@ -736,7 +736,7 @@ def settings_remove_discord(v):
 @app.get("/settings/content")
 @auth_required
 def settings_content_get(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return render_template("settings_filters.html", v=v)
 

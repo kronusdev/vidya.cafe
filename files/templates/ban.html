@@ -1,0 +1,19 @@
+{% extends "default.html" %}
+{% block title %}
+<title>You Are Banned</title>
+{% endblock %}
+
+{% block pagetype %}error-405{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+	<div class="col-10 col-md-5">
+	<div class="text-center px-3 my-8 info-popup">
+			<i class="fad fa-gavel text-muted mb-5" style="font-size: 5rem;"></i>
+			<h1 class="h5">You have been banned from vidya.cafe</h1>
+			<p class="text-muted mb-5">You are no longer able to post, your comments won't go through, and you have limited access to the site.</p>
+            <div><a href="/" class="btn btn-primary">Go to frontpage</a></div>
+		</div>
+	</div>
+</div>
+{% endblock %}

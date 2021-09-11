@@ -26,7 +26,7 @@ site = environ.get("DOMAIN").strip()
 @app.get("/leaderboard")
 @auth_desired
 def leaderboard(v):
-	if v and v.is_banned and not v.unban_utc:return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 	users = g.db.query(User).options(lazyload('*'))
 	users1 = users.order_by(User.coins.desc()).limit(25).all()
 	users2 = users.order_by(User.stored_subscriber_count.desc()).limit(10).all()
@@ -215,7 +215,7 @@ def redditor_moment_redirect(username):
 @app.get("/@<username>/followers")
 @auth_required
 def followers(username, v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	u = get_user(username, v=v)
 	users = [x.user for x in u.followers]
@@ -231,7 +231,7 @@ def visitors(v):
 @app.get("/@<username>/strikes")
 @auth_required
 def strikes(username, v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 	u = get_user(username, v=v)
 	strikes = g.db.query(Strikes).filter_by(user_id=u.id).all()
 	return render_template("strikes.html", u=u, v=v, strikes=strikes)
@@ -239,7 +239,7 @@ def strikes(username, v):
 @app.get("/@<username>")
 @auth_desired
 def u_username(username, v=None):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	# username is unique so at most this returns one result. Otherwise 404
 
@@ -363,7 +363,7 @@ def u_username(username, v=None):
 @app.get("/@<username>/comments")
 @auth_desired
 def u_username_comments(username, v=None):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	# username is unique so at most this returns one result. Otherwise 404
 

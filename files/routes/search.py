@@ -199,7 +199,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 @app.get("/search/posts")
 @auth_desired
 def searchposts(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	query = request.args.get("q", '').strip()
 
@@ -241,7 +241,7 @@ def searchposts(v):
 @app.get("/search/comments")
 @auth_desired
 def searchcomments(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	query = request.args.get("q", '').strip()
 
@@ -266,7 +266,7 @@ def searchcomments(v):
 @app.get("/search/users")
 @auth_desired
 def searchusers(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	query = request.args.get("q", '').strip()
 

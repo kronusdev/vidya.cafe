@@ -24,11 +24,7 @@ def get_logged_in_user():
 		nonce = session.get("login_nonce", 0)
 		if not uid: x= (None, None)
 		v = g.db.query(User).filter_by(id=uid).first()
-
-		if v:
-			if not v.is_suspended:
-				check_strikes_for_ban(v)
-
+		
 		if v and (nonce < v.login_nonce):
 			x= (None, None)
 		else:
@@ -38,29 +34,6 @@ def get_logged_in_user():
 	if x[0]: x[0].client=x[1]
 
 	return x[0]
-
-def check_strikes_for_ban(v):
-
-	strike_limit = int(os.environ.get('STRIKE_LIMIT', 5))
-
-	if not v or v.admin_level > 0:
-		return
-	
-	active_strikes = len([x for x in g.db.query(Strikes).filter_by(user_id=v.id).all() if x.is_active])
-
-	if active_strikes >= strike_limit:
-		v.ban(reason=f"@{v.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned.")
-		send_notification(1, v, f"Your account has been permanently suspended for reaching or exceeding {strike_limit} strikes.")
-
-		ma=ModAction(
-			kind="exile_user",
-			user_id=1,
-			target_user_id=v.id,
-			note=f"@{v.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned."
-		)
-		g.db.add(ma)
-		g.db.commit()
-
 		
 def check_ban_evade(v):
 

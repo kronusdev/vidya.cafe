@@ -28,8 +28,6 @@ site = environ.get("DOMAIN").strip()
 @auth_desired
 def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	
 	try: cid = int(cid)
 	except:
 		try: cid = int(cid, 36)
@@ -316,6 +314,10 @@ def api_comment(v):
 
 		if badlink:
 			return jsonify({"error": f"Remove the following link and try again: `{check_url}`. Reason: {badlink.reason}"}), 403
+	
+	# block banned users from commenting
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
+	
 	# create comment
 	parent_id = parent_fullname.split("_")[1]
 	c = Comment(author_id=v.id,

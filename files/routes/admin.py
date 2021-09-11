@@ -288,7 +288,7 @@ def strike(v):
 	domain = os.environ.get("DOMAIN")
 
 	# build the strike object to insert into the strikes tablw
-	new_strike = Strikes(
+	ns = Strikes(
 		user_id = request.args.get("uid"),
 		strike_reason = request.values.get("reason"),
 		strike_utc = int(time.time()),
@@ -297,16 +297,37 @@ def strike(v):
 	)
 	
 	# insert new strike
-	g.db.add(new_strike)
+	g.db.add(ns)
 	g.db.commit()
 
 	# notify user of strike
 	u = get_user(username, v=v)
-	body = f"You have received a content strike for: {new_strike.strike_url}\n\nReason: {new_strike.strike_reason}\n\nYou can view your active strikes via the Content Strikes button on your profile, getting {os.environ.get('STRIKE_LIMIT', '5')} strikes will result in a ban and strikes also expire after 30 days.\n\nPlease review our rules located at: https://{domain}/rules"
+	body = f"You have received a content strike for: {ns.strike_url}\n\nReason: {ns.strike_reason}\n\nYou can view your active strikes via the Content Strikes button on your profile, getting {os.environ.get('STRIKE_LIMIT', '5')} strikes will result in a ban and strikes also expire after 30 days.\n\nPlease review our rules located at: https://{domain}/rules"
 	send_notification(1, u, body)
 
+	# ban user if their active strikes meets or beats the STRIKE_LIMIT env variable
+	strike_limit = int(os.environ.get('STRIKE_LIMIT', 5))	
+	active_strikes = len([x for x in g.db.query(Strikes).filter_by(user_id=u.id).all() if x.is_active])
+
+	if active_strikes >= strike_limit:
+		# ban user
+		u.ban(reason=f"@{u.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned.")
+		# notify user
+		send_notification(1, u, f"Your account has been permanently suspended for reaching or exceeding {strike_limit} strikes.")
+		# add new mod action to mod log
+		ma=ModAction(
+			kind="exile_user",
+			user_id=1,
+			target_user_id=u.id,
+			note=f"@{u.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned."
+		)
+		g.db.add(ma)
+		g.db.commit()
+		# redirect to success screen with added indication that they've been banned
+		return render_template("admin/result/strike_success.html", v=v, username=username, reason=ns.strike_reason + " + they met or exceeded the strike limit, so they are banned.")
+
 	# redirect to success screen
-	return render_template("admin/result/strike_success.html", v=v, username=username, reason=new_strike.strike_reason)
+	return render_template("admin/result/strike_success.html", v=v, username=username, reason=ns.strike_reason)
 	
 
 @app.get("/admin/content_stats")
