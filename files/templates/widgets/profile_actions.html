@@ -46,8 +46,9 @@
             </form>
 
             {% elif v and v.id == u.id %}
-            <a href="/settings/profile" class="btn btn-secondary my-2">Edit profile</a>
-            <a href="/views" class="btn btn-secondary my-2">Profile views</a>
+            <a href="/settings/profile" class="btn btn-secondary my-2">Edit Profile</a>
+            <a href="/views" class="btn btn-secondary my-2">Profile Views</a>
+            <a href="/@{{v.username}}/strikes" class="btn btn-secondary btn-sm">Content Strikes</a>
             {% endif %}
         </div>
     </div>

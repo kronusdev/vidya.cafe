@@ -9,7 +9,7 @@
 <div class="card-blank rounded">
     <div class="m-3">
         <pre></pre>
-        <h1 class="p-3">Strike Info</h1>
+        <h1 class="p-3">@{{u.username}}'s Strike Info</h1>
         <pre></pre>
         <table class="table table-striped mb-5">
         <thead class="bg-primary text-white">
@@ -18,6 +18,7 @@
                 <th style="font-weight: bold">Reason</th>
                 <th style="font-weight: bold">Created</th>
                 <th style="font-weight: bold">Expires</th>
+                <th style="font-weight: bold">Permalink</th>
             </tr>
         </thead>    
         {% for strike in strikes %}
@@ -27,6 +28,7 @@
                     <td style="font-weight: bold">{{strike.strike_reason}}</td>
                     <td style="font-weight: bold">{{strike.strike_timestamp}}</td>
                     <td style="font-weight: bold">{{strike.strike_expires_timestamp}}</td>
+                    <td style="font-weight: bold"><a href="{{strike.strike_url}}">Context</a></td>
                 </tr>
             {% endif %}
         {% endfor %}

@@ -296,7 +296,7 @@ def strike(v):
 		g.db.add(new_strike)
 		g.db.commit()
 
-		return {"message": f"@{username} was banned"}
+		return {"message": f"@{username} got striked!"}
 	except: abort(400)
 
 @app.get("/admin/content_stats")
