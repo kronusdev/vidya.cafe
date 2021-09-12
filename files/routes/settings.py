@@ -25,9 +25,14 @@ STEAM_KEY = environ.get("STEAM_KEY",'').strip()
 def settings_profile_post(v):
 	updated = False
 
-	if request.values.get("background", v.background) != v.background:
+	if request.values.get("background", v.background) != v.background or (request.values.get("background_url", v.background) != v.background):
 		updated = True
-		v.background= request.values.get("background", None)
+		background = request.values.get("background", None)
+		background_url = request.values.get("background_url", None)
+		if background_url:
+			v.background = background_url
+		else:
+			v.background = background
 
 	if request.values.get("slurreplacer", v.slurreplacer) != v.slurreplacer:
 		updated = True

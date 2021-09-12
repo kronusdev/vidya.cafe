@@ -27,9 +27,12 @@ def kofi():
 	g.db.add(donation)
 	g.db.commit()
 	donor_badge = g.db.query(BadgeDef).filter_by(icon="donator.png").first()
+	user = g.db.query(User).filter_by(kofi_email=data['email'])
+	user.patreon = 1
+	g.db.add(user)
 	granted_badge = Badge(
 		badge_id = donor_badge.id,
-		user_id = g.db.query(User).filter_by(kofi_email=data['email']).id,
+		user_id = user.id,
 		description = f"Donated {donation.amount}{donation.currency} - Thanks a lot!"
 	)
 	g.db.add(granted_badge)
