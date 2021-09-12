@@ -7,6 +7,7 @@ from .flags import *
 from .user import *
 from .userblock import *
 from .submission import *
+from .strikes import *
 from .votes import *
 from .images import *
 from .domains import *

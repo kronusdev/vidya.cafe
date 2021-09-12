@@ -133,8 +133,9 @@
 					{% endfor %}
 				</div>
 				{% if v and v.id == u.id %}
-				<a href="/settings/profile" class="btn btn-secondary btn-sm">Edit profile</a>
-				<a href="/views" class="btn btn-secondary btn-sm">Profile views</a>
+				<a href="/settings/profile" class="btn btn-secondary btn-sm">Edit Profile</a>
+				<a href="/views" class="btn btn-secondary btn-sm">Profile Views</a>
+				<a href="/@{{v.username}}/strikes" class="btn btn-secondary btn-sm">Content Strikes</a>
 				{% endif %}
 				{% if v and v.id != u.id %}
 				<a id="button-unsub2" class="btn btn-secondary {% if not is_following %}d-none{% endif %}"

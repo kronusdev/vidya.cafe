@@ -75,7 +75,7 @@ class User(Base, Stndrd, Age_times):
 		lazy="dynamic")
 
 	is_banned = Column(Integer, default=None)
-	unban_utc = Column(Integer, default=None)
+	unban_utc = Column(Integer, default=0)
 	ban_reason = Column(String, default="")
 	login_nonce = Column(Integer, default=0)
 	reserved = Column(String(256))
@@ -108,6 +108,7 @@ class User(Base, Stndrd, Age_times):
 
 	following = relationship("Follow", primaryjoin="Follow.user_id==User.id")
 	followers = relationship("Follow", primaryjoin="Follow.target_id==User.id")
+	strikes = relationship("Strikes", primaryjoin="User.id==Strikes.user_id")
 
 	viewers = relationship("ViewerRelationship", primaryjoin="User.id == ViewerRelationship.user_id")
 

@@ -129,7 +129,7 @@
 			</script>
 			<div class="post-actions" id="admin-actions-{{p.id}}" style="display:none;">
 				<ul class="list-inline text-right d-flex">
-					{% if v.admin_level >=3 %}
+					{% if v.admin_level >= 3 %}
 						<li class="list-inline-item"><a class="text-info" href="javascript:void(0)" onclick="post('/sticky/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack"></i>{% if p.stickied %}Unpin{% else %}Pin{% endif %}</a></li>
 						{% if v==p.author %}
 							<li class="list-inline-item"><a class="text-info" href="javascript:void(0)" onclick="post('/distinguish/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-crown"></i>Distinguish</a></li>
@@ -144,6 +144,10 @@
 
 					{% if v and (v.id==p.author_id or v.admin_level>=3) %}
 						<li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-evil"></i>Toggle NSFW</a></li>
+					{% endif %}
+
+					{% if v and v.admin_level >= 4 %}
+						<li class="list-inline-item"><a class="text-danger" href="/admin/give_strike?target={{p.fullname}}"><i class="fas fa-exclamation-triangle"></i>Strike Post</a></li>
 					{% endif %}
 
 					{% if v.admin_level >=3 and v.id!=p.author_id %}
@@ -266,6 +270,9 @@
 						{% endif %}
 						{% if v and (v.id==p.author_id or v.admin_level>=3) %}
 							<button class="btn btn-link btn-block btn-lg text-left text-danger" onclick="post('/toggle_post_nsfw/{{p.id}}', function(){window.location.reload(true);})"><i class="far fa-eye-evil text-center mr-3"></i>Toggle NSFW</button>
+						{% endif %}
+						{% if v and v.admin_level >= 4 %}
+							<button class="btn btn-link btn-block btn-lg text-left text-danger"><a class="text-danger" href="/admin/give_strike?target={{p.fullname}}"><i class="fas fa-exclamation-triangle"></i>Strike Post</a></button>
 						{% endif %}
 						{% if v.admin_level >=3 and v.id!=p.author_id %}
 							{% if p.author.is_banned %}

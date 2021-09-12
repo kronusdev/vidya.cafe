@@ -39,7 +39,7 @@ def publish(pid, v):
 @auth_required
 def submit_get(v):
 	v.last_active = time.time()
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return render_template("submit.html",
 						   v=v)

@@ -1,9 +1,11 @@
 import time
 import calendar
+from requests.api import post
 from sqlalchemy.orm import lazyload
 import imagehash
-from os import remove
+from os import *
 from PIL import Image as IMAGE
+from datetime import datetime, timedelta
 
 from files.helpers.wrappers import *
 from files.helpers.alerts import *
@@ -254,6 +256,79 @@ def users_list(v):
 						   page=page,
 						   )
 
+@app.get("/admin/give_strike")
+@admin_level_required(4)
+def give_strike(v):
+
+	target = request.args.get("target")
+	if not target: abort(400)
+	try:
+		if "t2" in target:
+			link = get_post(int(target.lstrip("t2").strip('_')), v=v)
+		elif "t3" in target:
+			link = get_comment(int(target.lstrip("t3").strip('_')), v=v)
+		else: abort(400)
+	except Exception as e:
+		print(str(e))
+		abort(400)
+	
+	return render_template("admin/give_strike.html", v=v, link=link, target=target)
+
+@app.post('/admin/strike')
+@admin_level_required(4)
+@validate_formkey
+def strike(v):
+	# return if there is no reason
+	if not request.values.get("reason"):
+		if request.referrer:
+			return redirect(request.referrer)
+
+	# initialize vars
+	username = request.values.get("user")
+	domain = os.environ.get("DOMAIN")
+
+	# build the strike object to insert into the strikes tablw
+	ns = Strikes(
+		user_id = request.args.get("uid"),
+		strike_reason = request.values.get("reason"),
+		strike_utc = int(time.time()),
+		strike_expires_utc = int((datetime.utcfromtimestamp(int(time.time())) + timedelta(days=30)).timestamp()),
+		strike_url = f"https://{domain}" + request.values.get("link")
+	)
+	
+	# insert new strike
+	g.db.add(ns)
+	g.db.commit()
+
+	# notify user of strike
+	u = get_user(username, v=v)
+	body = f"You have received a content strike for: {ns.strike_url}\n\nReason: {ns.strike_reason}\n\nYou can view your active strikes via the Content Strikes button on your profile, getting {os.environ.get('STRIKE_LIMIT', '5')} strikes will result in a ban and strikes also expire after 30 days.\n\nPlease review our rules located at: https://{domain}/rules"
+	send_notification(1, u, body)
+
+	# ban user if their active strikes meets or beats the STRIKE_LIMIT env variable
+	strike_limit = int(os.environ.get('STRIKE_LIMIT', 5))	
+	active_strikes = len([x for x in g.db.query(Strikes).filter_by(user_id=u.id).all() if x.is_active])
+
+	if active_strikes >= strike_limit:
+		# ban user
+		u.ban(reason=f"@{u.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned.")
+		# notify user
+		send_notification(1, u, f"Your account has been permanently suspended for reaching or exceeding {strike_limit} strikes.")
+		# add new mod action to mod log
+		ma=ModAction(
+			kind="exile_user",
+			user_id=1,
+			target_user_id=u.id,
+			note=f"@{u.username} has reached or exceeded the strike limit of {strike_limit}, so they were automatically banned."
+		)
+		g.db.add(ma)
+		g.db.commit()
+		# redirect to success screen with added indication that they've been banned
+		return render_template("admin/result/strike_success.html", v=v, username=username, reason=ns.strike_reason + " + they met or exceeded the strike limit, so they are banned.")
+
+	# redirect to success screen
+	return render_template("admin/result/strike_success.html", v=v, username=username, reason=ns.strike_reason)
+	
 
 @app.get("/admin/content_stats")
 @admin_level_required(2)
@@ -267,7 +342,7 @@ def participation_stats(v):
 			"private_users": g.db.query(User).filter_by(is_private=True).count(),
 			"banned_users": g.db.query(User).filter(User.is_banned > 0).count(),
 			"verified_email_users": g.db.query(User).filter_by(is_activated=True).count(),
-			"signups_last_24h": g.db.query(User).filter(User.created_utc > day).count(),
+			"signups_last_24h": g.db.query(User).filter(User.created > day).count(),
 			"total_posts": g.db.query(Submission).count(),
 			"posting_users": g.db.query(Submission.author_id).distinct().count(),
 			"listed_posts": g.db.query(Submission).filter_by(is_banned=False).filter(Submission.deleted_utc == 0).count(),

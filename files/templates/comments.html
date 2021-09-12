@@ -283,10 +283,13 @@
 						
 						{% if v.admin_level==6 and v.id != c.author_id %}
 							{% if c.author.is_banned %}
-								<li class="list-inline-item d-none d-md-inline-block"><a class="text-success" id="unexile-comment-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/unban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-slash text-success fa-fw"></i>Unban user</a></li>
+								<li class="list-inline-item d-none d-md-inline-block"><a class="text-success" id="unexile-comment-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/unban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-slash text-success fa-fw"></i>Unban User</a></li>
 							{% else %}
-								<li class="list-inline-item d-none d-md-inline-block"><a class="text-danger" id="exile-comment-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/ban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-slash text-danger fa-fw"></i>Ban user</a></li>
+								<li class="list-inline-item d-none d-md-inline-block"><a class="text-danger" id="exile-comment-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/ban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-slash text-danger fa-fw"></i>Ban User</a></li>
 							{% endif %}
+						{% endif %}
+						{% if v.admin_level >= 4 and v.id != c.author_id %}
+							<li class="list-inline-item d-none d-md-inline-block"><a class="text-danger" href="/admin/give_strike?target={{c.fullname}}"><i class="fa-exclamation-triangle"></i>Strike Comment</a></li>
 						{% endif %}
 						{% if v.admin_level >=4 and c.oauth_app %}
 							<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.oauth_app.permalink}}/comments"><i class="fas fa-code fa-fw"></i>API App</a></li>
@@ -433,12 +436,17 @@
 					{% if v and (c.post and v.admin_level == 6) %}
 						{% if c.author_id != v.id %}
 								{% if c.author.is_banned %}
-								<li class="list-group-item"><a class="text-success d-block" id="unexile-comment2-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/unban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-success"></i>Unban user</a></li>
+								<li class="list-group-item"><a class="text-success d-block" id="unexile-comment2-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/unban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-success"></i>Unban User</a></li>
 								{% else %}
-								<li class="list-group-item"><a class="text-danger d-block" id="exile-comment2-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/ban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Ban user</a></li>
+								<li class="list-group-item"><a class="text-danger d-block" id="exile-comment2-{{c.id}}" href="javascript:void(0)" onclick="post_toast('/ban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Ban User</a></li>
 								{% endif %}
 						{% endif %}
-					{% endif %}	
+					{% endif %}
+					{% if v and (c.post and v.admin_level >= 4) %}
+						{% if c.author_id != v.id %}
+								<li class="list-group-item"><a class="text-danger d-block" href="/admin/give_strike?target={{c.fullname}}"><i class="fa-exclamation-triangle"></i>Strike Comment</a></li>
+						{% endif %}
+					{% endif %}
 
 				</ul>
 			</div>

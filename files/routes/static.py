@@ -11,7 +11,7 @@ site = environ.get("DOMAIN").strip()
 @app.get("/patrons")
 @auth_desired
 def patrons(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 	users = [x for x in g.db.query(User).filter(User.patron > 0).order_by(User.patron.desc()).all()]
 	return render_template("patrons.html", v=v, users=users)
 
@@ -76,7 +76,7 @@ def api(v):
 @app.get("/contact")
 @auth_desired
 def contact(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 	return render_template("contact.html", v=v)
 
 @app.post("/contact")
@@ -106,7 +106,7 @@ def robots_txt():
 @app.get("/settings")
 @auth_required
 def settings(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return redirect("/settings/profile")
 
@@ -115,7 +115,7 @@ def settings(v):
 @auth_required
 def settings_profile(v):
 
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return render_template("settings_profile.html",
 						  v=v,
@@ -126,7 +126,7 @@ def settings_profile(v):
 @app.get("/titles")
 @auth_desired
 def titles(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	titles = [x for x in g.db.query(Title).order_by(text("id asc")).all()]
 	return render_template("/titles.html",
@@ -136,7 +136,7 @@ def titles(v):
 @app.get("/badges")
 @auth_desired
 def badges(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	badges = [
 		x for x in g.db.query(BadgeDef).order_by(
@@ -148,7 +148,7 @@ def badges(v):
 @app.get("/banned")
 @auth_desired
 def banned(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	users = [x for x in g.db.query(User).filter(User.is_banned > 0, User.unban_utc == 0).all()]
 	return render_template("banned.html", v=v, users=users)
@@ -156,7 +156,7 @@ def banned(v):
 @app.get("/formatting")
 @auth_desired
 def formatting(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return render_template("formatting.html", v=v)
 	
@@ -176,7 +176,7 @@ def serviceworker():
 @app.get("/settings/security")
 @auth_required
 def settings_security(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	return render_template("settings_security.html",
 						   v=v,

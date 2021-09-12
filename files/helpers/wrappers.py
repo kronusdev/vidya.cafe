@@ -1,5 +1,6 @@
 from random import vonmisesvariate
 from sqlalchemy.sql import visitors
+import os
 from werkzeug.wrappers.response import Response as RespObj
 from .get import *
 from .alerts import send_notification
@@ -23,7 +24,7 @@ def get_logged_in_user():
 		nonce = session.get("login_nonce", 0)
 		if not uid: x= (None, None)
 		v = g.db.query(User).filter_by(id=uid).first()
-
+		
 		if v and (nonce < v.login_nonce):
 			x= (None, None)
 		else:
@@ -33,15 +34,14 @@ def get_logged_in_user():
 	if x[0]: x[0].client=x[1]
 
 	return x[0]
-
-
+		
 def check_ban_evade(v):
 
 	if not v or not v.ban_evade or v.admin_level > 0:
 		return
 	
 	if random.randint(0,30) < v.ban_evade:
-		v.ban(reason="ban evasion")
+		v.ban(reason="Ban Evasion")
 		send_notification(1, v, "Your account has been permanently suspended for the following reason:\n\n> ban evasion")
 
 		for post in g.db.query(Submission).filter_by(author_id=v.id).all():

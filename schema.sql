@@ -140,7 +140,7 @@ CREATE TABLE public.users (
     reserved character varying(256),
     mfa_secret character varying(32),
     is_private boolean,
-    unban_utc integer,
+    unban_utc integer DEFAULT 0,
     is_nofollow boolean DEFAULT false,
     custom_filter_list character varying(1000) DEFAULT ''::character varying,
     discord_id character varying(64),
@@ -1087,6 +1087,32 @@ CREATE TABLE public.subscriptions (
 
 
 ALTER TABLE public.subscriptions OWNER TO postgres;
+
+--
+-- Name: strikes; Type: TABLE; Schema: public; Owner: postgres
+--
+CREATE TABLE public.strikes (
+  id integer NOT NULL,
+  user_id integer,
+  strike_reason character varying(500),
+  strike_utc integer DEFAULT 0,
+  strike_expires_utc integer DEFAULT 0,
+  strike_url character varying(250)
+);
+
+CREATE SEQUENCE public.strikes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.strikes_id_seq OWNER TO postgres;
+
+ALTER SEQUENCE public.strikes_id_seq OWNED BY public.strikes.id;
+
+ALTER TABLE ONLY public.strikes ALTER COLUMN id SET DEFAULT nextval('public.strikes_id_seq'::regclass);
 
 --
 -- Name: subscriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres

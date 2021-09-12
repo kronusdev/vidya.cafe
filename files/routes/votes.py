@@ -9,7 +9,7 @@ import time
 @app.get("/sips")
 @auth_desired
 def admin_vote_info_get(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
 	link = request.args.get("link")
 	if not link: return render_template("sips.html", v=v)
