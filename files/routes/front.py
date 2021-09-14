@@ -71,6 +71,11 @@ def notifications(v):
 def frontlist(v=None, sort="hot", tag="all",page=1,t="all", ids_only=True, filter_words='', **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
+	
+	for post in posts:
+		if post not in session:
+			post = session.query(Submission).get(post.id)
+	
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
