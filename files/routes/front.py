@@ -71,7 +71,7 @@ def notifications(v):
 						   time=time.time())
 
 @cache.memoize(timeout=1500)
-def frontlist(v=None, sort="hot", tag="all",page=1,t="all", ids_only=True, filter_words='', **kwargs):
+def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
 	if v and v.admin_level == 0:
@@ -170,10 +170,7 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", ids_only=True, filte
 
 	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:26]
 
-	if ids_only:
-		posts = [x.id for x in posts]
-		return posts
-	return posts
+    return posts = [x.id for x in posts]
 
 @app.get("/")
 @auth_desired
