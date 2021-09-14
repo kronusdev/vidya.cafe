@@ -162,13 +162,13 @@
 									{% endfor %}
 								</select>
 							</div>
-							{% if v.patreon %}
+							{% if v.patron %}
 							<div class="input-group mt-3">
 								<input type="text" id="background_url_field" name="background_url" class="form-control" value="{{v.background}}">
 								<button class="btn btn-secondary ml-3" onclick="postBgUrl()">Update</button>
 							</div>
 							{% else %}
-							<div class="text-small text-muted mt-3"><a href="https://ko-fi.com/vidyacafe">Support us</a> to set a background from any link</div>
+							<div class="text-small mt-3"><a href="https://ko-fi.com/vidyacafe">Support us</a> to set a background from any link</div>
 							{% endif %}
 
 							<a class="btn btn-primary ml-3 mt-3 float-right" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
