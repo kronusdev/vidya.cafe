@@ -131,7 +131,8 @@ def retry(f):
 			#raise(DatabaseOverload)
 			print("sex")
 		except:
-			self.session.rollback()
+			#self.session.rollback()
+			print("sex")
 			return f(self, *args, **kwargs)
 
 	wrapper.__name__=f.__name__
