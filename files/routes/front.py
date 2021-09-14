@@ -170,7 +170,7 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', **k
 
 	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:26]
 
-    return posts = [x.id for x in posts]
+    return [x.id for x in posts]
 
 @app.get("/")
 @auth_desired
