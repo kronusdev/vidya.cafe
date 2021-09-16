@@ -10,9 +10,7 @@ def slash_post():
 
 # this is a test
 
-@app.get("/notifications")
-@auth_required
-def notifications(v):
+def get_user_notifications(v, page, all_, messages, posts):
 	page = int(request.args.get('page', 1))
 	all_ = request.args.get('all', False)
 	messages = request.args.get('messages', False)
@@ -56,11 +54,23 @@ def notifications(v):
 
 			if c not in listing:
 				listing.append(c)
+	return {"listing": listing, "next_exists": next_exists}
 
+@app.get("/notifications")
+@auth_required
+def notifications(v):
+
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
+	page = int(request.args.get('page', 1))
+	all_ = request.args.get('all', False)
+	messages = request.args.get('messages', False)
+	posts = request.args.get('posts', False)
+	listing = get_user_notifications(v, page, all_, messages, posts)
 	return render_template("notifications.html",
 						   v=v,
-						   notifications=listing,
-						   next_exists=next_exists,
+						   notifications=listing['listing'],
+						   next_exists=listing['next_exists'],
 						   page=page,
 						   standalone=True,
 						   render_replies=True,
@@ -71,7 +81,6 @@ def notifications(v):
 def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
-		
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
@@ -175,6 +184,8 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', **k
 def front_all(v):
 	if(v):
 		v.last_active = time.time();
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
 	try: page = int(request.args.get("page") or 1)
 	except: abort(400)
 
@@ -220,6 +231,7 @@ def front_all(v):
 	except:
 		custom_feed_time="all"
 	# sidebar
+	# CUSTOM FEED
 	custom_feed_posts = ""
 	custom_feed_next_exists = ""
 	custom_feed_tag = "all"
@@ -246,6 +258,20 @@ def front_all(v):
 		# check if ids exist
 		custom_feed_posts = get_posts(custom_feed_ids, v=v)
 		last_comments_output = get_recent_posts(v)
+	
+	# SIDEBAR NOTIFICATIONS
+	sidebar_notif_page = int(request.args.get("sidebar_notif_page") or 1)
+	sidebar_notif_page = max(sidebar_notif_page, 1)
+	if v:
+		sidebar_notif_feed_cids = v.notification_commentlisting(sidebar_notif_page, True)
+		sidebar_notif_feed_next_exists = (len(sidebar_notif_feed_cids) == 26)
+		sidebar_notif_feed_cids = sidebar_notif_feed_cids[:25]
+		sidebar_notif_feed = get_comments(sidebar_notif_feed_cids, v=v)
+	else:
+		sidebar_notif_feed = ""
+		sidebar_notif_feed_next_exists = False
+
+
 
 	if request.headers.get("Authorization"): return {"data": [x.json for x in posts], "next_exists": next_exists}
 	else: return render_template("home.html", 
@@ -262,6 +288,7 @@ def front_all(v):
 								custom_feed_tag=custom_feed_tag,
 								custom_feed_time=custom_feed_time,
 								custom_feed_sort=custom_feed_sort,
+								sidebar_notif_feed=sidebar_notif_feed,
 								last_comments=last_comments_output,
 								time=time.time())
 
@@ -346,6 +373,8 @@ def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="change
 @app.get("/changelog")
 @auth_desired
 def changelog(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
 	page = int(request.args.get("page") or 1)
 	page = max(page, 1)
 
@@ -376,7 +405,7 @@ def changelog(v):
 @app.get("/random")
 @auth_desired
 def random_post(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False)
 
@@ -450,6 +479,8 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 @app.get("/comments")
 @auth_desired
 def all_comments(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
 	page = int(request.args.get("page", 1))
 
 	sort=request.args.get("sort", "new")

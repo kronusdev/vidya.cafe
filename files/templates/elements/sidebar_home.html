@@ -1,9 +1,16 @@
 {% if v %}
-<div class="card-blank sidebar d-none d-xl-block bg-gray-700" style="margin-top: 4.8rem; overflow: visible">
+<div id="sidebar" class="card-blank sidebar d-none d-xl-block bg-gray-700" style="margin-top: 4.8rem; overflow: visible">
     <div>
-        
-        {% include "elements/sidebar_listing.html" %}
-        
+        <div class="card-header border-bottom">
+        <button class="mx-1 btn btn-secondary" style="box-shadow: none;"onclick="setCurrentTab('custom_feed')">Custom Feed</button>
+        <button class="mx-1 btn btn-secondary" style="box-shadow: none;" onclick="setCurrentTab('sidebar_notifications')">Notifications</button>
+        </div>
+        <div id="custom_feed" style="display: none">
+            {% include "elements/sidebar_listing.html" %}
+        </div>
+        <div id="sidebar_notifications" style="display: none">
+            {% include "elements/small_comment_feed.html" %}
+        </div>
     </div>
 </div> 
 
@@ -16,3 +23,21 @@
     }
 </style>
 {% endif %}
+
+<script>
+    let selected_tab = "{{v.sidebar_settings['default_tab']}}" 
+    const tabs = ["custom_feed", "sidebar_notifications"]
+    
+    function setCurrentTab(tab) {
+        selected_tab = tab
+        document.getElementById(tab).style.display = "block"
+        for(i=0; i<tabs.length; i++){
+            if(tabs[i] != selected_tab){
+                document.getElementById(tabs[i]).style.display = "none"
+            }
+        }
+    }
+    setCurrentTab(selected_tab)
+    
+    
+</script>

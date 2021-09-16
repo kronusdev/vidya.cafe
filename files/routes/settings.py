@@ -201,7 +201,8 @@ def sidebar_settings(v):
 		sidebar_settings['custom_feed_time'] = request.values.get("custom_feed_time").strip()
 	if request.values.get("custom_feed_sort"):
 		sidebar_settings['custom_feed_sort'] = request.values.get("custom_feed_sort").strip()
-
+	if request.values.get("default_tab"):
+		sidebar_settings['default_tab'] = request.values.get("default_tab").strip()
 	v.sidebar_settings = json.dumps(sidebar_settings)
 	g.db.add(v)
 	return redirect("/")
