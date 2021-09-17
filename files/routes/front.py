@@ -221,7 +221,10 @@ def front_all(v):
 	
 	custom_feed_page = int(request.args.get("custom_feed_page") or 1)
 	custom_feed_page = max(custom_feed_page, 1)
-	sidebar_settings = json.loads(v.sidebar_settings)
+	try:
+		sidebar_settings = json.loads(v.sidebar_settings)
+	except:
+		sidebar_settings = ""
 	try:
 		custom_feed_sort=sidebar_settings['custom_feed_sort']
 	except:
