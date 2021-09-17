@@ -50,7 +50,7 @@
             <a href="/views" class="btn btn-secondary my-2">Profile Views</a>
             {% endif %}
             {% if v and v.admin_level > 3 %}
-                <a href="/@{{v.username}}/strikes" class="btn btn-secondary btn-sm">Content Strikes</a>
+                <a href="/@{{u.username}}/strikes" class="btn btn-secondary btn-sm">Content Strikes</a>
             {% endif %}
 
         </div>
