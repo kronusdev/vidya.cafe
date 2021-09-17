@@ -89,9 +89,10 @@ def flagged_comments(v):
 @app.get("/admin")
 @admin_level_required(3)
 def admin_home(v):
-	with open('./disablesignups', 'r') as f:
-		x = f.read()
-		return render_template("admin/admin_home.html", v=v, x=x)
+	#with open('./disablesignups', 'r') as f:
+	#	x = f.read() <- this doesn't work on dev, complains something about wanting an integer and getting a string
+	x=""
+	return render_template("admin/admin_home.html", v=v, x=x)
 
 
 @app.post("/admin/disablesignups")
