@@ -49,7 +49,7 @@
             <a href="/settings/profile" class="btn btn-secondary my-2">Edit Profile</a>
             <a href="/views" class="btn btn-secondary my-2">Profile Views</a>
             {% endif %}
-            {% if v and v.admin_level > 3 %}
+            {% if v and (v.admin_level > 3 or v.id == u.id) %}
                 <a href="/@{{u.username}}/strikes" class="btn btn-secondary my-2">Content Strikes</a>
             {% endif %}
 
