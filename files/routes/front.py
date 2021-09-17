@@ -221,13 +221,13 @@ def front_all(v):
 	
 	custom_feed_page = int(request.args.get("custom_feed_page") or 1)
 	custom_feed_page = max(custom_feed_page, 1)
-
+	sidebar_settings = json.loads(v.sidebar_settings)
 	try:
-		custom_feed_sort=json.loads(v.sidebar_settings)['custom_feed_sort']
+		custom_feed_sort=sidebar_settings['custom_feed_sort']
 	except:
 		custom_feed_sort="new"
 	try:
-		custom_feed_time=json.loads(v.sidebar_settings)['custom_feed_time']
+		custom_feed_time=sidebar_settings['custom_feed_time']
 	except:
 		custom_feed_time="all"
 	# sidebar
@@ -238,7 +238,7 @@ def front_all(v):
 	last_comments_output = "" # useless for now (25.08.2021)
 	if v:
 		try:
-			custom_feed_tag = json.loads(v.sidebar_settings)['custom_feed_tag']
+			custom_feed_tag = sidebar_settings['custom_feed_tag']
 		except:
 			custom_feed_tag = "all"
 		ids = feedlist(sort=custom_feed_sort,
@@ -270,6 +270,8 @@ def front_all(v):
 	else:
 		sidebar_notif_feed = ""
 		sidebar_notif_feed_next_exists = False
+	sidebar_notif_feed_page = int(request.args.get("sidebar_notif_feed_page") or 1)
+	sidebar_notif_feed_page = max(custom_feed_page, 1)
 
 
 
@@ -289,6 +291,9 @@ def front_all(v):
 								custom_feed_time=custom_feed_time,
 								custom_feed_sort=custom_feed_sort,
 								sidebar_notif_feed=sidebar_notif_feed,
+								sidebar_notif_feed_next_exists=sidebar_notif_feed_next_exists,
+								sidebar_notif_feed_page=sidebar_notif_feed_page,
+								sidebar_settings=sidebar_settings,
 								last_comments=last_comments_output,
 								time=time.time())
 
