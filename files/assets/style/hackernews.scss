@@ -84,8 +84,8 @@ $none-tag: $muted;
 	transform: none !important;
 }
 
-.comment {
-	background: transparent !important;
+.comment, .small-comment {
+	background: rgba($gray-500, 0.4) !important;
 }
 
 .container {

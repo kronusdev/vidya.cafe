@@ -7,7 +7,7 @@
         {% set voted=-2 %}
     {% endif %}
 
-    <div class="card-blank m-2">
+    <div class="m-2 small-comment">
         <div class="p-1">
             <!-- User Info Stuff -->
             {% if c.active_flags %}&nbsp;<a class="btn btn-primary" style="padding:1px 5px; font-size:10px;" href="javascript:void(0)" onclick="document.getElementById('flaggers-{{c.id}}').classList.toggle('d-none')">{{c.active_flags}} Reports</a>&nbsp;{% endif %}

@@ -69,7 +69,7 @@ $none-tag: #E1E1E1;
 //.text-muted {
 	//mix-blend-mode: difference;
 //}
-.comment {
+.comment, .small-comment {
 	background: rgba($gray-200, 0.1) !important;
 }
 .settings-nav > .nav-item > .nav-link.active {

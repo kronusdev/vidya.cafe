@@ -20874,6 +20874,11 @@ div:hover .thumb-img-link-overlay {
   padding: 1rem !important;
   border-radius: 0.25rem !important; }
 
+.small-comment {
+  background: rgba(31, 132, 215, 0.4);
+  border-radius: 0.25rem;
+  overflow: hidden; }
+
 #notifications .comment, #userpage .comment {
   margin-top: 0.5rem;
   margin-bottom: 1rem; }
@@ -22527,7 +22532,7 @@ img.emoji {
 .info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #f0f0f0 !important; }
 
-.comment {
+.comment, .small-comment {
   background: rgba(31, 132, 215, 0.1) !important; }
 
 .settings-nav > .nav-item > .nav-link.active {

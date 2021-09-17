@@ -20873,6 +20873,11 @@ div:hover .thumb-img-link-overlay {
   padding: 1rem !important;
   border-radius: 0.25rem !important; }
 
+.small-comment {
+  background: rgba(50, 60, 71, 0.4);
+  border-radius: 0.25rem;
+  overflow: hidden; }
+
 #notifications .comment, #userpage .comment {
   margin-top: 0.5rem;
   margin-bottom: 1rem; }

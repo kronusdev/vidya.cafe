@@ -2432,6 +2432,12 @@ div:hover .thumb-img-link-overlay {
 	border-radius: $border-radius !important;
 }
 
+.small-comment {
+	background: rgba($gray-200, 0.4);
+	border-radius: 0.25rem;
+	overflow: hidden;
+}
+
 #notifications .comment, #userpage .comment {
 	margin-top: 0.5rem;
 	margin-bottom: 1rem;

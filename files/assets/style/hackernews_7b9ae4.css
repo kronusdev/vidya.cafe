@@ -20873,6 +20873,11 @@ div:hover .thumb-img-link-overlay {
   padding: 1rem !important;
   border-radius: 0 !important; }
 
+.small-comment {
+  background: rgba(71, 163, 255, 0.4);
+  border-radius: 0.25rem;
+  overflow: hidden; }
+
 #notifications .comment, #userpage .comment {
   margin-top: 0.5rem;
   margin-bottom: 1rem; }
@@ -22536,8 +22541,8 @@ img.emoji {
 .card {
   transform: none !important; }
 
-.comment {
-  background: transparent !important; }
+.comment, .small-comment {
+  background: rgba(246, 246, 239, 0.4) !important; }
 
 .container {
   background: #f6f6ef !important; }
