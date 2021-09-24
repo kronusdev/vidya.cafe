@@ -9,6 +9,14 @@
 	{% set voted=-2 %}
 {% endif %}
 
+<script>
+	var date = new Date('{{p.created_datetime}}');
+	document.getElementById('timestamp-{{p.id}}').title = date.toString();
+	{% if p.edited_utc %}
+		var date = new Date('{{p.edited_datetime}}');
+		document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
+	{% endif %}
+</script>
 
 <div id="post-{{p.id}}" class="card{% if p.is_banned %} banned{% endif %}{% if p.deleted_utc > 0 %} deleted{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}{% if p.over_18 %} nsfw{% endif %}">
 	<div class="d-flex flex-row-reverse flex-md-row flex-nowrap justify-content-end">
