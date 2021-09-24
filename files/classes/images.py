@@ -20,7 +20,7 @@ class Image(Base):
 
 def random_background():
 	#change the 2nd number when adding backgrounds
-	pic = random.randint(1, 14)
+	pic = random.randint(1, 15)
 	return f"/assets/images/loginbackgrounds/bg-{pic}"
 
 def random_image():
