@@ -343,7 +343,7 @@ def participation_stats(v):
 			"private_users": g.db.query(User).filter_by(is_private=True).count(),
 			"banned_users": g.db.query(User).filter(User.is_banned > 0).count(),
 			"verified_email_users": g.db.query(User).filter_by(is_activated=True).count(),
-			"signups_last_24h": g.db.query(User).filter(User.created > day).count(),
+			"signups_last_24h": g.db.query(User).filter(User.created_utc > day).count(),
 			"total_posts": g.db.query(Submission).count(),
 			"posting_users": g.db.query(Submission.author_id).distinct().count(),
 			"listed_posts": g.db.query(Submission).filter_by(is_banned=False).filter(Submission.deleted_utc == 0).count(),
