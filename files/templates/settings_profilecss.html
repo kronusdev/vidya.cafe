@@ -1,6 +1,6 @@
 {% extends "settings.html" %}
 
-{% block pagetitle %}Custom profilecss - {{"SITE_NAME" | app_config}}{% endblock %}
+{% block pagetitle %}Custom Profile CSS - {{"SITE_NAME" | app_config}}{% endblock %}
 
 {% block content %}
 
@@ -11,11 +11,8 @@
 	  <div class="settings">
 
 	    <div id="description">
-
-		<p class="text-small text-muted">Edit your profile css.</p>
-
 		<div class="settings-section rounded mb-0">
-
+		<p class="h5 card-header">Edit your profile CSS.</p>
 			<div class="body d-lg-flex border-bottom">
 				<div class="w-lg-100">
 					<form id="profile-settings" action="/settings/profilecss" method="post">
