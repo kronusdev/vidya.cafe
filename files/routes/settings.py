@@ -638,13 +638,13 @@ def settings_css(v):
 @auth_required
 def settings_profilecss_get(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
-	if v.coins < 100 and not v.patron: return render_template("message.html", v=v, message=f"You must have +100 {COINS_NAME} or be a patron to set profile css.")
+	if v.coins < 100 and not v.patron: return render_template("message.html", v=v, title="Not enough sips!", message=f"You must have +100 {COINS_NAME} or be a patron to set profile css.")
 	return render_template("settings_profilecss.html", v=v)
 
 @app.post("/settings/profilecss")
 @auth_required
 def settings_profilecss(v):
-	if v.coins < 100 and not v.patron: return render_template("message.html", v=v, message=f"You must have +100 {COINS_NAME} or be a patron to set profile css.")
+	if v.coins < 100 and not v.patron: return render_template("message.html", v=v, title="Not enough sips!", message=f"You must have +100 {COINS_NAME} or be a patron to set profile css.")
 	profilecss = request.form.get("profilecss").replace('\\', '')[:50000]
 	v.profilecss = profilecss
 	g.db.add(v)
