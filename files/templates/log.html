@@ -3,13 +3,7 @@
 {% block pagetitle %}Moderation Log{% endblock %}
 
 {% block stylesheets %}
-
-{% if v %}
-	<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
-{% else %}
-	<link rel="stylesheet" href="/assets/style/dark_47a3ff.css">
-{% endif %}
-
+	{% include "stylesheets.html" %}
 {% endblock %}
 
 {% block content %}

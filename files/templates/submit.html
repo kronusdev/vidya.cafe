@@ -251,11 +251,7 @@
 	<!-- {{"SITE_NAME" | app_config}} Board CSS -->
 
 	{% block stylesheets %}
-	{% if v %}
-		<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
-	{% else %}
-		<link rel="stylesheet" href="/assets/style/dark_47a3ff.css">
-	{% endif %}
+		{% include "elements/stylesheets.html" %}
 	{% endblock %}
 
 	<!-- Font Awesome -->

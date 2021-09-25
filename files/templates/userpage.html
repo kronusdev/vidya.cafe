@@ -1,18 +1,7 @@
 {% extends "default.html" %}
 
 {% if u and u.profilecss %}
-{% block stylesheets %}
-{% if v %}
-<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
-{% if v.css %}
-<link rel="stylesheet" href="/@{{v.username}}/css">{% endif %}
-{% else %}
-<link rel="stylesheet" href="/assets/style/dark_47a3ff.css">
-{% endif %}
-{% if u and u.profilecss %}
-<link rel="stylesheet" href="/@{{u.username}}/profilecss">
-{% endif %}
-{% endblock %}
+	<link rel="stylesheet" href="/@{{u.username}}/profilecss">
 {% endif %}
 
 
