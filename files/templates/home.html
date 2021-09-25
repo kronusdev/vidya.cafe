@@ -2,113 +2,99 @@
 
 {% block desktopBanner %}
 
-<div class="row d-block" style="overflow: visible;padding-top:5px;">
-	<div class="col">
-		<div class="d-flex justify-content-between align-items-center">
-
-			{% block navbar %}
-			<div class="font-weight-bold py-3">‎</div>
-			<div class="d-flex align-items-center sortingbarmargin">
-				<!-- Tag Sort -->
-				<div class="text-small font-weight-bold mr-2">‎</div>
-				<div class="dropdown dropdown-actions d-inline-block">
-					<input type="hidden" name="formkey" value="{{v.formkey}}">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<div class="{{frontpage_tag}}-tag d-inline-block"></div>
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-						{% for tag in ["all", "changelog", "news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news"] %}
-						<a class="{{tag}}-tag dropdown-item" href="?sort={{sort}}&t={{t}}&frontpage_tag={{tag}}&custom_feed_page={{custom_feed_page}}"></a>
-						{% endfor %}
-					</div>
-				</div>
-
-				<div class="text-small font-weight-bold mr-2">‎</div>
-				<div class="dropdown dropdown-actions">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{% if t=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
-						{% if t=="week" %}<i class="fas fa-calendar-week mr-1"></i>{% endif %}
-						{% if t=="month" %}<i class="fas fa-calendar-alt mr-1"></i>{% endif %}
-						{% if t=="year" %}<i class="fas fa-calendar mr-1"></i>{% endif %}
-						{% if t=="all" %}<i class="fas fa-infinity mr-1"></i>{% endif %}
-						{{t | capitalize}}
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-						{% if not t=="hour" %}<a class="dropdown-item" href="?sort={{sort}}&t=hour&frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar-day mr-2"></i>Hour</a>{% endif %}
-						{% if not t=="day" %}<a class="dropdown-item" href="?sort={{sort}}&t=day&frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar-day mr-2"></i>Day</a>{% endif %}
-						{% if not t=="week" %}<a class="dropdown-item" href="?sort={{sort}}&t=week&frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar-week mr-2"></i>Week</a>{% endif %}
-						{% if not t=="month" %}<a class="dropdown-item" href="?sort={{sort}}&t=month&frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar-alt mr-2"></i>Month</a>{% endif %}
-						{% if not t=="year" %}<a class="dropdown-item" href="?sort={{sort}}&t=year&frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar mr-2"></i>Year</a>{% endif %}
-						{% if not t=="all" %}<a class="dropdown-item" href="?sort={{sort}}&t=all&frontpage_tag={{frontpage_tag}}"><i class="fas fa-infinity mr-2"></i>All</a>{% endif %}
-					</div>
-				</div>
-
-				<div class="text-small font-weight-bold ml-3 mr-2">‎</div>
-				<div class="dropdown dropdown-actions">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{% if sort=="hot" %}<i class="fas fa-fire mr-1"></i>{% endif %}
-						{% if sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
-						{% if sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
-						{% if sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}
-						{% if sort=="old" %}<i class="fas fa-book mr-1"></i>{% endif %}
-						{% if sort=="controversial" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
-						{% if sort=="active" %}<i class="fas fa-chart-line mr-1"></i>{% endif %}
-						{% if sort=="comments" %}<i class="fas fa-comments mr-1"></i>{% endif %}
-						{{sort | capitalize}}
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-						{% if sort != "hot" %}<a class="dropdown-item" href="?sort=hot&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-fire mr-2"></i>Hot</a>{% endif %}
-						{% if sort != "top" %}<a class="dropdown-item" href="?sort=top&t={{t}}"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
-						{% if sort != "bottom" %}<a class="dropdown-item" href="?sort=bottom&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>{% endif %}
-						{% if sort != "new" %}<a class="dropdown-item" href="?sort=new&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
-						{% if sort != "old" %}<a class="dropdown-item" href="?sort=old&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-book mr-2"></i>Old</a>{% endif %}
-						{% if sort != "controversial" %}<a class="dropdown-item" href="?sort=controversial&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>{% endif %}
-						{% if sort != "active" %}<a class="dropdown-item" href="?sort=active&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-chart-line mr-2"></i>Active</a>{% endif %}
-						{% if sort != "comments" %}<a class="dropdown-item" href="?sort=comments&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-comments mr-2"></i>Comments</a>{% endif %}
-						{% if sort != "random" %}<a class="dropdown-item" href="?sort=random&t={{t}}&frontpage_tag={{frontpage_tag}}"><i class="fas fa-random mr-2"></i>Random</a>{% endif %}
-					</div>
-				</div>
-			</div>
-			{% endblock %}
-		</div>
-	</div>
-</div>
-
 {% endblock %}
-
-{% block PseudoSubmitForm %}
+{% block navbar %}
 <!-- Link to submission page from homepage, only visible on home -->
 
 <div class="row no-gutters d-none d-lg-flex mt-3 {% if not v %}mb-3{% endif %}">
 
-	<div class="col">
-		<div class="card pseudo-submit-form">
-			<div class="card-header bg-gray-100">
-				<div class="mb-0">Create post</div>
-				<ul class="list-inline no-bullets mb-0 d-none">
-					<li class="list-inline-item active mr-4"><i class="fas fa-align-left text-gray-400"></i></li>
-					<li class="list-inline-item"><i class="fas fa-link text-gray-400"></i></li>
-				</ul>
+	<div style="position: sticky;top: 3.6rem;z-index: 100;margin: 0 !important;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;" class="card pseudo-submit-form">
+		<div class="card-header rounded bg-gray-400">
+			<div class="d-flex align-items-center sortingbarmargin" style="justify-content: flex-end;">
+			<!-- Tag Sort -->
+			<a href="/submit" style="margin-right: auto;margin-left: 1rem;">
+					<div class="btn btn-secondary mb-0">Create post<i class="ml-2 fas fa-feather-alt"></i></div>
+				</a><div class="text-small font-weight-bold mr-2">‎</div>
+			<div class="dropdown dropdown-actions mx-2">
+				<input type="hidden" name="formkey" value="0ef7e25732b473b5bffb0291b77dc812">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="all-tag d-inline-block"></div>
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
+					<a class="all-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=all&amp;custom_feed_page=1"></a>
+					<a class="changelog-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=changelog&amp;custom_feed_page=1"></a>
+					<a class="news-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=news&amp;custom_feed_page=1"></a>
+					<a class="trailer-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=trailer&amp;custom_feed_page=1"></a>
+					<a class="oc-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=oc&amp;custom_feed_page=1"></a>
+					<a class="video-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=video&amp;custom_feed_page=1"></a>
+					<a class="music-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=music&amp;custom_feed_page=1"></a>
+					<a class="picture-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=picture&amp;custom_feed_page=1"></a>
+					<a class="meme-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=meme&amp;custom_feed_page=1"></a>
+					<a class="meta-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=meta&amp;custom_feed_page=1"></a>
+					<a class="discussion-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=discussion&amp;custom_feed_page=1"></a>
+					<a class="rant-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=rant&amp;custom_feed_page=1"></a>
+					<a class="review-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=review&amp;custom_feed_page=1"></a>
+					<a class="question-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=question&amp;custom_feed_page=1"></a>
+					<a class="breaking-news-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=breaking-news&amp;custom_feed_page=1"></a>
+				</div>
 			</div>
-			<div class="card-body">
-				{% if v %}
-					<a href="/submit">
-						<input type="text" class="form-control"
-						placeholder="Post..." aria-label="Username"
-						aria-describedby="basic-addon1">
-					</a>
-				{% else %}
-					<a href="/signup">
-						<input type="text" class="form-control"
-						placeholder="Post..." aria-label="Username"
-						aria-describedby="basic-addon1">
-					</a>
-				{% endif %}
+
+			<div class="dropdown dropdown-actions mx-2">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					
+					
+					
+					
+					<i class="fas fa-infinity mr-1"></i>
+					All
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
+					<a class="dropdown-item" href="?sort=active&amp;t=hour&amp;frontpage_tag=all"><i class="fas fa-calendar-day mr-2"></i>Hour</a>
+					<a class="dropdown-item" href="?sort=active&amp;t=day&amp;frontpage_tag=all"><i class="fas fa-calendar-day mr-2"></i>Day</a>
+					<a class="dropdown-item" href="?sort=active&amp;t=week&amp;frontpage_tag=all"><i class="fas fa-calendar-week mr-2"></i>Week</a>
+					<a class="dropdown-item" href="?sort=active&amp;t=month&amp;frontpage_tag=all"><i class="fas fa-calendar-alt mr-2"></i>Month</a>
+					<a class="dropdown-item" href="?sort=active&amp;t=year&amp;frontpage_tag=all"><i class="fas fa-calendar mr-2"></i>Year</a>
+					
+				</div>
 			</div>
+
+			
+			<div class="dropdown dropdown-actions mx-2">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					
+					
+					
+					
+					
+					
+					<i class="fas fa-chart-line mr-1"></i>
+					
+					Active
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
+					<a class="dropdown-item" href="?sort=hot&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-fire mr-2"></i>Hot</a>
+					<a class="dropdown-item" href="?sort=top&amp;t=all"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>
+					<a class="dropdown-item" href="?sort=bottom&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>
+					<a class="dropdown-item" href="?sort=new&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-sparkles mr-2"></i>New</a>
+					<a class="dropdown-item" href="?sort=old&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-book mr-2"></i>Old</a>
+					<a class="dropdown-item" href="?sort=controversial&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>
+					
+					<a class="dropdown-item" href="?sort=comments&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-comments mr-2"></i>Comments</a>
+					<a class="dropdown-item" href="?sort=random&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-random mr-2"></i>Random</a>
+				</div>
+			</div>
+		</div><ul class="list-inline no-bullets mb-0 d-none">
+				<li class="list-inline-item active mr-4"><i class="fas fa-align-left text-gray-400"></i></li>
+				<li class="list-inline-item"><i class="fas fa-link text-gray-400"></i></li>
+			</ul>
 		</div>
+		
 	</div>
 
 </div>
+{% endblock %}
+
+{% block PseudoSubmitForm %}
 {% endblock %}
 {% block content %}
 
