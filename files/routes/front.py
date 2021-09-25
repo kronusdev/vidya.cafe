@@ -246,7 +246,7 @@ def front_all(v):
 			custom_feed_tag = "all"
 		ids = feedlist(sort=custom_feed_sort,
 						page=custom_feed_page,
-						posts_per_page=5,
+						posts_per_page=10,
 						t=custom_feed_time,
 						tag=custom_feed_tag,
 						v=v,
@@ -255,7 +255,7 @@ def front_all(v):
 						)
 
 		# check existence of next page
-		custom_feed_next_exists = (len(ids) == 6)
+		custom_feed_next_exists = (len(ids) == 11)
 		custom_feed_ids = ids
 
 		# check if ids exist
