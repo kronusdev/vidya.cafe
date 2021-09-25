@@ -19340,7 +19340,7 @@ ol > li::before {
 
 .navbar-light {
   background-color: #c44ab6 !important;
-  box-shadow: 0 0.1px 2px rgba(0, 0, 0, 0.15), 0 0 2px rgba(0, 0, 0, 0.1) !important; }
+  box-shadow: none !important; }
 
 .navbar-toggler-icon {
   width: auto;
