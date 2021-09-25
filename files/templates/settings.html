@@ -73,11 +73,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	<!-- {{"SITE_NAME" | app_config}} CSS -->
-
-	<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
-
-	<!-- Font Awesome -->
-	<link href="/assets/style/fa.css" rel="stylesheet"> <!--load all styles -->
+	{% include "elements/stylesheets.html" %}
 
 	<script>
 		function formkey() {

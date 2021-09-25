@@ -23,13 +23,8 @@
 	<meta name="theme-color" content="#47A3FF">
 	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
 	
-	{% if v %}
-		<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
-	{% else %}
-		<link rel="stylesheet" href="/assets/style/dark_47a3ff.css">
-	{% endif %}
-	
-	<link href="/assets/style/fa.css" rel="stylesheet"> 
+	{% include "elements/stylesheets.html" %}
+
 	</head>
 	<body id="error-502" class="using-mouse">
 	
