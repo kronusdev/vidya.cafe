@@ -10,24 +10,9 @@
 	{% block title %}
 	{% endblock %}
 
-	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-	
     {% block stylesheets %}
-
-    {% if v %}
-        <link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
-    {% else %}
-        <link rel="stylesheet" href="/assets/style/dark_47a3ff.css">
-    {% endif %}
-
+		{% include "elements/stylesheets.html" %}
     {% endblock %}
-
-	<!-- Font Awesome -->
-    <link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
-
 
 
 </head>
