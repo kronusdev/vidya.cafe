@@ -21,22 +21,10 @@
 					<div class="all-tag d-inline-block"></div>
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
-					<a class="all-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=all&amp;custom_feed_page=1"></a>
-					<a class="changelog-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=changelog&amp;custom_feed_page=1"></a>
-					<a class="news-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=news&amp;custom_feed_page=1"></a>
-					<a class="trailer-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=trailer&amp;custom_feed_page=1"></a>
-					<a class="oc-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=oc&amp;custom_feed_page=1"></a>
-					<a class="video-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=video&amp;custom_feed_page=1"></a>
-					<a class="music-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=music&amp;custom_feed_page=1"></a>
-					<a class="picture-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=picture&amp;custom_feed_page=1"></a>
-					<a class="meme-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=meme&amp;custom_feed_page=1"></a>
-					<a class="meta-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=meta&amp;custom_feed_page=1"></a>
-					<a class="discussion-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=discussion&amp;custom_feed_page=1"></a>
-					<a class="rant-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=rant&amp;custom_feed_page=1"></a>
-					<a class="review-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=review&amp;custom_feed_page=1"></a>
-					<a class="question-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=question&amp;custom_feed_page=1"></a>
-					<a class="breaking-news-tag dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag=breaking-news&amp;custom_feed_page=1"></a>
-				</div>
+					{% for tag in ["all", "changelog", "news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news"] %}
+					<a class="{{tag}}-tag dropdown-item" href="?sort={{sort}}&t={{t}}&frontpage_tag={{tag}}&custom_feed_page={{custom_feed_page}}"></a>
+					{% endfor %}
+			</div>
 			</div>
 
 			<div class="dropdown dropdown-actions mx-2">
