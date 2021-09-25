@@ -1,11 +1,14 @@
 {% if v %}
 <div id="sidebar" class="card-blank sidebar d-none d-xl-block bg-gray-700" style="right: 0; width: calc(1/6 * 100vw - 2rem); position: sticky; top: 3.6rem; margin-top: 1rem; overflow: visible">
-    <div>
-        <div class="card-header border-bottom bg-gray-400">
-            <button class="mx-1 btn btn-secondary" style="box-shadow: none;" onclick="setCurrentTab('custom_feed')">Custom Feed</button>
-            <button class="mx-1 btn btn-secondary" style="box-shadow: none;" onclick="setCurrentTab('sidebar_notifications')">Notifications</button>
-        </div>
-        </div>
+    <div class="nav settings-nav bg-gray-400">
+            <div class="nav-item">
+                <a id="custom_feed_tab" href="javascript:void(0)" onclick="setCurrentTab('custom_feed')" class="nav-link">Custom Feed</a>
+            </div>
+            <div class="nav-item">
+            <a id="sidebar_notifications_tab" class="nav-link" href="javascript:void(0)" style="box-shadow: none;" onclick="setCurrentTab('sidebar_notifications')">Notifications</a>
+            </div>
+        </div>        
+    </div>
         <div id="custom_feed" style="display: none">
             {% include "elements/sidebar_listing.html" %}
         </div>
@@ -39,8 +42,10 @@
         for(i=0; i<tabs.length; i++){
             if(tabs[i] != selected_tab){
                 document.getElementById(tabs[i]).style.display = "none"
+                document.getElementById(tabs[i] + "_tab").classList = "nav-link"
             }
         }
+        document.getElementById(tab+"_tab").classList += "active"
     }
     document.addEventListener('DOMContentLoaded', function() {
         setCurrentTab("{{sidebar_settings['default_tab']}}")
