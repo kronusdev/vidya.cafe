@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block PseudoSubmitForm %}
-{% if not '/users/' in request.path %}
 <div class="card pseudo-submit-form sticky" style="top: 3.6rem; margin: 0 !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;">
 	<div class="card-header rounded bg-gray-400">
 		<div class="d-flex align-items-center sortingbarmargin" style="justify-content: flex-end;">
@@ -61,6 +60,7 @@
 			<div class="text-small mb-1">Showing {% block listinglength %}{{listing | length}}{% endblock %} of {{total}} result{{'s' if total != 1 else ''}} for</div>
 			<h1 class="h4 mb-0">{{query}}</h1>
 		</div>
+	</div>
 	</div>
 </div>
 {% endblock %}
