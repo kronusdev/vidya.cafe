@@ -23,7 +23,7 @@
 
                 <form action="/admin/title_change/{{u.id}}" method="post">
                     <input type="hidden" name="formkey" value="{{v.formkey}}">
-                    <input id="customtitlebody-mobile" type="text" name="title" class="form-control"
+                    <input id="customtitlebody-mobile" type="text" name="title" class="input"
                         placeholder='Enter a flair here' value="{% if u.customtitle %}{{u.customtitle}}{% endif %}">
                     <div class="d-flex mt-2">
                         <small class="format"><i class="button format d-inline-block m-0 fas fa-smile-beam"
@@ -58,9 +58,9 @@
     {% else %}
     <form action="/ban_user/{{u.id}}/?notoast=1" method="post">
         <input type="hidden" name="formkey" value="{{v.formkey}}">
-        <input style="font-size:11px;" type="text" class="form-control" name="reason" placeholder="Ban Reason"
+        <input style="font-size:11px;" type="text" class="input" name="reason" placeholder="Ban Reason"
             onchange="document.getElementById('user-ban-submit2').disabled=false">
-        <input style="font-size:11px;" type="number" class="form-control" name="days"
+        <input style="font-size:11px;" type="number" class="input" name="days"
             placeholder="Days (blank = permanent)">
         <br />
         <div class="custom-control custom-checkbox">
@@ -125,7 +125,7 @@
 
                 <form action="/admin/title_change/{{u.id}}" method="post">
                     <input type="hidden" name="formkey" value="{{v.formkey}}">
-                    <input id="customtitlebody" type="text" name="title" class="form-control"
+                    <input id="customtitlebody" type="text" name="title" class="input"
                         placeholder='Enter a flair here'
                         value="{% if u.customtitleplain %}{{u.customtitleplain}}{% endif %}">
                     <div class="d-flex mt-2">
@@ -160,9 +160,9 @@
         {% else %}
         <form action="/ban_user/{{u.id}}?notoast=1" method="post" action="">
             <input type="hidden" name="formkey" value="{{v.formkey}}">
-            <input style="font-size:11px;" type="text" class="form-control" name="reason" placeholder="Ban Reason"
+            <input style="font-size:11px;" type="text" class="input" name="reason" placeholder="Ban Reason"
                 onchange="document.getElementById('user-ban-submit').disabled=false">
-            <input style="font-size:11px;" type="number" class="form-control" name="days"
+            <input style="font-size:11px;" type="number" class="input" name="days"
                 placeholder="Days (blank = permanent)">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" id="alts-2-desktop" class="custom-control-input" name="alts" value="1">

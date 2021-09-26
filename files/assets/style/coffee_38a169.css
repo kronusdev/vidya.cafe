@@ -19303,7 +19303,9 @@ ol > li::before {
   border-right: none;
   border-bottom: 2px #817261 solid;
   transition: border-bottom 0.15s, background 0.15s;
-  background-clip: padding-box !important; }
+  background-clip: padding-box !important;
+  width: 1%;
+  flex: 1 1 auto; }
 
 .input:hover {
   border-bottom: 2px #38a169 solid;

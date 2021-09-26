@@ -312,7 +312,7 @@
 							<div class="w-lg-100">
 								<form action="/settings/add_ko-fi_email" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input type="text" name="new_email" class="input" value="{{v.kofi_email}}">
+									<input type="text" name="new_email" class="input w-100" value="{{v.kofi_email}}">
 									<small>Input the email you'd like to use for <a href= "https://ko-fi.com/vidyacafe">Ko-fi</a> donations.</small><br>
 									<small>Make sure that it's the same email that you donate with!</small>
 									<div class="d-flex mt-2">
@@ -358,7 +358,7 @@
 							<div class="w-lg-100">
 								<form action="/settings/set_steam" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input type="text" name="steam_id" class="input" value="{{v.steam_id}}">
+									<input type="text" name="steam_id" class="input w-100" value="{{v.steam_id}}">
 									<small>Input your <a href= "https://www.steamidfinder.com">Steam ID</a> to link it to your account.</small><br>
 									<small>(Look for your SteamId64 (Decimal) when looking up your profile)</small>
 									<div class="d-flex mt-2">
@@ -372,7 +372,7 @@
 							<label for="bio" class="text-black w-lg-25">Xbox Gamertag</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_xbox_gamertag" method="post">
-									<input type="text" name="gamertag" class="input" value="{{v.xbox_gamertag}}">
+									<input type="text" name="gamertag" class="input w-100" value="{{v.xbox_gamertag}}">
 									<small>Input your Xbox Gamertag if you'd like to display it on your profile. Your whole gamertag, suffix included.</small>
 									<div class="d-flex mt-2">
 										<input class="button ml-auto" type="submit" value="Update Your Gamertag">
@@ -385,7 +385,7 @@
 							<label for="bio" class="text-black w-lg-25">Playstation Network Name</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_psn_name" method="post">
-									<input type="text" name="psn_name" class="input" value="{{v.playstation_name}}">
+									<input type="text" name="psn_name" class="input w-100" value="{{v.playstation_name}}">
 									<small>Input your Playstation Network Name if you'd like to display it on your profile.</small>
 									<div class="d-flex mt-2">
 										<input class="button ml-auto" type="submit" value="Update Your PSN Name">
@@ -399,7 +399,7 @@
 							<label for="bio" class="text-black w-lg-25">Nintendo Switch Friend Code</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_switch_friend_code" method="post">
-									<input type="text" name="switch_code" class="input" value="{{v.switch_code}}">
+									<input type="text" name="switch_code" class="input w-100" value="{{v.switch_code}}">
 									<small>Input your 12 Digit Switch Friend Code if you'd like to display it on your profile.</small>
 									<div class="d-flex mt-2">
 										<input class="button ml-auto" type="submit" value="Update Your Friend Code">
@@ -418,7 +418,7 @@
 
 							<div class="body w-lg-100">
 
-								<input type="text" readonly="" class="input copy-link" id="rss_feed" value="{{('/rss/hot/all') | full_link}}" data-clipboard-text="{{('/rss/hot/all') | full_link}}">
+								<input type="text" readonly="" class="input w-100 copy-link" id="rss_feed" value="{{('/rss/hot/all') | full_link}}" data-clipboard-text="{{('/rss/hot/all') | full_link}}">
 
 								<div class="text-small-extra text-muted mt-3">You can change the feed by replacing "hot" with whatever sorting you want and "all" with whatever time filter you want.</div>
 
@@ -443,7 +443,7 @@
 
 									<form action="/settings/name_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input type="text" name="name" class="input" value="{{v.username}}">
+										<input type="text" name="name" class="input w-100" value="{{v.username}}">
 										<small>3-25 characters, including letters, numbers, _ , and -</small>
 										<div class="d-flex mt-2">
 											<input class="button ml-auto" type="submit" value="Change Display Name">
@@ -527,7 +527,7 @@
 
 									<form id="profile-settings" action="/settings/title_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input id="customtitlebody" type="text" name="title" class="input" placeholder='Enter a flair here' value="{% if v.customtitleplain %}{{v.customtitleplain}}{% endif %}">
+										<input id="customtitlebody" type="text" name="title" class="input w-100" placeholder='Enter a flair here' value="{% if v.customtitleplain %}{{v.customtitleplain}}{% endif %}">
 										<div class="d-flex mt-2">
 											<small class="format"><i class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add Emoji"></i></small>
 											&nbsp;&nbsp;&nbsp;
