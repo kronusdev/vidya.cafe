@@ -53,9 +53,9 @@
 					{% if not sort=="comments" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=comments&t={{t}}"><i class="fas fa-comments mr-2"></i>Comments</a>{% endif %}
 					{% if not sort=="random" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=random&t={{t}}"><i class="fas fa-random mr-2"></i>Random</a>{% endif %}
 				</div>
-				{% endif %}
-				<div class="text-small mb-1 ml-auto">Advanced search parameters (with examples): "author:quadnarca", "domain:reddit.com", "over18:true"</div>
 			</div>
+			{% endif %}
+			<div class="text-small mb-1 ml-auto">Advanced search parameters (with examples): "author:quadnarca", "domain:reddit.com", "over18:true"</div>
 		</div>
 		<div class="pl-md-3">
 			<div class="text-small mb-1">Showing {% block listinglength %}{{listing | length}}{% endblock %} of {{total}} result{{'s' if total != 1 else ''}} for</div>
