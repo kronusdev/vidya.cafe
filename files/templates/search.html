@@ -61,7 +61,8 @@
 			<div class="text-small mb-1">Showing {% block listinglength %}{{listing | length}}{% endblock %} of {{total}} result{{'s' if total != 1 else ''}} for</div>
 			<h1 class="h4 mb-0">{{query}}</h1>
 		</div>
-		{% if not '/users/' in request.path %}
+	</div>
+	{% if not '/users/' in request.path %}
 		<div class="flex-row tab-bar sticky d-none">
 			<ul class="nav post-nav mr-auto">
 				<li class="nav-item">
@@ -87,9 +88,7 @@
 				</li>
 			</ul>
 		</div>
-		{% endif %}
-
-	</div>
+	{% endif %}
 </div>
 {% endblock %}
 
