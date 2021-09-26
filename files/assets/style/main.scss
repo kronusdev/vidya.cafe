@@ -277,14 +277,12 @@ body.using-mouse :focus {
 }
 
 // Positioning
-
-.sticky {
-	position: -webkit-sticky;
-	position: sticky;
-	top: 47px;
-	height: auto;
-	overflow-y: auto;
-	z-index: 4;
+@media(min-width: 768px){
+	.sticky {
+		position: -webkit-sticky;
+		position: sticky;
+		z-index: 10;
+	}
 }
 
 .sticky-63 {
