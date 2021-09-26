@@ -19264,9 +19264,49 @@ ol > li::before {
   transition: 0.15s;
   border: none; }
 
-.btn:hover {
-  background-color: #ffffff !important;
-  box-shadow: 0px 0px 8px #000000; }
+.button {
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0;
+  color: #404040;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px #394552 solid;
+  transition: border-bottom 0.15s, background 0.15s;
+  background-clip: padding-box !important;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600; }
+
+.button:hover {
+  border-bottom: 2px #000000 solid;
+  background: #ffffff;
+  text-decoration: none; }
+
+.button:active {
+  transition: none !important;
+  border-bottom: 0px #394552 solid !important;
+  border-top: 2px transparent solid !important; }
+
+.button.disabled, .button:disabled {
+  opacity: .5; }
+
+.input {
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0;
+  color: #404040;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px #394552 solid;
+  transition: border-bottom 0.15s, background 0.15s;
+  background-clip: padding-box !important; }
+
+.input:hover {
+  border-bottom: 2px #000000 solid;
+  background: #ffffff; }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.75rem;
@@ -19280,31 +19320,6 @@ ol > li::before {
   font-size: 12px;
   padding: 0.25rem 0.5rem;
   line-height: 1; }
-
-.btn.disabled, .btn:disabled {
-  opacity: .5; }
-
-.btn-white {
-  color: #c0c0c0; }
-
-.btn-success, .btn-danger {
-  color: #ffffff; }
-
-.btn.login, .btn.register {
-  height: calc(1.5em + 0.75rem + 2px);
-  border-radius: 0; }
-
-.btn-group.btn-integration {
-  border-radius: 0;
-  border: 0.1px solid #c0c0c0; }
-
-.btn-integration {
-  font-weight: 600;
-  border-left: 0.1px solid #c0c0c0; }
-
-.btn-integration .fab, .btn-integration .fas, .btn-integration .far {
-  font-size: 1.25rem;
-  vertical-align: middle; }
 
 .tooltip {
   font-weight: 600; }
@@ -19553,43 +19568,7 @@ label.color-radio span {
   transition: ease 0.25s;
   border-bottom: 2px solid #000000; }
 
-.form-inline.search .form-control:hover, .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-  border-color: #ffffff; }
-
-.form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-  color: #000000; }
-
-.form-inline.search .form-control,
-.form-control[readonly] {
-  background-color: #ffffff;
-  font-size: 1rem;
-  color: #ffffff; }
-
 .form-inline.search .input-group-append .input-group-text .fa.fa-search, .form-inline.search .input-group-append-focus .input-group-text .fa.fa-search {
-  color: #000000; }
-
-.form-inline.search .form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #000000; }
-
-.form-inline.search .form-control::-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #000000; }
-
-.form-inline.search .form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #000000; }
-
-.form-inline.search .form-control:active::placeholder, .form-inline.search .form-control:focus::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #000000; }
-
-.form-inline.search .form-control:active::-ms-input-placeholder, .form-inline.search .form-control:focus::-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #000000; }
-
-.form-inline.search .form-control:active::-ms-input-placeholder, .form-inline.search .form-control:focus::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: #000000; }
 
 .bg-svg {
@@ -19597,51 +19576,11 @@ label.color-radio span {
   background-attachment: fixed;
   background-size: cover; }
 
-.form-control {
-  color: #404040;
-  border: none;
-  box-shadow: 0px 0px 4px #000000;
-  background: #ffffff;
-  transition: box-shadow 0.15s, background 0.15s; }
-
-.form-control:disabled, .form-control[readonly] {
-  background-color: #c0c0c0; }
-
-.home-submission .form-control, .home-submission .input-group-text {
-  border-color: #c0c0c0;
-  background-color: #000000; }
-
 .home-submission .input-group-prepend .fa, .home-submission .input-group-prepend .fas, .home-submission .input-group-append .fa, .home-submission .input-group-append .fas {
   color: #ffffff; }
 
 .input-group-append-focus {
   margin-left: -0.1px; }
-
-.form-control:hover {
-  color: #000000;
-  background-color: #ffffff !important;
-  outline: 0;
-  border-color: #000000;
-  box-shadow: 0px 0px 8px #000000; }
-
-.form-control:focus, .form-control:active {
-  color: #000000;
-  background-color: #ffffff !important;
-  outline: 0;
-  border-color: #000000;
-  box-shadow: 0px 0px 8px #000000; }
-
-.form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #000000; }
-
-.form-control::-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #000000; }
-
-.form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #000000; }
 
 .form-check-label {
   margin-bottom: 0;
@@ -19896,15 +19835,6 @@ a:hover .link-arrow {
 #frontpage .pseudo-submit-form.card .card-body, #search .search-results.card .card-body, #guild .pseudo-submit-form.card .card-body {
   padding-left: 15px;
   padding-right: 15px; }
-
-#frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
-  background-color: #ffffff; }
-
-#frontpage .pseudo-submit-form.card .card-body .form-control:hover, #frontpage .pseudo-submit-form.card .card-body .form-control:active, #frontpage .pseudo-submit-form.card .card-body .form-control:focus {
-  background-color: #ffffff; }
-
-#guild .pseudo-submit-form.card .card-body .form-control:hover, #guild .pseudo-submit-form.card .card-body .form-control:active, #guild .pseudo-submit-form.card .card-body .form-control:focus {
-  background-color: #000000; }
 
 .post-filter {
   display: inline-block;
@@ -21051,8 +20981,7 @@ ul.comment-section {
   padding: .5rem .75rem;
   min-height: 84px; }
 
-.comment-write textarea:hover,
-.form-control[readonly]:hover {
+.comment-write textarea:hover {
   background: #ffffff; }
 
 .comment-format {
@@ -21920,8 +21849,8 @@ ul.comment-section {
   transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out; }
 
 @media (prefers-reduced-motion: reduce) {
-  .custom-switch .custom-control-label::after {
-    transition: none; } }
+  * *::after *::before {
+    transition: none !important; } }
 .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
   background-color: #ffffff;
   -webkit-transform: translateX(1.25rem);

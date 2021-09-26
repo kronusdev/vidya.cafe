@@ -295,10 +295,10 @@
 						<label for="title">Post Title</label>
 
 
-						<input v-model="post_title" class="form-control" id="post-title" aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="{{title}}" minlength="1" maxlength="500" required oninput="checkForRequired()">
+						<input v-model="post_title" class="input" id="post-title" aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="{{title}}" minlength="1" maxlength="500" required oninput="checkForRequired()">
 						<div id="urlblock">
 							<label for="URL" class="mt-3">URL</label>
-							<input class="form-control" id="post-URL" aria-describedby="URLHelp" type="url" name="url" placeholder="Optional if you have text." value="{{request.args.get('url','')}}" required oninput="checkForRequired();autoSuggestTitle();hide_image()">
+							<input class="input" id="post-URL" aria-describedby="URLHelp" type="url" name="url" placeholder="Optional if you have text." value="{{request.args.get('url','')}}" required oninput="checkForRequired();autoSuggestTitle();hide_image()">
 							<small class="form-text text-muted">To post an image, use a direct image link such as i.imgur.com</small>
 						</div>
 
@@ -307,7 +307,7 @@
 
 							<img id="image-preview" class="w-100 d-block">
 
-							<label class="btn btn-secondary m-0" for="file-upload">
+							<label class="button m-0" for="file-upload">
 								<div id="filename-show">Select Image</div>
 								<input id="file-upload" type="file" name="file" accept="image/*" hidden>
 							</label>
@@ -320,7 +320,7 @@
 
 						<div class="input-group">
 
-							<textarea v-model="post_body" v-on:input="toggleOn" form="submitform" id="post-text" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="3" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
+							<textarea v-model="post_body" v-on:input="toggleOn" form="submitform" id="post-text" class="input rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="3" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
 
 							<span class="position-absolute text-small font-weight-bold" id="character-count-submit-text-form" style="right: 1rem; bottom: 0.5rem; z-index: 3;"></span>
 
@@ -332,24 +332,24 @@
 							</div>
 						</div>
 						<p></p>
-						<small class="btn btn-secondary format d-inline-block m-0">
+						<small class="button format d-inline-block m-0">
 						<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('post-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
 						</small>
 						&nbsp;
-						<small class="btn btn-secondary format d-inline-block m-0">
+						<small class="button format d-inline-block m-0">
 						<i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('post-text')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
 						</small>
 						&nbsp;
-						<small class="btn btn-secondary format d-inline-block m-0">
+						<small class="button format d-inline-block m-0">
 						<i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('post-text')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
 						</small>
 						&nbsp;
-						<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('post-text')" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
+						<small class="button format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('post-text')" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
 						&nbsp;
-						<label class="btn btn-secondary format d-inline-block m-0" for="emoji-reply-btn">
+						<label class="button format d-inline-block m-0" for="emoji-reply-btn">
 							<div id="emoji-reply-btn" onclick="loadEmojis('post-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam"></i></div>
 						</label>
-						<div class="btn btn-secondary" @click="togglePreview()" style="float: right;">
+						<div class="button" @click="togglePreview()" style="float: right;">
 							[[ show_preview ? 'Hide preview' : 'Show preview' ]]
 						</div>						
 						<a href="/formatting" target="_blank" class="float-right mt-2 mr-2">Formatting help</a>
@@ -377,7 +377,7 @@
 
 
 						<div class="submit-bottom">
-							<a href="/" class="btn btn-secondary">Cancel</a>
+							<a href="/" class="button">Cancel</a>
 							{% if error %}<span class="text-danger mr-2">{{error}}</span>{% endif %}
 
 							<div class="custom-control custom-checkbox">

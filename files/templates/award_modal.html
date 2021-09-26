@@ -29,12 +29,12 @@
 							</div>
 						</div>
 						<label for="note" class="pt-4">Note (optional):</label>
-						<textarea id="note" name="note" v-model="note" class="form-control" placeholder="Note to include in award notification"></textarea>
+						<textarea id="note" name="note" v-model="note" class="input" placeholder="Note to include in award notification"></textarea>
 					</div>
 				</form>
 				<div v-else-if="error" class="p-5 text-center">
 					<h4>Failed to fetch awards</h4>
-					<button class="btn btn-primary">Retry</button>
+					<button class="button">Retry</button>
 				</div>
 				<div v-else class="p-5 text-center">
 					<h4>Loading...</h4>

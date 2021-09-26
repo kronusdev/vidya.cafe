@@ -387,9 +387,56 @@ ol > li::before {
     border: none;
 }
 
-.btn:hover {
-    background-color: $gray-600 !important;
-    box-shadow: $box-shadow-focused;
+.button {
+	background: $gray-700;
+	padding: 0.5rem;
+	border-radius: $border-radius;
+	color: $muted;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px $gray-100 solid;
+	transition: border-bottom 0.15s, background 0.15s;
+	background-clip: padding-box !important;
+	cursor: pointer;
+	user-select: none;
+	font-weight: 600;
+}
+
+.button:hover {
+	border-bottom: 2px $primary solid;
+	background: $gray-600;
+	text-decoration: none;
+}
+
+.button:active {
+	transition: none !important;
+	border-bottom: 0px $gray-100 solid !important;
+	border-top: 2px transparent solid !important;
+}
+
+.button.disabled, .button:disabled {
+	opacity: .5;
+}
+
+// Inputs
+// Use w-100 for 100% width
+.input {
+	background: $gray-700;
+	padding: 0.5rem;
+	border-radius: $border-radius;
+	color: $muted;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px $gray-100 solid;
+	transition: border-bottom 0.15s, background 0.15s;
+	background-clip: padding-box !important;
+}
+
+.input:hover {
+	border-bottom: 2px $primary solid;
+	background: $gray-600
 }
 
 .btn-sm {
@@ -408,37 +455,7 @@ ol > li::before {
 	line-height: 1;
 }
 
-.btn.disabled, .btn:disabled {
-	opacity: .5;
-}
 
-.btn-white {
-	color: $dark
-}
-
-.btn-success, .btn-danger {
-	color: $white;
-}
-
-.btn.login, .btn.register {
-	height: calc(1.5em + 0.75rem + 2px);
-	border-radius: $border-radius;
-}
-
-.btn-group.btn-integration {
-	border-radius: $border-radius;
-	border: 0.1px solid $border-color;
-}
-
-.btn-integration {
-	font-weight: $font-weight-bold;
-	border-left: 0.1px solid $border-color;
-}
-
-.btn-integration .fab, .btn-integration .fas, .btn-integration .far {
-	font-size: $lead-font-size;
-	vertical-align: middle;
-}
 
 // Tooltips
 
@@ -763,52 +780,52 @@ label.color-radio span {
 
 // Navbar icons and search box
 
-.form-inline.search .form-control:hover, .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-	border-color: $purple;
-}
+//.form-inline.search .form-control:hover, .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
+	//border-color: $purple;
+//}
 
-.form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-	color: $black;
-}
+//.form-inline.search .form-control:active, .form-inline.search .form-control:focus {
+	//color: $black;
+//}
 
-.form-inline.search .form-control,
-.form-control[readonly] {
-	background-color: $gray-700;
-	font-size: $font-size-base;
-	color: $white;
-}
+//.form-inline.search .form-control,
+//.form-control[readonly] {
+	//background-color: $gray-700;
+	//font-size: $font-size-base;
+	//color: $white;
+//}
 
 .form-inline.search .input-group-append .input-group-text .fa.fa-search, .form-inline.search .input-group-append-focus .input-group-text .fa.fa-search {
 	color: $black;
 	//opacity: .25;
 }
 
-.form-inline.search .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: $black;
-	//opacity: .25; /* Firefox */
-}
+//.form-inline.search .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	//color: $black;
+	////opacity: .25; /* Firefox */
+//}
 
-.form-inline.search .form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color: $black;
-	//opacity: .25;
-}
+//.form-inline.search .form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
+	//color: $black;
+	////opacity: .25;
+//}
 
-.form-inline.search .form-control::-ms-input-placeholder { /* Microsoft Edge */
-	color: $black;
-	//opacity: .25;
-}
+//.form-inline.search .form-control::-ms-input-placeholder { /* Microsoft Edge */
+	//color: $black;
+	////opacity: .25;
+//}
 
-.form-inline.search .form-control:active::placeholder, .form-inline.search .form-control:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: $black;
-}
+//.form-inline.search .form-control:active::placeholder, .form-inline.search .form-control:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	//color: $black;
+//}
 
-.form-inline.search .form-control:active::-ms-input-placeholder, .form-inline.search .form-control:focus::-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color: $black;
-}
+//.form-inline.search .form-control:active::-ms-input-placeholder, .form-inline.search .form-control:focus::-ms-input-placeholder { /* Internet Explorer 10-11 */
+	//color: $black;
+//}
 
-.form-inline.search .form-control:active::-ms-input-placeholder, .form-inline.search .form-control:focus::-ms-input-placeholder{ /* Microsoft Edge */
-	color: $black;
-}
+//.form-inline.search .form-control:active::-ms-input-placeholder, .form-inline.search .form-control:focus::-ms-input-placeholder{ /* Microsoft Edge */
+	//color: $black;
+//}
 
 // Jumbotron and Backgrounds
 
@@ -820,24 +837,24 @@ label.color-radio span {
 
 // Inputs
 
-.form-control {
-	color: $muted;
-	//border-color: $muted;
-	//border-width: 2px;
-    border: none;
-    box-shadow: $box-shadow;
-    background: $gray-700;
-    transition: box-shadow 0.15s, background 0.15s;
-}
+//.form-control {
+	//color: $muted;
+	////border-color: $muted;
+	////border-width: 2px;
+    //border: none;
+    //box-shadow: $box-shadow;
+    //background: $gray-700;
+    //transition: box-shadow 0.15s, background 0.15s;
+//}
 
-.form-control:disabled, .form-control[readonly] {
-	background-color: $dark;
-}
+//.form-control:disabled, .form-control[readonly] {
+	//background-color: $dark;
+//}
 
-.home-submission .form-control, .home-submission .input-group-text {
-	border-color: $border-color;
-	background-color: $light;
-}
+//.home-submission .form-control, .home-submission .input-group-text {
+	//border-color: $border-color;
+	//background-color: $light;
+//}
 
 .home-submission .input-group-prepend .fa, .home-submission .input-group-prepend .fas, .home-submission .input-group-append .fa, .home-submission .input-group-append .fas {
 	color: $gray-300;
@@ -847,37 +864,37 @@ label.color-radio span {
 	margin-left: -0.1px;
 }
 
-.form-control:hover {
-	color: $black;
-	background-color: $gray-600 !important;
-	outline: 0;
-	border-color: $primary;
-	box-shadow: $box-shadow-focused;
-}
+//.form-control:hover {
+	//color: $black;
+	//background-color: $gray-600 !important;
+	//outline: 0;
+	//border-color: $primary;
+	//box-shadow: $box-shadow-focused;
+//}
 
-.form-control:focus, .form-control:active {
-	color: $black;
-	background-color: $gray-600 !important;
-	outline: 0;
-	border-color: $primary;
-	box-shadow: $box-shadow-focused;
+//.form-control:focus, .form-control:active {
+	//color: $black;
+	//background-color: $gray-600 !important;
+	//outline: 0;
+	//border-color: $primary;
+	//box-shadow: $box-shadow-focused;
 
-}
+//}
 
-.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: $black;
-	//opacity: .25; /* Firefox */
-}
+//.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	//color: $black;
+	////opacity: .25; /* Firefox */
+//}
 
-.form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color: $black;
-	//opacity: .25;
-}
+//.form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
+	//color: $black;
+	////opacity: .25;
+//}
 
-.form-control::-ms-input-placeholder { /* Microsoft Edge */
-	color: $black;
-	//opacity: .25;
-}
+//.form-control::-ms-input-placeholder { /* Microsoft Edge */
+	//color: $black;
+	////opacity: .25;
+//}
 
 .form-check-label {
 	margin-bottom: 0;
@@ -1208,17 +1225,17 @@ color: $dark;
 	padding-right: 15px;
 }
 
-#frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
-	background-color: $gray-700;
-}
+//#frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
+	//background-color: $gray-700;
+//}
 // TODO remove question mark?
-#frontpage .pseudo-submit-form.card .card-body .form-control:hover, #frontpage .pseudo-submit-form.card .card-body .form-control:active, #frontpage .pseudo-submit-form.card .card-body .form-control:focus {
-	background-color: $gray-600;
-}
+//#frontpage .pseudo-submit-form.card .card-body .form-control:hover, #frontpage .pseudo-submit-form.card .card-body .form-control:active, #frontpage .pseudo-submit-form.card .card-body .form-control:focus {
+	//background-color: $gray-600;
+//}
 
-#guild .pseudo-submit-form.card .card-body .form-control:hover, #guild .pseudo-submit-form.card .card-body .form-control:active, #guild .pseudo-submit-form.card .card-body .form-control:focus {
-	background-color: $light;
-}
+//#guild .pseudo-submit-form.card .card-body .form-control:hover, #guild .pseudo-submit-form.card .card-body .form-control:active, #guild .pseudo-submit-form.card .card-body .form-control:focus {
+	//background-color: $light;
+//}
 
 .post-filter {
 	display: inline-block;
@@ -2667,7 +2684,8 @@ ul.comment-section {
 //}
 
 .comment-write textarea:hover,
-.form-control[readonly]:hover {
+//.form-control[readonly]:hover 
+{
 	background: $gray-600;
 }
 
@@ -3357,8 +3375,8 @@ ul.comment-section {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.custom-switch .custom-control-label::after {
-	transition: none;
+	* *::after *::before {
+	transition: none !important;
 	}
 }
 
