@@ -9,52 +9,55 @@
 
 {% block PseudoSubmitForm %}
 {% if not '/users/' in request.path %}
-<div class="mt-5 d-flex align-items-center">
-	<div class="dropdown dropdown-actions">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			{% if t=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
-			{% if t=="week" %}<i class="fas fa-calendar-week mr-1"></i>{% endif %}
-			{% if t=="month" %}<i class="fas fa-calendar-alt mr-1"></i>{% endif %}
-			{% if t=="year" %}<i class="fas fa-calendar mr-1"></i>{% endif %}
-			{% if t=="all" %}<i class="fas fa-infinity mr-1"></i>{% endif %}
-			{{t | capitalize}}
-		</button>
-		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-			{% if not t=="hour" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=hour"><i class="fas fa-calendar-day mr-2"></i>Hour</a>{% endif %}
-			{% if not t=="day" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=day"><i class="fas fa-calendar-day mr-2"></i>Day</a>{% endif %}
-			{% if not t=="week" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=week"><i class="fas fa-calendar-week mr-2"></i>Week</a>{% endif %}
-			{% if not t=="month" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=month"><i class="fas fa-calendar-alt mr-2"></i>Month</a>{% endif %}
-			{% if not t=="year" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=year"><i class="fas fa-calendar mr-2"></i>Year</a>{% endif %}
-			{% if not t=="all" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}"><i class="fas fa-infinity mr-2"></i>All</a>{% endif %}
-		</div>
-	</div>
+<div class="card pseudo-submit-form sticky" style="top: 3.6rem; margin: 0 !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;">
+	<div class="card-header rounded bg-gray-400">
+		<div class="d-flex align-items-center sortingbarmargin" style="justify-content: flex-end;">
+			<div class="dropdown dropdown-actions">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{% if t=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
+					{% if t=="week" %}<i class="fas fa-calendar-week mr-1"></i>{% endif %}
+					{% if t=="month" %}<i class="fas fa-calendar-alt mr-1"></i>{% endif %}
+					{% if t=="year" %}<i class="fas fa-calendar mr-1"></i>{% endif %}
+					{% if t=="all" %}<i class="fas fa-infinity mr-1"></i>{% endif %}
+					{{t | capitalize}}
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+					{% if not t=="hour" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=hour"><i class="fas fa-calendar-day mr-2"></i>Hour</a>{% endif %}
+					{% if not t=="day" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=day"><i class="fas fa-calendar-day mr-2"></i>Day</a>{% endif %}
+					{% if not t=="week" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=week"><i class="fas fa-calendar-week mr-2"></i>Week</a>{% endif %}
+					{% if not t=="month" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=month"><i class="fas fa-calendar-alt mr-2"></i>Month</a>{% endif %}
+					{% if not t=="year" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}&t=year"><i class="fas fa-calendar mr-2"></i>Year</a>{% endif %}
+					{% if not t=="all" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort={{sort}}"><i class="fas fa-infinity mr-2"></i>All</a>{% endif %}
+				</div>
+			</div>
 
-	<div class="dropdown dropdown-actions">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			{% if sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
-			{% if sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
-			{% if sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}
-			{% if sort=="old" %}<i class="fas fa-book mr-1"></i>{% endif %}
-			{% if sort=="controversial" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
-			{% if sort=="active" %}<i class="fas fa-chart-line mr-1"></i>{% endif %}
-			{% if sort=="comments" %}<i class="fas fa-comments mr-1"></i>{% endif %}
-			{% if sort=="random" %}<i class="fas fa-random mr-1"></i>{% endif %}
-			{{sort | capitalize}}
-		</button>
-		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-			{% if not sort=="top" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=top&t={{t}}"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
-			{% if not sort=="bottom" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=bottom&t={{t}}"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>{% endif %}
-			{% if not sort=="new" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=new&t={{t}}"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
-			{% if not sort=="old" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=old&t={{t}}"><i class="fas fa-book mr-2"></i>Old</a>{% endif %}
-			{% if not sort=="controversial" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=controversial&t={{t}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>{% endif %}
-			{% if sort != "active" %}<a class="dropdown-item" href="?sort=active&t={{t}}"><i class="fas fa-chart-line mr-2"></i>Active</a>{% endif %}
-			{% if not sort=="comments" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=comments&t={{t}}"><i class="fas fa-comments mr-2"></i>Comments</a>{% endif %}
-			{% if not sort=="random" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=random&t={{t}}"><i class="fas fa-random mr-2"></i>Random</a>{% endif %}
+			<div class="dropdown dropdown-actions">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{% if sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
+					{% if sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
+					{% if sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}
+					{% if sort=="old" %}<i class="fas fa-book mr-1"></i>{% endif %}
+					{% if sort=="controversial" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
+					{% if sort=="active" %}<i class="fas fa-chart-line mr-1"></i>{% endif %}
+					{% if sort=="comments" %}<i class="fas fa-comments mr-1"></i>{% endif %}
+					{% if sort=="random" %}<i class="fas fa-random mr-1"></i>{% endif %}
+					{{sort | capitalize}}
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+					{% if not sort=="top" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=top&t={{t}}"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
+					{% if not sort=="bottom" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=bottom&t={{t}}"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>{% endif %}
+					{% if not sort=="new" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=new&t={{t}}"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
+					{% if not sort=="old" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=old&t={{t}}"><i class="fas fa-book mr-2"></i>Old</a>{% endif %}
+					{% if not sort=="controversial" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=controversial&t={{t}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>{% endif %}
+					{% if sort != "active" %}<a class="dropdown-item" href="?sort=active&t={{t}}"><i class="fas fa-chart-line mr-2"></i>Active</a>{% endif %}
+					{% if not sort=="comments" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=comments&t={{t}}"><i class="fas fa-comments mr-2"></i>Comments</a>{% endif %}
+					{% if not sort=="random" %}<a class="dropdown-item" href="?q={{query | urlencode}}&sort=random&t={{t}}"><i class="fas fa-random mr-2"></i>Random</a>{% endif %}
+				</div>
+			</div>
 		</div>
+		{% endif %}
 	</div>
 </div>
-{% endif %}
-
 {% endblock %}
 
 {% block navbar %}
