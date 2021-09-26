@@ -275,6 +275,12 @@ body.using-mouse :focus {
 		z-index: 10;
 	}
 }
+@media(max-width: 768px){
+	.sticky {
+		position: static;
+		top: 0 !important;
+	}
+}
 
 .sticky-63 {
 	position: -webkit-sticky;

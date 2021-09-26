@@ -19184,6 +19184,10 @@ body.using-mouse :focus {
     position: -webkit-sticky;
     position: sticky;
     z-index: 10; } }
+@media (max-width: 768px) {
+  .sticky {
+    position: static;
+    top: 0 !important; } }
 .sticky-63 {
   position: -webkit-sticky;
   position: sticky;
