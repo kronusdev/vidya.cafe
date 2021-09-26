@@ -120,7 +120,9 @@
 							<li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#deletePostModal" onclick="delete_postModal('{{p.id}}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
 						{% endif %}
 					{% endif %}
+					{% if v and v.admin_level > 0 %}
 					<input class="post-actions" type="checkbox" id="admin-actions-checkbox-{{p.id}}" onClick="toggleVisibilityForAdminActions({{p.id}})">
+					{% endif %}
 				</ul>
 			</div>
 			<!-- Admin actions on desktop -->
