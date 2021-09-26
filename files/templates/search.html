@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block PseudoSubmitForm %}
-<div class="card pseudo-submit-form sticky" style="top: 3.6rem; margin: 0 !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;">
-	<div class="card-header rounded bg-gray-400">
+<div class="card-blank pseudo-submit-form sticky" style="top: 3.6rem; margin: 0 !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important; overflow: visible;">
+	<div class="card-header rounded bg-gray-400 border-bottom">
 		<div class="d-flex align-items-center sortingbarmargin" style="justify-content: flex-end;">
 			<div class="text-small mb-1 mr-auto">Advanced search parameters (with examples): "author:quadnarca", "domain:reddit.com", "over18:true"</div>
 			{% if not '/users/' in request.path %}
