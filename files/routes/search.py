@@ -223,7 +223,7 @@ def searchposts(v):
 		domain=None
 		domain_obj=None
 
-		try:
+	try:
 		sidebar_settings = json.loads(v.sidebar_settings)
 	except:
 		sidebar_settings = ""
