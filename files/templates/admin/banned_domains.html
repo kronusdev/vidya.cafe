@@ -29,9 +29,9 @@
 
 <form action="/admin/banned_domains" method="post">
 	<input type="hidden" name="formkey" value="{{v.formkey}}">
-	<input name="domain" placeholder="Enter domain here.." class="form-control" required>
-	<input name="reason" placeholder="Enter ban reason here.." class="form-control">
-	<input id="ban-submit" type="submit" class="btn btn-primary" value="Toggle ban">
+	<input name="domain" placeholder="Enter domain here.." class="input" required>
+	<input name="reason" placeholder="Enter ban reason here.." class="input">
+	<input id="ban-submit" type="submit" class="button" value="Toggle ban">
 </form>
 
 {% endblock %}

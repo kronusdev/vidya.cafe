@@ -16,12 +16,12 @@
         <form action="/admin/strike?uid={{link.author_id}}" method="post" class="mb-6">
             <input type="hidden" name="formkey" value="{{v.formkey}}" />
             <label for="s-user">User</label>
-            <input id="s-user" type="text" class="form-control mb-2" name="user" value="{{link.author.username}}" />
+            <input id="s-user" type="text" class="input mb-2" name="user" value="{{link.author.username}}" />
             <label for="s-reason">Strike Reason</label>
-            <input id="s-reason" type="text" class="form-control mb-2" name="reason" value="{{strike_reason if reason else ''}}" placeholder="Strike Reason..." />
+            <input id="s-reason" type="text" class="input mb-2" name="reason" value="{{strike_reason if reason else ''}}" placeholder="Strike Reason..." />
             <label for="s-link">Strike URL</label>
-            <input id="s-link" type="text" class="form-control mb-2" name="link" value="{{link.permalink}}" />
-            <input type="submit" name="submit" value="Submit Strike" class="btn btn-primary" />
+            <input id="s-link" type="text" class="input mb-2" name="link" value="{{link.permalink}}" />
+            <input type="submit" name="submit" value="Submit Strike" class="button" />
         </form>
     </div>
 </div>

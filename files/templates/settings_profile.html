@@ -24,7 +24,7 @@
 						<div class="body w-lg-100">
 							<p>Change the theme for the website.</p>
 							<div class="input-group mb2">
-								<select id='theme' class="form-control" form="profile-settings" name="theme" onchange="post('/settings/profile?theme='+document.getElementById('theme').value, function(){window.location.reload(true);})">
+								<select id='theme' class="input" form="profile-settings" name="theme" onchange="post('/settings/profile?theme='+document.getElementById('theme').value, function(){window.location.reload(true);})">
 								 {% for entry in ["dark", "light", "coffee", "tron", "hackernews", "4chan", "blur", "win98", "midnight"] %}
 									 <option value="{{entry}}" {% if v.theme==entry %} selected {% endif %}>
 										{{entry}}
@@ -149,7 +149,7 @@
 									let bgsDir = backgrounds[bgselector.selectedIndex].folder;
 									for (i=0; i < bgsToDisplay.length; i++) {
 										let onclickPost = "/assets/images/custombackgrounds/" + bgsDir + "/" + bgsToDisplay[i];
-										str += `<button class="btn btn-secondary m-1 p-0" style="width:15rem; overflow: hidden;"><img style="padding:0.25rem; width: 15rem" src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background" onclick="post('/settings/profile?background=${onclickPost}', function(){window.location.reload(true);})"/></button>`;
+										str += `<button class="button m-1 p-0" style="width:15rem; overflow: hidden;"><img style="padding:0.25rem; width: 15rem" src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background" onclick="post('/settings/profile?background=${onclickPost}', function(){window.location.reload(true);})"/></button>`;
 									}
 									bgContainer.innerHTML = str;
 								}
@@ -159,7 +159,7 @@
 							</script>
 							<p>Change the background for the website.</p>
 							<div class="input-group mb2">
-									<select id='backgroundSelector' class="form-control" form="profile-settings" name="background" onchange="updatebgselection();">
+									<select id='backgroundSelector' class="input" form="profile-settings" name="background" onchange="updatebgselection();">
 									{% for entry in ["fantasy", "solarpunk", "other", "pixelart"] %}
 										<option value="{{entry}}">
 											{{entry}}
@@ -169,15 +169,15 @@
 							</div>
 							{% if v.patron %}
 							<div class="input-group mt-3">
-								<input type="text" id="background_url_field" name="background_url" class="form-control" value="{{v.background}}">
-								<button class="btn btn-secondary ml-3" onclick="postBgUrl()">Update</button>
+								<input type="text" id="background_url_field" name="background_url" class="input" value="{{v.background}}">
+								<button class="button ml-3" onclick="postBgUrl()">Update</button>
 							</div>
 							{% else %}
 							<div class="text-small mt-3"><a href="https://ko-fi.com/vidyacafe">Support us</a> to set a background from any link</div>
 							{% endif %}
 
-							<a class="btn btn-primary ml-3 mt-3 float-right" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
-							<a class="btn btn-primary mx-0 mt-3 float-right" id="nobg" href="javascript:void(0)" onclick="post('/settings/profile?background=(())', function(){window.location.reload(true);})">Remove Background</a>
+							<a class="button ml-3 mt-3 float-right" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
+							<a class="button mx-0 mt-3 float-right" id="nobg" href="javascript:void(0)" onclick="post('/settings/profile?background=(())', function(){window.location.reload(true);})">Remove Background</a>
 							<div id="bgcontainer"></div>
 							
 						</div>
@@ -200,7 +200,7 @@
 
 								<form action="/settings/images/profile" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<label class="btn btn-secondary text-capitalize mr-2 mb-0">
+									<label class="button text-capitalize mr-2 mb-0">
 										Update<input type="file" hidden name="profile" onchange="form.submit()">
 									</label>
 								</form>
@@ -211,7 +211,7 @@
 							<div>
 								<form action="/settings/delete/profile" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
+									<button type="submit" value="Delete" class="button btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
 								</form>
 							</div>
 							{% endif %}
@@ -242,7 +242,7 @@
 
 								<form action="/settings/images/banner" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<label class="btn btn-secondary text-capitalize mr-2 mb-0">
+									<label class="button text-capitalize mr-2 mb-0">
 										Update<input type="file" hidden name="banner" onchange="form.submit()">
 									</label>
 								</form>
@@ -254,7 +254,7 @@
 								{% if v.bannerurl %}
 								<form action="/settings/delete/banner" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
+									<button type="submit" value="Delete" class="button btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
 								</form>{% endif %}
 
 							</div>
@@ -284,7 +284,7 @@
 
 						<div class="input-group">
 
-							<input type="text" readonly="" class="form-control copy-link" id="referral_code" value="{{request.host_url}}signup?ref={{v.username}}" data-clipboard-text="{{request.host_url}}signup?ref={{v.username}}">
+							<input type="text" readonly="" class="input copy-link" id="referral_code" value="{{request.host_url}}signup?ref={{v.username}}" data-clipboard-text="{{request.host_url}}signup?ref={{v.username}}">
 
 							<span class="input-group-append" data-toggle="tooltip" data-placement="top" title="You have referred {{v.referral_count}} user{{'s' if v.referral_count != 1 else ''}} so far. {% if v.referral_count==0 %}¯\_(ツ)_/¯{% elif v.referral_count>10%}Wow!{% endif %}">
 								<span class="input-group-text text-primary border-0">
@@ -312,11 +312,11 @@
 							<div class="w-lg-100">
 								<form action="/settings/add_ko-fi_email" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input type="text" name="new_email" class="form-control" value="{{v.kofi_email}}">
+									<input type="text" name="new_email" class="input w-100" value="{{v.kofi_email}}">
 									<small>Input the email you'd like to use for <a href= "https://ko-fi.com/vidyacafe">Ko-fi</a> donations.</small><br>
 									<small>Make sure that it's the same email that you donate with!</small>
 									<div class="d-flex mt-2">
-										<input class="btn btn-primary ml-auto" type="submit" value="Update Your ko-fi email">
+										<input class="button ml-auto" type="submit" value="Update Your ko-fi email">
 									</div>
 								</form>
 							</div>
@@ -339,12 +339,12 @@
 							{% if v.discord_id %}
 							<form action="/settings/remove_discord" method="post">
 							  <input type="hidden" name="formkey" value="{{v.formkey}}">
-							  <input type="submit" class="btn btn-secondary text-capitalize mr-2 mb-0 mt-2" value="Disconnect Discord">
+							  <input type="submit" class="button text-capitalize mr-2 mb-0 mt-2" value="Disconnect Discord">
 							</form>
 
 							<div class="text-small-extra text-muted mt-3">Disconnecting your Discord account will remove you from the {{"SITE_NAME" | app_config}} Discord server.</div>
 							{% else %}
-							<a href="/discord" class="btn btn-primary">Link Discord</a>
+							<a href="/discord" class="button">Link Discord</a>
 							<div class="text-small-extra text-muted mt-3">Link your Discord account to join the {{"SITE_NAME" | app_config}} Discord server.</div>
 							{% endif %}
 
@@ -358,11 +358,11 @@
 							<div class="w-lg-100">
 								<form action="/settings/set_steam" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input type="text" name="steam_id" class="form-control" value="{{v.steam_id}}">
+									<input type="text" name="steam_id" class="input w-100" value="{{v.steam_id}}">
 									<small>Input your <a href= "https://www.steamidfinder.com">Steam ID</a> to link it to your account.</small><br>
 									<small>(Look for your SteamId64 (Decimal) when looking up your profile)</small>
 									<div class="d-flex mt-2">
-										<input class="btn btn-primary ml-auto" type="submit" value="Change Your Steam ID">
+										<input class="button ml-auto" type="submit" value="Change Your Steam ID">
 									</div>
 								</form>
 							</div>
@@ -372,10 +372,10 @@
 							<label for="bio" class="text-black w-lg-25">Xbox Gamertag</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_xbox_gamertag" method="post">
-									<input type="text" name="gamertag" class="form-control" value="{{v.xbox_gamertag}}">
+									<input type="text" name="gamertag" class="input w-100" value="{{v.xbox_gamertag}}">
 									<small>Input your Xbox Gamertag if you'd like to display it on your profile. Your whole gamertag, suffix included.</small>
 									<div class="d-flex mt-2">
-										<input class="btn btn-primary ml-auto" type="submit" value="Update Your Gamertag">
+										<input class="button ml-auto" type="submit" value="Update Your Gamertag">
 									</div>
 								</form>
 							</div>
@@ -385,10 +385,10 @@
 							<label for="bio" class="text-black w-lg-25">Playstation Network Name</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_psn_name" method="post">
-									<input type="text" name="psn_name" class="form-control" value="{{v.playstation_name}}">
+									<input type="text" name="psn_name" class="input w-100" value="{{v.playstation_name}}">
 									<small>Input your Playstation Network Name if you'd like to display it on your profile.</small>
 									<div class="d-flex mt-2">
-										<input class="btn btn-primary ml-auto" type="submit" value="Update Your PSN Name">
+										<input class="button ml-auto" type="submit" value="Update Your PSN Name">
 									</div>
 								</form>
 							</div>
@@ -399,10 +399,10 @@
 							<label for="bio" class="text-black w-lg-25">Nintendo Switch Friend Code</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_switch_friend_code" method="post">
-									<input type="text" name="switch_code" class="form-control" value="{{v.switch_code}}">
+									<input type="text" name="switch_code" class="input w-100" value="{{v.switch_code}}">
 									<small>Input your 12 Digit Switch Friend Code if you'd like to display it on your profile.</small>
 									<div class="d-flex mt-2">
-										<input class="btn btn-primary ml-auto" type="submit" value="Update Your Friend Code">
+										<input class="button ml-auto" type="submit" value="Update Your Friend Code">
 									</div>
 								</form>
 							</div>
@@ -418,7 +418,7 @@
 
 							<div class="body w-lg-100">
 
-								<input type="text" readonly="" class="form-control copy-link" id="rss_feed" value="{{('/rss/hot/all') | full_link}}" data-clipboard-text="{{('/rss/hot/all') | full_link}}">
+								<input type="text" readonly="" class="input w-100 copy-link" id="rss_feed" value="{{('/rss/hot/all') | full_link}}" data-clipboard-text="{{('/rss/hot/all') | full_link}}">
 
 								<div class="text-small-extra text-muted mt-3">You can change the feed by replacing "hot" with whatever sorting you want and "all" with whatever time filter you want.</div>
 
@@ -443,10 +443,10 @@
 
 									<form action="/settings/name_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input type="text" name="name" class="form-control" value="{{v.username}}">
+										<input type="text" name="name" class="input w-100" value="{{v.username}}">
 										<small>3-25 characters, including letters, numbers, _ , and -</small>
 										<div class="d-flex mt-2">
-											<input class="btn btn-primary ml-auto" type="submit" value="Change Display Name">
+											<input class="button ml-auto" type="submit" value="Change Display Name">
 										</div>
 									</form>
 								</div>
@@ -462,10 +462,10 @@
 
 									<form action="/settings/song_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input type="text" name="song" class="form-control" value="{% if v.song %}https://youtu.be/{{v.song}}{% endif %}" placeholder='Enter a youtube video link here' >
+										<input type="text" name="song" class="input" value="{% if v.song %}https://youtu.be/{{v.song}}{% endif %}" placeholder='Enter a youtube video link here' >
 										<br><small>In some browsers, users have to click at least once anywhere in the profile page for the anthem to play.</small>
 										<div class="d-flex mt-2">
-											<input class="btn btn-primary ml-auto" type="submit" value="Change Profile Anthem">
+											<input class="button ml-auto" type="submit" value="Change Profile Anthem">
 										</div>
 									</form>
 								</div>
@@ -527,12 +527,12 @@
 
 									<form id="profile-settings" action="/settings/title_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if v.customtitleplain %}{{v.customtitleplain}}{% endif %}">
+										<input id="customtitlebody" type="text" name="title" class="input w-100" placeholder='Enter a flair here' value="{% if v.customtitleplain %}{{v.customtitleplain}}{% endif %}">
 										<div class="d-flex mt-2">
-											<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add Emoji"></i></small>
+											<small class="format"><i class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add Emoji"></i></small>
 											&nbsp;&nbsp;&nbsp;
 											<small>Limit of 100 characters</small>
-											<input class="btn btn-primary ml-auto" id="titleSave" type="submit" value="Change Flair">
+											<input class="button ml-auto" id="titleSave" type="submit" value="Change Flair">
 										</div>
 									</form>
 								</div>
@@ -578,21 +578,21 @@
 									<form id="profile-bio" action="/settings/profile" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 										<div class="input-group mb-2">
-											<textarea class="form-control rounded" id="bio-text" aria-label="With textarea"
+											<textarea class="input rounded" id="bio-text" aria-label="With textarea"
 											placeholder="Tell the community a bit about yourself."
 											rows="3" name="bio" form="profile-bio" maxlength="1500">{{v.bio}}</textarea>
 										</div>
 										
 										<div class="d-flex">
-											<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
+											<pre class="button format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 											&nbsp;
-											<pre class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
+											<pre class="button format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
 											&nbsp;
-											<pre class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
+											<pre class="button format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
 											&nbsp;
-											<pre style="line-height:1;" class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('bio-text');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+											<pre style="line-height:1;" class="button format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('bio-text');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
 											&nbsp;
-											<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('bio-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
+											<pre class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('bio-text')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
 											&nbsp;
 										</div>
 										
@@ -600,7 +600,7 @@
 										
 										<div class="d-flex">
 											<small>Limit of 1500 characters</small>
-											<input class="btn btn-primary ml-auto" id="bioSave" type="submit" value="Save Changes">
+											<input class="button ml-auto" id="bioSave" type="submit" value="Save Changes">
 										</div>
 									</form>
 								</div>
@@ -613,7 +613,7 @@
 								<div class="w-lg-100">
 									<p>Profile badges show off all of your site achievements. If your badges look not quite up to date, use this tool to refresh them.</p>
 									<div class="d-flex">
-										<a class="btn btn-primary ml-auto" id="badgeUpdate" href="javascript:void(0)" onclick="post_toast('/settings/badges')">Refresh badges</a>
+										<a class="button ml-auto" id="badgeUpdate" href="javascript:void(0)" onclick="post_toast('/settings/badges')">Refresh badges</a>
 									</div>
 
 							 </div>

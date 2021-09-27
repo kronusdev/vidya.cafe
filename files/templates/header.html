@@ -5,7 +5,7 @@
 		<div class="flex-grow-1"><a href="/" class="navbar-brand"><img src="/assets/images/cafe.png" height="32"> Vidya.cafe<span class="text-small-extra text-uppercase"> kappa</span></a></div>
 		<div class="flex-grow-1 d-fl d-none d-md-block">
 			<form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search/posts/" method="get">
-				<input class="form-control w-100" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request.args.get('q', '')}}">
+				<input class="input w-100" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request.args.get('q', '')}}">
 				<span class="input-group-append">
 					<span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
 						<i class="fa fa-search" aria-hidden="true"></i>
@@ -86,7 +86,7 @@
 						</div>
 					</div>
 				</a>
-				<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left border-0 fade px-0 mt-2"
+				<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left fade px-0 mt-2"
 				aria-labelledby="dropdownMenuButton">
 				<div class="px-2">
 					<a class="dropdown-item" href="{{v.url}}"><i class="fas fa-user-circle fa-fw text-left mr-3"></i>My
@@ -115,13 +115,13 @@
 			</li>
 			{% else %}
 			<li class="nav-item d-flex align-items-center justify-content-center mx-1">
-			 <a class="btn btn-outline-purple" href="/contact">Contact us</a>
+			 <a class="button btn-outline-purple" href="/contact">Contact us</a>
 		 </li>
 			<li class="nav-item d-flex align-items-center justify-content-center mx-1">
-			 <a class="btn btn-outline-purple" href="/login?redirect={{request.path | urlencode}}">Sign in</a>
+			 <a class="button btn-outline-purple" href="/login?redirect={{request.path | urlencode}}">Sign in</a>
 		 </li>
 		 <li class="nav-item d-flex align-items-center justify-content-center mx-1">
-			 <a class="btn btn-outline-purple" href="/signup?redirect={{request.path | urlencode}}">Sign up</a>
+			 <a class="button btn-outline-purple" href="/signup?redirect={{request.path | urlencode}}">Sign up</a>
 		 </li>
 		 {% endif %}
 	 </ul>
@@ -130,7 +130,7 @@
 	 <ul class="navbar-nav ml-auto d-flex d-md-none mt-3">
 		<li class="nav-item pb-3">
 			<form id="searchform" class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search/posts/" method="get">
-				<input class="form-control form-control-sm w-100" type="search" placeholder="Search" aria-label="Search" name="q">
+				<input class="input input-sm w-100" type="search" placeholder="Search" aria-label="Search" name="q">
 				<span class="input-group-append">
 					<span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;" onclick="document.getElementById('searchform').submit()">
 						<i class="fa fa-search" aria-hidden="true"></i>
@@ -175,13 +175,13 @@
 		</li>
 		{% else %}
 		<li class="nav-item d-flex align-items-center justify-content-center pb-3">
-			<a class="btn btn-outline-purple btn-block" href="/contact">Contact us</a>
+			<a class="button btn-outline-purple btn-block" href="/contact">Contact us</a>
 		</li>
 		<li class="nav-item d-flex align-items-center justify-content-center pb-3">
-			<a class="btn btn-outline-purple btn-block" href="/login?redirect={{request.path | urlencode}}">Sign in</a>
+			<a class="button btn-outline-purple btn-block" href="/login?redirect={{request.path | urlencode}}">Sign in</a>
 		</li>
 		<li class="nav-item d-flex align-items-center justify-content-center">
-			<a class="btn btn-outline-purple btn-block" href="/signup?redirect={{request.path | urlencode}}">Sign up</a>
+			<a class="button btn-outline-purple btn-block" href="/signup?redirect={{request.path | urlencode}}">Sign up</a>
 		</li>
 		{% endif %}
 </div>

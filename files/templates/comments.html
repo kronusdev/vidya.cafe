@@ -120,7 +120,7 @@
 						<i class="{{a.class_list}} px-1" data-toggle="tooltip" data-placement="bottom" title="{{a.title}} Award given by @{{a.user.username}}"></i>
 					{% endfor %}
 				{% endif %}
-				{% if c.active_flags %}&nbsp;<a class="btn btn-primary" style="padding:1px 5px; font-size:10px;" href="javascript:void(0)" onclick="document.getElementById('flaggers-{{c.id}}').classList.toggle('d-none')">{{c.active_flags}} Reports</a>&nbsp;{% endif %}
+				{% if c.active_flags %}&nbsp;<a class="button" style="padding:1px 5px; font-size:10px;" href="javascript:void(0)" onclick="document.getElementById('flaggers-{{c.id}}').classList.toggle('d-none')">{{c.active_flags}} Reports</a>&nbsp;{% endif %}
 				{% if c.over_18 %}<span class="badge badge-danger text-small-extra mr-1">NSFW</span>&nbsp;{% endif %}
 				{% if v and v.admin_level==6 and c.author.shadowbanned %}<i class="fas fa-user-times text-admin" data-toggle="tooltip" data-placement="bottom" title="Shadowbanned user"></i>&nbsp;{% endif %}
 				{% if c.is_pinned %}<i class="text-admin fas fa-thumbtack fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Pinned comment"></i>&nbsp;{% endif %}
@@ -146,22 +146,22 @@
 				{{c.realbody(v) | safe}}
 
 				{% if not c.parent_submission and c.author_id!=1 and c.author_id!=23 and c.author_id!=v.id %}
-					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.toggle('d-none')">Reply</a>
+					<a class="button" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.toggle('d-none')">Reply</a>
 					<pre></pre>
 					<form class="d-none" id="reply-to-{{c.id}}" action="/@{{c.author.username}}/reply/{{c.id}}" method="post">
-						<textarea id="input-message-{{c.id}}" form="reply-to-{{c.id}}" name="message" rows="3" class="form-control" required></textarea>
+						<textarea id="input-message-{{c.id}}" form="reply-to-{{c.id}}" name="message" rows="3" class="input" required></textarea>
 						<pre></pre>
-						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message-{{c.id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
+						<pre class="button format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message-{{c.id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 						&nbsp;
-						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('input-message-{{c.id}}')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
+						<pre class="button format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('input-message-{{c.id}}')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
 						&nbsp;
-						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('input-message-{{c.id}}')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
+						<pre class="button format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('input-message-{{c.id}}')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
 						&nbsp;
-						<pre style="line-height:1;" class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message-{{c.id}}');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+						<pre style="line-height:1;" class="button format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message-{{c.id}}');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
 						&nbsp;
-						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message-{{c.id}}')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
+						<pre class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message-{{c.id}}')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
 						&nbsp;
-						<input type="submit" value="Submit" class="btn btn-primary mt-3">
+						<input type="submit" value="Submit" class="button mt-3">
 					</form>
 				{% endif %}
 			</div>
@@ -171,23 +171,23 @@
 			<div id="comment-edit-{{c.id}}" class="d-none comment-write collapsed child">
 				<form id="comment-edit-form-{{c.id}}" action="/edit_comment/{{c.id}}" method="post" class="input-group" enctype="multipart/form-data"> 
 					<input type="hidden" name="formkey" value="{{v.formkey}}">
-					<textarea id="comment-edit-body-{{c.id}}" name="body" form="comment-edit-form-{{c.id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
+					<textarea id="comment-edit-body-{{c.id}}" name="body" form="comment-edit-form-{{c.id}}" class="comment-box input rounded" id="edit-box-comment-{{c.id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
 					<div class="comment-format"> 
-						<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.id}}');getGif()" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
+						<small class="button format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.id}}');getGif()" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
 						&nbsp;
-						<small class="btn btn-secondary format d-inline-block m-0"><i class="fas fa-smile-beam" aria-hidden="true" onclick="loadEmojis('comment-edit-body-{{c.id}}')" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add Emoji"></i></small>
+						<small class="button format d-inline-block m-0"><i class="fas fa-smile-beam" aria-hidden="true" onclick="loadEmojis('comment-edit-body-{{c.id}}')" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add Emoji"></i></small>
 						&nbsp;
 						
-						<label class="btn btn-secondary format d-inline-block m-0" for="file-edit-reply-{{c.id}}">
+						<label class="button format d-inline-block m-0" for="file-edit-reply-{{c.id}}">
 							<div id="filename-edit-reply-{{c.id}}"><i class="far fa-image"></i></div>
 							<input id="file-edit-reply-{{c.id}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-edit-reply-{{c.id}}').innerHTML='image';" hidden>
 						</label>
 
-						<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-none d-md-block btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
-						<a href="javascript:void(0)" form="comment-edit-form-{{c.id}}" class="d-none d-md-block btn btn-primary ml-2" onclick="comment_edit('{{c.id}}')">Save Edit</a> 
+						<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-none d-md-block button btn-link text-muted ml-auto cancel-form">Cancel</a> 
+						<a href="javascript:void(0)" form="comment-edit-form-{{c.id}}" class="d-none d-md-block button ml-2" onclick="comment_edit('{{c.id}}')">Save Edit</a> 
 					</div>
-					<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-block d-md-none btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
-					<a href="javascript:void(0)" form="comment-edit-form-{{c.id}}" class="d-block d-md-none btn btn-primary ml-2" onclick="comment_edit('{{c.id}}')">Save Edit</a> 
+					<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-block d-md-none button btn-link text-muted ml-auto cancel-form">Cancel</a> 
+					<a href="javascript:void(0)" form="comment-edit-form-{{c.id}}" class="d-block d-md-none button ml-2" onclick="comment_edit('{{c.id}}')">Save Edit</a> 
 				</form>
 			</div>
 			{% endif %}
@@ -318,25 +318,25 @@
 					<input type="hidden" name="formkey" value="{{v.formkey}}"> 
 					<input type="hidden" name="parent_fullname" value="{{c.fullname}}"> 
 					<input id="reply-form-submission-{{c.fullname}}" type="hidden" name="submission" value="{{c.post.id}}"> 
-					<textarea name="body" form="reply-to-t3_{{c.id}}" class="comment-box form-control rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="3"></textarea> 
+					<textarea name="body" form="reply-to-t3_{{c.id}}" class="comment-box input rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="3"></textarea> 
 					<div class="comment-format" id="comment-format-bar-{{c.id}}"> 
-						<label class="btn btn-secondary format d-inline-block m-0" for="gif-reply-btn-{{c.fullname}}">
+						<label class="button format d-inline-block m-0" for="gif-reply-btn-{{c.fullname}}">
 							<span id="gif-reply-btn-{{c.fullname}}" class="font-weight-bolder text-uppercase" onclick="commentForm('reply-form-body-{{c.fullname}}');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</span>
 						</label> 
 						&nbsp;
-						<label class="btn btn-secondary format d-inline-block m-0" for="gif-reply-btn-{{c.fullname}}">
+						<label class="button format d-inline-block m-0" for="gif-reply-btn-{{c.fullname}}">
 							<i id="emoji-reply-btn-{{c.fullname}}" class="fas fa-smile-beam" onclick="loadEmojis('reply-form-body-{{c.fullname}}')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></i>
 						</label>
 						&nbsp;
-						<label class="btn btn-secondary format d-inline-block m-0" for="file-upload-reply-{{c.fullname}}">
+						<label class="button format d-inline-block m-0" for="file-upload-reply-{{c.fullname}}">
 							<div id="filename-show-reply-{{c.id}}"><i class="far fa-image"></i></div>
 							<input id="file-upload-reply-{{c.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{c.id}}').innerHTML='image';" hidden>
 						</label>
-						<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-none d-md-block btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
-						<a id="save-reply-to-{{c.fullname}}" class="d-none d-md-block btn btn-primary text-white ml-2" onclick="post_comment('{{c.fullname}}');" href="javascript:void(0)">Comment</a> 
+						<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-none d-md-block button btn-link text-muted ml-auto cancel-form">Cancel</a> 
+						<a id="save-reply-to-{{c.fullname}}" class="d-none d-md-block button text-white ml-2" onclick="post_comment('{{c.fullname}}');" href="javascript:void(0)">Comment</a> 
 					</div>
-					<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-block d-md-none btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
-					<a id="save-reply-to-{{c.fullname}}" class="d-block d-md-none btn btn-primary text-white ml-2" onclick="post_comment('{{c.fullname}}');" href="javascript:void(0)">Comment</a> 
+					<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-block d-md-none button btn-link text-muted ml-auto cancel-form">Cancel</a> 
+					<a id="save-reply-to-{{c.fullname}}" class="d-block d-md-none button text-white ml-2" onclick="post_comment('{{c.fullname}}');" href="javascript:void(0)">Comment</a> 
 				</form> 
 			</div>
 
