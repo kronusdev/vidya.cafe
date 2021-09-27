@@ -22013,6 +22013,9 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 @media (max-width: 991.98px) {
   #frontpage, #search {
     padding-top: 49px; } }
+.container, #submitform {
+  grid-column: 2; }
+
 @media (max-width: 767.98px) {
   html {
     font-size: 14px; }
@@ -22020,9 +22023,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   .container {
     overflow: hidden;
     max-width: none; }
-
-  .container, #submitform {
-    grid-column: 2; }
 
   body, #settings, #notifications, #submit {
     padding-top: 49px;
