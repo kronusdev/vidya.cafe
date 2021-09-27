@@ -1058,7 +1058,7 @@ th {
 .arrow-up::before {
 	cursor: pointer;
 	font-size: $font-size-base;
-	color: $gray-200;
+	color: $black;
 	font-family: "Font Awesome 5 Pro";
 	font-weight: 900;
 	content: "\f7b6";
@@ -1077,7 +1077,7 @@ th {
 .arrow-down::before {
 	cursor: pointer;
 	font-size: $font-size-base;
-	color: $gray-200;
+	color: $black;
 	font-family: "Font Awesome 5 Pro";
 	font-weight: 900;
 	content: "\f354";

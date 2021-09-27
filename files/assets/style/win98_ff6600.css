@@ -19695,7 +19695,7 @@ th {
 .arrow-up::before {
   cursor: pointer;
   font-size: 1rem;
-  color: #c0c0c0;
+  color: #000000;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
   content: "\f7b6"; }
@@ -19710,7 +19710,7 @@ th {
 .arrow-down::before {
   cursor: pointer;
   font-size: 1rem;
-  color: #c0c0c0;
+  color: #000000;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
   content: "\f354"; }
@@ -22466,15 +22466,15 @@ img.emoji {
 .navbar-light > *, .navbar-brand, .nav-link {
   color: #ffffff !important; }
 
-.nav-link, .btn, .btn-secondary, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2 {
+.nav-link, .button, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2 {
   border: 2px outset white !important;
   border-bottom: 2px solid #a7a5a1 !important;
   border-right: 2px solid #a7a5a1 !important;
   background: #c0c0c0 !important;
   color: #000000 !important; }
 
-.nav-link:focus, .btn:focus, .btn-secondary:focus, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2,
-.nav-link:active, .btn:active, .btn-secondary:active {
+.nav-link:focus, .button:focus, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2,
+.nav-link:active, .button:active {
   border: 2px inset white !important; }
 
 .card, .card-blank, .comment-section.post-top, .dropdown-menu {
@@ -22482,11 +22482,11 @@ img.emoji {
   border-bottom: 2px solid #a7a5a1 !important;
   border-right: 2px solid #a7a5a1 !important; }
 
-.dropdown-menu, .btn:hover {
+.dropdown-menu, .button:hover {
   background: #c0c0c0 !important;
   color: #000000 !important; }
 
-.form-control {
+.input {
   border: 2px inset #717171 !important;
   border-bottom: 2px solid #a7a5a1 !important;
   border-right: 2px solid #a7a5a1 !important; }
@@ -22501,7 +22501,7 @@ blockquote {
   background-color: white !important;
   border-bottom: 2px solid #000000; }
 
-.badge-secondary {
+.badge-secondary, #sidebar_notifications, #custom_feed {
   background-color: #c0c0c0; }
 
 /*# sourceMappingURL=win98_ff6600.css.map */

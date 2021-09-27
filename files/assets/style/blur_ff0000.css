@@ -19695,7 +19695,7 @@ th {
 .arrow-up::before {
   cursor: pointer;
   font-size: 1rem;
-  color: #323C47;
+  color: #CFCFCF;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
   content: "\f7b6"; }
@@ -19710,7 +19710,7 @@ th {
 .arrow-down::before {
   cursor: pointer;
   font-size: 1rem;
-  color: #323C47;
+  color: #CFCFCF;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
   content: "\f354"; }
@@ -22462,7 +22462,7 @@ img.emoji {
   background: transparent !important;
   backdrop-filter: none; }
 
-*:not(.comment-collapse-desktop):not(.comment) {
+*:not(.comment-collapse-desktop):not(.comment):not(.button):not(.input) {
   border: none !important; }
 
 .text-muted {

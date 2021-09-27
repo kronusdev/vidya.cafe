@@ -90,7 +90,7 @@ $none-tag: #E1E1E1;
 	color: $white !important;
 }
 
-.nav-link, .btn, .btn-secondary, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2 {
+.nav-link, .button, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2 {
 	border: 2px outset white !important;
 	border-bottom: 2px solid #a7a5a1 !important;
 	border-right: 2px solid #a7a5a1 !important;
@@ -98,8 +98,8 @@ $none-tag: #E1E1E1;
 	color: $actually-black !important;
 }
 
-.nav-link:focus, .btn:focus, .btn-secondary:focus, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2,
-.nav-link:active, .btn:active, .btn-secondary:active,{
+.nav-link:focus, .button:focus, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2,
+.nav-link:active, .button:active,{
 	border: 2px inset white !important;
 }
 .card, .card-blank, .comment-section.post-top, .dropdown-menu {
@@ -108,12 +108,12 @@ $none-tag: #E1E1E1;
 	border-right: 2px solid #a7a5a1 !important;
 }
 
-.dropdown-menu, .btn:hover {
+.dropdown-menu, .button:hover {
 	background: $gray-500 !important;
 	color: $actually-black !important;
 }
 
-.form-control {
+.input {
 	border: 2px inset #717171 !important;
 	border-bottom: 2px solid #a7a5a1 !important;
 	border-right: 2px solid #a7a5a1 !important;
@@ -132,6 +132,6 @@ blockquote {
 	border-bottom: 2px solid $black;
 }
 
-.badge-secondary {
+.badge-secondary, #sidebar_notifications, #custom_feed {
 	background-color: $gray-500;
 }

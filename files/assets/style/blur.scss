@@ -87,7 +87,7 @@ $none-tag: #E1E1E1;
 	backdrop-filter: none;
 }
 
-*:not(.comment-collapse-desktop):not(.comment) {
+*:not(.comment-collapse-desktop):not(.comment):not(.button):not(.input) {
 	border: none !important;
 }
 
