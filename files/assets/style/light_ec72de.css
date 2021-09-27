@@ -19277,8 +19277,7 @@ ol > li::before {
 
 .button:active {
   transition: none !important;
-  border-bottom: 0px #C5CDD1 solid !important;
-  border-top: 2px transparent solid !important; }
+  border-bottom: 2px #c44ab6 solid !important; }
 
 .button.disabled, .button:disabled {
   opacity: .5; }
