@@ -398,6 +398,7 @@ ol > li::before {
 	cursor: pointer;
 	user-select: none;
 	font-weight: 600;
+	display: inline-block;
 }
 
 .button:hover {

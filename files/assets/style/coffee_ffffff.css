@@ -19276,7 +19276,8 @@ ol > li::before {
   background-clip: padding-box !important;
   cursor: pointer;
   user-select: none;
-  font-weight: 600; }
+  font-weight: 600;
+  display: inline-block; }
 
 .button:hover {
   border-bottom: 2px #ffffff solid;
