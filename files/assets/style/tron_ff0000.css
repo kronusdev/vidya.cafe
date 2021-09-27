@@ -19255,14 +19255,6 @@ ol > li::before {
 [data-toggle="collapse"].collapsed .fa:before {
   content: "\f13a"; }
 
-.btn {
-  font-weight: 600;
-  font-size: 1rem;
-  background: #00001f;
-  box-shadow: 0px 0px 4px #ff0000;
-  transition: 0.15s;
-  border: none; }
-
 .button {
   background: #00001f;
   padding: 0.5rem;
@@ -19315,12 +19307,6 @@ ol > li::before {
 
 .btn-lg, .btn-group-lg > .btn {
   font-size: 1rem; }
-
-.btn-tag {
-  border-radius: 3rem;
-  font-size: 12px;
-  padding: 0.25rem 0.5rem;
-  line-height: 1; }
 
 .tooltip {
   font-weight: 600; }
@@ -19438,15 +19424,6 @@ ol > li::before {
   color: #4c4c8f;
   text-align: center;
   font-size: 1rem; }
-
-.navbar-light .navbar-nav .btn-primary.nav-link {
-  color: #f0f0f0; }
-
-.navbar-light .navbar-nav .btn-outline-primary.nav-link {
-  color: #ff0000; }
-
-.navbar-light .navbar-nav .btn-outline-primary.nav-link:hover {
-  color: #f0f0f0; }
 
 .navbar-dark .navbar-nav .nav-link {
   color: #f0f0f0; }
@@ -19612,13 +19589,17 @@ label.terms {
   padding: 0.5rem;
   color: #f0f0f0;
   background-color: #00001f;
-  border-radius: 0.25rem; }
+  border-radius: 0.25rem;
+  border: none;
+  border-bottom: 2px #d70000 solid !important; }
 
 .dropdown-menu-noboot {
   padding: 0.5rem;
   color: #f0f0f0;
   background-color: #00001f;
-  border-radius: 0.25rem; }
+  border-radius: 0.25rem;
+  border: none;
+  border-bottom: 2px #d70000 solid !important; }
 
 .user-profile > .dropdown-toggle::after {
   display: none; }
@@ -22141,9 +22122,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   .dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
     font-size: 1rem; }
 
-  .btn-tag {
-    font-size: 12px; }
-
   .comment-section {
     background-color: #00001f; }
 
@@ -22358,12 +22336,10 @@ img.emoji {
 .navbar-light .navbar-nav .nav-link {
   border-radius: 5px; }
 
+/*
 .btn-secondary {
-  color: #f0f0f0; }
-
-.btn-primary {
-  color: #f0f0f0; }
-
+	color: $muted;
+}*/
 .btn-success {
   border-color: #38A169 !important; }
 
@@ -22449,9 +22425,6 @@ img.emoji {
   padding: 10px;
   border: 2px solid #ff0000; }
 
-.btn-lg, .btn-group-lg > .btn {
-  border-color: transparent !important; }
-
 @media (max-width: 767.98px) {
   .followbutton {
     margin-bottom: 10px !important; }
@@ -22474,7 +22447,7 @@ img.emoji {
 .text-info {
   color: #ff0000 !important; }
 
-.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
+.info-popup > .text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #f0f0f0 !important; }
 
 .comment, .small-comment {

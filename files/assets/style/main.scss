@@ -374,15 +374,15 @@ ol > li::before {
 
 // Buttons
 
-.btn {
-	font-weight: $font-weight-bold;
-	font-size: $font-size-base;
-	//border-radius: $border-radius-sm;
-    background: $gray-700;
-    box-shadow: $box-shadow;
-    transition: 0.15s;
-    border: none;
-}
+//.btn {
+	//font-weight: $font-weight-bold;
+	//font-size: $font-size-base;
+	////border-radius: $border-radius-sm;
+    //background: $gray-700;
+    //box-shadow: $box-shadow;
+    //transition: 0.15s;
+    //border: none;
+//}
 
 .button {
 	background: $gray-700;
@@ -447,14 +447,6 @@ ol > li::before {
 .btn-lg {
 	font-size: $font-size-base;
 }
-
-.btn-tag {
-	border-radius: 3rem;
-	font-size: $small-font-size;
-	padding: 0.25rem 0.5rem;
-	line-height: 1;
-}
-
 
 
 // Tooltips
@@ -613,17 +605,17 @@ ol > li::before {
 	font-size: $font-size-base;
 }
 
-.navbar-light .navbar-nav .btn-primary.nav-link {
-	color: $white;
-}
+//.navbar-light .navbar-nav .btn-primary.nav-link {
+	//color: $white;
+//}
 
-.navbar-light .navbar-nav .btn-outline-primary.nav-link {
-	color: $primary;
-}
+//.navbar-light .navbar-nav .btn-outline-primary.nav-link {
+	//color: $primary;
+//}
 
-.navbar-light .navbar-nav .btn-outline-primary.nav-link:hover {
-	color: $white;
-}
+//.navbar-light .navbar-nav .btn-outline-primary.nav-link:hover {
+	//color: $white;
+//}
 
 .navbar-dark .navbar-nav .nav-link {
 	color: $white;
@@ -928,15 +920,19 @@ label.terms {
 .dropdown-menu {
 	padding: 0.5rem;
 	color: $white;
-	background-color: $gray-600;
+	background-color: $gray-700;
 	border-radius: $border-radius;
+	border: none;
+	border-bottom: 2px $gray-100 solid !important;
 }
 
 .dropdown-menu-noboot {
 	padding: 0.5rem;
 	color: $white;
-	background-color: $gray-600;
+	background-color: $gray-700;
 	border-radius: $border-radius;
+	border: none;
+	border-bottom: 2px $gray-100 solid !important;
 }
 
 
@@ -3766,9 +3762,6 @@ body, #settings, #notifications, #submit {
 	font-size: $font-size-base;
 }
 
-.btn-tag {
-	font-size: $small-font-size;
-}
 
 // Comments
 
@@ -4081,14 +4074,14 @@ img.emoji {
     border-radius: 5px;
 }
 
-
+/*
 .btn-secondary {
 	color: $muted;
-}
+}*/
 
-.btn-primary {
-	color: $muted;
-}
+//.btn-primary {
+	//color: $muted;
+//}
 
 .btn-success {
 	border-color: #38A169 !important;
@@ -4213,9 +4206,9 @@ img.emoji {
     border: 2px solid $primary;
 }
 
-.btn-lg {
-	border-color: transparent !important;
-}
+//.btn-lg {
+	//border-color: transparent !important;
+//}
 
 @media (max-width: 767.98px) {
 	.followbutton {
@@ -4247,6 +4240,6 @@ img.emoji {
 }
 
 
-.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
+.info-popup > .text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
 	color: $muted !important;
 }

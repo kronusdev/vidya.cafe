@@ -19254,14 +19254,6 @@ ol > li::before {
 [data-toggle="collapse"].collapsed .fa:before {
   content: "\f13a"; }
 
-.btn {
-  font-weight: 600;
-  font-size: 1rem;
-  background: #FFFFEE;
-  box-shadow: 0px 0px 4px #ffffff;
-  transition: 0.15s;
-  border: none; }
-
 .button {
   background: #FFFFEE;
   padding: 0.5rem;
@@ -19314,12 +19306,6 @@ ol > li::before {
 
 .btn-lg, .btn-group-lg > .btn {
   font-size: 1rem; }
-
-.btn-tag {
-  border-radius: 3rem;
-  font-size: 12px;
-  padding: 0.25rem 0.5rem;
-  line-height: 1; }
 
 .tooltip {
   font-weight: 600; }
@@ -19437,15 +19423,6 @@ ol > li::before {
   color: #800;
   text-align: center;
   font-size: 1rem; }
-
-.navbar-light .navbar-nav .btn-primary.nav-link {
-  color: #ffffff; }
-
-.navbar-light .navbar-nav .btn-outline-primary.nav-link {
-  color: #ffffff; }
-
-.navbar-light .navbar-nav .btn-outline-primary.nav-link:hover {
-  color: #ffffff; }
 
 .navbar-dark .navbar-nav .nav-link {
   color: #ffffff; }
@@ -19611,13 +19588,17 @@ label.terms {
   padding: 0.5rem;
   color: #ffffff;
   background-color: #FFFFEE;
-  border-radius: 0; }
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px #817261 solid !important; }
 
 .dropdown-menu-noboot {
   padding: 0.5rem;
   color: #ffffff;
   background-color: #FFFFEE;
-  border-radius: 0; }
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px #817261 solid !important; }
 
 .user-profile > .dropdown-toggle::after {
   display: none; }
@@ -22140,9 +22121,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   .dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
     font-size: 1rem; }
 
-  .btn-tag {
-    font-size: 12px; }
-
   .comment-section {
     background-color: #F0E0D6; }
 
@@ -22357,12 +22335,10 @@ img.emoji {
 .navbar-light .navbar-nav .nav-link {
   border-radius: 5px; }
 
+/*
 .btn-secondary {
-  color: #800; }
-
-.btn-primary {
-  color: #800; }
-
+	color: $muted;
+}*/
 .btn-success {
   border-color: #38A169 !important; }
 
@@ -22448,9 +22424,6 @@ img.emoji {
   padding: 10px;
   border: 2px solid #ffffff; }
 
-.btn-lg, .btn-group-lg > .btn {
-  border-color: transparent !important; }
-
 @media (max-width: 767.98px) {
   .followbutton {
     margin-bottom: 10px !important; }
@@ -22473,7 +22446,7 @@ img.emoji {
 .text-info {
   color: #ffffff !important; }
 
-.info-popup > .text-muted, .btn.text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
+.info-popup > .text-muted, .fas.text-muted, .far.text-muted, .list-inline-item > .text-muted {
   color: #800 !important; }
 
 * {
