@@ -183,10 +183,10 @@
 							<input id="file-edit-reply-{{c.id}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-edit-reply-{{c.id}}').innerHTML='image';" hidden>
 						</label>
 
-						<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-none d-md-block btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
+						<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-none d-md-block button btn-link text-muted ml-auto cancel-form">Cancel</a> 
 						<a href="javascript:void(0)" form="comment-edit-form-{{c.id}}" class="d-none d-md-block button ml-2" onclick="comment_edit('{{c.id}}')">Save Edit</a> 
 					</div>
-					<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-block d-md-none btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
+					<a id="cancel-edit-{{c.id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.id}}')" class="d-block d-md-none button btn-link text-muted ml-auto cancel-form">Cancel</a> 
 					<a href="javascript:void(0)" form="comment-edit-form-{{c.id}}" class="d-block d-md-none button ml-2" onclick="comment_edit('{{c.id}}')">Save Edit</a> 
 				</form>
 			</div>
@@ -332,10 +332,10 @@
 							<div id="filename-show-reply-{{c.id}}"><i class="far fa-image"></i></div>
 							<input id="file-upload-reply-{{c.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{c.id}}').innerHTML='image';" hidden>
 						</label>
-						<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-none d-md-block btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
+						<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-none d-md-block button btn-link text-muted ml-auto cancel-form">Cancel</a> 
 						<a id="save-reply-to-{{c.fullname}}" class="d-none d-md-block button text-white ml-2" onclick="post_comment('{{c.fullname}}');" href="javascript:void(0)">Comment</a> 
 					</div>
-					<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-block d-md-none btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
+					<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.id}}').classList.add('d-none')" class="d-block d-md-none button btn-link text-muted ml-auto cancel-form">Cancel</a> 
 					<a id="save-reply-to-{{c.fullname}}" class="d-block d-md-none button text-white ml-2" onclick="post_comment('{{c.fullname}}');" href="javascript:void(0)">Comment</a> 
 				</form> 
 			</div>
