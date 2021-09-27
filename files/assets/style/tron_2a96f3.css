@@ -19296,7 +19296,7 @@ ol > li::before {
   background-clip: padding-box !important;
   flex: 1 1 auto; }
 
-.input:hover {
+.input:hover, .input:focus {
   border-bottom: 2px #2a96f3 solid;
   background: #00001f; }
 

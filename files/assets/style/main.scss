@@ -433,7 +433,7 @@ ol > li::before {
 	flex: 1 1 auto;
 }
 
-.input:hover {
+.input:hover, .input:focus {
 	border-bottom: 2px $primary solid;
 	background: $gray-600
 }
