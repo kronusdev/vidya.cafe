@@ -3495,6 +3495,10 @@ html {
     //background: rgba()
 }
 
+.container, #submitform {
+	grid-column: 2;
+}
+
 body, #settings, #notifications, #submit {
 	padding-top: 49px;
 	background-color: $gray-700;

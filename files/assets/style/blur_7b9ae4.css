@@ -22020,6 +22020,9 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     overflow: hidden;
     max-width: none; }
 
+  .container, #submitform {
+    grid-column: 2; }
+
   body, #settings, #notifications, #submit {
     padding-top: 49px;
     background-color: rgba(14, 17, 20, 0.5); }
