@@ -360,7 +360,7 @@ class User(Base, Stndrd, Age_times):
 
 		return output
 
-	def notification_commentlisting(self, page=1, all_=False):
+	def notification_commentlisting(self, page=1, all_=False, sidebar_=False):
 
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,
@@ -379,10 +379,16 @@ class User(Base, Stndrd, Age_times):
 			Notification.id.desc()).offset(25 * (page - 1)).limit(26)
 
 		output = []
-		for x in notifications:
-			x.read = True
-			g.db.add(x)
-			output.append(x.comment_id)
+
+		if not sidebar_:
+			for x in notifications:
+				x.read = True
+				g.db.add(x)
+				output.append(x.comment_id)
+		else:
+			for x in notifications:
+				output.append(x.comment_id)
+				
 		return output
 
 	@property
