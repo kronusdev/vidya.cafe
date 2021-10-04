@@ -266,7 +266,7 @@ def front_all(v):
 	sidebar_notif_page = int(request.args.get("sidebar_notif_page") or 1)
 	sidebar_notif_page = max(sidebar_notif_page, 1)
 	if v:
-		sidebar_notif_feed_cids = v.notification_commentlisting(sidebar_notif_page, True)
+		sidebar_notif_feed_cids = v.notification_commentlisting(sidebar_notif_page, True, True)
 		sidebar_notif_feed_next_exists = (len(sidebar_notif_feed_cids) == 26)
 		sidebar_notif_feed_cids = sidebar_notif_feed_cids[:25]
 		sidebar_notif_feed = get_comments(sidebar_notif_feed_cids, v=v)
