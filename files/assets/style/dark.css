@@ -53,7 +53,7 @@
 	--music-tag: #17d860;
 	--picture-tag: #CCE3DF;
 	--meme-tag: #66F8FF;
-	--meta-tag: --primary;
+	--meta-tag: var(--primary-color);
 	--discussion-tag: #7A83FF;
 	--rant-tag: #BB6FEE;
 	--review-tag: #C6EE6F;
