@@ -23,8 +23,8 @@
 	--gray-300: #433434;
 	--gray-400: #433434;
 	--gray-500: #DDD2C4;
-	--gray-600: #DDD2C4;
-	--gray-700: #DDD2C4;
+	--gray-600: #fff5eb;
+	--gray-700: #ece3d9;
 	--gray-800: #DDD2C4;
 	--gray-900: #DDD2C4;
 
@@ -42,7 +42,7 @@
 
 	--gold: #ECC94B;
 	--reddit: #ED4630;
-	
+	--border-color: #F1E7D0;
 	--border-radius: 0.35rem;
 	
 	--news-tag: #F28181;
