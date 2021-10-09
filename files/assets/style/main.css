@@ -12632,16 +12632,9 @@ ul.comment-section {
   background-color: var(--light);
   border: none; }
 
-#settings-guild {
-  background-color: var(--gray-600); }
-
-#settings-guild .settings .card-blank {
-  border: 0.1px solid var(--border-color); }
-
 .card-blank {
   margin-bottom: 3rem;
   background: var(--gray-500);
-  border: 0.1px solid var(--border-color);
   border-radius: var(--border-radius);
   overflow: hidden; }
 
