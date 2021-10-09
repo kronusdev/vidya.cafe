@@ -1,0 +1,90 @@
+:root {
+	--primary: var(--primary-color);
+	--secondary: var(--secondary-color);
+	--accent: #86b9ec;
+	--dark: #2B353D;
+	--danger: #E53E3E;
+	--white: #E1E1E1;
+	--black: #CFCFCF;
+	--actually-black: #000000;
+
+	--light: #000000;
+	--success: #38A169;
+	--muted: #E1E1E1;
+	--info: #168EEA;
+
+	--purple: var(--primary-color);
+	--red: #E53E3E;
+	--gray: #2B353D;
+	--green: #38A169;
+	--gray-100: #394552;
+	--gray-200: #323C47;
+	--gray-300: #2B353D;
+	--gray-400: #242C33;
+	--gray-500: rgba(28, 34, 41, 0.5);
+	--gray-600: rgba(21, 26, 31, 0.7);
+	--gray-700: rgba(14, 17, 20, 0.5);
+	--gray-800: #07090A;
+	--gray-900: #000000;
+
+	--upvote: var(--primary-color);
+	--downvote: #38B2AC;
+	--admin: var(--primary-color);
+	--banned: #960000;
+	--deleted: #969600;
+	--deletedandbanned: #964000;
+	--mod: #07c20c;
+	--code: #e83e8c;
+
+	--online: #88cc66;
+	--offline: rgba(170, 170, 170, 0.6);
+
+	--border-radius: 0.35rem;
+
+	--gold: #ECC94B;
+	--reddit: #ED4630;
+
+	--border-color: #1C2229;
+	--border-width: 4px;
+
+	--news-tag: #F28181;
+	--changelog-tag: #9C5E20;
+	--trailer-tag: #FFAF5A;
+	--oc-tag: #ECC94B;
+	--video-tag: #ffafaf;
+	--music-tag: #17d860;
+	--picture-tag: #CCE3DF;
+	--meme-tag: #66F8FF;
+	--meta-tag: var(--primary-color);
+	--discussion-tag: #7A83FF;
+	--rant-tag: #BB6FEE;
+	--review-tag: #C6EE6F;
+	--question-tag: #EE98E9;
+	--breaking-news-tag: #ff0000;
+	--none-tag: #E1E1E1;
+}
+
+.card-blank, .card, .comment, .navbar, .page-item, .nav, .info-popup, .submit-container, .form-control, .user-info-widget::before {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+.comment.collapsed .comment-collapse::before {
+	color: var(--primary) !important;
+}
+.dropdown-menu {
+	background-color: #151A1F;
+}
+#actual-comments {
+background: transparent !important;
+backdrop-filter: none;
+}
+
+*:not(.comment-collapse-desktop):not(.comment):not(.button):not(.input) {
+	border: none !important;
+}
+
+.text-muted{
+	color: var(--muted) !important;
+}
+

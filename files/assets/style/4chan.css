@@ -1,0 +1,133 @@
+:root {
+	--primary: var(--primary-color);
+	--dark: #3E2C18;
+	--secondary: #F0E0D6;
+	--accent: #800;
+	--danger: #E53E3E;
+	--white: #ffffff;
+	--black: #433434;
+	--actually-black: #000000;
+
+	--light: #F0E0D6;
+	--success: var(--primary-color);
+	--muted: #800;
+	--info: #168EEA;
+
+	--purple: var(--primary-color);
+	--red: #E53E3E;
+	--gray: #AA9881;
+	--green: var(--primary-color);
+
+	--gray-100: #817261;
+	--gray-200: #F0E0D6;
+	--gray-300: #433434;
+	--gray-400: #FFFFEE;
+	--gray-500: #F0E0D6;
+	--gray-600: #FFFFEE;
+	--gray-700: #FFFFEE;
+	--gray-800: #F0E0D6;
+	--gray-900: #F0E0D6;
+
+	--upvote: var(--primary-color);
+	--downvote: #38B2AC;
+	--admin: var(--primary-color);
+	--banned: #FEB2B2;
+	--deleted: #FEFCBF;
+	--deletedandbanned: #ffcc99;
+	--mod: #07c20c;
+	--code: #e83e8c;
+
+	--online: #88cc66;
+	--offline: rgba(#aaaaaa, 0.6);
+
+	--gold: #ECC94B;
+	--reddit: #ED4630;
+
+	--news-tag: #F28181;
+	--changelog-tag: #9C5E20;
+	--trailer-tag: #FFAF5A;
+	--oc-tag: #ECC94B;
+	--video-tag: #ffafaf;
+	--music-tag: #17d860;
+	--picture-tag: #CCE3DF;
+	--meme-tag: #66F8FF;
+	--meta-tag: var(--primary-color);
+	--discussion-tag: #7A83FF;
+	--rant-tag: #BB6FEE;
+	--review-tag: #C6EE6F;
+	--question-tag: #EE98E9;
+	--breaking-news-tag: #ff0000;
+	--none-tag: #E1E1E1;
+
+	--border-radius: 0;
+}
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
+@import "./main.scss";
+
+* {
+	box-shadow: none !important;
+	transition: none !important;
+	border-radius: 0 !important;
+	font: 13px/1.231 "font awesome 5 pro", "font awesome 5 brands" ,arial,helvetica,clean,sans-serif !important;
+}
+
+*:not(.comment-collapse-desktop):not(.comment) {
+	border: none !important;
+}
+
+body {
+	background: #ffe url(https://s.4cdn.org/image/fade.png) top center repeat-x !important;
+}
+.card {
+	transform: none !important;
+	background-color: var(--gray-500) !important;
+}
+
+blockquote {
+	background-color: transparent !important;
+	color: #789922 !important;
+}
+
+blockquote::before {
+	content:">";
+	color: #789922 !important;
+}
+
+blockquote p {
+	display: inline;
+}
+.navbar-light {
+	background-color: #880000 !important;
+}
+
+.navbar-light *{
+	color: var(--white) !important;
+}
+
+.comment {
+	background-color: #F0E0D6 !important;
+}
+
+.user-name {
+	color: #117743 !important;
+}
+
+#settings .text-muted {
+color: var(--muted) !important;
+}
+
+.dropdown-menu, .btn:hover {
+	background: #880000 !important;
+	color: var(--actually-black) !important;
+}
+
+.comment-text a {
+	text-decoration: underline !important;
+	color: #3300EE !important;
+}
+
+#frontpage .post-title a:visited, .arrow-up::before {
+color: #800;
+}
+
