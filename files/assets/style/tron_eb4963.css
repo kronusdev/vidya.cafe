@@ -19680,16 +19680,6 @@ th {
 #frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
   margin: auto 0; }
 
-/*
-
-#frontpage.toggle-card-view .voting, #search.toggle-card-view .voting, #userpage.toggle-card-view .voting, #guild.toggle-card-view .voting {
-	margin: 0;
-}
-
-*/
-/* .voting div:focus {
-	outline: 0;
-} */
 .active.arrow-up::before {
   color: #eb4963; }
 
@@ -19720,21 +19710,6 @@ th {
   color: #38B2AC;
   opacity: 0.5; }
 
-/* .upvoted .arrow-up::before {
-	color: $upvote;
-}
-
-.upvoted .arrow-up:hover::before {
-	opacity: 1;
-}
-
-.downvoted .arrow-down::before {
-	color: $downvote;
-}
-
-.downvoted .arrow-down:hover::before {
-	opacity: 1;
-} */
 .comment-actions .arrow-up {
   top: 0; }
 
@@ -19866,96 +19841,9 @@ a:hover .link-arrow {
 .filter-link:hover, .filter-link:focus {
   color: #eb4963; }
 
-.guild-recommendations-list .guild-recommendations-item {
-  color: #f0f0f0;
-  text-decoration: none;
-  margin-top: 1rem; }
-
-.guild-recommendations-list .guild-recommendations-item:first-child {
-  margin-top: 0; }
-
-.guild-recommendations-list .guild-recommendations-link {
-  text-decoration: none; }
-
-.guild-recommendations-list .guild-recommendations-link:hover, .guild-recommendations-list .guild-recommendations-link:focus {
-  color: #f0f0f0; }
-
-.guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active {
-  color: #f0f0f0;
-  background-color: #f0f0f0;
-  border-radius: 0.25rem;
-  border: 0.1px solid #00001f; }
-
-.guild-recommendations-list .guild-recommendations-item .fa, .guild-recommendations-list .guild-recommendations-item .fas, .guild-recommendations-list .guild-recommendations-item .far, .guild-recommendations-list .guild-recommendations-item .fab, .guild-recommendations-list .guild-recommendations-item .fal {
-  margin-right: 0.5rem;
-  color: #00001f;
-  text-align: center; }
-
-.guild-recommendations-list .guild-recommendations-link:hover .fa, .guild-recommendations-list .guild-recommendations-link:focus .fa, .guild-recommendations-list .guild-recommendations-link:hover .fas, .guild-recommendations-list .guild-recommendations-link:focus .fas, .guild-recommendations-list .guild-recommendations-link:hover .far, .guild-recommendations-list .guild-recommendations-link:focus .far, .guild-recommendations-list .guild-recommendations-link:hover .fab, .guild-recommendations-list .guild-recommendations-link:focus .fab {
-  color: #eb4963; }
-
-.guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .fa, .guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .fas, .guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .far, .guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .fab {
-  color: #eb4963; }
-
-.guild-recommendations-link:hover, .guild-recommendations-link:focus {
-  color: #eb4963; }
-
-.guild-icon-square-35 {
-  width: 35px;
-  height: 35px;
-  object-fit: cover;
-  border-radius: 0.25rem;
-  box-shadow: 0 0.1px 3px 0 rgba(0, 0, 0, 0.05), 0 0.1px 2px 0 rgba(0, 0, 0, 0.03); }
-
-.dashboard-list .dashboard-item {
-  color: #f0f0f0;
-  text-decoration: none; }
-
-.dashboard-list .dashboard-link {
-  display: block;
-  padding: 0.5rem 0;
-  color: #f0f0f0;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  text-decoration: none; }
-
-.dashboard-list .dashboard-link:hover, .dashboard-list .dashboard-link:focus {
-  color: #f0f0f0; }
-
-.dashboard-list > .dashboard-item > .dashboard-link.active {
-  color: #eb4963; }
-
-.dashboard-list .dashboard-item .fa, .dashboard-list .dashboard-item .fas, .dashboard-list .dashboard-item .far, .dashboard-list .dashboard-item .fab, .dashboard-list .dashboard-item .fal {
-  font-size: 12px;
-  margin-right: 0.5rem;
-  color: #00001f;
-  text-align: center; }
-
-.dashboard-list .dashboard-link:hover .fa, .dashboard-list .dashboard-link:focus .fa, .dashboard-list .dashboard-link:hover .fas, .dashboard-list .dashboard-link:focus .fas, .dashboard-list .dashboard-link:hover .far, .dashboard-list .dashboard-link:focus .far, .dashboard-list .dashboard-link:hover .fab, .dashboard-list .dashboard-link:focus .fab {
-  color: #eb4963; }
-
-.dashboard-list > .dashboard-item > .dashboard-link.active .fa, .dashboard-list > .dashboard-item > .dashboard-link.active .fas, .dashboard-list > .dashboard-item > .dashboard-link.active .far, .dashboard-list > .dashboard-item > .dashboard-link.active .fab {
-  color: #eb4963; }
-
-.dashboard-link:hover, .dashboard-link:focus {
-  color: #eb4963; }
-
-.list-group-item-action {
-  color: rgba(255, 255, 255, 0.5); }
-
 a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-color: transparent !important;
   color: rgba(255, 255, 255, 0.8); }
-
-.user-count {
-  margin-bottom: .25rem; }
-
-.online-count {
-  margin-bottom: .25rem; }
-
-.progress {
-  border-radius: 50%; }
 
 .user-name {
   color: inherit; }
@@ -19965,12 +19853,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   height: 135px;
   max-width: 572px;
   width: 572px; }
-
-.profile-pic.transition-square {
-  transition: border-radius 0.25s; }
-
-.profile-pic.profile-pic.transition-square:hover {
-  border-radius: 0.25rem; }
 
 .profile-pic {
   width: 50px;
@@ -20119,60 +20001,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-overlap:first-child {
   margin-left: 0; }
 
-/*
-
-#frontpage.toggle-card-view .tab-bar, #userpage.toggle-card-view .tab-bar, #search.toggle-card-view .tab-bar, #guild.toggle-card-view .tab-bar {
-	border-radius: 0;
-}
-
-#frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card{
-	border: 0.1px solid $border-color;
-	border-radius: $border-radius;
-	margin-top: 1rem;
-	//box-shadow: $box-shadow-sm;
-}
-
-#frontpage.toggle-card-view .posts .card:last-of-type, #userpage.toggle-card-view .posts .card:last-of-type, #search.toggle-card-view .posts .card:last-of-type, #guild.toggle-card-view .posts .card:last-of-type {
-	border-bottom-left-radius: $border-radius;
-	border-bottom-right-radius: $border-radius;
-	border: 0.1px solid $border-color;
-	border-radius: $border-radius;
-}
-
-#frontpage.toggle-card-view .posts .card:first-of-type, #userpage.toggle-card-view .posts .card:first-of-type, #search.toggle-card-view .posts .card:first-of-type, #guild.toggle-card-view .posts .card:first-of-type {
-	margin-top: 0;
-}
-
-#frontpage.toggle-card-view .posts .card .post-img, #userpage.toggle-card-view .posts .card .post-img, #search.toggle-card-view .posts .card .post-img, #guild.toggle-card-view .posts .card .post-img {
-	display: none;
-}
-
-#frontpage.toggle-card-view .posts .card .post-img-lg, #userpage.toggle-card-view .posts .card .post-img-lg, #search.toggle-card-view .posts .card .post-img-lg, #guild.toggle-card-view .posts .card .post-img-lg {
-	display: block;
-	text-align: center;
-}
-
-#frontpage.toggle-card-view .posts .card .post-img-lg img, #userpage.toggle-card-view .posts .card .post-img-lg img, #search.toggle-card-view .posts .card .post-img-lg img, #guild.toggle-card-view .posts .card .post-img-lg img {
-	max-width: 55%;
-	height: auto;
-}
-
-#frontpage.toggle-card-view .posts .card .embed-lg, #userpage.toggle-card-view .posts .card .embed-lg, #search.toggle-card-view .posts .card .embed-lg, #guild.toggle-card-view .posts .card .embed-lg {
-	display: flex;
-	z-index: 2;
-}
-
-#frontpage.toggle-card-view .posts .card .post-preview-lg, #userpage.toggle-card-view .posts .card .post-preview-lg, #search.toggle-card-view .posts .card .post-preview-lg, #guild.toggle-card-view .posts .card .post-preview-lg {
-	display: block;
-}
-
-#frontpage.toggle-card-view .posts .card .post-preview-lg .post-body, #userpage.toggle-card-view .posts .card .post-preview-lg .post-body, #search.toggle-card-view .posts .card .post-preview-lg .post-body, #guild.toggle-card-view .posts .card .post-preview-lg .post-body {
-	-webkit-mask-image: linear-gradient(180deg,#000 40%,transparent);
-	mask-image: linear-gradient(180deg,#000 40%,transparent);
-	overflow: hidden;
-}
-
-*/
 .toggle-view .nav-link {
   color: #eb4963;
   font-size: 12px;
@@ -20181,26 +20009,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   line-height: 1;
   box-shadow: none;
   border-radius: 0; }
-
-.toggle-view .fa, .toggle-view .fas, .toggle-view .far, .toggle-view .fab, .toggle-view .fal {
-  font-size: 12px;
-  margin-right: .5rem;
-  color: #00001f; }
-
-.toggle-view .nav-link:hover, .toggle-view .nav-link:focus {
-  color: #eb4963; }
-
-.toggle-view > .nav-item > .nav-link.active .fa, .toggle-view > .nav-item > .nav-link.active .fas, .toggle-view > .nav-item > .nav-link.active .far, .toggle-view > .nav-item > .nav-link.active .fab {
-  color: #eb4963; }
-
-.toggle-view .nav-link:hover .fa, .toggle-view .nav-link:focus .fa, .toggle-view .nav-link:hover .fas, .toggle-view .nav-link:focus .fas, .toggle-view .nav-link:hover .far, .toggle-view .nav-link:focus .far, .toggle-view .nav-link:hover .fab, .toggle-view .nav-link:focus .fab {
-  color: #eb4963; }
-
-.toggle-card-view .posts {
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
-  border: none; }
 
 .card-header:first-child {
   border-radius: 0.25rem 0.25rem 0 0; }
@@ -20637,9 +20445,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .dropdown-actions .list-inline .list-inline-item:last-child {
   margin-right: 0; }
 
-#guild .post-meta-guild {
-  display: none; }
-
 .jumbotron-guild {
   position: relative;
   background-repeat: no-repeat;
@@ -20653,9 +20458,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   align-items: center;
   z-index: 1; }
 
-.jumbotron-guild .guild-banner-contents {
-  display: none; }
-
 .jumbotron-guild .jumbotron-overlay {
   background-color: transparent;
   position: absolute;
@@ -20665,13 +20467,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   left: 0;
   z-index: -1;
   pointer-events: none; }
-
-.jumbotron-guild .guild-icon-square-lg {
-  height: 125px;
-  width: 125px;
-  object-fit: cover;
-  border-radius: 0.25rem;
-  border: 5px solid #f0f0f0; }
 
 .guild-description p {
   margin-bottom: 0.5rem; }
@@ -20736,22 +20531,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   text-align: right;
   width: 100%;
   color: #f0f0f0; }
-
-.thumb-img-link-overlay {
-  display: none; }
-
-div:hover .thumb-img-link-overlay {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-  bottom: 0px;
-  padding: 1.5rem;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  color: #f0f0f0;
-  line-height: 2;
-  text-transform: uppercase;
-  font-size: 10.1px; }
 
 .embed-lg {
   display: none; }
@@ -22022,23 +21801,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     left: 0;
     right: 0; }
 
-  /*
-  
-  #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
-  	border-width: 0 0 0.1px 0;
-  	border-color: $border-color;
-  	border-style: solid;
-  	border-radius: 0;
-  	margin-top: 0;
-  	box-shadow: none;
-  }
-  
-  #frontpage.toggle-card-view .posts .card .post-img-lg img, #userpage.toggle-card-view .posts .card .post-img-lg img, #search.toggle-card-view .posts .card .post-img-lg img, #guild.toggle-card-view .posts .card .post-img-lg img {
-  	max-width: 100%;
-  	height: auto;
-  }
-  
-  */
   .jumbotron-guild {
     height: 115px; }
 
@@ -22332,10 +22094,6 @@ img.emoji {
 .navbar-light .navbar-nav .nav-link {
   border-radius: 5px; }
 
-/*
-.btn-secondary {
-	color: $muted;
-}*/
 .btn-success {
   border-color: #38A169 !important; }
 
@@ -22409,10 +22167,6 @@ img.emoji {
 .leaderboard {
   -webkit-animation: 3s ease-in-out 0s normal none infinite leaderboard;
   animation: 3s ease-in-out 0s normal none infinite leaderboard; }
-
-* [href$="/@Landlord_Messiah"] {
-  -webkit-animation: 3s ease-in-out 0s normal none infinite landlord;
-  animation: 3s ease-in-out 0s normal none infinite landlord; }
 
 .alert {
   color: #000000; }
