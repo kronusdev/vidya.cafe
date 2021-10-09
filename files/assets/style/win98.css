@@ -77,7 +77,7 @@
 }
 
 .pseudo-submit-form .card-header, .card-blank .card-header, .navbar-light, .nav, .flex-row.bg-gray-200.sticky.justify-content-center.d-flex.d-sm-none.mt-3.mb-3.mb-sm-5.rounded {
-	background-image: linear-gradient(90deg, #47a3ff, #0884ce) !important;
+	background-image: linear-gradient(90deg, var(--primary-color), #0884ce) !important;
 	color: var(--white) !important;
 }
 .navbar-light > *, .navbar-brand, .nav-link{
@@ -123,10 +123,10 @@
 
 blockquote {
 	background-color: white !important;
-	border-bottom: 2px solid --black;
+	border-bottom: 2px solid var(--black);
 }
 
 .badge-secondary, #sidebar_notifications, #custom_feed {
-	background-color: --gray-500;
+	background-color: var(--gray-500);
 }
 
