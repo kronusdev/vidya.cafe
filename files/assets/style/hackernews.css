@@ -17,6 +17,7 @@
 	--red: #E53E3E;
 	--gray: #2B353D;
 	--green: #38A169;
+
 	--gray-100: #394552;
 	--gray-200: var(--primary-color);
 	--gray-300: #2B353D;
@@ -38,7 +39,6 @@
 
 	--online: #88cc66;
 	--offline: rgba(170 170 170 / 0.6);
-
 
 	--gold: #ECC94B;
 	--reddit: #ED4630;
