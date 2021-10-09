@@ -61,14 +61,6 @@ $question-tag: #EE98E9;
 $breaking-news-tag: #ff0000;
 $none-tag: #E1E1E1;
 
-@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:400,600,700';
-
-@import "./node_modules/bootstrap/scss/bootstrap.scss";
-@import "./main.scss";
-
-//.text-muted {
-	//mix-blend-mode: difference;
-//}
 .comment, .small-comment {
 	background: rgba($gray-200, 0.1) !important;
 }
@@ -93,10 +85,6 @@ $none-tag: #E1E1E1;
 
 .btn {
 	color: $admin;
-}
-
-* {
-    font-family: 'Roboto Mono';
 }
 
 .arrow-up::before {
