@@ -5,6 +5,7 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 <link href="/assets/style/fa.css" rel="stylesheet"> <!--load all styles -->
 
 <link rel="stylesheet" href="/assets/style/main.css">
+{% if v %}
 <link rel="stylesheet" href="/assets/style/{{v.theme}}.css">
 <style>
 	:root {
@@ -12,11 +13,11 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 		--secondary-color: #{{ v.themecolor | darken_hex }}
 	}
 </style>
-<!-- {% if v %}
-	<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
-	{% if v.css %}
-	    <link rel="stylesheet" href="/@{{v.username}}/css">
-	{% endif %}
 {% else %}
-    <link rel="stylesheet" href="/assets/style/dark_47a3ff.css">
-{% endif %}  -->
+<link rel="stylesheet" href="/assets/style/dark.css">
+<style>
+	:root {
+		--primary-color: #47a3ff;
+		--secondary-color: #{{ 1f7bd7 | darken_hex }}
+	}
+</style>
