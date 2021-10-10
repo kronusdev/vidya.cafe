@@ -10728,7 +10728,7 @@ a.close.disabled {
   color: #000000 !important; }
 
 .text-muted {
-  color: #151A1F !important; }
+  color: var(--muted) !important; }
 
 .text-black-50 {
   color: rgba(207, 207, 207, 0.5) !important; }
