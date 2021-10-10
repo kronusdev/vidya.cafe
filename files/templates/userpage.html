@@ -99,7 +99,7 @@
 
 				{% if u.username != u.original_username %}
 				<span>
-					<i class="fad fa-user-tag text-info align-middle ml-2" data-bs-toggle="tooltip" data-placement="bottom"
+					<i class="fad fa-user-tag text-info align-middle ml-2" data-bs-toggle="tooltip" data-bs-placement="bottom"
 						title="Original Username: @{{u.original_username}}"></i>
 				</span>
 				{% endif %}
@@ -108,16 +108,16 @@
 				{% endif %}
 				{% if u.customtitle %}<p style="color: #{{u.titlecolor}}">{{u.customtitle | safe}}</p>{% endif %}
 				<div class="font-weight-normal">
-					<span class="font-weight-bold">{{u.coins}}</span> {{"COINS_NAME" | app_config}}&nbsp;&nbsp;{% if u.stored_subscriber_count >=1 and not u.is_nofollow %}<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.stored_subscriber_count}} follower{{'s' if u.stored_subscriber_count != 1 else ''}}</a>&nbsp;&nbsp; {% endif %}<br>joined <span data-bs-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{u.created_datetime}}" class="font-weight-bold">{{u.created_date}}</span>
+					<span class="font-weight-bold">{{u.coins}}</span> {{"COINS_NAME" | app_config}}&nbsp;&nbsp;{% if u.stored_subscriber_count >=1 and not u.is_nofollow %}<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.stored_subscriber_count}} follower{{'s' if u.stored_subscriber_count != 1 else ''}}</a>&nbsp;&nbsp; {% endif %}<br>joined <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-original-title="{{u.created_datetime}}" class="font-weight-bold">{{u.created_date}}</span>
 				</div>
 				<div class="mb-3">
 					{% for b in u.badges %}
 					{% if b.url %}
 					<a href="{{b.url}}"><img style="width: 32px; height: 32px" src="{{b.path}}" data-bs-toggle="tooltip"
-							data-placement="bottom" title="" data-original-title="{{b.name}} - {{b.text}}"></a>
+							data-bs-placement="bottom" title="" data-original-title="{{b.name}} - {{b.text}}"></a>
 					{% else %}
 					<img style="width: 32px; height: 32px" src="{{b.path}}" data-bs-toggle="tooltip"
-						data-placement="bottom" title="" data-original-title="{{b.name}} - {{b.text}}">
+						data-bs-placement="bottom" title="" data-original-title="{{b.name}} - {{b.text}}">
 					{% endif %}
 					{% endfor %}
 				</div>
@@ -144,25 +144,25 @@
 						class="input" required></textarea>
 					<pre></pre>
 					<pre class="button format d-inline-block m-0 fas fa-bold" aria-hidden="true"
-						onclick="makeBold('input-message-mobile')" data-bs-toggle="tooltip" data-placement="bottom"
+						onclick="makeBold('input-message-mobile')" data-bs-toggle="tooltip" data-bs-placement="bottom"
 						title="Bold"></pre>
 					&nbsp;
 					<pre class="button format d-inline-block m-0 fas fa-italic" aria-hidden="true"
-						onclick="makeItalics('input-message-mobile')" data-bs-toggle="tooltip" data-placement="bottom"
+						onclick="makeItalics('input-message-mobile')" data-bs-toggle="tooltip" data-bs-placement="bottom"
 						title="Italicize"></pre>
 					&nbsp;
 					<pre class="button format d-inline-block m-0 fas fa-quote-right" aria-hidden="true"
-						onclick="makeQuote('input-message-mobile')" data-bs-toggle="tooltip" data-placement="bottom"
+						onclick="makeQuote('input-message-mobile')" data-bs-toggle="tooltip" data-bs-placement="bottom"
 						title="Quote"></pre>
 					&nbsp;
 					<pre style="line-height:1;"
 						class="button format d-inline-block m-0 font-weight-bolder text-uppercase"
 						onclick="commentForm('input-message-mobile');getGif()" aria-hidden="true" data-bs-toggle="modal"
-						data-target="#gifModal" data-bs-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+						data-target="#gifModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add GIF">GIF</pre>
 					&nbsp;
 					<pre class="button format d-inline-block m-0 fas fa-smile-beam"
 						onclick="loadEmojis('input-message-mobile')" aria-hidden="true" data-bs-toggle="modal"
-						data-target="#emojiModal" data-bs-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
+						data-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Emoji"></pre>
 					&nbsp;
 					<input type="submit" value="Submit" class="button mt-3">
 				</form>
