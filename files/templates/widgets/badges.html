@@ -2,10 +2,10 @@
 	{% for b in u.badges %}
 	{% if b.url %}
 	<a href="{{b.url}}"><img style="width: 60px; height: 60px" src="{{b.path}}"
-			data-toggle="tooltip" data-placement="bottom" title=""
+			data-bs-toggle="tooltip" data-placement="bottom" title=""
 			data-original-title="{{b.name}} - {{b.text}}"></a>
 	{% else %}
-	<img style="width: 60px; height: 60px" src="{{b.path}}" data-toggle="tooltip"
+	<img style="width: 60px; height: 60px" src="{{b.path}}" data-bs-toggle="tooltip"
 		data-placement="bottom" title="" data-original-title="{{b.name}} - {{b.text}}">
 	{% endif %}
 	{% endfor %}

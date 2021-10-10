@@ -99,7 +99,7 @@
 
 				{% if u.username != u.original_username %}
 				<span>
-					<i class="fad fa-user-tag text-info align-middle ml-2" data-toggle="tooltip" data-placement="bottom"
+					<i class="fad fa-user-tag text-info align-middle ml-2" data-bs-toggle="tooltip" data-placement="bottom"
 						title="Original Username: @{{u.original_username}}"></i>
 				</span>
 				{% endif %}
@@ -108,15 +108,15 @@
 				{% endif %}
 				{% if u.customtitle %}<p style="color: #{{u.titlecolor}}">{{u.customtitle | safe}}</p>{% endif %}
 				<div class="font-weight-normal">
-					<span class="font-weight-bold">{{u.coins}}</span> {{"COINS_NAME" | app_config}}&nbsp;&nbsp;{% if u.stored_subscriber_count >=1 and not u.is_nofollow %}<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.stored_subscriber_count}} follower{{'s' if u.stored_subscriber_count != 1 else ''}}</a>&nbsp;&nbsp; {% endif %}<br>joined <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{u.created_datetime}}" class="font-weight-bold">{{u.created_date}}</span>
+					<span class="font-weight-bold">{{u.coins}}</span> {{"COINS_NAME" | app_config}}&nbsp;&nbsp;{% if u.stored_subscriber_count >=1 and not u.is_nofollow %}<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.stored_subscriber_count}} follower{{'s' if u.stored_subscriber_count != 1 else ''}}</a>&nbsp;&nbsp; {% endif %}<br>joined <span data-bs-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{u.created_datetime}}" class="font-weight-bold">{{u.created_date}}</span>
 				</div>
 				<div class="mb-3">
 					{% for b in u.badges %}
 					{% if b.url %}
-					<a href="{{b.url}}"><img style="width: 32px; height: 32px" src="{{b.path}}" data-toggle="tooltip"
+					<a href="{{b.url}}"><img style="width: 32px; height: 32px" src="{{b.path}}" data-bs-toggle="tooltip"
 							data-placement="bottom" title="" data-original-title="{{b.name}} - {{b.text}}"></a>
 					{% else %}
-					<img style="width: 32px; height: 32px" src="{{b.path}}" data-toggle="tooltip"
+					<img style="width: 32px; height: 32px" src="{{b.path}}" data-bs-toggle="tooltip"
 						data-placement="bottom" title="" data-original-title="{{b.name}} - {{b.text}}">
 					{% endif %}
 					{% endfor %}
@@ -144,25 +144,25 @@
 						class="input" required></textarea>
 					<pre></pre>
 					<pre class="button format d-inline-block m-0 fas fa-bold" aria-hidden="true"
-						onclick="makeBold('input-message-mobile')" data-toggle="tooltip" data-placement="bottom"
+						onclick="makeBold('input-message-mobile')" data-bs-toggle="tooltip" data-placement="bottom"
 						title="Bold"></pre>
 					&nbsp;
 					<pre class="button format d-inline-block m-0 fas fa-italic" aria-hidden="true"
-						onclick="makeItalics('input-message-mobile')" data-toggle="tooltip" data-placement="bottom"
+						onclick="makeItalics('input-message-mobile')" data-bs-toggle="tooltip" data-placement="bottom"
 						title="Italicize"></pre>
 					&nbsp;
 					<pre class="button format d-inline-block m-0 fas fa-quote-right" aria-hidden="true"
-						onclick="makeQuote('input-message-mobile')" data-toggle="tooltip" data-placement="bottom"
+						onclick="makeQuote('input-message-mobile')" data-bs-toggle="tooltip" data-placement="bottom"
 						title="Quote"></pre>
 					&nbsp;
 					<pre style="line-height:1;"
 						class="button format d-inline-block m-0 font-weight-bolder text-uppercase"
-						onclick="commentForm('input-message-mobile');getGif()" aria-hidden="true" data-toggle="modal"
-						data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+						onclick="commentForm('input-message-mobile');getGif()" aria-hidden="true" data-bs-toggle="modal"
+						data-target="#gifModal" data-bs-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
 					&nbsp;
 					<pre class="button format d-inline-block m-0 fas fa-smile-beam"
-						onclick="loadEmojis('input-message-mobile')" aria-hidden="true" data-toggle="modal"
-						data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
+						onclick="loadEmojis('input-message-mobile')" aria-hidden="true" data-bs-toggle="modal"
+						data-target="#emojiModal" data-bs-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
 					&nbsp;
 					<input type="submit" value="Submit" class="button mt-3">
 				</form>
@@ -215,7 +215,7 @@
 		<div class="text-small font-weight-bold mr-2">‎</div>
 		<div class="dropdown dropdown-actions">
 			<button class="button dropdown-toggle" type="button" id="dropdownMenuButton"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				{% if t=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
 				{% if t=="week" %}<i class="fas fa-calendar-week mr-1"></i>{% endif %}
 				{% if t=="month" %}<i class="fas fa-calendar-alt mr-1"></i>{% endif %}
@@ -242,7 +242,7 @@
 
 		<div class="text-small font-weight-bold ml-3 mr-2">‎</div>
 		<div class="dropdown dropdown-actions">
-			<button class="button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+			<button class="button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">
 				{% if sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
 				{% if sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
