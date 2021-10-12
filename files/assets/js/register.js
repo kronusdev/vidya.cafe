@@ -46,3 +46,10 @@ function register_image_expands(){
 	})}
 
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+	tooltipTriggerList.map(function(element){
+		return new bootstrap.Tooltip(element);
+	});
+});
