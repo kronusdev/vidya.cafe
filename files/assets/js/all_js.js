@@ -74,7 +74,7 @@ document.body.addEventListener('keydown', function(event) {
 
 				for (j=0; j < arr.length; j++) {
 					if(arr[j].match(search_bar.value)){
-						str += `<button class="btn m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden; border: none;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+						str += `<button class="button m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 					}
 				}
 
@@ -88,7 +88,7 @@ document.body.addEventListener('keydown', function(event) {
 				let container = document.getElementById(`EMOJIS_${emojis[i].type}`)
 		 		for (j=0; j < arr.length; j++) {
 		 			if(arr[j].match(search_bar.value.toLowerCase())){
-		 			str += `<button class="btn m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden; border: none;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+		 			str += `<button class="button m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 		 			}
 		 		}
 				container.innerHTML = ""
@@ -191,49 +191,49 @@ document.body.addEventListener('keydown', function(event) {
 
 	}
 
-	// When GIF keyboard is hidden, hide all GIFs
+	// When GIF keyboard is hidden, hide all GIFs TODO-fix (what's .on) or remove
 
-	$('#gifModal').on('hidden.bs.modal', function (e) {
-
-		document.getElementById('gifSearch').value = null;
-
-		// load more gifs div
-
-		var loadGIFs = document.getElementById('gifs-load-more');
-
-		// no GIFs div
-
-		var noGIFs = document.getElementById('no-gifs-found');
-
-		// container div
-
-		var container = document.getElementById('GIFs');
-
-		// UI buttons
-
-		var backBtn = document.getElementById('gifs-back-btn');
-
-		var cancelBtn = document.getElementById('gifs-cancel-btn');
-
-		// Remove inner HTML from container var
-
-		container.innerHTML = '<div class="card" onclick="getGif(\'agree\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Agree</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/wGhYz3FHaRJgk/200w_d.gif"> </div> <div class="card" onclick="getGif(\'laugh\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Laugh</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/O5NyCibf93upy/200w_d.gif"> </div> <div class="card" onclick="getGif(\'confused\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Confused</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/200w_d.gif"> </div> <div class="card" onclick="getGif(\'sad\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Sad</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/ISOckXUybVfQ4/200w_d.gif"> </div> <div class="card" onclick="getGif(\'happy\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Happy</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/XR9Dp54ZC4dji/200w_d.gif"> </div> <div class="card" onclick="getGif(\'awesome\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Awesome</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/200w_d.gif"> </div> <div class="card" onclick="getGif(\'yes\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Yes</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/J336VCs1JC42zGRhjH/200w_d.gif"> </div> <div class="card" onclick="getGif(\'no\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">No</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/1zSz5MVw4zKg0/200w_d.gif"> </div> <div class="card" onclick="getGif(\'love\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Love</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/4N1wOi78ZGzSB6H7vK/200w_d.gif"> </div> <div class="card" onclick="getGif(\'please\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Please</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/qUIm5wu6LAAog/200w_d.gif"> </div> <div class="card" onclick="getGif(\'scared\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Scared</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/bEVKYB487Lqxy/200w_d.gif"> </div> <div class="card" onclick="getGif(\'angry\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Angry</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/12Pb87uq0Vwq2c/200w_d.gif"> </div> <div class="card" onclick="getGif(\'awkward\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Awkward</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/unFLKoAV3TkXe/200w_d.gif"> </div> <div class="card" onclick="getGif(\'cringe\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Cringe</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/1jDvQyhGd3L2g/200w_d.gif"> </div> <div class="card" onclick="getGif(\'omg\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">OMG</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/3o72F8t9TDi2xVnxOE/200w_d.gif"> </div> <div class="card" onclick="getGif(\'why\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Why</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/1M9fmo1WAFVK0/200w_d.gif"> </div> <div class="card" onclick="getGif(\'gross\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Gross</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/pVAMI8QYM42n6/200w_d.gif"> </div> <div class="card" onclick="getGif(\'meh\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Meh</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/xT77XTpyEzJ4OJO06c/200w_d.gif"> </div>'
-
-		// Hide UI buttons
-
-		backBtn.innerHTML = null;
-
-		cancelBtn.innerHTML = null;
-
-		// Remove inner HTML from no gifs div
-
-		noGIFs.innerHTML = null;
-
-		// Hide no more gifs div
-
-		loadGIFs.innerHTML = null;
-
-	});
+// 	document.getElementById('gifModal').on('hidden.bs.modal', function (e) {
+// 
+// 		document.getElementById('gifSearch').value = null;
+// 
+// 		// load more gifs div
+// 
+// 		var loadGIFs = document.getElementById('gifs-load-more');
+// 
+// 		// no GIFs div
+// 
+// 		var noGIFs = document.getElementById('no-gifs-found');
+// 
+// 		// container div
+// 
+// 		var container = document.getElementById('GIFs');
+// 
+// 		// UI buttons
+// 
+// 		var backBtn = document.getElementById('gifs-back-btn');
+// 
+// 		var cancelBtn = document.getElementById('gifs-cancel-btn');
+// 
+// 		// Remove inner HTML from container var
+// 
+// 		container.innerHTML = '<div class="card" onclick="getGif(\'agree\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Agree</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/wGhYz3FHaRJgk/200w_d.gif"> </div> <div class="card" onclick="getGif(\'laugh\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Laugh</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/O5NyCibf93upy/200w_d.gif"> </div> <div class="card" onclick="getGif(\'confused\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Confused</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/200w_d.gif"> </div> <div class="card" onclick="getGif(\'sad\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Sad</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/ISOckXUybVfQ4/200w_d.gif"> </div> <div class="card" onclick="getGif(\'happy\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Happy</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/XR9Dp54ZC4dji/200w_d.gif"> </div> <div class="card" onclick="getGif(\'awesome\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Awesome</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/200w_d.gif"> </div> <div class="card" onclick="getGif(\'yes\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Yes</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/J336VCs1JC42zGRhjH/200w_d.gif"> </div> <div class="card" onclick="getGif(\'no\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">No</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/1zSz5MVw4zKg0/200w_d.gif"> </div> <div class="card" onclick="getGif(\'love\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Love</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/4N1wOi78ZGzSB6H7vK/200w_d.gif"> </div> <div class="card" onclick="getGif(\'please\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Please</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/qUIm5wu6LAAog/200w_d.gif"> </div> <div class="card" onclick="getGif(\'scared\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Scared</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/bEVKYB487Lqxy/200w_d.gif"> </div> <div class="card" onclick="getGif(\'angry\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Angry</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/12Pb87uq0Vwq2c/200w_d.gif"> </div> <div class="card" onclick="getGif(\'awkward\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Awkward</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/unFLKoAV3TkXe/200w_d.gif"> </div> <div class="card" onclick="getGif(\'cringe\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Cringe</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/1jDvQyhGd3L2g/200w_d.gif"> </div> <div class="card" onclick="getGif(\'omg\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">OMG</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/3o72F8t9TDi2xVnxOE/200w_d.gif"> </div> <div class="card" onclick="getGif(\'why\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Why</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/1M9fmo1WAFVK0/200w_d.gif"> </div> <div class="card" onclick="getGif(\'gross\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Gross</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/pVAMI8QYM42n6/200w_d.gif"> </div> <div class="card" onclick="getGif(\'meh\');" style="overflow: hidden;"> <div class="gif-cat-overlay"> <div style="position: relative;top: 50%;transform: translateY(-50%);color: #cfcfcf;font-weight: bold;">Meh</div> </div> <img class="img-fluid" src="https://media.giphy.com/media/xT77XTpyEzJ4OJO06c/200w_d.gif"> </div>'
+// 
+// 		// Hide UI buttons
+// 
+// 		backBtn.innerHTML = null;
+// 
+// 		cancelBtn.innerHTML = null;
+// 
+// 		// Remove inner HTML from no gifs div
+// 
+// 		noGIFs.innerHTML = null;
+// 
+// 		// Hide no more gifs div
+// 
+// 		loadGIFs.innerHTML = null;
+// 
+// 	});
 
 
 //iOS webapp stuff
@@ -258,152 +258,53 @@ document.body.addEventListener('keydown', function(event) {
 						}
 					})(document,window.navigator,'standalone');
 
-//POST
 
-function post(url, callback, errortext) {
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	var form = new FormData()
-	form.append("formkey", formkey());
-	xhr.withCredentials=true;
-	xhr.onerror=function() { alert(errortext); };
-	xhr.onload = function() {
-		if (xhr.status >= 200 && xhr.status < 300) {
-			callback();
-		} else {
-			xhr.onerror();
-		}
-	};
-	xhr.send(form);
-};
 
-function post_toast(url, callback) {
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	var form = new FormData()
-	form.append("formkey", formkey());
-	xhr.withCredentials=true;
 
-	xhr.onload = function() {
-		if (xhr.status==204) {}
-			else if (xhr.status >= 200 && xhr.status < 300) {
-				$('#toast-post-success').toast('dispose');
-				$('#toast-post-success').toast('show');
-				document.getElementById('toast-post-success-text').innerText = JSON.parse(xhr.response)["message"];
-				callback(xhr)
-				return true
-
-			} else if (xhr.status >= 300 && xhr.status < 400) {
-				window.location.href = JSON.parse(xhr.response)["redirect"]
-			} else {
-				data=JSON.parse(xhr.response);
-				
-				$('#toast-post-error').toast('dispose');
-				$('#toast-post-error').toast('show');
-				document.getElementById('toast-post-error-text').innerText = data["error"];
-				return false
-				
-			}
-		};
-
-		xhr.send(form);
-
-	}
 
 
 // Search Icon
 // Change navbar search icon when form is in focus, active states
-
-$(".form-control").focus(function () {
-	$(this).prev('.input-group-append').removeClass().addClass('input-group-append-focus');
-	$(this).next('.input-group-append').removeClass().addClass('input-group-append-focus');
-});
-
-$(".form-control").focusout(function () {
-	$(this).prev('.input-group-append-focus').removeClass().addClass('input-group-append');
-	$(this).next('.input-group-append-focus').removeClass().addClass('input-group-append');
-});
-
-//spinner effect
-
-$(document).ready(function() {
-	$('#login').submit(function() {
-			// disable button
-			$("#login_button").prop("disabled", true);
-			// add spinner to button
-			$("#login_button").html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Signing in');
-		});
-});
-
-$(document).ready(function() {
-	$('#signup').submit(function() {
-			// disable button
-			$("#register_button").prop("disabled", true);
-			// add spinner to button
-			$("#register_button").html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Registering');
-		});
-});
-
-// Mobile bottom navigation bar
-
-window.onload = function () {
-	var prevScrollpos = window.pageYOffset;
-	window.onscroll = function () {
-		var currentScrollPos = window.pageYOffset;
-
-		var topBar = document.getElementById("fixed-bar-mobile");
-
-		var bottomBar = document.getElementById("mobile-bottom-navigation-bar");
-
-		var dropdown = document.getElementById("mobileSortDropdown");
-
-		var navbar = document.getElementById("navbar");
-
-		if (bottomBar != null) {
-			if (prevScrollpos > currentScrollPos && (window.innerHeight + currentScrollPos) < (document.body.offsetHeight - 65)) {
-				bottomBar.style.bottom = "0px";
-			} 
-			else if (currentScrollPos <= 125 && (window.innerHeight + currentScrollPos) < (document.body.offsetHeight - 65)) {
-				bottomBar.style.bottom = "0px";
-			}
-			else if (prevScrollpos > currentScrollPos && (window.innerHeight + currentScrollPos) >= (document.body.offsetHeight - 65)) {
-				bottomBar.style.bottom = "-50px";
-			}
-			else {
-				bottomBar.style.bottom = "-50px";
-			}
-		}
-
-	// Execute if bottomBar exists
-
-	if (topBar != null && dropdown != null) {
-		if (prevScrollpos > currentScrollPos) {
-			topBar.style.top = "48px";
-			navbar.classList.remove("shadow");
-		} 
-		else if (currentScrollPos <= 125) {
-			topBar.style.top = "48px";
-			navbar.classList.remove("shadow");
-		}
-		else {
-			topBar.style.top = "-48px";
-			dropdown.classList.remove('show');
-			navbar.classList.add("shadow");
-		}
-	}
-	prevScrollpos = currentScrollPos;
-}
-}
-
-
-$('.mention-user').click(function (event) {
-
-	if (event.which != 1) {
-		return
-	}
-
-	event.preventDefault();
-
-	window.location.href='/@' + $(this).data('original-name');
-
-});
+// TODO - can get rid of this question mark?
+// $(".form-control").focus(function () {
+// 	$(this).prev('.input-group-append').removeClass().addClass('input-group-append-focus');
+// 	$(this).next('.input-group-append').removeClass().addClass('input-group-append-focus');
+// });
+// 
+// $(".form-control").focusout(function () {
+// 	$(this).prev('.input-group-append-focus').removeClass().addClass('input-group-append');
+// 	$(this).next('.input-group-append-focus').removeClass().addClass('input-group-append');
+// });
+// 
+// //spinner effect
+// 
+// $(document).ready(function() {
+// 	$('#login').submit(function() {
+// 			// disable button
+// 			$("#login_button").prop("disabled", true);
+// 			// add spinner to button
+// 			$("#login_button").html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Signing in');
+// 		});
+// });
+// 
+// $(document).ready(function() {
+// 	$('#signup').submit(function() {
+// 			// disable button
+// 			$("#register_button").prop("disabled", true);
+// 			// add spinner to button
+// 			$("#register_button").html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Registering');
+// 		});
+// });
+// 
+// 
+// $('.mention-user').click(function (event) {
+// 
+// 	if (event.which != 1) {
+// 		return
+// 	}
+// 
+// 	event.preventDefault();
+// 
+// 	window.location.href='/@' + $(this).data('original-name');
+// 
+// });
