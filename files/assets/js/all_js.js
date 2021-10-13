@@ -44,7 +44,22 @@ document.body.addEventListener('keydown', function(event) {
 		},
 		{
 			type:'marsey',
-			emojis: ['marseylong1', 'marseylong2', 'marseylong3', 'marseyjam','marseyhmm','marseyhmmm','marseythonk','marseyworried','marseysus','marsey4chan','marseyandmarcus','marseybluecheck','marseybong','marseybooba','marseyconfused','marseydespair','marseylizard','marseyowow','marseyproctologist','marseyvaxmaxx','marseyxd','marsoyhype','marmsey','marsey1984','marseyakshually','marseycope','marseydeux','marseydoomer','marseyflamewar','marseyfug','marseygasp','marseyglow','marseyhacker','marseyking','marseylifting','marseymanlet','marseymouse','marseynpc','marseypainter','marseypeacekeeper','marseypickle','marseypipe','marseypirate','marseypope','marseyrat','marseyrick','marseyseethe','marseysneed','marseytroll','marsoy','marseyasian','marseyburger','marseyfacepalm','marseygrilling','marseyjanny','marseyrentfree','marseyretard','marseysadcat','marseysick','marseysmug', 'marseysipping', 'marseyjamming','marseyangel','marseyblowkiss','marseycry','marseydead','marseyexcited','marseygift','marseyinabox','marseylaugh','marseylove','marseymad','marseyparty','marseyrain','marseyreading','marseyready','marseysad','marseyscarf','marseyshook','marseysleep','marseythumbsup','marseywave', 'marsey69', 'marseynut', 'marseyglam', 'marseycowboy', 'marseypat', 'marseypanties', 'marseybingus', 'marseydepressed']
+			emojis: ['marseylong1', 'marseylong2', 'marseylong3', 'marseyjam','marseyhmm','marseyhmmm','marseythonk',
+					 'marseyworried','marseysus','marsey4chan','marseyandmarcus','marseybluecheck','marseybong','marseybooba',
+					 'marseyconfused','marseydespair','marseylizard','marseyowow','marseyproctologist','marseyvaxmaxx','marseyxd',
+					 'marsoyhype','marmsey','marsey1984','marseyakshually','marseycope','marseydeux','marseydoomer','marseyflamewar',
+					 'marseyfug','marseygasp','marseyglow','marseyhacker','marseyking','marseylifting','marseymanlet','marseymouse',
+					 'marseynpc','marseypainter','marseypeacekeeper','marseypickle','marseypipe','marseypirate','marseypope','marseyrat',
+					 'marseyrick','marseyseethe','marseysneed','marseytroll','marsoy','marseyasian','marseyburger','marseyfacepalm',
+					 'marseygrilling','marseyjanny','marseyrentfree','marseyretard','marseysadcat','marseysick','marseysmug', 'marseysipping',
+					 'marseyjamming','marseyangel','marseyblowkiss','marseycry','marseydead','marseyexcited','marseygift','marseyinabox',
+					 'marseylaugh','marseylove','marseymad','marseyparty','marseyrain','marseyreading','marseyready','marseysad','marseyscarf',
+					 'marseyshook','marseysleep','marseythumbsup','marseywave', 'marsey69', 'marseynut', 'marseyglam', 'marseycowboy', 'marseypat',
+					 'marseypanties', 'marseybingus', 'marseydepressed', 'marseyagree', 'marseybane', 'marseyboomer', 'marseybux', 'marseycapy',
+					 'marseycool', 'marseydisagree', 'marseydragon', 'marseyghost', 'marseygivecrown', 'marseyjapanese', 'marseynightmare', 'marseyno', 'marseynooo',
+					 'marseyoctopus', 'marseypanda', 'marseypenguin', 'marseypretty', 'marseypumpking', 'marseyrage', 'marseyramen', 'marseyshark', 'marseyskeletor',
+					 'marseysmirk', 'marseysombrero', 'marseyspirit', 'marseystars', 'marseystein', 'marseysweating', 'marseytwerking', 'marseyvampire', 'marseyvaporwave',
+					 'marseyvibing', 'marseywarhol', 'marseywinner', 'marseywise', 'marseywolf', 'marseywtf', 'marseywut', 'marseyyawn', 'marseyyes', 'marseyyikes', 'marseyzombie', 'marseyzwei']
 		},
 		{
 			type:'rage',
