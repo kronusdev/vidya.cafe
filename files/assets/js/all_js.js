@@ -74,7 +74,7 @@ document.body.addEventListener('keydown', function(event) {
 
 				for (j=0; j < arr.length; j++) {
 					if(arr[j].match(search_bar.value)){
-						str += `<button class="button m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+						str += `<button class="button m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden;" data-bs-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 					}
 				}
 
@@ -88,7 +88,7 @@ document.body.addEventListener('keydown', function(event) {
 				let container = document.getElementById(`EMOJIS_${emojis[i].type}`)
 		 		for (j=0; j < arr.length; j++) {
 		 			if(arr[j].match(search_bar.value.toLowerCase())){
-		 			str += `<button class="button m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+		 			str += `<button class="button m-1 px-0" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:60px; overflow: hidden;" data-bs-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=50 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 		 			}
 		 		}
 				container.innerHTML = ""
@@ -164,7 +164,7 @@ document.body.addEventListener('keydown', function(event) {
 					// loop for fetching mutliple GIFs and creating the card divs
 					if (gifs.length) {
 						for (var i = 0; i < gifs.length; i++) {
-							container.innerHTML += ('<div class="card bg-white" style="overflow: hidden" data-dismiss="modal" aria-label="Close" onclick="insertGIF(\'' + gifs[i].url + '\',\'' + commentFormID + '\')"><div class="gif-cat-overlay"></div><img class="img-fluid" src="' + gifs[i].preview + '"></div>');
+							container.innerHTML += ('<div class="card bg-white" style="overflow: hidden" data-bs-dismiss="modal" aria-label="Close" onclick="insertGIF(\'' + gifs[i].url + '\',\'' + commentFormID + '\')"><div class="gif-cat-overlay"></div><img class="img-fluid" src="' + gifs[i].preview + '"></div>');
 							noGIFs.innerHTML = null;
 							loadGIFs.innerHTML = '<div class="text-center py-3"><div class="mb-3"><i class="fad fa-grin-beam-sweat text-primary" style="font-size: 3.5rem;"></i></div><p class="font-weight-bold text-black mb-0">Thou&#39;ve reached the end of the list!</p></div>';
 						}
