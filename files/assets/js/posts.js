@@ -46,21 +46,22 @@ report_postModal = function(id, author) {
 		
 	}
 };
-
-document.getElementById('reportPostModal').on('hidden.bs.modal', function () {
-	
-	var button = document.getElementById("reportPostButton");
-	
-	var beforeModal = document.getElementById("reportPostFormBefore");
-	var afterModal = document.getElementById("reportPostFormAfter");
-	
-	button.innerHTML='Report post';
-	button.disabled= false;
-	
-	afterModal.classList.add('d-none');
-	
-	if ( beforeModal.classList.contains('d-none') ) {
-		beforeModal.classList.remove('d-none');
-	}
-	
-});
+document.addEventListener("DOMContentLoaded", function(){
+	document.getElementById('reportPostModal').addEventListener('hidden.bs.modal', function () {
+		
+		var button = document.getElementById("reportPostButton");
+		
+		var beforeModal = document.getElementById("reportPostFormBefore");
+		var afterModal = document.getElementById("reportPostFormAfter");
+		
+		button.innerHTML='Report post';
+		button.disabled= false;
+		
+		afterModal.classList.add('d-none');
+		
+		if ( beforeModal.classList.contains('d-none') ) {
+			beforeModal.classList.remove('d-none');
+		}
+		
+	});
+})
