@@ -5,44 +5,8 @@
 
 	{% include "bootstrap.html" %}
 	{% include "elements/scripts.html" %}
-
-	<script>
-		//email change
-
-		// Show confirm password field when user clicks email box
-
-		$('#new_email').on('input', function () {
-
-			var id = document.getElementById("email-password");
-			var id2 = document.getElementById("email-password-label");
-			var id3 = document.getElementById("emailpasswordRequired");
-
-			id.classList.remove("d-none");
-			id2.classList.remove("d-none");
-			id3.classList.remove("d-none");
-
-		});
+	<script src="/assets/js/settings.js"></script>
 	
-		// 2FA toggle modal
-
-		$('#2faModal').on('hidden.bs.modal', function () {
-
-			var box = document.getElementById("2faToggle");
-			
-			box.checked = !box.checked;
-
-		});
-
-	
-		//Email verification text
-
-		function emailVerifyText() {
-
-			document.getElementById("email-verify-text").innerHTML = "Verification email sent! Please check your inbox.";
-
-		}
-	</script>
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
