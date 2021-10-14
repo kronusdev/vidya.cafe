@@ -268,7 +268,7 @@
 						<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0)" onclick="post_toast('/settings/block?username={{c.author.username}}')"><i class="fas fa-eye-slash fa-fw"></i>Block user</a></li>
 					{% endif %}
 					{% if v and c.post and (v.admin_level >= 1 or v.id == c.post.author_id) and c.level == 1 %}
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a class="text-info" id="pin-comment-{{c.id}}" href="javascript:void(0)" data-dismiss="modal" data-bs-target="#actionsModal-{{c.id}}" onclick="post('/comment_pin/{{c.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack fa-rotate--45 text-info fa-fw"></i>{{'Unpin' if c.is_pinned else 'Pin'}}</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a class="text-info" id="pin-comment-{{c.id}}" href="javascript:void(0)" data-bs-dismiss="modal" data-bs-target="#actionsModal-{{c.id}}" onclick="post('/comment_pin/{{c.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack fa-rotate--45 text-info fa-fw"></i>{{'Unpin' if c.is_pinned else 'Pin'}}</a></li>
 					</li>
 					{% endif %}
 					{% if v and c.parent_submission and (c.author_id==v.id or v.admin_level > 0) %}
@@ -371,7 +371,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title h6">More options</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true"><i class="far fa-times"></i></span>
 				</button>
 			</div>
@@ -386,14 +386,14 @@
 						<li class="list-group-item"><a href="javascript:void(0)" onclick="post('/save_comment/{{c.id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Save</a></li>
 					{% endif %}
 
-					<li class="list-group-item"><a href="javascript:void(0);" role="button" class="d-block copy-link" data-dismiss="modal" data-clipboard-text="{{c.permalink | full_link}}?context=5#context"><i class="fas fa-copy"></i><span>Copy link</span></a></li>
+					<li class="list-group-item"><a href="javascript:void(0);" role="button" class="d-block copy-link" data-bs-dismiss="modal" data-clipboard-text="{{c.permalink | full_link}}?context=5#context"><i class="fas fa-copy"></i><span>Copy link</span></a></li>
 
 					<li class="list-group-item"><a href="{{c.permalink}}?context=5#context"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-dna"></i>Context</a></li>
 
-					<li class="list-group-item"><a href="javascript:void(0)" data-bs-toggle="modal" data-dismiss="modal" data-bs-target="#reportCommentModal" onclick="report_commentModal('{{c.id}}','{{c.author.username}}')" class="d-block"><i class="fas fa-flag"></i>Report</a></li>
+					<li class="list-group-item"><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#reportCommentModal" onclick="report_commentModal('{{c.id}}','{{c.author.username}}')" class="d-block"><i class="fas fa-flag"></i>Report</a></li>
 
 					{% if v and c.parent_submission and c.author_id==v.id %}
-					<li class="list-group-item"><a href="javascript:void(0)" data-dismiss="modal" onclick="toggleEdit('{{c.id}}')" class="d-block"><i class="fas fa-edit"></i>Edit</a></li>
+					<li class="list-group-item"><a href="javascript:void(0)" data-bs-dismiss="modal" onclick="toggleEdit('{{c.id}}')" class="d-block"><i class="fas fa-edit"></i>Edit</a></li>
 
 
 					{% if c.deleted_utc > 0 %}
@@ -406,7 +406,7 @@
 				{% endif %}
 
 					{% if v and c.post and (v.admin_level >= 1 or v.id == c.post.author_id) and c.level == 1 %}
-						<li class="list-group-item"><a class="d-block text-info" id="pin-comment-{{c.id}}" href="javascript:void(0)" data-dismiss="modal" data-bs-target="#actionsModal-{{c.id}}" onclick="post('/comment_pin/{{c.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack fa-rotate--45 text-info"></i>{{'Unpin' if c.is_pinned else 'Pin'}}</a>
+						<li class="list-group-item"><a class="d-block text-info" id="pin-comment-{{c.id}}" href="javascript:void(0)" data-bs-dismiss="modal" data-bs-target="#actionsModal-{{c.id}}" onclick="post('/comment_pin/{{c.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack fa-rotate--45 text-info"></i>{{'Unpin' if c.is_pinned else 'Pin'}}</a>
 						</li>
 					{% endif %}
 
@@ -466,12 +466,12 @@
 
 {% endfor %}
 
-<div class="toast" id="toast-comment-success" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
+<div class="toast" id="toast-comment-success" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true" data-bs-autohide="true" data-bs-delay="5000">
 	<div class="toast-body bg-success text-center text-white">
 		<i class="fas fa-comment-alt-smile mr-2"></i>Comment posted!
 	</div>
 </div>
-<div class="toast" id="toast-comment-error" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
+<div class="toast" id="toast-comment-error" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true" data-bs-autohide="true" data-bs-delay="5000">
 	<div class="toast-body bg-danger text-center text-white">
 		<i class="fas fa-exclamation-circle mr-2"></i><span id="comment-error-text"></span>
 	</div>

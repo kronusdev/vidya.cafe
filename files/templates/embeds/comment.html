@@ -32,9 +32,9 @@
 			{% endif %}
 			<span> </span>
 		{% endif %}
-                <span class="time-stamp" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ c.created_datetime }}"><span>&#183;</span> {{ c.age_string }}</span>
+                <span class="time-stamp" data-toggle="tooltip" data-placement="bottom" data-bs-delay='{"show":"700", "hide":"300"}' title="{{ c.created_datetime }}"><span>&#183;</span> {{ c.age_string }}</span>
 		{% if c.edited_utc %}
-		<span class="time-edited" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.edited_datetime }}"><span>&#183;</span> <span class="font-italic">Edited {{ c.edited_string }}</span></span>
+		<span class="time-edited" data-toggle="tooltip" data-placement="bottom" data-bs-delay='{"show":"700", "hide":"300"}' title="{{ p.edited_datetime }}"><span>&#183;</span> <span class="font-italic">Edited {{ c.edited_string }}</span></span>
 		{% endif %}
 
         <span class="comment-collapse d-md-none" onclick="collapse_comment('{{ c.base36id }}')"></span>
@@ -99,13 +99,13 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title h6">More options</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true"><i class="far fa-times"></i></span>
           </button>
       </div>
       <div class="modal-body">
           <ul class="list-group comment-actions">
-            <li class="list-group-item"><a href="javascript:void(0);" role="button" class="d-block copy-link" data-dismiss="modal" data-clipboard-text="{{ c.permalink | full_link}}"><i class="fas fa-link"></i><span>Share</span></a>
+            <li class="list-group-item"><a href="javascript:void(0);" role="button" class="d-block copy-link" data-bs-dismiss="modal" data-clipboard-text="{{ c.permalink | full_link}}"><i class="fas fa-link"></i><span>Share</span></a>
                 <li class="list-group-item"><a class="d-block" href="{{ c.parent.permalink }}"><i class="fas fa-dna"></i>Parent</a></li>
                 <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
 
