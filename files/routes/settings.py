@@ -397,54 +397,50 @@ def add_kofi_email(v):
 @auth_required
 def add_xbox_gamertag(v):
 
-	gamertag = request.form.get("gamertag", "").strip()
+	tag = request.form.get("gamertag", "").strip()
 
-	# suffix is required (for adding other people on Xbox)
-	if len(gamertag.split("#")) == 1:
-		return redirect("/settings/profile?error=" + 
-			escape("Please add your Gamertag Suffix"))
-	
-	# suffix can only be numeric
-	if not gamertag.split("#")[1].isdigit():
-		return redirect("/settings/profile?error=" + 
-			escape("Gamertag Suffix must be all numbers"))
+	# if there is a suffix
+	if len(tag.split("#")) == 1:
+		# suffix can only be numeric
+		if not tag.split("#")[1].isdigit():
+			return redirect("/settings/profile?error=" + 
+				escape("Gamer Tag Suffix must be all numbers"))
+		# suffix can't be more than 5 digits
+		if len(tag.split("#")[1]) > 5:
+			return redirect("/settings/profile?error=" + 
+				escape("Gamer Tag Suffix cannot be more than 5 digits"))
 
-	# suffix can't be more than 5 digits
-	if len(gamertag.split("#")[1]) > 5:
-		return redirect("/settings/profile?error=" + 
-			escape("Gamertag Suffix cannot be more than 5 digits"))
-
-	# gamertag can't be more than 15 digits
-	if len(gamertag.split("#")[0]) > 15:
+	# Gamer Tag can't be more than 15 digits
+	if len(tag.split("#")[0]) > 15:
 		return redirect("/settings/profile?error=" +
-			escape("Gamertag must be less than 15 characters."))
+			escape("Gamer Tag must be less than 15 characters."))
 	
-	# gamertag can only have 1 space
-	gtag_arr = gamertag.split(" ")
+	# Gamer Tag can only have 1 space
+	gtag_arr = tag.split(" ")
 	if len(gtag_arr) > 2:
 		return redirect("/settings/profile?error=" +
-			escape("Gamertag can only have a single space."))
+			escape("Gamer Tag can only have a single space."))
 
-	# gamertag cannot start or end with a space, cannot start with a number
-	first_char = gamertag.split("#")[0][0]
-	last_char = gamertag.split("#")[0][-1] 
+	# Gamer Tag cannot start or end with a space, cannot start with a number
+	first_char = tag.split("#")[0][0]
+	last_char = tag.split("#")[0][-1] 
 	if first_char.isdigit():
 		return redirect("/settings/profile?error=" + 
-			escape("Gamertag cannot start with a number."))
+			escape("Gamer Tag cannot start with a number."))
 	if first_char == " " or last_char == " ":
 		return redirect("/settings/profile?error=" + 
-			escape("Gamertag cannot start or end with a space."))
+			escape("Gamer Tag cannot start or end with a space."))
 	
 	user = g.db.query(User).filter(User.id==v.id).first()
 	if not user:
 		abort(404)
 	
-	user.xbox_gamertag = gamertag
+	user.xbox_gamertag = tag
 
 	g.db.add(user)
 	g.db.commit()
 
-	return render_template("settings_profile.html", v=v, msg="Xbox Gamertag updated.")
+	return render_template("settings_profile.html", v=v, msg="Xbox Gamer Tag updated.")
 
 @app.post("/settings/add_psn_name")
 @auth_required
