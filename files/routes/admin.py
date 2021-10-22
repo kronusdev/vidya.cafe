@@ -230,6 +230,14 @@ def add_badge_to_site(v):
 	g.db.add(new_badge)
 	return redirect("/admin/badge_grant")
 
+@app.post("/admin/update_badges_sitewide")
+@admin_level_required(4)
+def update_badges_sitewide(v):
+	users = g.db.query(User)
+	for v in users:
+		v.refresh_selfset_badges()
+	return "OK", 200
+
 @app.get("/admin/donations")
 @admin_level_required(4)
 def list_donations(v):
