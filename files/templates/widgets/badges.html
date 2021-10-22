@@ -2,7 +2,7 @@
 	{% for b in u.badges %}
 	{% if b.url %}
 	<a href="{{b.url}}"><img style="width: 60px; height: 60px" src="{{b.path}}"
-			data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+			data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{b.name}} - {{b.text}}"
 			data-original-title="{{b.name}} - {{b.text}}"></a>
 	{% else %}
 	<img style="width: 60px; height: 60px" src="{{b.path}}" data-bs-toggle="tooltip"
