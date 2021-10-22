@@ -41,7 +41,7 @@
 
 
 			<label for="input-username">Username</label><br>
-			<input id="input-username" class="input" type="text" name="username" required>
+			<input id="input-username" class="input w-100" type="text" name="username" required>
 
 			<table class="table table-striped">
 				<thead class="bg-primary text-white">
@@ -65,10 +65,10 @@
 			</table>
 
 			<label for="input-url">URL</label><br>
-			<input id="input-url" class="input" type="text" name="url" placeholder="Optional">
+			<input id="input-url" class="input w-100" type="text" name="url" placeholder="Optional">
 
 			<label class="my-2" for="input-description">Custom description</label><br>
-			<input id="input-description" class="my-2 input" type="text" name="description"
+			<input id="input-description" class="my-2 input w-100" type="text" name="description"
 				placeholder="Leave blank for badge default">
 
 			<input class="my-2 button" type="submit">
@@ -84,17 +84,22 @@
 <form action="/admin/add_badge_to_site" , method="post">
 	<label for="input-badge_name">Name</label><br>
 	<input id="input-badge_name" class="input w-100" type="text" name="badge_name" placeholder="Mandatory">
+	<hr>
 	<label for="input-badge_desc">Description</label><br>
 	<input id="input-badge_desc" class="input w-100" type="text" name="badge_desc" placeholder="Optional">
+	<hr>
 	<label for="input-badge_icon">Icon File (in badges folder in assets)</label><br>
 	<input id="input-badge_icon" class="input w-100" type="text" name="badge_icon" placeholder="Mandatory">
-	<label for="input-badge_kind">Badge Kind</label><br>
+	<hr>
+	<label for="input-badge_kind">Badge Kind (1 - Unlockable, 3 - Granted, 4 - Unobtainable)</label><br>
 	<input id="input-badge_kind" class="input w-100" type="text" name="badge_kind" placeholder="Optional">
+	<hr>
 	<label for="input-badge_rank">Badge Rank</label><br>
 	<input id="input-badge_rank" class="input w-100" type="text" name="badge_rank" placeholder="Optional">
-	<label for="input-badge_qualification_expr">Qualification Expr (?)</label><br>
-	<input id="input-badge_qualification_expr" class="input" type="text" name="badge_qualification_expr"
-		placeholder="idk what this is lol">
+	<hr>
+	<label for="input-badge_qualification_expr">Qualification Expr (This expression gets evaluated when refreshing badges. For example <code>v.coins >= 50</code>)</label>
+	<input id="input-badge_qualification_expr" class="input w-100" type="text" name="badge_qualification_expr"
+		placeholder='Leave empty by default'>
 	<input class="my-2 button" type="submit">
 </form>
 </div>
