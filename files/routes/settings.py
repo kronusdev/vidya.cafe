@@ -160,6 +160,7 @@ def settings_profile_post(v):
 		if theme == "coffee": v.themecolor = "805ad5"
 		elif theme == "4chan": v.themecolor = "38a169"
 		elif theme =="hackernews": v.themecolor = "ff6600"
+		elif theme == "haloween": v.background = "/assets/images/custombackgrounds/other/bg-6"
 		elif theme == "win98": 
 			v.themecolor = "00007b"
 			v.background = "/assets/images/custombackgrounds/other/bg-5"

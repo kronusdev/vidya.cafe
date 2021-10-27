@@ -4,7 +4,7 @@
 	--primary: var(--primary-color);
 	--secondary: var(--secondary-color);
 	--accent: #CA885F;
-	--dark: #2B353D;
+	--dark: #303030;
 	--danger: #E53E3E;
 	--actually-black: #000000;
 	
@@ -19,7 +19,7 @@
 	--black: #CFCFCF;
 	--light: #000000;
 	--muted: #E1E1E1;
-	--gray: #383838;
+	--gray: #303030;
 	--gray-100: #303030;
 	--gray-200: #303030;
 	--gray-300: #303030;
@@ -44,7 +44,7 @@
 	--gold: #ECC94B;
 	--reddit: #ED4630;
 	
-	--border-color: #1C2229;
+	--border-color: #303030;
 	--border-width: 4px;
 	--border-radius: 0.35rem;
 	
