@@ -10850,6 +10850,9 @@ body {
       display: grid;
       grid-template-columns: 1fr 4fr 1fr; } }
 
+a {
+  color: var(--primary); }
+
 @media (min-width: 768px) {
   /* width */
   ::-webkit-scrollbar {
@@ -11754,7 +11757,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   margin-left: 0; }
 
 .toggle-view .nav-link {
-  color: #2B353D;
+  color: var(--gray);
   font-size: 12px;
   font-weight: 600;
   padding: 0;
@@ -12057,7 +12060,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   color: var(--black); }
 
 .post-actions .dropdown-item:hover .fa, .post-actions .dropdown-item:hover .fas {
-  color: #2B353D; }
+  color: var(--gray); }
 
 .post-actions a:hover .fa, .post-actions a:hover .fas {
   color: var(--black); }
@@ -12072,7 +12075,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions .removeDropdownItem.dropdown-item:hover, .post-actions .removeDropdownItem.dropdown-item:focus, .post-actions .removeDropdownItem.dropdown-item.active {
   color: var(--white);
   text-decoration: none;
-  background-color: #ffc107; }
+  background-color: var(--warning); }
 
 .post-actions .removeDropdownItem.dropdown-item:hover .fas, .post-actions .removeDropdownItem.dropdown-item:focus .fas, .post-actions .removeDropdownItem.dropdown-item.active .fas, .post-actions .removeDropdownItem.dropdown-item:hover .far, .post-actions .removeDropdownItem.dropdown-item:focus .far, .post-actions .removeDropdownItem.dropdown-item.active .far
 .post-actions .removeDropdownItem.dropdown-item:hover .fa, .post-actions .removeDropdownItem.dropdown-item:focus .fa, .post-actions .removeDropdownItem.dropdown-item.active .fa {
@@ -12697,13 +12700,13 @@ ul.comment-section {
   font-size: 1rem; }
 
 .profile-actions a {
-  color: #2B353D;
+  color: var(--gray);
   text-decoration: none;
   font-size: 12px; }
 
 .profile-actions .fa, .profile-actions .fas, .profile-actions .far {
   font-size: 12px;
-  color: #2B353D; }
+  color: var(--gray); }
 
 .profile-actions .dropdown-item:hover {
   color: var(--black); }
@@ -12713,7 +12716,7 @@ ul.comment-section {
 
 .profile-actions .dropdown .dropdown-menu .dropdown-item .fa, .profile-actions .dropdown .dropdown-menu .dropdown-item .fas, .profile-actions .dropdown .dropdown-menu .dropdown-item .far {
   font-size: 12px;
-  color: #2B353D;
+  color: var(--gray);
   width: 1rem;
   margin-right: 0.5rem;
   text-align: center; }
@@ -13800,7 +13803,7 @@ img.emoji {
   padding: 5px; }
 
 .spoiler:hover {
-  color: #2B353D; }
+  color: var(--gray); }
 
 .comment .comment-collapse-desktop {
   padding-right: 12px;

@@ -161,6 +161,10 @@ body {
 	}
 }
 
+a {
+	color: var(--primary);
+}
+
 // Scrollbar
 @media(min-width: 768px){
 	/* width */
@@ -1387,7 +1391,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 // Thread Card View
 
 .toggle-view .nav-link {
-	color: $gray;
+	color: var(--gray);
 	font-size: $small-font-size;
 	font-weight: $font-weight-bold;
 	padding: 0;
@@ -1769,7 +1773,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .post-actions .dropdown-item:hover .fa, .post-actions .dropdown-item:hover .fas {
-	color: $gray;
+	color: var(--gray);
 }
 
 .post-actions a:hover .fa, .post-actions a:hover .fas {
@@ -1788,7 +1792,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions .removeDropdownItem.dropdown-item:hover, .post-actions .removeDropdownItem.dropdown-item:focus, .post-actions .removeDropdownItem.dropdown-item.active {
 	color: var(--white);
 	text-decoration: none;
-	background-color: $warning;
+	background-color: var(--warning);
 }
 
 .post-actions .removeDropdownItem.dropdown-item:hover .fas, .post-actions .removeDropdownItem.dropdown-item:focus .fas, .post-actions .removeDropdownItem.dropdown-item.active .fas, .post-actions .removeDropdownItem.dropdown-item:hover .far, .post-actions .removeDropdownItem.dropdown-item:focus .far, .post-actions .removeDropdownItem.dropdown-item.active .far
@@ -2651,14 +2655,14 @@ ul.comment-section {
 // Profile Page
 
 .profile-actions a {
-	color: $gray;
+	color: var(--gray);
 	text-decoration: none;
 	font-size: $small-font-size;
 }
 
 .profile-actions .fa, .profile-actions .fas, .profile-actions .far {
 	font-size: $small-font-size;
-	color: $gray;
+	color: var(--gray);
 }
 
 .profile-actions .dropdown-item:hover {
@@ -2671,7 +2675,7 @@ ul.comment-section {
 
 .profile-actions .dropdown .dropdown-menu .dropdown-item .fa, .profile-actions .dropdown .dropdown-menu .dropdown-item .fas, .profile-actions .dropdown .dropdown-menu .dropdown-item .far {
 	font-size: $small-font-size;
-	color: $gray;
+	color: var(--gray);
 	width: 1rem;
 	margin-right: 0.5rem;
 	text-align: center;
@@ -3675,7 +3679,7 @@ img.emoji {
 }
 
 .spoiler:hover {
-	color: $gray;
+	color: var(--gray);
 }
 
 //@media (min-width: 768px) {
