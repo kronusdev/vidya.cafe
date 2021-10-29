@@ -401,15 +401,16 @@ def add_xbox_gamertag(v):
 	tag = request.form.get("gamertag", "").strip()
 
 	# if there is a suffix
-	if len(tag.split("#")) == 1:
-		# suffix can only be numeric
-		if not tag.split("#")[1].isdigit():
-			return redirect("/settings/profile?error=" + 
-				escape("Gamer Tag Suffix must be all numbers"))
-		# suffix can't be more than 5 digits
-		if len(tag.split("#")[1]) > 5:
-			return redirect("/settings/profile?error=" + 
-				escape("Gamer Tag Suffix cannot be more than 5 digits"))
+	if ('#' in tag):
+		if len(tag.split("#")) == 1:
+			# suffix can only be numeric
+			if not tag.split("#")[1].isdigit():
+				return redirect("/settings/profile?error=" + 
+					escape("Gamer Tag Suffix must be all numbers"))
+			# suffix can't be more than 5 digits
+			if len(tag.split("#")[1]) > 5:
+				return redirect("/settings/profile?error=" + 
+					escape("Gamer Tag Suffix cannot be more than 5 digits"))
 
 	# Gamer Tag can't be more than 15 digits
 	if len(tag.split("#")[0]) > 15:
