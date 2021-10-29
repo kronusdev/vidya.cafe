@@ -10853,6 +10853,9 @@ body {
 a {
   color: var(--primary); }
 
+a:hover, a:focus {
+  color: var(--primary); }
+
 @media (min-width: 768px) {
   /* width */
   ::-webkit-scrollbar {

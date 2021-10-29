@@ -65,3 +65,40 @@
 	--none-tag: #E1E1E1;
 }
 
+/*@font-face {
+	font-family: "Haloween";
+	src: url(/assets/images/haloween/griffy.regular.ttf);
+}*/
+
+@font-face {
+	font-family: "Body Font"
+	src: url(/assets/images/haloween/DejaVuSerif.ttf);
+}
+
+body {
+	font-family: "DejaVu Serif", "Body Font";
+}
+
+.arrow-up:before {
+	content: "\f6e2" !important
+}
+
+.arrow-down:before {
+	content: "\f6e2" !important
+}
+
+/*.navbar::after {
+	background: url("/assets/images/haloween/blood.gif");
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	content: '';
+	opacity: 0.3;
+	z-index: -1;
+}
+
+.navbar {
+	background: linear-gradient(180deg, #2f0202, var(--gray-500));
+}*/
