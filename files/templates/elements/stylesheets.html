@@ -7,6 +7,9 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 <link rel="stylesheet" href="/assets/style/main.css">
 {% if v %}
 <link rel="stylesheet" href="/assets/style/{{v.theme}}.css">
+{% if v.css %}
+	<link rel="stylesheet" href="/@{{v.username}}/css">
+{% endif %}
 <style>
 	:root {
 		--primary-color: #{{ v.themecolor }};
