@@ -26,15 +26,15 @@
 
 									<label for="new_password" class="mb-0 w-lg-25">New Password</label>
 
-									<input class="input w-lg-100" id="new_password"
+									<input class="input w-100" id="new_password"
 									aria-describedby="new_password" type="password" name="new_password" autocomplete="off"
 									required>
 									<small id="passwordHelpChange"
-									class="form-text font-weight-bold text-muted d-none mt-1 w-lg-100">Minimum of 8
+									class="form-text font-weight-bold text-muted d-none mt-1 w-100">Minimum of 8
 									characters
 									required.</small>
 									<small id="passwordHelpChangeSuccess"
-									class="form-text font-weight-bold text-success d-none mt-1 w-lg-100">Your password
+									class="form-text font-weight-bold text-success d-none mt-1 w-100">Your password
 									meets the
 									requirements.
 								</small>
@@ -45,7 +45,7 @@
 
 								<label for="cnf_password" class="mb-0 w-lg-25">Confirm New Password</label>
 
-								<input class="input w-lg-100" id="cnf_password"
+								<input class="input w-100" id="cnf_password"
 								aria-describedby="cnf_password" type="password" name="cnf_password" autocomplete="off"
 								required>
 
@@ -62,7 +62,7 @@
 
 							<label for="old_password" class="mb-0 w-lg-25">Old Password</label>
 
-							<input class="input mb-2 w-lg-100" id="old_password" autocomplete="off"
+							<input class="input mb-2 w-100" id="old_password" autocomplete="off"
 							aria-describedby="old_password" type="password" name="old_password"
 							required>
 
@@ -157,7 +157,7 @@
 				<div class="body w-lg-100">
 
 					<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input" id="2faToggle" name="2faToggle" onchange="$('#2faModal').modal('toggle')" {% if not mfa_secret %}checked=""{% endif %}>
+					<input type="checkbox" class="custom-control-input" id="2faToggle" name="2faToggle" data-bs-toggle="modal" data-bs-target="#twoFaModal" {% if not mfa_secret %}checked=""{% endif %}>
 					<label class="custom-control-label" for="2faToggle"></label>
 					</div>
 
@@ -217,7 +217,7 @@
 <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header p-2">
 				<h5 class="modal-title">Delete your {{"SITE_NAME" | app_config}} account</h5>
 				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true"><i class="far fa-times"></i></span>

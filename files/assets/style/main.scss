@@ -586,11 +586,11 @@ ol > li::before {
 	border-radius: var(--border-radius);
 }
 
-.navbar-light .navbar-nav .nav-link:active .fa, .navbar-light .navbar-nav .nav-link:active .fas, .navbar-light .navbar-nav .nav-link:active .far, .navbar-light .navbar-nav .nav-link:active .fab {
-	color: var(--primary);
-	text-align: center;
-	font-size: $font-size-base;
-}
+//.navbar-light .navbar-nav .nav-link:active .fa, .navbar-light .navbar-nav .nav-link:active .fas, .navbar-light .navbar-nav .nav-link:active .far, .navbar-light .navbar-nav .nav-link:active .fab {
+	//color: var(--primary);
+	//text-align: center;
+	//font-size: $font-size-base;
+//}
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
 	color: var(--accent);
@@ -1728,26 +1728,34 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	background-image: linear-gradient(180deg, #ffffff00 25%, var(--gray-400) 100%)!important;
 }
 
-.modal .post-actions .list-group-item {
-	border: none;
-	border-radius: var(--border-radius);
-	background-color: var(--gray-400);
+.modal {
+	.post-actions{
+		.list-group-item {
+			background-color: var(--gray-500);
+			border: none;
+			border-left: 1px var(--accent) solid;
+			border-radius: 0;
+			&:first-of-type {
+				border-radius: var(--border-radius) var(--border-radius) 0 0;
+			}
+			&:last-of-type {
+				border-radius: 0 0 var(--border-radius) var(--border-radius);
+			}
+		}
+		.list-group-item:focus, .list-group-item:hover {
+			background-color: var(--gray-300);
+		}
+		
+		a {
+			color: var(--black);
+			font-size: $font-size-base;
+		}
+		.fa, .fas, .far {
+			width: 1.25rem;
+			font-size: $font-size-base;
+		}
+	}
 }
-
-.modal .post-actions .list-group-item:focus, .modal .post-actions .list-group-item:hover {
-	background-color: var(--gray-300);
-}
-
-.modal .post-actions a {
-	color: var(--black);
-	font-size: $font-size-base;
-}
-
-.modal .post-actions .fa, .modal .post-actions .fas, .modal .post-actions .far {
-	width: 1.25rem;
-	font-size: $font-size-base;
-}
-
 .post-actions {
 	position: relative;
 	color: var(--muted);
@@ -1756,79 +1764,87 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	background-color: transparent;
 	padding: 0.5rem 0.5rem 0.25rem;
 	z-index: 3;
+	.fa, .fas, .far {
+		font-size: $small-font-size;
+		margin-right: .5rem;
+		width: 1rem;
+	}
+	a:hover .fa, a:hover .fas, a:hover .far, .copy-link:hover {
+		color: var(--black)
+	}
+	.voting	{
+		.fa, .fas, .far	{
+			color: inherit
+		}
+	}
+	.dropdown-item:active {
+		.fa, .fas, .far {
+			color: var(--black);
+		}
+	}
+	.dropdown-item:hover {
+		.fa, .fas, .far {
+			color: var(--gray);
+		}
+		color: var(--black);
+	}
+	.list-inline {
+		margin-bottom: 0;
+		
+		.list-inline-item {
+			margin-right: 1rem;
+			.dropdown-item {
+				font-size: $font-size-base;
+				&:active {
+					color: var(--white);
+				}
+			}
+		}
+		
+		.list-inline-item:last-child {
+			margin-right: 0;
+		}
+	}
+	a {
+		color: var(--accent);
+		text-decoration: none;
+		text-transform: none;
+		&:hover {
+			color: var(--black)
+		}
+	}
 }
 
-.post-actions .fa, .post-actions .fas, .post-actions .far {
-	font-size: $small-font-size;
-	margin-right: .5rem;
-	width: 1rem;
-}
+// NOTICE: `.removeDropdownItem` and `approveDropdownItem` are unused
+//.post-actions .removeDropdownItem.dropdown-item:hover, .post-actions .removeDropdownItem.dropdown-item:focus, .post-actions .removeDropdownItem.dropdown-item.active {
+	//color: var(--white);
+	//text-decoration: none;
+	//background-color: var(--warning);
+//}
 
-.post-actions .voting .fa, .post-actions .voting .fas, .post-actions .voting .far {
-	color: inherit;
-}
+//.post-actions .removeDropdownItem.dropdown-item:hover .fas, .post-actions .removeDropdownItem.dropdown-item:focus .fas, .post-actions .removeDropdownItem.dropdown-item.active .fas, .post-actions .removeDropdownItem.dropdown-item:hover .far, .post-actions .removeDropdownItem.dropdown-item:focus .far, .post-actions .removeDropdownItem.dropdown-item.active .far
+//.post-actions .removeDropdownItem.dropdown-item:hover .fa, .post-actions .removeDropdownItem.dropdown-item:focus .fa, .post-actions .removeDropdownItem.dropdown-item.active .fa {
+	//color: var(--white);
+//}
 
-.post-actions .fa-ellipsis-v {
-	font-size: $font-size-lg;
-}
+//.post-actions .approveDropdownItem.dropdown-item:hover, .post-actions .approveDropdownItem.dropdown-item:focus, .post-actions .approveDropdownItem.dropdown-item.active {
+	//color: var(--white);
+	//text-decoration: none;
+	//background-color: var(--success);
+//}
 
-.post-actions .dropdown-item:active .fa, .post-actions .dropdown-item:active .fas {
-	color: var(--black);
-}
+//.post-actions .approveDropdownItem.dropdown-item:hover .fas, .post-actions .approveDropdownItem.dropdown-item:focus .fas, .post-actions .approveDropdownItem.dropdown-item.active .fas, .post-actions .approveDropdownItem.dropdown-item:hover .far, .post-actions .approveDropdownItem.dropdown-item:focus .far, .post-actions .approveDropdownItem.dropdown-item.active .far
+//.post-actions .approveDropdownItem.dropdown-item:hover .fa, .post-actions .approveDropdownItem.dropdown-item:focus .fa, .post-actions .approveDropdownItem.dropdown-item.active .fa {
+	//color: var(--white);
+//}
 
-.post-actions .dropdown-item:hover .fa, .post-actions .dropdown-item:hover .fas {
-	color: var(--gray);
-}
 
-.post-actions a:hover .fa, .post-actions a:hover .fas {
-	color: var(--black);
-}
+// All of this
 
-.post-actions .copy-link:hover	{
-	color: var(--black);
-}
-
-.post-actions .fas.fa-ellipsis-h, .post-actions .far.fa-ellipsis-h {
-	font-size: $font-size-lg;
-	vertical-align: middle;
-}
-
-.post-actions .removeDropdownItem.dropdown-item:hover, .post-actions .removeDropdownItem.dropdown-item:focus, .post-actions .removeDropdownItem.dropdown-item.active {
-	color: var(--white);
-	text-decoration: none;
-	background-color: var(--warning);
-}
-
-.post-actions .removeDropdownItem.dropdown-item:hover .fas, .post-actions .removeDropdownItem.dropdown-item:focus .fas, .post-actions .removeDropdownItem.dropdown-item.active .fas, .post-actions .removeDropdownItem.dropdown-item:hover .far, .post-actions .removeDropdownItem.dropdown-item:focus .far, .post-actions .removeDropdownItem.dropdown-item.active .far
-.post-actions .removeDropdownItem.dropdown-item:hover .fa, .post-actions .removeDropdownItem.dropdown-item:focus .fa, .post-actions .removeDropdownItem.dropdown-item.active .fa {
-	color: var(--white);
-}
-
-.post-actions .approveDropdownItem.dropdown-item:hover, .post-actions .approveDropdownItem.dropdown-item:focus, .post-actions .approveDropdownItem.dropdown-item.active {
-	color: var(--white);
-	text-decoration: none;
-	background-color: var(--success);
-}
-
-.post-actions .approveDropdownItem.dropdown-item:hover .fas, .post-actions .approveDropdownItem.dropdown-item:focus .fas, .post-actions .approveDropdownItem.dropdown-item.active .fas, .post-actions .approveDropdownItem.dropdown-item:hover .far, .post-actions .approveDropdownItem.dropdown-item:focus .far, .post-actions .approveDropdownItem.dropdown-item.active .far
-.post-actions .approveDropdownItem.dropdown-item:hover .fa, .post-actions .approveDropdownItem.dropdown-item:focus .fa, .post-actions .approveDropdownItem.dropdown-item.active .fa {
-	color: var(--white);
-}
-
-.post-actions .list-inline {
-	margin-bottom: 0;
-}
-
-.post-actions .list-inline .list-inline-item {
-	margin-right: 1rem;
-}
-
-.post-actions .list-inline .list-inline-item:last-child {
-	margin-right: 0;
-}
-
-.close .far, .close .fab, .close .fal, .close .fas {
-	font-size: 1.25rem;
+.close{ 
+	.far, .fab, .fal, .fas {
+		font-size: 1.25rem;
+	}
 }
 
 // Small devices (landscape phones, less than 768px)
@@ -1882,82 +1898,69 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	font-weight: $font-weight-bold;
 	font-size: $small-font-size;
 	z-index: 3;
+	.fa, .fas, .far {
+		font-size: $small-font-size;
+		color: var(--muted);
+		margin-right: .5rem;
+		width: 1rem;
+		text-align: center;
+	}
+	.voting{
+		.fa, .fas, .far {
+			color: inherit;
+		}
+	}
+	.dropdown-item:active, .dropdown-item:hover, a:hover {
+		.fa, .fas, .far {
+			color: var(--black);
+		}
+	}
+	.copy-link:hover {
+		color: var(--black)
+	}
+	.list-inline {
+		margin-bottom: 0;
+		.list-inline-item {
+			margin-right: 1rem;
+			&:last-child {
+				margin-right: 0
+			}
+		}
+	}
+	a {
+		font-size: $font-size-base;
+	}
+	&:hover, &:focus {
+		z-index: 4;
+	}
+	.comments, .share, .save, .flag {
+		margin-right: 0.5rem;
+		vertical-align: top;
+	}
 }
+// NOTICE: This is unused
+//.dropdown-actions .removeDropdownItem.dropdown-item:hover, .dropdown-actions .removeDropdownItem.dropdown-item:focus, .dropdown-actions .removeDropdownItem.dropdown-item.active {
+	//color: var(--white);
+	//text-decoration: none;
+	//background-color: $warning;
+//}
 
-.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
-	font-size: $small-font-size;
-	color: var(--muted);
-	margin-right: .5rem;
-	width: 1rem;
-	text-align: center;
-}
+//.dropdown-actions .removeDropdownItem.dropdown-item:hover .fas, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fas, .dropdown-actions .removeDropdownItem.dropdown-item.active .fas, .dropdown-actions .removeDropdownItem.dropdown-item:hover .far, .dropdown-actions .removeDropdownItem.dropdown-item:focus .far, .dropdown-actions .removeDropdownItem.dropdown-item.active .far
+//.dropdown-actions .removeDropdownItem.dropdown-item:hover .fa, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fa, .dropdown-actions .removeDropdownItem.dropdown-item.active .fa {
+	//color: var(--white);
+//}
 
-.dropdown-actions .voting .fa, .dropdown-actions .voting .fas, .dropdown-actions .voting .far {
-	color: inherit;
-}
+//.dropdown-actions .approveDropdownItem.dropdown-item:hover, .dropdown-actions .approveDropdownItem.dropdown-item:focus, .dropdown-actions .approveDropdownItem.dropdown-item.active {
+	//color: var(--white);
+	//text-decoration: none;
+	//background-color: var(--success);
+//}
 
-.dropdown-actions .fa-ellipsis-v {
-	font-size: $font-size-lg;
-}
+//.dropdown-actions .approveDropdownItem.dropdown-item:hover .fas, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fas, .dropdown-actions .approveDropdownItem.dropdown-item.active .fas, .dropdown-actions .approveDropdownItem.dropdown-item:hover .far, .dropdown-actions .approveDropdownItem.dropdown-item:focus .far, .dropdown-actions .approveDropdownItem.dropdown-item.active .far
+//.dropdown-actions .approveDropdownItem.dropdown-item:hover .fa, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fa, .dropdown-actions .approveDropdownItem.dropdown-item.active .fa {
+	//color: var(--white);
+//}
 
-.dropdown-actions .dropdown-item:active .fa, .dropdown-actions .dropdown-item:active .fas {
-	color: var(--black);
-}
-
-.dropdown-actions .dropdown-item:hover .fa, .dropdown-actions .dropdown-item:hover .fas {
-	color: var(--black);
-}
-
-.dropdown-actions a:hover .fa, .dropdown-actions a:hover .fas {
-	color: var(--black);
-}
-
-.dropdown-actions:hover, .dropdown-actions:focus {
-	z-index: 4;
-}
-
-.dropdown-actions .copy-link:hover	{
-	color: var(--black);
-}
-
-.dropdown-actions .fas.fa-ellipsis-h, .dropdown-actions .far.fa-ellipsis-h {
-	font-size: $font-size-lg;
-	vertical-align: middle;
-}
-
-.dropdown-actions .removeDropdownItem.dropdown-item:hover, .dropdown-actions .removeDropdownItem.dropdown-item:focus, .dropdown-actions .removeDropdownItem.dropdown-item.active {
-	color: var(--white);
-	text-decoration: none;
-	background-color: $warning;
-}
-
-.dropdown-actions .removeDropdownItem.dropdown-item:hover .fas, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fas, .dropdown-actions .removeDropdownItem.dropdown-item.active .fas, .dropdown-actions .removeDropdownItem.dropdown-item:hover .far, .dropdown-actions .removeDropdownItem.dropdown-item:focus .far, .dropdown-actions .removeDropdownItem.dropdown-item.active .far
-.dropdown-actions .removeDropdownItem.dropdown-item:hover .fa, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fa, .dropdown-actions .removeDropdownItem.dropdown-item.active .fa {
-	color: var(--white);
-}
-
-.dropdown-actions .approveDropdownItem.dropdown-item:hover, .dropdown-actions .approveDropdownItem.dropdown-item:focus, .dropdown-actions .approveDropdownItem.dropdown-item.active {
-	color: var(--white);
-	text-decoration: none;
-	background-color: var(--success);
-}
-
-.dropdown-actions .approveDropdownItem.dropdown-item:hover .fas, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fas, .dropdown-actions .approveDropdownItem.dropdown-item.active .fas, .dropdown-actions .approveDropdownItem.dropdown-item:hover .far, .dropdown-actions .approveDropdownItem.dropdown-item:focus .far, .dropdown-actions .approveDropdownItem.dropdown-item.active .far
-.dropdown-actions .approveDropdownItem.dropdown-item:hover .fa, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fa, .dropdown-actions .approveDropdownItem.dropdown-item.active .fa {
-	color: var(--white);
-}
-
-.dropdown-actions .list-inline {
-	margin-bottom: 0;
-}
-
-.dropdown-actions .list-inline .list-inline-item {
-	margin-right: 1rem;
-}
-
-.dropdown-actions .list-inline .list-inline-item:last-child {
-	margin-right: 0;
-}
 
 // Guilds
 
@@ -1972,36 +1975,18 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	padding: 0;
 	display: flex;
 	align-items: center;
-	z-index: 1
-
-}
-
-//.jumbotron-guild .guild-banner-contents {
-	//display: none;
-//}
-
-.jumbotron-guild .jumbotron-overlay {
-	background-color: transparent;
-	// background-image: linear-gradient(180deg, #fff0 0%, rgba(0, 0, 0, 0.8) 50%);
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	bottom: 0;
-	left: 0;
-	z-index: -1;
-	pointer-events: none;
-}
-
-//.jumbotron-guild .guild-icon-square-lg {
-	//height: 125px;
-	//width: 125px;
-	//object-fit: cover;
-	//border-radius: var(--border-radius);
-	//border: 5px solid var(--white);
-//}
-
-.guild-description p {
-	margin-bottom: 0.5rem;
+	z-index: 1;
+	.jumbotron-overlay {
+		background-color: transparent;
+		// background-image: linear-gradient(180deg, #fff0 0%, rgba(0, 0, 0, 0.8) 50%);
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		pointer-events: none;
+	}
 }
 
 // Pagination
@@ -2029,36 +2014,20 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
-	.post-actions .list-inline .list-inline-item {
-	margin-right: 1.5rem;
+	.post-actions {
+		.list-inline {
+			.list-inline-item {
+				margin-right: 1.5rem;
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+	}
 }
 
-.post-actions .list-inline .list-inline-item:last-child {
-	margin-right: 0;
-}
-}
 
-.post-actions .list-inline .list-inline-item .dropdown-item {
-	font-size: $font-size-base;
-}
 
-.post-actions .list-inline .list-inline-item .dropdown-item:active {
-	color: var(--white);
-}
-
-.post-actions a {
-	color: var(--accent);
-	text-decoration: none;
-	text-transform: none;
-}
-
-.post-actions a:hover {
-	color: var(--black);
-}
-
-.post-actions .dropdown-item:hover {
-	color: var(--black);
-}
 
 .post-img {
 	width: 100px;
@@ -2129,11 +2098,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 }
 
-.post-actions .comments, .post-actions .share, .post-actions .save, .post-actions .flag {
-	margin-right: .5rem;
-	vertical-align: top;
 
-}
 
 .time-stamp, .points {
 	color: var(--muted);
@@ -2166,14 +2131,16 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	overflow: hidden;
 }
 
-#notifications .comment, #userpage .comment {
-	margin-top: 0.5rem;
-	margin-bottom: 1rem;
+#notifications, #userpage {
+	.comment {
+		margin-top: 0.5rem;
+		margin-bottom: 1rem;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	};
 }
 
-#notifications .comment:last-child, #userpage .comment:last-child {
-	margin-bottom: 0;
-}
 
 .comment .comment-profile {
 	margin: 1rem;
@@ -3431,13 +3398,7 @@ body, #settings, #notifications, #submit {
 	color: var(--downvote);
 }
 
-.dropdown-actions a {
-	font-size: $font-size-base;
-}
 
-.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
-	font-size: $font-size-base;
-}
 
 
 // Comments
