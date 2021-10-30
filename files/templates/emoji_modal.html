@@ -2,7 +2,7 @@
 <div class="modal fade" id="emojiModal" tabindex="-1" role="dialog" aria-labelledby="emojiModalTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered p-1" role="document">
 		<div class="modal-content" id="emojiTabs">
-			<div class="modal-header">
+			<div class="modal-header p-2">
 				<div>
 					<ul class="nav nav-pills py-2">
 						<li class="nav-item">
@@ -19,11 +19,11 @@
 						</li>
 					</ul>
 				</div>
-				<input class="input mt-2 w-auto" type="text" id="emoji_search" placeholder="Search..">
-				<button type="button" class="close p-0 m-0" data-bs-dismiss="modal" aria-label="Close">
-					<i class="fal fa-times text-muted"></i>
+				<button type="button" class="close p-3" data-bs-dismiss="modal" aria-label="Close">
+					<i class="fas fa-times-circle text-muted"></i>
 				</button>
 			</div>
+			<input class="input m-2 w-auto" type="text" id="emoji_search" placeholder="Search..">
 			<div style="overflow-y: scroll;">
 				<div class="modal-body p-0" id="emoji-modal-body">
 					<div id="emoji-tab-search" class="py-3 pl-2"></div>

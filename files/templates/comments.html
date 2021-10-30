@@ -366,17 +366,17 @@
 
 
 <!-- Comment Actions Modal -->
-<div class="modal fade d-md-none" id="actionsModal-{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
+<div class="modal fade modal-sm-bottom d-md-none" id="actionsModal-{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title h6">More options</h5>
-				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="far fa-times"></i></span>
+			<div class="modal-header p-2">
+				<h5 class="modal-title h6 ml-1">More options</h5>
+				<button type="button" class="close p-3" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<ul class="list-group comment-actions">
+				<ul class="list-group post-actions">
 
 					<li class="list-group-item"><a href="/sips?link={{c.fullname}}"><i class="fas fa-star"></i>Sips</a></li>
 

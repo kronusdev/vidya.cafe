@@ -12024,17 +12024,19 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-image: linear-gradient(180deg, #ffffff00 25%, var(--gray-400) 100%) !important; }
 
 .modal .post-actions .list-group-item {
+  background-color: var(--gray-500);
   border: none;
-  border-radius: var(--border-radius);
-  background-color: var(--gray-400); }
-
+  border-left: 1px var(--accent) solid;
+  border-radius: 0; }
+  .modal .post-actions .list-group-item:first-of-type {
+    border-radius: var(--border-radius) var(--border-radius) 0 0; }
+  .modal .post-actions .list-group-item:last-of-type {
+    border-radius: 0 0 var(--border-radius) var(--border-radius); }
 .modal .post-actions .list-group-item:focus, .modal .post-actions .list-group-item:hover {
   background-color: var(--gray-300); }
-
 .modal .post-actions a {
   color: var(--black);
   font-size: 1rem; }
-
 .modal .post-actions .fa, .modal .post-actions .fas, .modal .post-actions .far {
   width: 1.25rem;
   font-size: 1rem; }
@@ -12047,60 +12049,36 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-color: transparent;
   padding: 0.5rem 0.5rem 0.25rem;
   z-index: 3; }
-
-.post-actions .fa, .post-actions .fas, .post-actions .far {
-  font-size: 12px;
-  margin-right: .5rem;
-  width: 1rem; }
-
-.post-actions .voting .fa, .post-actions .voting .fas, .post-actions .voting .far {
-  color: inherit; }
-
-.post-actions .fa-ellipsis-v {
-  font-size: 1.25rem; }
-
-.post-actions .dropdown-item:active .fa, .post-actions .dropdown-item:active .fas {
-  color: var(--black); }
-
-.post-actions .dropdown-item:hover .fa, .post-actions .dropdown-item:hover .fas {
-  color: var(--gray); }
-
-.post-actions a:hover .fa, .post-actions a:hover .fas {
-  color: var(--black); }
-
-.post-actions .copy-link:hover {
-  color: var(--black); }
-
-.post-actions .fas.fa-ellipsis-h, .post-actions .far.fa-ellipsis-h {
-  font-size: 1.25rem;
-  vertical-align: middle; }
-
-.post-actions .removeDropdownItem.dropdown-item:hover, .post-actions .removeDropdownItem.dropdown-item:focus, .post-actions .removeDropdownItem.dropdown-item.active {
-  color: var(--white);
-  text-decoration: none;
-  background-color: var(--warning); }
-
-.post-actions .removeDropdownItem.dropdown-item:hover .fas, .post-actions .removeDropdownItem.dropdown-item:focus .fas, .post-actions .removeDropdownItem.dropdown-item.active .fas, .post-actions .removeDropdownItem.dropdown-item:hover .far, .post-actions .removeDropdownItem.dropdown-item:focus .far, .post-actions .removeDropdownItem.dropdown-item.active .far
-.post-actions .removeDropdownItem.dropdown-item:hover .fa, .post-actions .removeDropdownItem.dropdown-item:focus .fa, .post-actions .removeDropdownItem.dropdown-item.active .fa {
-  color: var(--white); }
-
-.post-actions .approveDropdownItem.dropdown-item:hover, .post-actions .approveDropdownItem.dropdown-item:focus, .post-actions .approveDropdownItem.dropdown-item.active {
-  color: var(--white);
-  text-decoration: none;
-  background-color: var(--success); }
-
-.post-actions .approveDropdownItem.dropdown-item:hover .fas, .post-actions .approveDropdownItem.dropdown-item:focus .fas, .post-actions .approveDropdownItem.dropdown-item.active .fas, .post-actions .approveDropdownItem.dropdown-item:hover .far, .post-actions .approveDropdownItem.dropdown-item:focus .far, .post-actions .approveDropdownItem.dropdown-item.active .far
-.post-actions .approveDropdownItem.dropdown-item:hover .fa, .post-actions .approveDropdownItem.dropdown-item:focus .fa, .post-actions .approveDropdownItem.dropdown-item.active .fa {
-  color: var(--white); }
-
-.post-actions .list-inline {
-  margin-bottom: 0; }
-
-.post-actions .list-inline .list-inline-item {
-  margin-right: 1rem; }
-
-.post-actions .list-inline .list-inline-item:last-child {
-  margin-right: 0; }
+  .post-actions .fa, .post-actions .fas, .post-actions .far {
+    font-size: 12px;
+    margin-right: .5rem;
+    width: 1rem; }
+  .post-actions a:hover .fa, .post-actions a:hover .fas, .post-actions a:hover .far, .post-actions .copy-link:hover {
+    color: var(--black); }
+  .post-actions .voting .fa, .post-actions .voting .fas, .post-actions .voting .far {
+    color: inherit; }
+  .post-actions .dropdown-item:active .fa, .post-actions .dropdown-item:active .fas, .post-actions .dropdown-item:active .far {
+    color: var(--black); }
+  .post-actions .dropdown-item:hover {
+    color: var(--black); }
+    .post-actions .dropdown-item:hover .fa, .post-actions .dropdown-item:hover .fas, .post-actions .dropdown-item:hover .far {
+      color: var(--gray); }
+  .post-actions .list-inline {
+    margin-bottom: 0; }
+    .post-actions .list-inline .list-inline-item {
+      margin-right: 1rem; }
+      .post-actions .list-inline .list-inline-item .dropdown-item {
+        font-size: 1rem; }
+        .post-actions .list-inline .list-inline-item .dropdown-item:active {
+          color: var(--white); }
+    .post-actions .list-inline .list-inline-item:last-child {
+      margin-right: 0; }
+  .post-actions a {
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: none; }
+    .post-actions a:hover {
+      color: var(--black); }
 
 .close .far, .close .fab, .close .fal, .close .fas {
   font-size: 1.25rem; }
@@ -12144,65 +12122,31 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   font-weight: 600;
   font-size: 12px;
   z-index: 3; }
-
-.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
-  font-size: 12px;
-  color: var(--muted);
-  margin-right: .5rem;
-  width: 1rem;
-  text-align: center; }
-
-.dropdown-actions .voting .fa, .dropdown-actions .voting .fas, .dropdown-actions .voting .far {
-  color: inherit; }
-
-.dropdown-actions .fa-ellipsis-v {
-  font-size: 1.25rem; }
-
-.dropdown-actions .dropdown-item:active .fa, .dropdown-actions .dropdown-item:active .fas {
-  color: var(--black); }
-
-.dropdown-actions .dropdown-item:hover .fa, .dropdown-actions .dropdown-item:hover .fas {
-  color: var(--black); }
-
-.dropdown-actions a:hover .fa, .dropdown-actions a:hover .fas {
-  color: var(--black); }
-
-.dropdown-actions:hover, .dropdown-actions:focus {
-  z-index: 4; }
-
-.dropdown-actions .copy-link:hover {
-  color: var(--black); }
-
-.dropdown-actions .fas.fa-ellipsis-h, .dropdown-actions .far.fa-ellipsis-h {
-  font-size: 1.25rem;
-  vertical-align: middle; }
-
-.dropdown-actions .removeDropdownItem.dropdown-item:hover, .dropdown-actions .removeDropdownItem.dropdown-item:focus, .dropdown-actions .removeDropdownItem.dropdown-item.active {
-  color: var(--white);
-  text-decoration: none;
-  background-color: #ffc107; }
-
-.dropdown-actions .removeDropdownItem.dropdown-item:hover .fas, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fas, .dropdown-actions .removeDropdownItem.dropdown-item.active .fas, .dropdown-actions .removeDropdownItem.dropdown-item:hover .far, .dropdown-actions .removeDropdownItem.dropdown-item:focus .far, .dropdown-actions .removeDropdownItem.dropdown-item.active .far
-.dropdown-actions .removeDropdownItem.dropdown-item:hover .fa, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fa, .dropdown-actions .removeDropdownItem.dropdown-item.active .fa {
-  color: var(--white); }
-
-.dropdown-actions .approveDropdownItem.dropdown-item:hover, .dropdown-actions .approveDropdownItem.dropdown-item:focus, .dropdown-actions .approveDropdownItem.dropdown-item.active {
-  color: var(--white);
-  text-decoration: none;
-  background-color: var(--success); }
-
-.dropdown-actions .approveDropdownItem.dropdown-item:hover .fas, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fas, .dropdown-actions .approveDropdownItem.dropdown-item.active .fas, .dropdown-actions .approveDropdownItem.dropdown-item:hover .far, .dropdown-actions .approveDropdownItem.dropdown-item:focus .far, .dropdown-actions .approveDropdownItem.dropdown-item.active .far
-.dropdown-actions .approveDropdownItem.dropdown-item:hover .fa, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fa, .dropdown-actions .approveDropdownItem.dropdown-item.active .fa {
-  color: var(--white); }
-
-.dropdown-actions .list-inline {
-  margin-bottom: 0; }
-
-.dropdown-actions .list-inline .list-inline-item {
-  margin-right: 1rem; }
-
-.dropdown-actions .list-inline .list-inline-item:last-child {
-  margin-right: 0; }
+  .dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
+    font-size: 12px;
+    color: var(--muted);
+    margin-right: .5rem;
+    width: 1rem;
+    text-align: center; }
+  .dropdown-actions .voting .fa, .dropdown-actions .voting .fas, .dropdown-actions .voting .far {
+    color: inherit; }
+  .dropdown-actions .dropdown-item:active .fa, .dropdown-actions .dropdown-item:active .fas, .dropdown-actions .dropdown-item:active .far, .dropdown-actions .dropdown-item:hover .fa, .dropdown-actions .dropdown-item:hover .fas, .dropdown-actions .dropdown-item:hover .far, .dropdown-actions a:hover .fa, .dropdown-actions a:hover .fas, .dropdown-actions a:hover .far {
+    color: var(--black); }
+  .dropdown-actions .copy-link:hover {
+    color: var(--black); }
+  .dropdown-actions .list-inline {
+    margin-bottom: 0; }
+    .dropdown-actions .list-inline .list-inline-item {
+      margin-right: 1rem; }
+      .dropdown-actions .list-inline .list-inline-item:last-child {
+        margin-right: 0; }
+  .dropdown-actions a {
+    font-size: 1rem; }
+  .dropdown-actions:hover, .dropdown-actions:focus {
+    z-index: 4; }
+  .dropdown-actions .comments, .dropdown-actions .share, .dropdown-actions .save, .dropdown-actions .flag {
+    margin-right: 0.5rem;
+    vertical-align: top; }
 
 .jumbotron-guild {
   position: relative;
@@ -12216,19 +12160,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   display: flex;
   align-items: center;
   z-index: 1; }
-
-.jumbotron-guild .jumbotron-overlay {
-  background-color: transparent;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  pointer-events: none; }
-
-.guild-description p {
-  margin-bottom: 0.5rem; }
+  .jumbotron-guild .jumbotron-overlay {
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none; }
 
 .page-link {
   font-weight: 600;
@@ -12250,26 +12190,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 @media (max-width: 767.98px) {
   .post-actions .list-inline .list-inline-item {
     margin-right: 1.5rem; }
-
-  .post-actions .list-inline .list-inline-item:last-child {
-    margin-right: 0; } }
-.post-actions .list-inline .list-inline-item .dropdown-item {
-  font-size: 1rem; }
-
-.post-actions .list-inline .list-inline-item .dropdown-item:active {
-  color: var(--white); }
-
-.post-actions a {
-  color: var(--accent);
-  text-decoration: none;
-  text-transform: none; }
-
-.post-actions a:hover {
-  color: var(--black); }
-
-.post-actions .dropdown-item:hover {
-  color: var(--black); }
-
+    .post-actions .list-inline .list-inline-item:last-child {
+      margin-right: 0; } }
 .post-img {
   width: 100px;
   height: 70px;
@@ -12309,10 +12231,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     text-align: right;
     width: 100%;
     color: var(--white); } }
-.post-actions .comments, .post-actions .share, .post-actions .save, .post-actions .flag {
-  margin-right: .5rem;
-  vertical-align: top; }
-
 .time-stamp, .points {
   color: var(--muted); }
 
@@ -12340,9 +12258,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 #notifications .comment, #userpage .comment {
   margin-top: 0.5rem;
   margin-bottom: 1rem; }
-
-#notifications .comment:last-child, #userpage .comment:last-child {
-  margin-bottom: 0; }
+  #notifications .comment:last-child, #userpage .comment:last-child {
+    margin-bottom: 0; }
 
 .comment .comment-profile {
   margin: 1rem;
@@ -13625,12 +13542,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .active.arrow-down::before, .active.arrow-down:hover::before {
     color: var(--downvote); }
-
-  .dropdown-actions a {
-    font-size: 1rem; }
-
-  .dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
-    font-size: 1rem; }
 
   .comment-section {
     background-color: var(--gray-500); }
