@@ -3,6 +3,7 @@ import mistletoe
 import urllib.parse
 import gevent
 import time
+import json
 
 from files.helpers.wrappers import *
 from files.helpers.sanitize import *
@@ -694,15 +695,25 @@ def submit_post(v):
 
 	# check for embeddable video
 	domain = parsed_url.netloc
+	
+	# parse for poll options
+	options_n = 0
+	poll_options = json.loads("{}")
+	for option in re.finditer('\$\$([^$]*)\$\$', body): # $$TEXT$$
+		poll_options[f'{options_n}'] = [option.group(1), 0] # [option_text, n_of_votes_for_option]
+		options_n += 1
 
+	if options_n > 0:
+		poll_options['ids'] = {} # {'uid': 'option', ...}
+	#create new post
 	new_post = Submission(
 		private=bool(request.form.get("private","")),
 		author_id=v.id,
 		over_18=bool(request.form.get("over_18","")),
 		app_id=v.client.application.id if v.client else None,
-		is_bot = request.headers.get("X-User-Type","").lower()=="bot"
+		is_bot=request.headers.get("X-User-Type","").lower()=="bot",
+		poll_options=json.dumps(poll_options)
 	)
-
 	g.db.add(new_post)
 	g.db.flush()
 

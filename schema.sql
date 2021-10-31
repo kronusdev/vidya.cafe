@@ -85,7 +85,8 @@ CREATE TABLE public.submissions (
     thumburl text,
     private boolean,
     views integer,
-    is_bot boolean
+    is_bot boolean,
+    poll_options text
 );
 
 

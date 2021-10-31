@@ -99,6 +99,29 @@ def api_vote_post(post_id, new, v):
 	v.last_active = int(time.time());
 	return "", 204
 
+@app.post("/vote/post_poll/<pid>")
+@is_not_banned
+@validate_formkey
+def vote_on_post(pid, v):
+	post = get_post(pid)
+	poll_options = json.loads(post.poll_options)
+	option_n = request.args.get("option", 0)
+	
+	if f'{v.id}' not in poll_options['ids']:
+		poll_options['ids'][f'{v.id}'] = f'{option_n}'
+		poll_options[option_n][1] += 1
+	else:
+		o_voted_for = poll_options['ids'][f'{v.id}']
+		# unvote option
+		poll_options[o_voted_for][1] -= 1
+		# vote for new option
+		poll_options['ids'][f'{v.id}'] = f'{option_n}'
+		poll_options[option_n][1] += 1
+
+	post.poll_options = json.dumps(poll_options)
+	g.db.add(post)
+	return "OK", 200
+	
 @app.post("/vote/comment/<comment_id>/<new>")
 @is_not_banned
 @validate_formkey

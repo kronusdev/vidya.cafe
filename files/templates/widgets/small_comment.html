@@ -27,7 +27,7 @@
             <span class="time-edited"><span>&#183;</span> <span class="font-italic">Edited {{c.edited_string}}</span></span>
             {% endif %}
             <!-- Comment Body -->
-            <div class="mx-3">
+            <div class="m-2">
                 {{ c.body_html | safe}}
             </div>
             <li class="list-inline-item text-muted d-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}?context=99#context"><i class="mx-2 fas fa-copy"></i>Copy link</a></li>

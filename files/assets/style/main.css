@@ -11335,6 +11335,32 @@ th {
 .format .fa-image:hover {
   color: var(--black); }
 
+.poll-option {
+  position: relative;
+  background: var(--gray-100);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  height: 2.5rem;
+  margin: 0.4rem 0;
+  width: 100%;
+  cursor: pointer; }
+  .poll-option:hover .poll-bar, .poll-option:focus .poll-bar {
+    background: var(--primary); }
+
+.poll-bar {
+  height: 100%;
+  background: var(--secondary);
+  border-radius: var(--border-radius);
+  opacity: 0.5;
+  transition: 0.15s background; }
+
+.poll-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0.5rem; }
+
 .voting {
   position: relative;
   z-index: 2;

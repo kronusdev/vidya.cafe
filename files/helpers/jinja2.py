@@ -71,6 +71,14 @@ def unix_to_hours(s):
 		return 0
     #return time.ctime(s) # datetime.datetime.fromtimestamp(s)
 
+@app.template_filter('as_json')
+def str_as_json(s):
+	return json.loads(s)
+
+@app.template_filter('len')
+def lengg(a):
+	return len(a)
+
 @app.template_filter('darken_hex')
 @cache.memoize(timeout=60 * 60 * 24)
 def darken_hex(s):
