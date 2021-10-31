@@ -6,10 +6,14 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 
 <link rel="stylesheet" href="/assets/style/main.css">
 {% if v %}
+
+<meta name="msapplication-TileColor" content="#{{v.themecolor}}">
+<meta name="theme-color" content="#{{v.themecolor}}">
+
 <link rel="stylesheet" href="/assets/style/{{v.theme}}.css">
-{% if v.css %}
-	<link rel="stylesheet" href="/@{{v.username}}/css">
-{% endif %}
+	{% if v.css %}
+		<link rel="stylesheet" href="/@{{v.username}}/css">
+	{% endif %}
 <style>
 	:root {
 		--primary-color: #{{ v.themecolor }};
@@ -17,6 +21,10 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 	}
 </style>
 {% else %}
+
+<meta name="msapplication-TileColor" content="#47a3ff">
+<meta name="theme-color" content="#47a3ff">
+
 <link rel="stylesheet" href="/assets/style/dark.css">
 <style>
 	:root {

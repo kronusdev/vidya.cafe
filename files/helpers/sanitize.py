@@ -139,7 +139,7 @@ _clean_w_links = bleach.Cleaner(tags=_allowed_tags,
 								)
 
 
-def sanitize(text, linkgen=False, flair=False, noimages=False):
+def sanitize(text, linkgen=False, flair=False, noimages=False, polls=False):
 
 	text = text.replace("\ufeff", "").replace("m.youtube.com", "youtube.com")
 	
@@ -223,13 +223,13 @@ def sanitize(text, linkgen=False, flair=False, noimages=False):
 	start = '&lt;s&gt;'
 	end = '&lt;/s&gt;' 
 	if start in sanitized and end in sanitized and start in sanitized.split(end)[0] and end in sanitized.split(start)[1]: 			sanitized = sanitized.replace(start, '<span class="spoiler">').replace(end, '</span>')
-	
+	#emojis
 	if flair: emojisize = 20
 	else: emojisize = 30
 	for i in re.finditer(':(.{1,30}?):', sanitized):
 		if path.isfile(f'./files/assets/images/emojis/{i.group(1)}.gif'):
 			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-bs-toggle="tooltip" title="{i.group(1)}" delay="0" height={emojisize} src="https://{site}/assets/images/emojis/{i.group(1)}.gif"<span>')
-
+	# urls
 	sanitized = sanitized.replace("https://www.", "https://").replace("https://youtu.be/", "https://youtube.com/embed/").replace("https://music.youtube.com/watch?v=", "https://youtube.com/embed/").replace("/watch?v=", "/embed/").replace("https://open.spotify.com/", "https://open.spotify.com/embed/").replace("https://streamable.com/", "https://streamable.com/e/").replace("https://youtube.com/shorts/", "https://youtube.com/embed/")
 	
 	for i in re.finditer('<a href="(https://(streamable|youtube).com/(e|embed)/.*?)"', sanitized):
