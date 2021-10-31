@@ -1,6 +1,6 @@
 <!-- Navigation -->
 
-<nav class="navbar navbar-expand-md navbar-light fixed-top" id="navbar">
+<nav class="navbar navbar-expand-md navbar-styling fixed-top" id="navbar">
 	<div class="container-fluid">
 		<div class="flex-grow-1"><a href="/" class="navbar-brand"><img src="/assets/images/cafe.png" height="32"> Vidya.cafe<span class="text-small-extra text-uppercase"> kappa</span></a></div>
 		<div class="flex-grow-1 d-fl d-none d-md-block">
@@ -26,7 +26,7 @@
 		aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon {% if v and v.notifications_count %}position-relative{% endif %}"><i class="fal fa-bars text-white"></i>
 			{% if v and v.notifications_count %}
-				<span class="badge-count font-weight-bolder" style="right: -6px; font-size:18px;">{{v.notifications_count}}</span>
+				<span class="notif-count font-weight-bolder" style="right: -6px; font-size:18px;">{{v.notifications_count}}</span>
 			{% endif %}
 		</span>
 	</button>
