@@ -173,20 +173,6 @@ def post_id(pid, anything=None, v=None):
 	if request.headers.get("Authorization"): return post.json
 	else: return post.rendered_page(v=v, sort=sort)
 
-@app.post("/edit_post_tag/<pid>")
-@is_not_banned
-@validate_formkey
-def edit_post_tag(pid, v):
-	post = get_post(pid, v=v)
-	if not post.author_id == v.id or post.is_banned:
-		abort(403)
-	new_tag = request.args.get("new_tag", post.submission_aux.tag)
-	#return new_tag, 200
-	post.submission_aux.tag = new_tag
-	g.db.add(post)
-	
-	return "OK", 200
-
 @app.post("/edit_post/<pid>")
 @is_not_banned
 @validate_formkey
