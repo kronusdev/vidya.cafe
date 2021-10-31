@@ -73,7 +73,8 @@ def unix_to_hours(s):
 
 @app.template_filter('as_json')
 def str_as_json(s):
-	return json.loads(s)
+	if s == "": return json.loads("{}")
+	else: return json.loads(s)
 
 @app.template_filter('len')
 def lengg(a):
