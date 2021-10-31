@@ -284,7 +284,17 @@
 						<form id="post-edit-form-{{p.id}}" class="d-flex flex-column" action="/edit_post/{{p.id}}" method="post" class="input-group">
 							<input type="hidden" name="formkey" value="{{v.formkey}}">
 							<input type="hidden" name="current_page" value="{{request.path}}">
-                            <input name="title" class="input w-100" required placeholder="title" value="{{title}}" />
+							<div>
+							{% for tag in ["news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
+							<div style="width: max-content; display: inline-block;" class="tag-container">
+								<div class="{{tag}}-tag inline-block" style="width: max-content; position:relative;">
+									<input type="radio" id="{{tag}}-radio" onclick="updatePostTag('{{tag}}')" name="new_tag" value="{{tag}}" class="tag-radio">
+								</div>
+							</div>
+							{% endfor %}
+							</div>
+
+                            <input name="title" class="input w-100 my-0" required placeholder="title" value="{{title}}" />
 							<textarea name="body" id="post-edit-box-{{p.id}}" form="post-edit-form-{{p.id}}" class="comment-box input rounded" aria-label="With textarea" placeholder="Add text to your post..." rows="10">{{p.body}}</textarea> 
 							<div class="comment-format"> 
 								<small class="format pl-0"><i class="fas fa-bold" aria-hidden="true" onclick="makeBold('post-edit-box-{{p.id}}')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bold"></i></small> 

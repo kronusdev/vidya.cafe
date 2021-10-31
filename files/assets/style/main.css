@@ -11968,9 +11968,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   margin: 0 0.4rem;
   border-radius: var(--border-radius); }
 
-#thread .news-tag::before, #thread .oc-tag::before, #thread .video-tag::before, #thread .music-tag::before, #thread .picture-tag::before, #thread .meta-tag::before, #thread .discussion-tag::before {
-  margin: 0 1rem !important; }
-
 .stretched-link a:hover {
   color: var(--purple); }
 

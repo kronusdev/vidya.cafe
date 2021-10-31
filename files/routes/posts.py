@@ -159,34 +159,6 @@ def post_id(pid, anything=None, v=None):
 
 		post._preloaded_comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	post.views += 1
 	g.db.add(post)
 	g.db.commit()
@@ -201,13 +173,26 @@ def post_id(pid, anything=None, v=None):
 	if request.headers.get("Authorization"): return post.json
 	else: return post.rendered_page(v=v, sort=sort)
 
+@app.post("/edit_post_tag/<pid>")
+@is_not_banned
+@validate_formkey
+def edit_post_tag(pid, v):
+	post = get_post(pid, v=v)
+	if not post.author_id == v.id or post.is_banned:
+		abort(403)
+	new_tag = request.args.get("new_tag", post.submission_aux.tag)
+	#return new_tag, 200
+	post.submission_aux.tag = new_tag
+	g.db.add(post)
+	
+	return "OK", 200
 
 @app.post("/edit_post/<pid>")
 @is_not_banned
 @validate_formkey
 def edit_post(pid, v):
 
-	p = get_post(pid)
+	p = get_post(pid, v)
 
 	if not p.author_id == v.id:
 		abort(403)
@@ -269,7 +254,11 @@ def edit_post(pid, v):
 	title = request.form.get("title")
 	p.title = title
 	p.title_html = sanitize(title, flair=True)
+	
+	new_tag = request.form.get("new_tag", p.submission_aux.tag)
+	p.submission_aux.tag = new_tag
 
+	
 	if int(time.time()) - p.created_utc > 60 * 3: p.edited_utc = int(time.time())
 	g.db.add(p)
 
