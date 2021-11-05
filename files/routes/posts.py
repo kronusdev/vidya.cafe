@@ -783,7 +783,7 @@ def submit_post(v):
 		user = g.db.query(User).filter_by(username=username).first()
 		if user and not v.any_block_exists(user) and user.id != v.id: notify_users.add(user)
 
-	for x in notify_users: send_notification(1, x, f"@{v.username} has mentioned you: https://{site}{new_post.permalink}")
+	for x in notify_users: send_notification(1, x, f"@{v.username} has mentioned you: [https://{site}{new_post.permalink}]()")
 
 	if not new_post.private:
 		for follow in v.followers:
