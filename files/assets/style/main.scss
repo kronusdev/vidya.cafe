@@ -877,7 +877,6 @@ th {
 .poll-bar {
 	height:100%;
 	background: var(--secondary);
-	border-radius: var(--border-radius);
 	opacity: 0.5;
 	transition: 0.15s background;
 }
@@ -888,6 +887,10 @@ th {
 	left: 0;
 	margin: 0;
 	padding: 0.5rem;
+}
+
+.outline-primary {
+	outline: 2px solid var(--primary);
 }
 // Voting
 

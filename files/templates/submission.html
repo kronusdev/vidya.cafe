@@ -311,12 +311,17 @@
 					{% with poll_options = p.poll_options | as_json %}
 						{% if poll_options %}
 							<div id="post-poll">
+							{{ poll_options }}
 							{% for i, option in poll_options.items() recursive %}
 								{% if i != 'ids' %}
-									<div class="poll-option" onclick="post('/vote/post_poll/{{p.id}}?option={{i}}', callback=function(){window.location.reload(true)})">
+								{% with i = i | string %}
+								{% with vid = v.id | string %}
+									<div class="poll-option {% if poll_options['ids'][vid] == i %}outline-primary{%endif%}" onclick="post('/vote/post_poll/{{p.id}}?option={{i}}', callback=function(){window.location.reload(true)})">
 										<div class="poll-bar" style="width: calc({{option[1]}}/{{ poll_options['ids'] | len}} * 100%); "></div>
 										<p class="poll-text">{{option[0]}} - {{option[1]}} {% if option[1] == 1 %}Vote {% else %}Votes{% endif %}</p>
 									</div>
+								{% endwith %}
+								{% endwith %}
 								{% endif %}
 							{% endfor %}
 							</div>
