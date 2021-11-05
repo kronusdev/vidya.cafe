@@ -21,7 +21,7 @@
 		<div class="dropdown dropdown-actions mx-2">
 			<input type="hidden" name="formkey" value="0ef7e25732b473b5bffb0291b77dc812">
 			<button class="button dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<div class="all-tag d-inline-block"></div>
+				<div class="{{frontpage_tag}}-tag d-inline-block"></div>
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
 				{% for tag in ["all", "changelog", "news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news"] %}
@@ -32,46 +32,55 @@
 
 		<div class="dropdown dropdown-actions mx-2">
 			<button class="button dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				
-				
-				
-				
-				<i class="fas fa-infinity mr-1"></i>
-				All
+				{% if t=="hour" %}<i class="fas fa-clock mr-1"></i>{% endif %}
+				{% if t=="day" %}<i class="fas fa-calendar-day mr-1"></i>{% endif %}
+				{% if t=="week" %}<i class="fas fa-calendar-week mr-1"></i>{% endif %}
+				{% if t=="month" %}<i class="fas fa-calendar-alt mr-1"></i>{% endif %}
+				{% if t=="year" %}<i class="fas fa-calendar mr-1"></i>{% endif %}
+				{% if t=="all" %}<i class="fas fa-infinity mr-1"></i>{% endif %}
+				{{t | capitalize}}
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
-				<a class="dropdown-item" href="?sort=active&amp;t=hour&amp;frontpage_tag=all"><i class="fas fa-calendar-day mr-2"></i>Hour</a>
-				<a class="dropdown-item" href="?sort=active&amp;t=day&amp;frontpage_tag=all"><i class="fas fa-calendar-day mr-2"></i>Day</a>
-				<a class="dropdown-item" href="?sort=active&amp;t=week&amp;frontpage_tag=all"><i class="fas fa-calendar-week mr-2"></i>Week</a>
-				<a class="dropdown-item" href="?sort=active&amp;t=month&amp;frontpage_tag=all"><i class="fas fa-calendar-alt mr-2"></i>Month</a>
-				<a class="dropdown-item" href="?sort=active&amp;t=year&amp;frontpage_tag=all"><i class="fas fa-calendar mr-2"></i>Year</a>
-				
+				<a class="dropdown-item" href="?sort={{sort}}&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-infinity mr-2"></i>All</a>
+				<a class="dropdown-item" href="?sort={{sort}}&amp;t=year&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar mr-2"></i>Year</a>
+				<a class="dropdown-item" href="?sort={{sort}}&amp;t=month&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar-alt mr-2"></i>Month</a>
+				<a class="dropdown-item" href="?sort={{sort}}&amp;t=week&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar-week mr-2"></i>Week</a>
+				<a class="dropdown-item" href="?sort={{sort}}&amp;t=day&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-calendar-day mr-2"></i>Day</a>
+				<a class="dropdown-item" href="?sort={{sort}}&amp;t=hour&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-clock mr-2"></i>Hour</a>
 			</div>
 		</div>
 
 		
 		<div class="dropdown dropdown-actions mx-2">
 			<button class="button dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				
-				
-				
-				
-				
+				{% if sort=="hot" %}<i class="fas fa-fire mr-1"></i>{% endif %}
+				{% if sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
+				{% if sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
+				{% if sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}
+				{% if sort=="old" %}<i class="fas fa-book mr-1"></i>{% endif %}
+				{% if sort=="controversial" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
+				{% if sort=="comments" %}<i class="fas fa-comments mr-1"></i>{% endif %}
+				{% if sort=="active" %}<i class="fas fa-chart-line mr-1"></i>{% endif %}
+				{% if sort=="random" %}<i class="fas fa-random mr-1"></i>{% endif %}
+				{{sort | capitalize}}
+
+				<!--
 				
 				<i class="fas fa-chart-line mr-1"></i>
 				
-				Active
+				Active-->
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 32px, 0px);">
-				<a class="dropdown-item" href="?sort=hot&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-fire mr-2"></i>Hot</a>
-				<a class="dropdown-item" href="?sort=top&amp;t=all"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>
-				<a class="dropdown-item" href="?sort=bottom&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>
-				<a class="dropdown-item" href="?sort=new&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-sparkles mr-2"></i>New</a>
-				<a class="dropdown-item" href="?sort=old&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-book mr-2"></i>Old</a>
-				<a class="dropdown-item" href="?sort=controversial&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>
+				<a class="dropdown-item" href="?sort=active&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-chart-line mr-2"></i>Active</a>
+				<a class="dropdown-item" href="?sort=hot&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-fire mr-2"></i>Hot</a>
+				<a class="dropdown-item" href="?sort=top&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>
+				<a class="dropdown-item" href="?sort=bottom&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>
+				<a class="dropdown-item" href="?sort=new&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-sparkles mr-2"></i>New</a>
+				<a class="dropdown-item" href="?sort=old&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-book mr-2"></i>Old</a>
+				<a class="dropdown-item" href="?sort=controversial&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>
 				
-				<a class="dropdown-item" href="?sort=comments&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-comments mr-2"></i>Comments</a>
-				<a class="dropdown-item" href="?sort=random&amp;t=all&amp;frontpage_tag=all"><i class="fas fa-random mr-2"></i>Random</a>
+				<a class="dropdown-item" href="?sort=comments&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-comments mr-2"></i>Comments</a>
+				<a class="dropdown-item" href="?sort=random&amp;t=all&amp;frontpage_tag={{frontpage_tag}}"><i class="fas fa-random mr-2"></i>Random</a>
 			</div>
 		</div>
 	</div><ul class="list-inline no-bullets mb-0 d-none">
