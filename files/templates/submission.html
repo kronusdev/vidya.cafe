@@ -311,7 +311,6 @@
 					{% with poll_options = p.poll_options | as_json %}
 						{% if poll_options %}
 							<div id="post-poll">
-							{{ poll_options }}
 							{% for i, option in poll_options.items() recursive %}
 								{% if i != 'ids' %}
 								{% with i = i | string %}
