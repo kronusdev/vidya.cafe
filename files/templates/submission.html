@@ -313,16 +313,23 @@
 							<div id="post-poll">
 							{% for i, option in poll_options.items() recursive %}
 								{% if i != 'ids' %}
-								{% with i = i | string %}
-								{% with vid = v.id | string %}
-								{% with voted_option = poll_options['ids'][vid] %}
-									<div class="poll-option {% if voted_option == i %}outline-primary{%endif%}" onclick="post('/vote/post_poll/{{p.id}}?option={{i}}', callback=function(){window.location.reload(true)})">
-										<div class="poll-bar" {% if voted_option %}style="width: calc({{option[1]}}/{{ poll_options['ids'] | len}} * 100%);" {%endif%}></div>
-										<p class="poll-text">{{option[0]}} {% if voted_option %}- {{option[1]}} {% if option[1] == 1 %}Vote {% else %}Votes{% endif %}{% endif %}</p>
-									</div>
-								{% endwith %}
-								{% endwith %}
-								{% endwith %}
+									{% with i = i | string %}
+									{% with vid = v.id | string %}
+									{% with voted_option = poll_options['ids'][vid] %}
+									{% if v %}
+										<div class="poll-option {% if voted_option == i %}outline-primary{%endif%}" onclick="post('/vote/post_poll/{{p.id}}?option={{i}}', callback=function(){window.location.reload(true)})">
+											<div class="poll-bar" {% if voted_option %}style="width: calc({{option[1]}}/{{ poll_options['ids'] | len}} * 100%);" {%endif%}></div>
+											<p class="poll-text">{{option[0]}} {% if voted_option %}- {{option[1]}} {% if option[1] == 1 %}Vote {% else %}Votes{% endif %}{% endif %}</p>
+										</div>
+									{% else %}
+										<div class="poll-option {% if voted_option == i %}outline-primary{%endif%}" onclick="location.href='/signup';">
+											<div class="poll-bar" {% if voted_option %}style="width: calc({{option[1]}}/{{ poll_options['ids'] | len}} * 100%);" {%endif%}></div>
+											<p class="poll-text">{{option[0]}} {% if voted_option %}- {{option[1]}} {% if option[1] == 1 %}Vote {% else %}Votes{% endif %}{% endif %}</p>
+										</div>
+									{% endif %}
+									{% endwith %}
+									{% endwith %}
+									{% endwith %}
 								{% endif %}
 							{% endfor %}
 							</div>
