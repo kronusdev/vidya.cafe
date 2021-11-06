@@ -5,6 +5,7 @@ $theme-colors: (
 	"danger": $danger,
 	"dark": $dark,
 	"white": $white,
+	"opacity": $opacity,
 	"black": $black,
 	"light": $light,
 	"success": $success,
@@ -1978,7 +1979,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	display: flex;
 	position: relative;
 	margin-top: 2rem;
-    background: rgba(var(--gray-200), 0.4);
+	background: var(--opacity);
 	padding: 1rem !important;
 	border-radius: var(--border-radius) !important;
 	p {

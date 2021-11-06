@@ -16,6 +16,9 @@
 .bd-callout-white {
   border-left-color: #E1E1E1; }
 
+.bd-callout-opacity {
+  border-left-color: #ffffff08; }
+
 .bd-callout-black {
   border-left-color: #CFCFCF; }
 
@@ -112,6 +115,7 @@
   --dark: #2B353D;
   --accent: #86b9ec;
   --white: #E1E1E1;
+  --opacity: #ffffff08;
   --black: #CFCFCF;
   --muted: #E1E1E1;
   --downvote: #38B2AC;
@@ -1622,6 +1626,22 @@ pre {
   .table-hover .table-white:hover > th {
     background-color: #d4d4d4; }
 
+.table-opacity,
+.table-opacity > th,
+.table-opacity > td {
+  background-color: rgba(225, 225, 225, 0.7287843137); }
+.table-opacity th,
+.table-opacity td,
+.table-opacity thead th,
+.table-opacity tbody + tbody {
+  border-color: rgba(226, 226, 226, 0.4963137255); }
+
+.table-hover .table-opacity:hover {
+  background-color: rgba(212, 212, 212, 0.7287843137); }
+  .table-hover .table-opacity:hover > td,
+  .table-hover .table-opacity:hover > th {
+    background-color: rgba(212, 212, 212, 0.7287843137); }
+
 .table-black,
 .table-black > th,
 .table-black > td {
@@ -2625,6 +2645,30 @@ fieldset:disabled a.btn {
     .btn-white:not(:disabled):not(.disabled):active:focus, .btn-white:not(:disabled):not(.disabled).active:focus, .show > .btn-white.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(191, 191, 191, 0.5); }
 
+.btn-opacity {
+  color: #000000;
+  background-color: #ffffff08;
+  border-color: #ffffff08; }
+  .btn-opacity:hover {
+    color: #000000;
+    background-color: rgba(236, 236, 236, 0.031372549);
+    border-color: rgba(230, 230, 230, 0.031372549); }
+  .btn-opacity:focus, .btn-opacity.focus {
+    color: #000000;
+    background-color: rgba(236, 236, 236, 0.031372549);
+    border-color: rgba(230, 230, 230, 0.031372549);
+    box-shadow: 0 0 0 0.2rem rgba(21, 21, 21, 0.5); }
+  .btn-opacity.disabled, .btn-opacity:disabled {
+    color: #000000;
+    background-color: #ffffff08;
+    border-color: #ffffff08; }
+  .btn-opacity:not(:disabled):not(.disabled):active, .btn-opacity:not(:disabled):not(.disabled).active, .show > .btn-opacity.dropdown-toggle {
+    color: #000000;
+    background-color: rgba(230, 230, 230, 0.031372549);
+    border-color: rgba(223, 223, 223, 0.031372549); }
+    .btn-opacity:not(:disabled):not(.disabled):active:focus, .btn-opacity:not(:disabled):not(.disabled).active:focus, .show > .btn-opacity.dropdown-toggle:focus {
+      box-shadow: 0 0 0 0.2rem rgba(21, 21, 21, 0.5); }
+
 .btn-black {
   color: #000000;
   background-color: #CFCFCF;
@@ -3294,6 +3338,25 @@ fieldset:disabled a.btn {
     border-color: #E1E1E1; }
     .btn-outline-white:not(:disabled):not(.disabled):active:focus, .btn-outline-white:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-white.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(225, 225, 225, 0.5); }
+
+.btn-outline-opacity {
+  color: #ffffff08;
+  border-color: #ffffff08; }
+  .btn-outline-opacity:hover {
+    color: #000000;
+    background-color: #ffffff08;
+    border-color: #ffffff08; }
+  .btn-outline-opacity:focus, .btn-outline-opacity.focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5); }
+  .btn-outline-opacity.disabled, .btn-outline-opacity:disabled {
+    color: #ffffff08;
+    background-color: transparent; }
+  .btn-outline-opacity:not(:disabled):not(.disabled):active, .btn-outline-opacity:not(:disabled):not(.disabled).active, .show > .btn-outline-opacity.dropdown-toggle {
+    color: #000000;
+    background-color: #ffffff08;
+    border-color: #ffffff08; }
+    .btn-outline-opacity:not(:disabled):not(.disabled):active:focus, .btn-outline-opacity:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-opacity.dropdown-toggle:focus {
+      box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5); }
 
 .btn-outline-black {
   color: #CFCFCF;
@@ -5196,6 +5259,16 @@ input[type="button"].btn-block {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(225, 225, 225, 0.5); }
 
+.badge-opacity {
+  color: #000000;
+  background-color: #ffffff08; }
+  a.badge-opacity:hover, a.badge-opacity:focus {
+    color: #000000;
+    background-color: rgba(230, 230, 230, 0.031372549); }
+  a.badge-opacity:focus, a.badge-opacity.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5); }
+
 .badge-black {
   color: #000000;
   background-color: #CFCFCF; }
@@ -5521,6 +5594,15 @@ input[type="button"].btn-block {
     border-top-color: #d4d4d4; }
   .alert-white .alert-link {
     color: #bfbfbf; }
+
+.alert-opacity {
+  color: rgba(208, 208, 208, 0.4963137255);
+  background-color: rgba(225, 225, 225, 0.8062745098);
+  border-color: rgba(225, 225, 225, 0.7287843137); }
+  .alert-opacity hr {
+    border-top-color: rgba(212, 212, 212, 0.7287843137); }
+  .alert-opacity .alert-link {
+    color: rgba(183, 183, 183, 0.4963137255); }
 
 .alert-black {
   color: #cfcfcf;
@@ -5995,6 +6077,17 @@ input[type="button"].btn-block {
     color: #E1E1E1;
     background-color: #d8d8d8;
     border-color: #d8d8d8; }
+
+.list-group-item-opacity {
+  color: rgba(208, 208, 208, 0.4963137255);
+  background-color: rgba(225, 225, 225, 0.7287843137); }
+  .list-group-item-opacity.list-group-item-action:hover, .list-group-item-opacity.list-group-item-action:focus {
+    color: rgba(208, 208, 208, 0.4963137255);
+    background-color: rgba(212, 212, 212, 0.7287843137); }
+  .list-group-item-opacity.list-group-item-action.active {
+    color: #E1E1E1;
+    background-color: rgba(208, 208, 208, 0.4963137255);
+    border-color: rgba(208, 208, 208, 0.4963137255); }
 
 .list-group-item-black {
   color: #cfcfcf;
@@ -6861,6 +6954,9 @@ a.close.disabled {
 .bg-white {
   background-color: var(--white) !important; }
 
+.bg-opacity {
+  background-color: var(--opacity) !important; }
+
 .bg-black {
   background-color: var(--black) !important; }
 
@@ -6986,6 +7082,9 @@ a.close.disabled {
 
 .border-white {
   border-color: #E1E1E1 !important; }
+
+.border-opacity {
+  border-color: #ffffff08 !important; }
 
 .border-black {
   border-color: #CFCFCF !important; }
@@ -10664,6 +10763,9 @@ a.close.disabled {
 .text-white {
   color: var(--white) !important; }
 
+.text-opacity {
+  color: var(--opacity) !important; }
+
 .text-black {
   color: var(--black) !important; }
 
@@ -12099,7 +12201,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   display: flex;
   position: relative;
   margin-top: 2rem;
-  background: rgba(var(--gray-200), 0.4);
+  background: var(--opacity);
   padding: 1rem !important;
   border-radius: var(--border-radius) !important; }
   .comment p {
