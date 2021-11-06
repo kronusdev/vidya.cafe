@@ -61,6 +61,7 @@
 				{% endif %}
 				{% if v and v.admin_level==6 and p.author.shadowbanned %}<i class="fas fa-user-times text-admin" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Shadowbanned user"></i>&nbsp;{% endif %}
 				{% if p.stickied %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Pinned post"></i>&nbsp;{% endif %}
+				{% if p.poll_options and p.poll_options != "{}" %}<i class="fas fa-poll-h text-admin" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Poll in post"></i>{% endif %}
 				{% if p.distinguish_level %}<i class="fas fa-broom text-admin" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-original-title="{{"SITE_NAME" | app_config}} Admin, speaking officially"></i>&nbsp;{% endif %}
 				{% if p.is_pinned and request.path.startswith('/@') %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Pinned to profile"></i>&nbsp;{% endif %}
 				{% if p.over_18 %}&nbsp;<span class="badge badge-danger text-small-extra mr-1">NSFW</span>{% endif %}

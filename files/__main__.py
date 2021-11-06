@@ -55,10 +55,10 @@ app.jinja_env.cache = {}
 
 app.config["UserAgent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
 
-if "localhost" in app.config["SERVER_NAME"]:
-	app.config["CACHE_TYPE"] = "null"
-else:
-	app.config["CACHE_TYPE"] = "filesystem"
+#if "localhost" in app.config["SERVER_NAME"]:
+	#app.config["CACHE_TYPE"] = "null"
+#else:
+app.config["CACHE_TYPE"] = "filesystem"
 
 app.config["CACHE_DIR"] = environ.get("CACHE_DIR", "cache")
 
