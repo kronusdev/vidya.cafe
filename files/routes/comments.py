@@ -226,7 +226,7 @@ def api_comment(v):
 		if any([x.reason==4 for x in bans]):
 			v.ban(days=30, reason="Digitally malicious content")
 		if any([x.reason==7 for x in bans]):
-			v.ban(reason="Sexualizing minors")
+			v.ban( reason="Sexualizing minors")
 		return jsonify({"error": reason}), 401
 
 	# check existing
