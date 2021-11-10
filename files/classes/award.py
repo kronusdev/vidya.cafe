@@ -31,14 +31,16 @@ class AwardRelationship(Base):
 	comment_id = Column(Integer, ForeignKey("comments.id"), default=None)
 	kind = Column(String(20))
 
-	user = relationship("User", primaryjoin="AwardRelationship.user_id==User.id")
+	user = relationship("User", primaryjoin="AwardRelationship.user_id==User.id", lazy="joined")
 	post = relationship(
 		"Submission",
-		primaryjoin="AwardRelationship.submission_id==Submission.id"
+		primaryjoin="AwardRelationship.submission_id==Submission.id",
+		lazy="joined"
 	)
 	comment = relationship(
 		"Comment",
-		primaryjoin="AwardRelationship.comment_id==Comment.id"
+		primaryjoin="AwardRelationship.comment_id==Comment.id",
+		lazy="joined"
 	)
 
 	@property

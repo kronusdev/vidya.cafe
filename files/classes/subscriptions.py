@@ -31,6 +31,7 @@ class Follow(Base):
 		primaryjoin="User.id==Follow.user_id")
 	target = relationship(
 		"User",
+		lazy="joined",
 		primaryjoin="User.id==Follow.target_id")
 
 	def __init__(self, *args, **kwargs):
