@@ -39,15 +39,15 @@
 			<div style="z-index: 3;">
 				{% if not p.url %}
 					<a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" rel="nofollow noopener">
-						<img src="{{p.thumb_url}}" class="post-img">
+						<img src="{{p.thumb_url}}" class="post-img" loading="lazy" rel="nofollow noopener norefferer">
 					</a>
 				{% elif p.is_image %}
 					<a href="{{p.realurl(v)}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-bs-toggle="modal" data-bs-target="#expandImageModal" onclick="expandDesktopImage('{{p.realurl(v)}}','{{p.realurl(v)}}')"{% endif %}>
-						<img src="{{p.thumb_url}}" class="post-img d-md-block" alt="Unable to load image">
+						<img src="{{p.thumb_url}}" class="post-img d-md-block" alt="Unable to load image" loading="lazy" rel="nofollow noopener norefferer">
 					</a>
 				{% else %}
 					<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.realurl(v)}}" rel="nofollow noopener">
-						<img src="{{p.thumb_url}}" class="post-img">
+						<img src="{{p.thumb_url}}" class="post-img" loading="lazy" rel="nofollow noopener norefferer">
 					</a>
 				{% endif %}
 			</div>
