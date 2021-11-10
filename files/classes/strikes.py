@@ -18,7 +18,6 @@ class Strikes(Base):
 
     user = relationship("User",
                         uselist=False,
-                        lazy="joined",
                         primaryjoin="Strikes.user_id==User.id"
                         )
 

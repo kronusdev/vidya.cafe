@@ -24,7 +24,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	id = Column(Integer, primary_key=True)
 	comment_aux = relationship(
 		"CommentAux",
-		lazy="joined",
+		
 		uselist=False,
 		innerjoin=True,
 		primaryjoin="Comment.id==CommentAux.id")
@@ -59,7 +59,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 
 	author = relationship(
 		"User",
-		lazy="joined",
+		
 		innerjoin=True,
 		primaryjoin="User.id==Comment.author_id")
 
@@ -68,7 +68,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	parent_comment = relationship("Comment", remote_side=[id])
 	child_comments = relationship("Comment", remote_side=[parent_comment_id])
 
-	awards = relationship("AwardRelationship", lazy="joined")
+	awards = relationship("AwardRelationship")
 
 	def __init__(self, *args, **kwargs):
 
@@ -312,7 +312,7 @@ class Notification(Base):
 	blocksender = Column(Integer)
 	unblocksender = Column(Integer)
 
-	comment = relationship("Comment", lazy="joined", innerjoin=True)
+	comment = relationship("Comment",  innerjoin=True)
 	user=relationship("User", innerjoin=True)
 
 	def __repr__(self):
