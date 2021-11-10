@@ -24,7 +24,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	id = Column(Integer, primary_key=True)
 	comment_aux = relationship(
 		"CommentAux",
-		lazy="joined",
+		
 		uselist=False,
 		innerjoin=True,
 		primaryjoin="Comment.id==CommentAux.id")
