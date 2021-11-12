@@ -132,7 +132,8 @@ class User(Base, Stndrd, Age_times):
 	referred_by = Column(Integer, ForeignKey("users.id"))
 
 	referrals = relationship(
-		"User"
+		"User",
+		lazy="joined"
 	)
 
 	def __init__(self, **kwargs):
@@ -656,8 +657,8 @@ class ViewerRelationship(Base):
 	viewer_id = Column(Integer, ForeignKey('users.id'))
 	last_view_utc = Column(Integer)
 
-	user = relationship("User",  primaryjoin="ViewerRelationship.user_id == User.id")
-	viewer = relationship("User",  primaryjoin="ViewerRelationship.viewer_id == User.id")
+	user = relationship("User", lazy="joined", primaryjoin="ViewerRelationship.user_id == User.id")
+	viewer = relationship("User", lazy="joined", primaryjoin="ViewerRelationship.viewer_id == User.id")
 
 	def __init__(self, **kwargs):
 

@@ -45,7 +45,7 @@ class Badge(Base):
 	badge_id = Column(Integer, ForeignKey("badge_defs.id"))
 	description = Column(String(64))
 	url = Column(String(256))
-	badge = relationship("BadgeDef", innerjoin=True)
+	badge = relationship("BadgeDef", lazy="joined", innerjoin=True)
 
 	def __repr__(self):
 
