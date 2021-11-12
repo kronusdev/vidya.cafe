@@ -217,6 +217,8 @@ def add_badge_to_site(v):
 	badge_kind = request.form.get("badge_kind")
 	badge_rank = int(request.form.get("badge_rank"))
 	badge_qualification_expr = request.form.get("badge_qualification_expr")
+	if badge_qualification_expr == "":
+		badge_qualification_expr == None
 
 	new_badge = BadgeDef(
 		id = new_id,
