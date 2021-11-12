@@ -252,7 +252,7 @@ def users_list(v):
 	page = int(request.args.get("page", 1))
 
 	users = g.db.query(User).order_by(User.created_utc.desc()
-												  ).offset(25 * (page - 1)).limit(26)
+												  ).offset(25 * (page - 1))
 
 	users = [x for x in users]
 
