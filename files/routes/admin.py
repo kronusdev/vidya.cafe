@@ -249,7 +249,7 @@ def list_donations(v):
 @admin_level_required(2)
 def users_list(v):
 
-	page = 1 #int(request.args.get("page", 1))
+	page = int(request.args.get("page", 1))
 
 	users = g.db.query(User).order_by(User.created_utc.desc()
 												  ).offset(25 * (page - 1)).limit(26)
@@ -257,7 +257,7 @@ def users_list(v):
 	users = [x for x in users]
 
 	next_exists = (len(users) == 26)
-	#users = users[:25]
+	users = users[:25]
 
 	return render_template("admin/new_users.html",
 						   v=v,
