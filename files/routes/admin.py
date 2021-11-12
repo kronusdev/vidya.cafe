@@ -57,7 +57,7 @@ def image_posts_listing(v):
 	next_exists = (len(posts) == 26)
 	posts = get_posts(posts[:25], v=v)
 
-	return render_template("admin/image_posts.html", v=v, listing=posts, next_exists=next_exists, page=page, sort="new")
+	return render_template("admin/image_posts.html", v=v, listing=posts, next_exists=next_exists, page=page, sort="new", time=time.time())
 
 
 @app.get("/admin/flagged/comments")
@@ -249,16 +249,15 @@ def list_donations(v):
 @admin_level_required(2)
 def users_list(v):
 
-	page = int(request.args.get("page", 1))
+	page = 1 #int(request.args.get("page", 1))
 
-	users = g.db.query(User).filter_by(is_banned=0
-									   ).order_by(User.created_utc.desc()
+	users = g.db.query(User).order_by(User.created_utc.desc()
 												  ).offset(25 * (page - 1)).limit(26)
 
 	users = [x for x in users]
 
 	next_exists = (len(users) == 26)
-	users = users[:25]
+	#users = users[:25]
 
 	return render_template("admin/new_users.html",
 						   v=v,
