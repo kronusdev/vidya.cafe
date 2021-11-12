@@ -17,10 +17,10 @@ class ModAction(Base, Stndrd, Age_times):
 	created_utc = Column(Integer, default=0)
 
 
-	user = relationship("User", lazy="joined", primaryjoin="User.id==ModAction.user_id")
-	target_user = relationship("User", lazy="joined", primaryjoin="User.id==ModAction.target_user_id")
-	target_post = relationship("Submission", lazy="joined")
-	target_comment = relationship("Comment", lazy="joined")
+	user = relationship("User",  primaryjoin="User.id==ModAction.user_id")
+	target_user = relationship("User",  primaryjoin="User.id==ModAction.target_user_id")
+	target_post = relationship("Submission")
+	target_comment = relationship("Comment")
 
 
 	def __init__(self, *args, **kwargs):

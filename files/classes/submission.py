@@ -53,7 +53,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	private = Column(Boolean, default=False)
 	comments = relationship(
 		"Comment",
-		lazy="joined",
+		
 		primaryjoin="Comment.parent_submission==Submission.id",
 		)
 	flags = relationship("Flag", lazy="dynamic")
@@ -61,7 +61,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	over_18 = Column(Boolean, default=False)
 	author = relationship(
 		"User",
-		lazy="joined",
+		
 		innerjoin=True,
 		primaryjoin="Submission.author_id==User.id")
 	is_pinned = Column(Boolean, default=False)
@@ -76,7 +76,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 		uselist=False,
 		primaryjoin="Submission.is_approved==User.id")
 
-	awards = relationship("AwardRelationship", lazy="joined")
+	awards = relationship("AwardRelationship")
 
 	def __init__(self, *args, **kwargs):
 
