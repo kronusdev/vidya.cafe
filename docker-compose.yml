@@ -38,6 +38,7 @@ services:
       - READ_ONLY=0
       - BOT_DISABLE=0
       - COINS_NAME=Sips
+      - DOOM_CAPTCHA=true
     links:
       - "redis"
       - "postgres"

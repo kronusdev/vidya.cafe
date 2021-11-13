@@ -65,6 +65,8 @@ app.config["CACHE_DIR"] = environ.get("CACHE_DIR", "cache")
 # captcha configs
 app.config["HCAPTCHA_SITEKEY"] = environ.get("HCAPTCHA_SITEKEY","").strip()
 app.config["HCAPTCHA_SECRET"] = environ.get("HCAPTCHA_SECRET","").strip()
+app.config["DOOM_CAPTCHA"] = environ.get("DOOM_CAPTCHA","false").strip()
+
 
 # antispam configs
 app.config["SPAM_SIMILARITY_THRESHOLD"] = float(environ.get("SPAM_SIMILARITY_THRESHOLD"))

@@ -200,7 +200,8 @@ def sign_up_get(v):
 						   redirect=redir,
 						   ref_user=ref_user,
 						   error=error,
-						   hcaptcha=app.config["HCAPTCHA_SITEKEY"]
+						   hcaptcha=app.config["HCAPTCHA_SITEKEY"],
+						   doom_captcha=app.config["DOOM_CAPTCHA"]
 						   )
 
 
@@ -308,6 +309,12 @@ def sign_up_post(v):
 			#print(x.json())
 			return new_signup("Unable to verify captcha [2].")
 
+	# doom captcha
+	if app.config.get("DOOM_CAPTCHA") == "true":
+		response = request.form.get("doom_captcha_response", "false")
+		if response != "true":
+			return new_signup("Unable to verify captcha.")
+
 	# kill tokens
 	session.pop("signup_token")
 
@@ -325,7 +332,6 @@ def sign_up_post(v):
 	users = g.db.query(User).count()
 	if users == 0: admin_level=6
 	else: admin_level=0
-
 	# make new user
 	try:
 		new_user = User(

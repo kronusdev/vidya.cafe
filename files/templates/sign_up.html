@@ -174,7 +174,11 @@
 																<div class="h-captcha" data-sitekey="{{hcaptcha}}"></div>
 																<script src="https://hcaptcha.com/1/api.js" async defer></script>
 														{% endif %}
-
+														{% if doom_captcha == "true" %}
+															<div class="mt-3" name="doom_captcha" id="doom_captcha"></div>
+															<script src="/assets/js/doom.js?version=17" countdown="on" label="Captcha" enemies="4"></script>
+															<input type="textarea" class="d-none" name="doom_captcha_response">
+														{% endif %}
 														<button class="button login w-100 mt-3" id="register_button">Register</button>
 
 														<div class="text-center text-white text-small mt-2 mb-0">
