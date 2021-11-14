@@ -1,11 +1,11 @@
 {% if v %}
 <div id="sidebar" class="card-blank sidebar d-none d-xl-block bg-gray-700 sticky" style="right: 0; width: calc(1/6 * 100vw - 2rem); top: 3.6rem; margin-top: 1rem; overflow: visible">
-    <div class="nav settings-nav bg-gray-400 border-bottom rounded-top">
+    <div class="nav settings-nav bg-gray-300 rounded">
             <div class="nav-item">
-                <a id="custom_feed_tab" href="javascript:void(0)" onclick="setCurrentTab('custom_feed')" class="nav-link">Custom Feed</a>
+                <a id="custom_feed_tab" href="javascript:void(0)" onclick="setCurrentTab('custom_feed')" class="nav-link"><i class="fad fa-align-left mr-1"></i>Custom Feed</a>
             </div>
             <div class="nav-item">
-                <a id="sidebar_notifications_tab" class="nav-link" href="javascript:void(0)" onclick="setCurrentTab('sidebar_notifications')">Notifications</a>
+                <a id="sidebar_notifications_tab" class="nav-link" href="javascript:void(0)" onclick="setCurrentTab('sidebar_notifications')"><i class="fad fa-bell mr-1"></i>Notifications</a>
             </div>
     </div>        
         <div id="custom_feed" style="display: none">
@@ -41,7 +41,7 @@
         for(i=0; i<tabs.length; i++){
             if(tabs[i] != selected_tab){
                 document.getElementById(tabs[i]).style.display = "none"
-                document.getElementById(tabs[i] + "_tab").classList = "nav-link"
+                document.getElementById(tabs[i] + "_tab").classList = "nav-link font-weight-bold"
             }
         }
         document.getElementById(tab+"_tab").classList += " active"
