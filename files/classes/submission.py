@@ -66,7 +66,7 @@ class Submission(Base, Stndrd, Age_times, Scores):
 		primaryjoin="Submission.author_id==User.id")
 	is_pinned = Column(Boolean, default=False)
 	is_bot = Column(Boolean, default=False)
-
+	feed = Column(String, default="vidya")
 	upvotes = Column(Integer, default=1)
 	app_id=Column(Integer, ForeignKey("oauth_apps.id"))
 	oauth_app=relationship("OauthApp")

@@ -292,7 +292,13 @@
 					<div class="body">
 
 						<input type="hidden" name="formkey" value="{{v.formkey}}">
-
+							<label for="feed">Post Feed</label><i class="ml-1 text-muted fad fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title='"Vidya" is the game-related feed, while "Cafe" is for everything else'></i>
+						<div>
+							<input class="btn-check" type="radio" name="feed" id="vidya-feed" value="vidya" checked><!--
+							--><label class="selection" for="vidya-feed">Vidya</label><!--  
+							--><input class="btn-check" type="radio" name="feed" id="cafe-feed" value="cafe"><!--  
+							--><label class="selection" for="cafe-feed">Cafe</label>
+						</div>
 						<label for="title">Post Title</label>
 
 
@@ -317,7 +323,7 @@
 						</div>
 						</div>
 
-						<label for="body" class="mt-3">Text<i class="fas fa-info-circle ml-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Uses markdown. Limited to 10000 characters."></i></label>
+						<label for="body" class="mt-3">Text<i class="fad fa-question-circle ml-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Uses markdown. Limited to 10000 characters."></i></label>
 
 						<div class="input-group">
 

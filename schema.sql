@@ -86,7 +86,8 @@ CREATE TABLE public.submissions (
     private boolean,
     views integer,
     is_bot boolean,
-    poll_options text
+    poll_options text,
+    feed text
 );
 
 

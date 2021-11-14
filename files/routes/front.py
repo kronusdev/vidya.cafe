@@ -78,9 +78,9 @@ def notifications(v):
 						   time=time.time())
 
 @cache.memoize(timeout=1500)
-def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', **kwargs):
+def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', feed="vidya", **kwargs):
 
-	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
+	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,feed=feed).filter(Submission.deleted_utc == 0)
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
@@ -179,9 +179,8 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', **k
 
 	return [x.id for x in posts]
 
-@app.get("/")
-@auth_desired
-def front_all(v):
+
+def get_frontpage(v, request, feed):
 	if(v):
 		v.last_active = time.time();
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
@@ -210,6 +209,7 @@ def front_all(v):
 					gt=int(request.args.get("utc_greater_than", 0)),
 					lt=int(request.args.get("utc_less_than", 0)),
 					filter_words=v.filter_words if v else [],
+					feed=feed
 					)
 
 	# check existence of next page
@@ -298,7 +298,20 @@ def front_all(v):
 								sidebar_notif_feed_page=sidebar_notif_feed_page,
 								sidebar_settings=sidebar_settings,
 								last_comments=last_comments_output,
-								time=time.time())
+								time=time.time(),
+								feed=feed)
+
+
+@app.get("/")
+@auth_desired
+def frontpage_vidya(v):
+	return get_frontpage(v=v, request=request, feed="vidya")
+@app.get("/cafe")
+@auth_desired
+def frontpage_cafe(v):
+	return get_frontpage(v=v, request=request, feed="cafe")
+
+
 
 @cache.memoize(timeout=1500)
 def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="changelog", **kwargs):

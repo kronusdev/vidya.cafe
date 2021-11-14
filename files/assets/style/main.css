@@ -11110,6 +11110,41 @@ ol > li::before {
 [data-toggle="collapse"].collapsed .fa:before {
   content: "\f13a"; }
 
+.selection {
+  background: var(--gray-700);
+  padding: 0.6rem;
+  font-weight: 600;
+  transition: 0.15s background, 0.15s border-color;
+  cursor: pointer;
+  border: var(--gray-300) solid;
+  color: var(--muted);
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-bottom-width: 2px; }
+  .selection:not(.disabled):not(:disabled):hover {
+    background: var(--gray-600);
+    border-color: var(--primary); }
+  .selection:not(.disabled):not(:disabled):active {
+    background: var(--gray-800);
+    border-color: var(--secondary); }
+  .selection.disabled {
+    opacity: 0.5; }
+
+.selection:first-of-type {
+  border-radius: var(--border-radius) 0 0 var(--border-radius); }
+
+.selection:last-of-type {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0; }
+
+input:checked + .selection {
+  background: var(--gray-300) !important;
+  border-color: var(--secondary) !important;
+  color: var(--black); }
+
+.tooltip-arrow {
+  display: none !important; }
+
 .button {
   background: var(--gray-700);
   padding: 0.5rem;
@@ -11289,10 +11324,9 @@ ol > li::before {
   box-shadow: inset 0 -2px 0 var(--primary); }
   .settings-nav > .nav-item > .nav-link.active .fa, .settings-nav > .nav-item > .nav-link.active .fas, .settings-nav > .nav-item > .nav-link.active .far, .settings-nav > .nav-item > .nav-link.active .fab {
     color: var(--primary); }
-.settings-nav .fa, .settings-nav .fas, .settings-nav .far, .settings-nav .fab, .settings-nav .fal {
-  font-size: 12px;
-  margin-right: .5rem;
-  color: var(--muted); }
+
+.nav {
+  overflow: hidden; }
 
 .color-picker input[type="radio"] {
   display: none; }

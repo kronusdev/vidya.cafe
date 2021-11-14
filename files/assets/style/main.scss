@@ -379,6 +379,51 @@ ol > li::before {
 	content: "\f13a";
 }
 
+// Selection
+
+.selection {
+	background: var(--gray-700);
+	padding: 0.6rem;
+	font-weight: 600;
+	transition: 0.15s background, 0.15s border-color;
+	cursor: pointer;
+	border: var(--gray-300) solid;
+	color: var(--muted);
+	border-top-width: 0;
+	border-right-width: 0;
+	border-left-width: 0;
+	border-bottom-width: 2px;
+	&:not(.disabled):not(:disabled):hover {
+		background: var(--gray-600);
+		border-color: var(--primary);
+	}
+	&:not(.disabled):not(:disabled):active {
+		background: var(--gray-800);
+		border-color: var(--secondary);
+	}
+	&.disabled {
+		opacity: 0.5;
+	}
+}
+
+.selection:first-of-type {
+	border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.selection:last-of-type {
+	border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+input:checked + .selection {
+	background: var(--gray-300) !important;
+	border-color: var(--secondary) !important;
+	color: var(--black);
+}
+
+.tooltip-arrow {
+	display: none !important;
+}
+
 // Buttons
 
 .button {
@@ -644,11 +689,14 @@ ol > li::before {
 			color: var(--primary);
 		}
 	}
-	.fa, .fas, .far, .fab, .fal {
-		font-size: $small-font-size;
-		margin-right: .5rem;
-		color: var(--muted);
-	}
+	//.fa, .fas, .far, .fab, .fal {
+		//font-size: $small-font-size;
+		//margin-right: .5rem;
+		//color: var(--muted);
+	//}
+}
+.nav {
+	overflow: hidden;
 }
 
 

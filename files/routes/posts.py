@@ -705,6 +705,13 @@ def submit_post(v):
 
 	if options_n > 0:
 		poll_options['ids'] = {} # {'uid': 'option', ...}
+		body=request.form.get("body", ""), 400
+
+	# get feed
+	feed = request.form.get("feed","")
+	if feed not in ["vidya", "cafe"]:
+		return render_template("submit.html", v=v, error=f"An error occured. The selected feed was {feed}, while the two possible options are 'vidya' and 'cafe'", title=title, url=url)
+
 	#create new post
 	new_post = Submission(
 		private=bool(request.form.get("private","")),
@@ -712,7 +719,8 @@ def submit_post(v):
 		over_18=bool(request.form.get("over_18","")),
 		app_id=v.client.application.id if v.client else None,
 		is_bot=request.headers.get("X-User-Type","").lower()=="bot",
-		poll_options=json.dumps(poll_options)
+		poll_options=json.dumps(poll_options),
+		feed=feed
 	)
 	g.db.add(new_post)
 	g.db.flush()
