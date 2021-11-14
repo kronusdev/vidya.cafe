@@ -19,10 +19,10 @@
 		{{ feed }}
 		<div class="nav settings-nav mr-auto bg-gray-300 rounded">
 			<div class="nav-item">
-				<a id="custom_feed_tab" href="/" class="nav-link font-weight-bold {% if feed == 'vidya' %}active{%endif%}"><i class="fad fa-gamepad-alt m-0"></i> Vidya</a>
+				<a id="custom_feed_tab" href="/" class="nav-link font-weight-bold {% if feed == 'vidya' and feed != 'cafe' %}active{%endif%}"><i class="fad fa-gamepad-alt m-0"></i> Vidya</a>
 			</div>
 			<div class="nav-item">
-				<a id="custom_feed_tab" href="/cafe" style="" class="nav-link font-weight-bold {% if feed == 'cafe' %}active{%endif%}"><i class="fad fa-mug-hot m-0"></i> Cafe</a>
+				<a id="custom_feed_tab" href="/cafe" style="" class="nav-link font-weight-bold {% if feed == 'cafe' and feed !='vidya' %}active{%endif%}"><i class="fad fa-mug-hot m-0"></i> Cafe</a>
 			</div>
 		</div>
 		<div class="dropdown dropdown-actions mx-2">
