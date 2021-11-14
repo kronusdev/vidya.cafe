@@ -16,7 +16,7 @@
 		<a href="/submit" class="mx-3 d-none d-md-inline-block">
 				<div class="button mb-0">Create post<i class="ml-2 fas fa-feather-alt"></i></div>
 		</a>
-		<div class="d-none d-md-flex nav settings-nav mr-auto bg-gray-300 rounded">
+		<div class="d-none d-md-flex nav settings-nav mr-2 bg-gray-300 rounded">
 			<div class="nav-item">
 				<a id="vidya_feed_tab" href="/" class="nav-link font-weight-bold {% if feed == 'vidya' and feed != 'cafe' %}active{%endif%}"><i class="fad fa-gamepad-alt m-0"></i> Vidya</a>
 			</div>
@@ -24,6 +24,7 @@
 				<a id="cafe_feed_tab" href="/cafe" style="" class="nav-link font-weight-bold {% if feed == 'cafe' and feed !='vidya' %}active{%endif%}"><i class="fad fa-mug-hot m-0"></i> Cafe</a>
 			</div>
 		</div>
+		<i class="d-none d-md-inline-block ml-1 mr-auto text-muted fad fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title='"Vidya" is the game-related feed, while "Cafe" is for everything else'></i>
 		<div class="dropdown dropdown-actions mx-2">
 			<input type="hidden" name="formkey" value="0ef7e25732b473b5bffb0291b77dc812">
 			<button class="button dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -93,12 +94,16 @@
 			<li class="list-inline-item active mr-4"><i class="fas fa-align-left text-gray-400"></i></li>
 			<li class="list-inline-item"><i class="fas fa-link text-gray-400"></i></li>
 		</ul>
-		<div class="d-md-none nav settings-nav ml-auto mt-1 bg-gray-300 rounded" style="width: max-content;">
-			<div class="nav-item">
-				<a id="vidya_feed_tab" href="/" class="nav-link font-weight-bold {% if feed == 'vidya' and feed != 'cafe' %}active{%endif%}"><i class="fad fa-gamepad-alt m-0"></i> Vidya</a>
-			</div>
-			<div class="nav-item">
-				<a id="cafe_feed_tab" href="/cafe" style="" class="nav-link font-weight-bold {% if feed == 'cafe' and feed !='vidya' %}active{%endif%}"><i class="fad fa-mug-hot m-0"></i> Cafe</a>
+		<div class="d-flex d-md-none align-items-center">
+			<i class="ml-auto text-muted fad fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title='"Vidya" is the game-related feed, while "Cafe" is for everything else'></i>
+			<div class="nav settings-nav mx-2 mt-1 bg-gray-300 rounded" style="width: max-content;">
+			
+				<div class="nav-item">
+					<a id="vidya_feed_tab" href="/" class="nav-link font-weight-bold {% if feed == 'vidya' and feed != 'cafe' %}active{%endif%}"><i class="fad fa-gamepad-alt m-0"></i> Vidya</a>
+				</div>
+				<div class="nav-item">
+					<a id="cafe_feed_tab" href="/cafe" style="" class="nav-link font-weight-bold {% if feed == 'cafe' and feed !='vidya' %}active{%endif%}"><i class="fad fa-mug-hot m-0"></i> Cafe</a>
+				</div>
 			</div>
 		</div>
 	</div>
