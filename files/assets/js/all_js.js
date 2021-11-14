@@ -44,7 +44,7 @@ document.body.addEventListener('keydown', function(event) {
 		},
 		{
 			type:'marsey',
-			emojis: ['marseylong1', 'marseylong2', 'marseylong3', 'marseyjam','marseyhmm','marseyhmmm','marseythonk',
+			emojis: ['marseylong1', 'marseylong2', 'marseylong3', 'marseyjam','marseypixel','marseyhmm','marseyhmmm','marseythonk',
 					 'marseyworried','marseysus','marsey4chan','marseyandmarcus','marseybluecheck','marseybong','marseybooba',
 					 'marseyconfused','marseydespair','marseylizard','marseyowow','marseyproctologist','marseyvaxmaxx','marseyxd',
 					 'marsoyhype','marmsey','marsey1984','marseyakshually','marseycope','marseydeux','marseydoomer','marseyflamewar',
