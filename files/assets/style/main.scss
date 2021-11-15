@@ -1380,25 +1380,29 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	word-break: break-word;
 	overflow: hidden;
 	a {
-		color: var(--black);
-		&:active, &:hover, &:focus {
-			text-decoration: none;
-			color: var(--primary);
-		}
-	}
-}
-
-
-#frontpage {
-	.post-title {
-		a {
-			&:hover, &:active, &:focus {
+		&:not(:visited){
+			color: var(--black);
+			&:active, &:hover, &:focus {
 				text-decoration: none;
-				color: var(--black);
+				color: var(--primary);
 			}
 		}
+		&:visited {
+			color: var(--secondary);
+		}
 	}
+	//a {
+		//color: var(--black);
+		//&:hover, &:active, &:focus {
+			//text-decoration: none;
+			//color: var(--primary);
+		//}
+	//}
 }
+
+//#frontpage .post-title a:visited {
+//color: var(--secondary);
+//}
 // Tags
 .all-tag::before {
 	content:"All Posts \f039";
@@ -1672,7 +1676,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	padding: 0.5rem 0.5rem 0.25rem;
 	z-index: 3;
 	.fa, .fas, .far {
-		font-size: $small-font-size;
+		font-size: $medium-font-size;
 		margin-right: .5rem;
 		width: 1rem;
 	}
@@ -1720,6 +1724,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 			color: var(--black)
 		}
 	}
+}
+
+.fa-sm {
+	font-size: 0.875em !important;
 }
 
 // NOTICE: `.removeDropdownItem` and `approveDropdownItem` are unused
@@ -3477,12 +3485,7 @@ img.emoji {
 	color:var(--white) !important;
 }
 
-#frontpage .post-title a {
-    color: var(--primary);
-}
-#frontpage .post-title a:visited {
-	color: var(--secondary);
-}
+
 
 @media (max-width: 767.98px) {
 	.settings-nav .nav-link {
