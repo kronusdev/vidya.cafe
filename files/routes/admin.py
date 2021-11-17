@@ -896,6 +896,7 @@ def admin_distinguish_comment(c_id, v):
 				v=v,
 				comments=[comment],
 				render_replies=False,
+				time=time.time()
 				)
 
 	html=str(BeautifulSoup(html, features="html.parser").find(id=f"comment-{comment.id}-only"))

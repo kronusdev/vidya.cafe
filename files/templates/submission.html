@@ -358,9 +358,18 @@
 								{% endif %}
 								
 								{% if v and v.id==p.author_id %}
+									<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit post">
+										<a href="javascript:void(0)" onclick="togglePostEdit('{{p.id}}')"><i class="fas fa-edit m-0"></i></a>
+									</li>
+									{% if p.private %}
+										<li class="list-inline-item mx-2">
+											<a href="javascript:void(0)" onclick="post('/publish/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-globe"></i>Publish</a>
+										</li>
+									{% endif %}
+										
 									{% if p.deleted_utc > 0 %}
 										<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Undelete post">
-											<a href="javascript:void(0)" onclick="post('/undelete_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-undo m-0"></i></a>
+											<a href="javascript:void(0)" onclick="post('/undelete_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-undo m-0">Undelete</i></a>
 										</li>
 									{% else %}
 										<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete post">
@@ -373,10 +382,7 @@
 								{% endif %}
 
 								{% if v and v.id==p.author_id %}
-									{% if p.private %}
-										<li class="list-inline-item mx-2"><a href="javascript:void(0)" onclick="post('/publish/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-globe"></i>Publish</a></li>
-									{% endif %}
-									<li class="list-inline-item mx-2"><a href="javascript:void(0)" onclick="togglePostEdit('{{p.id}}')"><i class="fas fa-edit"></i>Edit</a></li>
+									
 								{% endif %}
 
 								<li class="list-inline-item mx-2"><a href="/sips?link={{p.fullname}}"><i class="fas fa-star"></i>Sips</a></li>

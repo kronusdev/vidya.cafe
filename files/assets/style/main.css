@@ -12311,11 +12311,11 @@ blockquote p {
 .comment-actions {
   font-weight: 600;
   font-size: 12px;
-  margin-bottom: 0; }
+  color: var(--accent); }
   .comment-actions .fa, .comment-actions .fas, .comment-actions .far, .comment-actions .fab {
-    font-size: 12px;
+    font-size: 0.9rem;
     margin-right: .5rem;
-    color: var(--accent); }
+    width: 1rem; }
   .comment-actions .dropdown-item:active, .comment-actions .dropdown-item:hover {
     color: var(--black); }
   .comment-actions a {
@@ -13552,10 +13552,12 @@ div.banned {
   border-left: 3px solid #ff0000 !important; }
 
 div.deleted {
-  background-color: #969600 !important; }
+  opacity: 0.7;
+  border: 1px var(--danger) solid !important; }
 
 div.deleted.banned {
-  background-color: #964000 !important; }
+  opacity: 0.5;
+  border: 2px var(--danger) solid !important; }
 
 .text-admin {
   color: var(--admin); }

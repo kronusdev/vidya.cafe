@@ -2139,11 +2139,17 @@ blockquote p {
 .comment-actions {
 	font-weight: $font-weight-bold;
 	font-size: $small-font-size;
-	margin-bottom: 0;
+	color: var(--accent);
+	
+	//margin-bottom: 0;
+	//.fa, .fas, .far, .fab {
+		//font-size: 12px;
+		//margin-right: .5rem;
+	//}
 	.fa, .fas, .far, .fab {
-		font-size: 12px;
+		font-size: $medium-font-size;
 		margin-right: .5rem;
-		color: var(--accent);
+		width: 1rem;
 	}
 	.dropdown-item {
 		&:active, &:hover {
@@ -3422,11 +3428,13 @@ div.banned {
 }
 
 div.deleted {
-	background-color: $deleted !important;
+	opacity: 0.7;
+	border: 1px var(--danger) solid !important;
 }
 
 div.deleted.banned {
-	background-color: $deletedandbanned !important;
+	opacity: 0.5;
+	border: 2px var(--danger) solid !important;
 }
 
 .text-admin {
