@@ -11112,12 +11112,12 @@ ol > li::before {
 
 .selection {
   background: var(--gray-700);
-  padding: 0.6rem;
+  padding: 0.5rem;
   font-weight: 600;
   transition: 0.15s background, 0.15s border-color;
   cursor: pointer;
   border: var(--gray-300) solid;
-  color: var(--muted);
+  color: var(--accent);
   border-top-width: 0;
   border-right-width: 0;
   border-left-width: 0;
@@ -11128,7 +11128,7 @@ ol > li::before {
   .selection:not(.disabled):not(:disabled):active {
     background: var(--gray-800);
     border-color: var(--secondary); }
-  .selection.disabled {
+  .selection.disabled, .selection:disabled {
     opacity: 0.5; }
 
 .selection:first-of-type {
@@ -11137,10 +11137,14 @@ ol > li::before {
 .selection:last-of-type {
   border-radius: 0 var(--border-radius) var(--border-radius) 0; }
 
-input:checked + .selection {
+input:checked + .selection, .selection.active {
   background: var(--gray-300) !important;
   border-color: var(--secondary) !important;
   color: var(--black); }
+
+a.selection {
+  text-decoration: none !important;
+  color: var(--accent); }
 
 .tooltip-arrow {
   display: none !important; }
