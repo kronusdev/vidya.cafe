@@ -368,7 +368,8 @@ def sign_up_post(v):
 		send_verification_email(new_user)
 
 	# send welcome message
-	send_notification(1, new_user, "")
+	with open("./files/assets/welcomemessage.md", "r") as f:
+		send_notification(1, new_user, f.read())
 
 	session["user_id"] = new_user.id
 	session["session_id"] = token_hex(16)
