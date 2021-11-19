@@ -67,6 +67,7 @@
 					<div class="body d-lg-flex border-bottom">
 					<div class="title w-lg-25">
 						<label for="theme">Website Backgrounds</label>
+						<a class="button mx-0 mt-3 float-right" id="nobg" href="javascript:void(0)" onclick="post('/settings/profile?background=(())', function(){window.location.reload(true);})">Remove Background</a>
 					</div>
 						<div class="body w-lg-100">
 							<script>
@@ -157,6 +158,9 @@
 									post('/settings/profile?background_url='+document.getElementById("background_url_field").value, function(){window.location.reload(true);})
 								}
 							</script>
+							<script>
+							addEventListener("DOMContentLoaded", () => updatebgselection());
+							</script>
 							<p>Change the background for the website.</p>
 							<div class="input-group mb2">
 									<select id='backgroundSelector' class="input" form="profile-settings" name="background" onchange="updatebgselection();">
@@ -176,8 +180,7 @@
 							<div class="text-small mt-3"><a href="https://ko-fi.com/vidyacafe">Support us</a> to set a background from any link</div>
 							{% endif %}
 
-							<a class="button ml-3 mt-3 float-right" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>
-							<a class="button mx-0 mt-3 float-right" id="nobg" href="javascript:void(0)" onclick="post('/settings/profile?background=(())', function(){window.location.reload(true);})">Remove Background</a>
+<!--							<a class="button ml-3 mt-3 float-right" id="loadBackgrounds" href="javascript:void(0)" onclick="updatebgselection()">Load Backgrounds</a>-->
 							<div id="bgcontainer"></div>
 							
 						</div>
