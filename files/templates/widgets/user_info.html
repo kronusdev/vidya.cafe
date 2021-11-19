@@ -5,7 +5,7 @@
 					class="profile-pic profile-pic-120"></a>
 			<div class="d-flex align-items-center">
 				<h1 class="font-weight-bolder h3 mb-0 {% if u.show_activity %}{% if u.last_active+420 > time %} online {%else %} offline {% endif %}{% endif %}"
-					style="color: #{{u.namecolor}}">{{u.username}}</h1>
+					style="color: #{{u.namecolor}}; width:max-content">{{u.username}}</h1>
 				{% if u.username != u.original_username %}
 				<span>
 					<i class="fad fa-user-tag text-info align-middle ml-2" data-bs-toggle="tooltip" data-bs-placement="bottom"
@@ -61,7 +61,7 @@
 			endif %}
 		</div>
 		<div>
-			<div class="font-weight-bolder text-white">
+			<div class="font-weight-bolder">
 				<span>{{u.coins}}</span> {{"COINS_NAME" | app_config}}&nbsp;&nbsp; {% if u.stored_subscriber_count >=1 and
 				not u.is_nofollow %}<a href="/@{{u.username}}/followers">{{u.stored_subscriber_count}} follower{{'s' if
 					u.stored_subscriber_count != 1 else ''}}</a>&nbsp;&nbsp; {% endif %}joined <span data-bs-toggle="tooltip"

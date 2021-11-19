@@ -12507,7 +12507,7 @@ ul.comment-section {
   left: -2rem;
   background: var(--gray-500);
   z-index: -1;
-  mix-blend-mode: multiply;
+  mix-blend-mode: hard-light;
   border-radius: 0.35rem;
   right: -1rem;
   bottom: -1rem; }
