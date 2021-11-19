@@ -381,6 +381,12 @@ ol > li::before {
 
 // Selection
 
+.btn-check {
+	position: absolute;
+	clip: rect(0,0,0,0);
+	pointer-events: none;
+}
+
 .selection {
 	background: var(--gray-700);
 	padding: 0.5rem;
