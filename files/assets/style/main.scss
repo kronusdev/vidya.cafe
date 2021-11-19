@@ -152,8 +152,11 @@ html {
 body {
 	color: var(--black);
 	padding-top: 4.8rem;
-    background: var(--gray-900);
+    background-color: var(--gray-900);
     background-size: cover !important;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	@media(min-width: 1200px){	

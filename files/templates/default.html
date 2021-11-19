@@ -221,7 +221,7 @@
 
  </head>
 
- <body loading="lazy" id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}" style="overflow-x: hidden; {% if v %} background:url({{ v.background }}) {% else %} background:url(/assets/images/custombackgrounds/pixelart/bg-1) {% endif %} no-repeat center center fixed">
+ <body loading="lazy" id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}" style="overflow-x: hidden; {% if v %} background-image:url({{ v.background }}) {% else %} background:url(/assets/images/custombackgrounds/pixelart/bg-1) {% endif %}">
 
 {% include "header.html" %}
 
