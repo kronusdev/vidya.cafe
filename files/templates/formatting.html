@@ -19,47 +19,6 @@
 
 		<h3>Inline formatting</h3>
 
-
-
-<!--		<table class="table table-striped mb-5">
-			<thead class="bg-primary text-white">
-				<tr>
-					<th>Name</th>
-					<th>Type</th>
-					<th>Displays as</th>
-				</tr>
-			</thead>
-			<tr>
-				<td>Italics</td>
-				<td>*text*</td>
-				<td><i>text</i></td>
-			</tr>
-			<tr>
-				<td>Bold</td>
-				<td>**text**</td>
-				<td><b>text</b></td>
-			</tr>
-			<tr>
-				<td>Code</td>
-				<td>`text`</td>
-				<td><code>text</code></td>
-			</tr>
-			<tr>
-				<td>Strikethrough</td>
-				<td>~~text~~</td>
-				<td><del>text</del></td>
-			</tr>
-			<tr>
-				<td>Links</td>
-				<td>[{{"SITE_NAME" | app_config}}]({{request.host_url}})</td>
-				<td><a href="{{request.host_url}}">{{"SITE_NAME" | app_config}}</a></td>
-			</tr>
-			<tr>
-				<td>Emojis</td>
-				<td>:marseylove:</td>
-				<td><img data-bs-toggle="tooltip" title="marseylove" delay="0" height="20" src="/assets/images/emojis/marseylove.gif"></td>
-			</tr>
-		</table>-->
 		<ul>
 		<li>
 			Italics: *hello* -> <i>hello</i>
@@ -76,6 +35,8 @@
 		<li>
 			Links: [{{"SITE_NAME" | app_config}}]({{request.host_url}}) -> <a href="{{request.host_url}}">{{"SITE_NAME" | app_config}}</a>
 		</li>
+		<li>
+			Images/Videos: ![](https://vidya.cafe/assets/images/cafe.png) -> <img src="https://vidya.cafe/assets/images/cafe.png" class="in-comment-image rounded-sm my-2"></img>
 		</ul>
 		<h2>Block formatting</h2>
 
