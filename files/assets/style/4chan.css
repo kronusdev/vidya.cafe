@@ -65,15 +65,19 @@
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 @import "./main.scss";
 
-* {
+*:not(:is(.fa, .fas, .fad, .fal, .far, .fab)) {
 	box-shadow: none !important;
 	transition: none !important;
 	border-radius: 0 !important;
-	font: 13px/1.231 "font awesome 5 pro", "font awesome 5 brands" ,arial,helvetica,clean,sans-serif !important;
+	font: 13px/1.231 arial,helvetica,clean,sans-serif !important;
 }
 
 *:not(.comment-collapse-desktop):not(.comment) {
 	border: none !important;
+}
+
+.selection.active, input:checked + .selection {
+	background: var(--gray-500) !important;
 }
 
 body {
@@ -97,11 +101,11 @@ blockquote::before {
 blockquote p {
 	display: inline;
 }
-.navbar-light {
-	background-color: #880000 !important;
+.navbar-styling {
+	background-color: var(--accent) !important;
 }
 
-.navbar-light *{
+.navbar-styling *:not([name="q"]){
 	color: var(--white) !important;
 }
 
@@ -118,16 +122,23 @@ color: var(--muted) !important;
 }
 
 .dropdown-menu, .btn:hover {
-	background: #880000 !important;
+	background: var(--accent) !important;
 	color: var(--actually-black) !important;
 }
 
+.dropdown-item .fa, .dropdown-item .fas, .dropdown-item .far {
+		color: var(--white) !important;
+}
+
+.dropdown-item {
+	color: var(--white) !important;
+}
 .comment-text a {
 	text-decoration: underline !important;
 	color: #3300EE !important;
 }
 
 #frontpage .post-title a:visited, .arrow-up::before {
-color: #800;
+color: var(--accent);
 }
 

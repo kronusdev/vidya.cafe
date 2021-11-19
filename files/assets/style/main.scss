@@ -587,7 +587,20 @@ a.selection {
 			.fa, .fas, .far, .fab {
 				color: var(--accent);
 				text-align: center;
-				font-size: $font-size-base;
+			}
+		}
+	}
+}
+
+@media (max-width: 768px){
+	.navbar-styling {
+		.navbar-nav {
+			.nav-link {
+				.fa, .fas, .far, .fab {
+					color: var(--accent);
+					width: 1rem;
+					font-size: $font-size-lg;
+				}
 			}
 		}
 	}
@@ -3082,10 +3095,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 	}
 
 
-	.navbar-styling .navbar-nav .nav-link .fa, .navbar-styling .navbar-nav .nav-link .fas, .navbar-styling .navbar-nav .nav-link .far, .navbar-styling .navbar-nav .nav-link .fab {
-		color: var(--purple);
-		font-size: $font-size-lg;
-	}
+	
 
 	#fixed-bar-mobile {
 		box-shadow: none;

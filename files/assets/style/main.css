@@ -11266,9 +11266,13 @@ a.selection {
       background-color: rgba(0, 0, 0, 0.15); }
     .navbar-styling .navbar-nav .nav-link .fa, .navbar-styling .navbar-nav .nav-link .fas, .navbar-styling .navbar-nav .nav-link .far, .navbar-styling .navbar-nav .nav-link .fab {
       color: var(--accent);
-      text-align: center;
-      font-size: 1rem; }
+      text-align: center; }
 
+@media (max-width: 768px) {
+  .navbar-styling .navbar-nav .nav-link .fa, .navbar-styling .navbar-nav .nav-link .fas, .navbar-styling .navbar-nav .nav-link .far, .navbar-styling .navbar-nav .nav-link .fab {
+    color: var(--accent);
+    width: 1rem;
+    font-size: 1.25rem; } }
 .navbar-toggler-icon {
   width: auto;
   height: auto;
@@ -13296,10 +13300,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
     padding: 0.5rem; }
-
-  .navbar-styling .navbar-nav .nav-link .fa, .navbar-styling .navbar-nav .nav-link .fas, .navbar-styling .navbar-nav .nav-link .far, .navbar-styling .navbar-nav .nav-link .fab {
-    color: var(--purple);
-    font-size: 1.25rem; }
 
   #fixed-bar-mobile {
     box-shadow: none; }

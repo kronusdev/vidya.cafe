@@ -129,11 +129,19 @@ display: none !important;
 	color: var(--gray-200) !important;
 	opacity: 0.5;
 }
-.active.arrow-up::before {
+.active.arrow-up::before, .score-up {
 	color: var(--gray-200) !important;
 }
-.arrow-up::before {
+.arrow-up::before, .score:not(.score-up), .post-actions a {
 	color: var(--primary) !important;
+}
+
+.settings-nav .nav-link {
+	color: var(--gray-100) !important;
+}
+
+.settings-nav > .nav-item > .nav-link.active {
+	color: var(--black) !important;
 }
 
 blockquote {

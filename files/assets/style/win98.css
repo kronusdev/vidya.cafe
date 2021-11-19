@@ -77,15 +77,15 @@
 	background-color: var(--gray-500) !important;
 }
 
-.pseudo-submit-form .card-header, .card-blank .card-header, .navbar-light, .nav, .flex-row.bg-gray-200.sticky.justify-content-center.d-flex.d-sm-none.mt-3.mb-3.mb-sm-5.rounded {
+.pseudo-submit-form .card-header, .card-blank .card-header, .navbar-styling, .nav, .flex-row.bg-gray-200.sticky.justify-content-center.d-flex.d-sm-none.mt-3.mb-3.mb-sm-5.rounded {
 	background-image: linear-gradient(90deg, var(--primary-color), #0884ce) !important;
 	color: var(--white) !important;
 }
-.navbar-light > *, .navbar-brand, .nav-link{
+.navbar-styling > *, .navbar-brand, .nav-link{
 	color: var(--white) !important;
 }
 
-.nav-link, .button, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2 {
+.dropdown-menu, .selection, .nav-link, .button, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2 {
 	border: 2px outset white !important;
 	border-bottom: 2px solid #a7a5a1 !important;
 	border-right: 2px solid #a7a5a1 !important;
@@ -93,7 +93,7 @@
 	color: var(--actually-black) !important;
 }
 
-.nav-link:focus, .button:focus, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2,
+.selection:focus, .selection:active, .nav-link:focus, .button:focus, .col.px-0.pl-2.btn.btn-dead.my-0.mx-2,
 .nav-link:active, .button:active,{
 	border: 2px inset white !important;
 }
@@ -131,3 +131,6 @@ blockquote {
 	background-color: var(--gray-500);
 }
 
+.card-header .text-muted {
+	color: var(--white) !important;
+}

@@ -63,12 +63,20 @@
 	--none-tag: #E1E1E1;
 }
 
-.card-header > * {
-	color: var(--accent);
+.card-header > *, .card-header .text-muted, .card-header {
+	color: var(--accent) !important;
+}
+
+.selection.active, input:checked + .selection {
+	color: var(--gray-600);
 }
 
 * {
 	font-family: 'Lato';
+}
+
+.navbar-styling .navbar-nav .nav-link {
+	color: var(--primary);
 }
 
 blockquote {
