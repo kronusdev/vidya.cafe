@@ -18,6 +18,7 @@ def feeds_user(sort='hot', t='all'):
 		page=page,
 		t=t,
 		v=None,
+		feed="all"
 		)
 	
 	posts = get_posts(post_ids)
