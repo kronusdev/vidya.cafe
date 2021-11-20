@@ -79,8 +79,11 @@ def notifications(v):
 
 @cache.memoize(timeout=1500)
 def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', feed="vidya", **kwargs):
-
-	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,feed=feed).filter(Submission.deleted_utc == 0)
+	# vidya, cafe and all
+	if feed != "all":
+		posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,feed=feed).filter(Submission.deleted_utc == 0)
+	else:
+		posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
