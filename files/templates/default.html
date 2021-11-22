@@ -308,11 +308,10 @@
 </div>
 
 {% if v %}
-{% include "flag_post_modal.html" %}
-{% include "flag_comment_modal.html" %}
-{% include "gif_modal.html" %}
-{% include "delete_comment_modal.html" %}
-{% include "delete_post_modal.html" %}
+
+
+
+
 {% endif %}
 
 {% include "expanded_image_modal.html" %}
@@ -320,28 +319,6 @@
 <script src="/assets/js/all_js.js"></script>
 
 <script>
-	
-	// comment collapse
-
-
-	//Commenting form
-
-	// Expand comment box on focus, hide otherwise
-
-	// $('.comment-box').focus(function (event) {
-	// 	event.preventDefault();
-
-	// 	$(this).parent().parent().addClass("collapsed");
-
-	// });
-
-	
-
-
-
-
-	//Autoexpand textedit comments
-
 	function autoExpand (field) {
 
 		//get current scroll position
@@ -426,21 +403,16 @@
 
 <!-- Instantiate clipboard by passing a string selector -->
 <script type="text/javascript">
+	clipboard_success = new bootstrap.Toast(document.getElementById("toast-success"));
+	clipboard_error = new bootstrap.Toast(document.getElementById("toast-error"));
 	var clipboard = new ClipboardJS('.copy-link');
-	clipboard.on('success', function(e) {
-
-		jQuery(function($) {
-			$('#toast-success').toast('show');
-		})
-		console.log(e);
-	});
-	clipboard.on('error', function(e) {
-
-		jQuery(function($) {
-			$('#toast-error').toast('show');
-		})
-		console.log(e);
-	});
+	clipboard.on("success", () => {
+		clipboard_success.show()
+	})
+	
+	clipboard.on("error", () => {
+		clipboard_error.show()
+	})
 </script>
 
 <!-- Mobile "install the app" tooltip -->
