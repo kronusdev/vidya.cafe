@@ -262,7 +262,7 @@ def get_frontpage(v, request, feed):
 						#lt=int(request.args.get("utc_less_than", 0))
 						#)
 		#v=None, feed="vidya", sort="hot", t="all", tag="all", show_sticky=True, page=1, filter_words='',
-		ids = frontlist(v=v, feed="all", sort=custom_feed_sort, t=custom_feed_time, tag=custom_feed_tag, page=custom_feed_page, posts_per_page=10)
+		ids = frontlist(v=v, feed="all", sort=custom_feed_sort, t=custom_feed_time, tag=custom_feed_tag, show_sticky=False, page=custom_feed_page, posts_per_page=10)
 
 		# check existence of next page
 		custom_feed_next_exists = (len(ids) == 11)
