@@ -78,12 +78,13 @@ def notifications(v):
 						   time=time.time())
 
 @cache.memoize(timeout=1500)
-def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', feed="vidya", **kwargs):
+def frontlist(v=None, feed="vidya", sort="hot", t="all", tag="all", show_sticky=True, page=1, posts_per_page=25, filter_words='', **kwargs):
 	# vidya, cafe and all
 	if feed != "all":
 		posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,feed=feed).filter(Submission.deleted_utc == 0)
 	else:
 		posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False).filter(Submission.deleted_utc == 0)
+
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
@@ -95,20 +96,22 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', fee
 			Submission.author_id.notin_(blocking),
 			Submission.author_id.notin_(blocked)
 		)
+	#TODO: Merge Submission and Submission_aux
+	posts=posts.join(Submission.submission_aux)
+	
+	if (tag == "changelog"):
+		posts = posts.filter(SubmissionAux.tag == tag, User.admin_level > 0)
+	elif (tag == "all"):
+		posts = posts
+	else:
+		posts = posts.filter(SubmissionAux.tag == tag)
 
-	if not (v and v.changelogsub):
-		posts=posts.join(Submission.submission_aux)
+	if (not ((v and v.changelogsub))) and tag != "changelog":
 		posts=posts.filter(not_(SubmissionAux.tag == "changelog"))
 
 	if v and filter_words:
 		for word in filter_words:
 			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
-	if (tag == "changelog"):
-		posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
-	elif (tag == "all"):
-		posts=posts
-	else:
-		posts=posts.filter(SubmissionAux.tag == tag)
 
 	if t != 'all':
 		cutoff = 0
@@ -156,13 +159,14 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', fee
 	else:
 		abort(400)
 
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+1000
+	firstrange = posts_per_page * (page - 1)
+	#secondrange = firstrange+1000
+	secondrange = firstrange+posts_per_page
 	posts = posts[firstrange:secondrange]
 
 	if v and v.hidevotedon: posts = [x for x in posts if x.voted == 0]
 
-	if page == 1: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
+	if page == 1 and show_sticky: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
 
 	if random.random() < 0.02:
 		for post in posts:
@@ -178,7 +182,7 @@ def frontlist(v=None, sort="hot", tag="all",page=1,t="all", filter_words='', fee
 				post.views = post.views + random.randint(7,10)
 				g.db.add(post)
 
-	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:26]
+	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)][:posts_per_page+1]
 
 	return [x.id for x in posts]
 
@@ -212,7 +216,8 @@ def get_frontpage(v, request, feed):
 					gt=int(request.args.get("utc_greater_than", 0)),
 					lt=int(request.args.get("utc_less_than", 0)),
 					filter_words=v.filter_words if v else [],
-					feed=feed
+					feed=feed,
+					show_sticky=True
 					)
 
 	# check existence of next page
@@ -247,15 +252,17 @@ def get_frontpage(v, request, feed):
 			custom_feed_tag = sidebar_settings['custom_feed_tag']
 		except:
 			custom_feed_tag = "all"
-		ids = feedlist(sort=custom_feed_sort,
-						page=custom_feed_page,
-						posts_per_page=10,
-						t=custom_feed_time,
-						tag=custom_feed_tag,
-						v=v,
-						gt=int(request.args.get("utc_greater_than", 0)),
-						lt=int(request.args.get("utc_less_than", 0))
-						)
+		#ids = feedlist(sort=custom_feed_sort,
+						#page=custom_feed_page,
+						#posts_per_page=10,
+						#t=custom_feed_time,
+						#tag=custom_feed_tag,
+						#v=v,
+						#gt=int(request.args.get("utc_greater_than", 0)),
+						#lt=int(request.args.get("utc_less_than", 0))
+						#)
+		#v=None, feed="vidya", sort="hot", t="all", tag="all", show_sticky=True, page=1, filter_words='',
+		ids = frontlist(v=v, feed="all", sort=custom_feed_sort, t=custom_feed_time, tag=custom_feed_tag, page=custom_feed_page, posts_per_page=10)
 
 		# check existence of next page
 		custom_feed_next_exists = (len(ids) == 11)
@@ -316,83 +323,83 @@ def frontpage_cafe(v):
 
 
 
-@cache.memoize(timeout=1500)
-def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="changelog", **kwargs):
+#@cache.memoize(timeout=1500)
+#def feedlist(v=None, sort="new", page=1, posts_per_page=25,t="all",  tag="changelog", **kwargs):
 
-	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
+	#posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
 
-	if v and v.admin_level == 0:
-		blocking = g.db.query(
-			UserBlock.target_id).filter_by(
-			user_id=v.id).subquery()
-		blocked = g.db.query(
-			UserBlock.user_id).filter_by(
-			target_id=v.id).subquery()
-		posts = posts.filter(
-			Submission.author_id.notin_(blocking),
-			Submission.author_id.notin_(blocked)
-		)
+	#if v and v.admin_level == 0:
+		#blocking = g.db.query(
+			#UserBlock.target_id).filter_by(
+			#user_id=v.id).subquery()
+		#blocked = g.db.query(
+			#UserBlock.user_id).filter_by(
+			#target_id=v.id).subquery()
+		#posts = posts.filter(
+			#Submission.author_id.notin_(blocking),
+			#Submission.author_id.notin_(blocked)
+		#)
 
-	posts=posts.join(Submission.submission_aux).join(Submission.author)
-	if (tag == "changelog"):
-		posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
-	elif (tag == "all"):
-		posts=posts
-	else:
-		posts=posts.filter(SubmissionAux.tag == tag)
+	#posts=posts.join(Submission.submission_aux).join(Submission.author)
+	#if (tag == "changelog"):
+		#posts=posts.filter(SubmissionAux.tag == tag, User.admin_level == 6)
+	#elif (tag == "all"):
+		#posts=posts
+	#else:
+		#posts=posts.filter(SubmissionAux.tag == tag)
 
-	if t != 'all':
-		cutoff = 0
-		now = int(time.time())
-		if t == 'hour':
-			cutoff = now - 3600
-		elif t == 'day':
-			cutoff = now - 86400
-		elif t == 'week':
-			cutoff = now - 604800
-		elif t == 'month':
-			cutoff = now - 2592000
-		elif t == 'year':
-			cutoff = now - 31536000
-		posts = posts.filter(Submission.created_utc >= cutoff)
+	#if t != 'all':
+		#cutoff = 0
+		#now = int(time.time())
+		#if t == 'hour':
+			#cutoff = now - 3600
+		#elif t == 'day':
+			#cutoff = now - 86400
+		#elif t == 'week':
+			#cutoff = now - 604800
+		#elif t == 'month':
+			#cutoff = now - 2592000
+		#elif t == 'year':
+			#cutoff = now - 31536000
+		#posts = posts.filter(Submission.created_utc >= cutoff)
 
-	gt = kwargs.get("gt")
-	lt = kwargs.get("lt")
+	#gt = kwargs.get("gt")
+	#lt = kwargs.get("lt")
 
-	if gt:
-		posts = posts.filter(Submission.created_utc > gt)
+	#if gt:
+		#posts = posts.filter(Submission.created_utc > gt)
 
-	if lt:
-		posts = posts.filter(Submission.created_utc < lt)
+	#if lt:
+		#posts = posts.filter(Submission.created_utc < lt)
 
-	if sort == "hot":
-		posts = sorted(posts.all(), key=lambda x: x.hotscore, reverse=True)
-	elif sort == "new":
-		posts = posts.order_by(Submission.created_utc.desc()).all()
-	elif sort == "old":
-		posts = posts.order_by(Submission.created_utc.asc()).all()
-	elif sort == "controversial":
-		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
-	elif sort == "top":
-		posts = sorted(posts.all(), key=lambda x: x.score, reverse=True)
-	elif sort == "bottom":
-		posts = sorted(posts.all(), key=lambda x: x.score)
-	elif sort == "comments":
-		posts = sorted(posts.all(), key=lambda x: x.comment_count, reverse=True)
-	elif sort == "active":
-		posts = sorted(posts.all(), key=lambda x: x.score_active, reverse=True)
-	elif sort == "random":
-		posts = posts.all()
-		posts = random.sample(posts, k=len(posts))
-	else:
-		abort(400)
+	#if sort == "hot":
+		#posts = sorted(posts.all(), key=lambda x: x.hotscore, reverse=True)
+	#elif sort == "new":
+		#posts = posts.order_by(Submission.created_utc.desc()).all()
+	#elif sort == "old":
+		#posts = posts.order_by(Submission.created_utc.asc()).all()
+	#elif sort == "controversial":
+		#posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
+	#elif sort == "top":
+		#posts = sorted(posts.all(), key=lambda x: x.score, reverse=True)
+	#elif sort == "bottom":
+		#posts = sorted(posts.all(), key=lambda x: x.score)
+	#elif sort == "comments":
+		#posts = sorted(posts.all(), key=lambda x: x.comment_count, reverse=True)
+	#elif sort == "active":
+		#posts = sorted(posts.all(), key=lambda x: x.score_active, reverse=True)
+	#elif sort == "random":
+		#posts = posts.all()
+		#posts = random.sample(posts, k=len(posts))
+	#else:
+		#abort(400)
 
-	firstrange = posts_per_page * (page - 1)
-	secondrange = firstrange+posts_per_page+1
-	posts = posts[firstrange:secondrange]
+	#firstrange = posts_per_page * (page - 1)
+	#secondrange = firstrange+posts_per_page+1
+	#posts = posts[firstrange:secondrange]
 
-	posts = [x.id for x in posts]
-	return posts
+	#posts = [x.id for x in posts]
+	#return posts
 
 @app.get("/changelog")
 @auth_desired
@@ -405,16 +412,16 @@ def changelog(v):
 	sort=request.args.get("sort", "new")
 	t=request.args.get('t', "all")
 
-	ids = feedlist(sort=sort,
-					page=page,
-					posts_per_page=25,
-					t=t,
-					v=v,
-					tag="changelog",
-					gt=int(request.args.get("utc_greater_than", 0)),
-					lt=int(request.args.get("utc_less_than", 0))
-					)
-
+	#ids = feedlist(sort=sort,
+					#page=page,
+					#posts_per_page=25,
+					#t=t,
+					#v=v,
+					#tag="changelog",
+					#gt=int(request.args.get("utc_greater_than", 0)),
+					#lt=int(request.args.get("utc_less_than", 0))
+					#)
+	ids = frontlist(v=v, feed="all", sort=sort, t=t, tag="changelog", show_sticky=False, page=page)
 	# check existence of next page
 	next_exists = (len(ids) == 26)
 	ids = ids
