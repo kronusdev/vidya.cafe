@@ -308,13 +308,14 @@
 </div>
 
 {% if v %}
-
-
-
-
+{% include "/modals/flag_post_modal.html" %}
+{% include "/modals/flag_comment_modal.html" %}
+{% include "/modals/gif_modal.html" %}
+{% include "/modals/delete_comment_modal.html" %}
+{% include "/modals/delete_post_modal.html" %}
 {% endif %}
 
-{% include "expanded_image_modal.html" %}
+{% include "/modals/expanded_image_modal.html" %}
 
 <script src="/assets/js/all_js.js"></script>
 

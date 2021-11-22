@@ -637,10 +637,10 @@
 </div>
 
 {% if v and v.id==p.author_id %}
-{% include "delete_post_modal.html" %}
+{% include "/modals/delete_post_modal.html" %}
 {% endif %}
 
-{% include "delete_comment_modal.html" %}
+{% include "/modals/delete_comment_modal.html" %}
 
 
 {% endblock %}
@@ -655,7 +655,7 @@
 
 {% block GIFpicker %}
 {% if v %}
-{% include "gif_modal.html" %}
-{% include "emoji_modal.html" %}
+{% include "/modals/gif_modal.html" %}
+{% include "/modals/emoji_modal.html" %}
 {% endif %}
 {% endblock %}
