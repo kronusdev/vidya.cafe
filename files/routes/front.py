@@ -298,7 +298,6 @@ def get_frontpage(v, request, feed):
 								sidebar_notif_feed_next_exists=sidebar_notif_feed_next_exists,
 								sidebar_notif_feed_page=sidebar_notif_feed_page,
 								sidebar_settings=sidebar_settings,
-								last_comments=last_comments_output,
 								time=time.time(),
 								feed=feed)
 

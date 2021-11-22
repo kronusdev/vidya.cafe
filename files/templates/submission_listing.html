@@ -10,12 +10,14 @@
 {% endif %}
 
 <script>
-	var date = new Date('{{p.created_datetime}}');
+	(() => {
+	var date = new Date({{p.created_utc*1000}});
 	document.getElementById('timestamp-{{p.id}}').title = date.toString();
 	{% if p.edited_utc %}
-		var date = new Date('{{p.edited_datetime}}');
+		var date = new Date({{p.edited_utc*1000}});
 		document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
 	{% endif %}
+	})()
 </script>
 
 <div id="post-{{p.id}}" class="card{% if p.is_banned %} banned{% endif %}{% if p.deleted_utc > 0 %} deleted{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}{% if p.over_18 %} nsfw{% endif %}">
