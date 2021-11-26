@@ -535,7 +535,7 @@
     </div>
 {% endif %}
 
-<div class="row border-md-0 comment-section pb-3 post-top">
+<div class="row card-blank pb-3">
 	<div class="col">
 		<div class="comments-count py-3">
 			<div class="dropdown dropdown-actions">
@@ -637,10 +637,10 @@
 </div>
 
 {% if v and v.id==p.author_id %}
-{% include "delete_post_modal.html" %}
+{% include "/modals/delete_post_modal.html" %}
 {% endif %}
 
-{% include "delete_comment_modal.html" %}
+{% include "/modals/delete_comment_modal.html" %}
 
 
 {% endblock %}
@@ -655,7 +655,7 @@
 
 {% block GIFpicker %}
 {% if v %}
-{% include "gif_modal.html" %}
-{% include "emoji_modal.html" %}
+{% include "/modals/gif_modal.html" %}
+{% include "/modals/emoji_modal.html" %}
 {% endif %}
 {% endblock %}
