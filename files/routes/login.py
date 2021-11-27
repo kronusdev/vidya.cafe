@@ -394,14 +394,14 @@ def set_up_account(v):
 
 	# get avatar
 	if request.files.get("avatar"):
-		file = request.files['file']
+		file = request.files['avatar']
 		if not file.content_type.startswith('image/'):
 			if request.headers.get("Authorization"): return {"error": f"Image files only"}, 400
 			else: return render_template("submit.html", v=v, error=f"Image files only.", title=title, body=request.form.get("body", "")), 400
 
 			highres = upload_file(file)
 			if not highres: abort(400)
-			imageurl = upload_file(resize=True)
+			imageurl = upload_file(file, resize=True)
 			if not imageurl: abort(400)
 			v.highres = highres
 			v.profileurl = imageurl
@@ -423,10 +423,10 @@ def set_up_account(v):
 	# verify acceptability
 	valid_title_regex = re.compile("^((?!<).){3,100}$")
 
-	if not re.match(valid_title_regex, flair):
-		return render_template("onboarding.html",
-						   v=v,
-						   error="The flair is invalid")
+	#if not re.match(valid_title_regex, flair):
+		#return render_template("onboarding.html",
+						   #v=v,
+						   #error="The flair is invalid")
 
 	v.customtitleplain = flair
 	flair = sanitize(flair, flair=True)
@@ -434,7 +434,7 @@ def set_up_account(v):
 
 	# get flair color
 	flair_color = str(request.form.get("flair_color", "")).strip()
-	v.titlecolor = flair_color
+	v.titlecolor = flair_color[1:]
 
 	# get theme
 	theme = request.form.get("theme")
@@ -452,11 +452,11 @@ def set_up_account(v):
 	v.themecolor = themecolor
 
 	# get background
-	#background = request.form.get("background", None)
-	#v.background = background
+	background = request.form.get("background", None)
+	v.background = background
 	g.db.add(v)
 	g.db.commit()
-	return 200
+	return redirect('/')
 
 @app.get("/forgot")
 def get_forgot():

@@ -60,7 +60,7 @@
 								{{v.username}}
 								</h3>
 								
-								<input type="text" name="flair" id="flair" class="input w-100 m-2" placeholder="Your flair..">
+								<input type="text" name="flair" value="{{v.customtitleplain}}" style="color: #{{v.titlecolor}}" id="flair" class="input w-100 m-2" placeholder="Your flair..">
 								</input>
 								<label class="button format d-inline-block my-2 mr-2" for="emoji-flair-btn">
 									<div id="emoji-flair-btn" onclick="loadEmojis('flair')" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam" style="padding: 0.5rem;margin: -0.5rem;"></i></div>
@@ -93,9 +93,9 @@
 				</div>
 				<div class="card-blank mx-3">
 					<h4>Name Color</h4>
-					<input name="name_color" id="name_color" type="color" hidden></input>
+					<input name="name_color" id="name_color" type="color" value="#{{v.namecolor}}" hidden></input>
 					<label for="name_color" class="button d-block"><i class="fas fa-palette mr-2"></i>Name Color</label>
-					<input name="flair_color" id="flair_color" type="color" hidden></input>
+					<input name="flair_color" id="flair_color" type="color" hidden value="#{{v.titlecolor}}"></input>
 					<label for="flair_color" class="button d-block"><i class="fas fa-palette mr-2"></i>Flair Color</label>
 					<script>
 						name_color = document.getElementById("name_color")
@@ -150,7 +150,7 @@
 				<div>
 					<script src="/assets/js/bgselection.js"></script>
 					<script>addEventListener("DOMContentLoaded", () => updatebgselection());</script>
-					<select id='backgroundSelector' class="input" name="background" onchange="updatebgselection();">
+					<select id='backgroundSelector' class="input" onchange="updatebgselection();">
 						{% for entry in ["fantasy", "solarpunk", "other", "pixelart"] %}
 							<option value="{{entry}}">
 								{{entry}}
@@ -158,6 +158,7 @@
 						{% endfor %}
 					</select>
 					<a class="button mx-2" id="nobg" href="javascript:void(0)" onclick="document.getElementById('frontpage').style.setProperty('background-image', 'none')">Remove Background</a>
+					<input type="hidden" name="background" id="bginput" value="{{v.background}}"></input>
 					<div id="bgcontainer" style="max-width: 50rem"></div>
 				</div>
 

@@ -87,7 +87,7 @@ const backgrounds = [
 			
 // 			onclick="function(){document.getElementById('frontpage').style.setProperty('background-image', ${property})})
 			
-			str += `<div onclick="document.getElementById('frontpage').style.setProperty('background-image', ${property});" class="button m-1 p-0" style="width:15rem; overflow: hidden;"><img style="padding:0.25rem; width: 15rem" src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background"></div>`;
+			str += `<div onclick="document.getElementById('frontpage').style.setProperty('background-image', ${property}); document.getElementById('bginput').value = '${onclickPost}'" class="button m-1 p-0" style="width:15rem; overflow: hidden;"><img style="padding:0.25rem; width: 15rem" src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background"></div>`;
 			
 		}
 	}
