@@ -393,7 +393,7 @@ def set_up_account(v):
 		abort(413)
 
 	# get avatar
-	if request.files.get("avatar"):
+	if request.files['avatar']:
 		file = request.files['avatar']
 		if not file.content_type.startswith('image/'):
 			if request.headers.get("Authorization"): return {"error": f"Image files only"}, 400
@@ -404,7 +404,8 @@ def set_up_account(v):
 			imageurl = upload_file(file, resize=True)
 			if not imageurl: abort(400)
 			v.highres = highres
-			v.profileurl = imageurl
+			v.profileurl = "https://robohash.org/urmom?bgset=bg2"
+	else: return str(request.files['avatar'])
 
 	# get background
 	if request.headers.get("cf-ipcountry") == "T1": return "Image uploads are not allowed through TOR.", 403
