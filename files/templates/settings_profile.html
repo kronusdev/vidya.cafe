@@ -70,100 +70,11 @@
 						<a class="button mx-0 mt-3 float-right" id="nobg" href="javascript:void(0)" onclick="post('/settings/profile?background=(())', function(){window.location.reload(true);})">Remove Background</a>
 					</div>
 						<div class="body w-lg-100">
-							<script>
-								function updatebgselection(){
-								var bgselector = document.getElementById("backgroundSelector");
-								var selection = bgselector.options[bgselector.selectedIndex].text;
-								
-								//var paragraph = document.getElementById("testp");
-								//paragraph.innerHTML = selection;
-								
-								const backgrounds = [
-									{
-										folder: "fantasy",
-										backgrounds: 
-										[
-											"bg-1",
-											"bg-2",
-											"bg-3",
-											"bg-4",
-											"bg-5",
-											"bg-6"
-										]
-									},
-									{
-										folder: "solarpunk",
-										backgrounds: 
-										[
-											"bg-1",
-											"bg-2",
-											"bg-3",
-											"bg-4",
-											"bg-5",
-											"bg-6",
-											"bg-7",
-											"bg-8",
-											"bg-9",
-											"bg-10",
-											"bg-11",
-											"bg-12",
-											"bg-13",
-											"bg-14",
-											"bg-15",
-											"bg-16",
-											"bg-17",
-											"bg-18",
-											"bg-19",
-										]
-									},
-									{
-										folder: "other",
-										backgrounds:
-										[
-											"bg-1",
-											"bg-2",
-											"bg-3",
-											"bg-4",
-											"bg-5",
-											"bg-6",
-											"bg-7"
-										]
-									},
-									{
-									folder: "pixelart",
-									backgrounds:
-									[
-										"bg-1",
-										"bg-2",
-										"bg-3",
-										"bg-4",
-										"bg-5",
-										"bg-6",
-										"bg-7",
-										"bg-8"
-									]
-									}
-								]
-									let bgContainer = document.getElementById(`bgcontainer`);
-									let str = '';
-									let bgsToDisplay = backgrounds[bgselector.selectedIndex].backgrounds;
-									let bgsDir = backgrounds[bgselector.selectedIndex].folder;
-									for (i=0; i < bgsToDisplay.length; i++) {
-										let onclickPost = "/assets/images/custombackgrounds/" + bgsDir + "/" + bgsToDisplay[i];
-										str += `<button class="button m-1 p-0" style="width:15rem; overflow: hidden;"><img style="padding:0.25rem; width: 15rem" src="/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}" alt="${bgsToDisplay[i]}-background" onclick="post('/settings/profile?background=${onclickPost}', function(){window.location.reload(true);})"/></button>`;
-									}
-									bgContainer.innerHTML = str;
-								}
-								function postBgUrl(){
-									post('/settings/profile?background_url='+document.getElementById("background_url_field").value, function(){window.location.reload(true);})
-								}
-							</script>
-							<script>
-							addEventListener("DOMContentLoaded", () => updatebgselection());
-							</script>
+							<script src="/assets/js/bgselection.js"></script>
 							<p>Change the background for the website.</p>
 							<div class="input-group mb2">
-									<select id='backgroundSelector' class="input" form="profile-settings" name="background" onchange="updatebgselection();">
+								<script>addEventListener("DOMContentLoaded", () => updatebgselection(true));</script>
+								<select id='backgroundSelector' class="input" form="profile-settings" name="background" onchange="updatebgselection(true);">
 									{% for entry in ["fantasy", "solarpunk", "other", "pixelart"] %}
 										<option value="{{entry}}">
 											{{entry}}

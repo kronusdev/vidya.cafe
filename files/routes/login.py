@@ -1,6 +1,8 @@
 from urllib.parse import urlencode
 from files.mail import *
 from files.__main__ import app, limiter
+from files.helpers.sanitize import *
+
 
 valid_username_regex = re.compile("^[a-zA-Z0-9_\-]{3,25}$")
 valid_password_regex = re.compile("^.{8,100}$")
@@ -376,6 +378,85 @@ def sign_up_post(v):
 
 	return redirect("/")
 
+@app.get("/setup")
+@auth_required
+def get_setup(v):
+	return render_template("onboarding.html", v=v)
+
+@app.post("/setup")
+@auth_required
+@validate_formkey
+def set_up_account(v):
+	# check request size
+	if request.content_length > 2 * 16 * 1024 * 1024:
+		g.db.rollback()
+		abort(413)
+
+	# get avatar
+	if request.files.get("avatar"):
+		file = request.files['file']
+		if not file.content_type.startswith('image/'):
+			if request.headers.get("Authorization"): return {"error": f"Image files only"}, 400
+			else: return render_template("submit.html", v=v, error=f"Image files only.", title=title, body=request.form.get("body", "")), 400
+
+			highres = upload_file(file)
+			if not highres: abort(400)
+			imageurl = upload_file(resize=True)
+			if not imageurl: abort(400)
+			v.highres = highres
+			v.profileurl = imageurl
+
+	# get background
+	if request.headers.get("cf-ipcountry") == "T1": return "Image uploads are not allowed through TOR.", 403
+	if request.files["banner"]:
+		imageurl = upload_file(request.files["banner"])
+		if imageurl:
+			v.bannerurl = imageurl
+
+	# get name color
+	name_color = str(request.form.get("name_color", "")).strip()
+	v.namecolor = name_color[1:]
+
+	# get flair string
+	flair=request.form.get("flair").strip()
+
+	# verify acceptability
+	valid_title_regex = re.compile("^((?!<).){3,100}$")
+
+	if not re.match(valid_title_regex, flair):
+		return render_template("onboarding.html",
+						   v=v,
+						   error="The flair is invalid")
+
+	v.customtitleplain = flair
+	flair = sanitize(flair, flair=True)
+	v.customtitle = flair
+
+	# get flair color
+	flair_color = str(request.form.get("flair_color", "")).strip()
+	v.titlecolor = flair_color
+
+	# get theme
+	theme = request.form.get("theme")
+	v.theme = theme
+	if theme == "coffee": v.themecolor = "f39731"
+	elif theme == "4chan": v.themecolor = "38a169"
+	elif theme =="hackernews": v.themecolor = "ff6600"
+	elif theme == "haloween": v.background = "/assets/images/custombackgrounds/other/bg-6"
+	elif theme == "win98":
+		v.themecolor = "00007b"
+		v.background = "/assets/images/custombackgrounds/other/bg-5"
+
+	# get themecolor
+	themecolor = str(request.form.get("themecolor", "")).strip()
+	v.themecolor = themecolor
+
+	# get background
+	#background = request.form.get("background", None)
+	#v.background = background
+	g.db.add(v)
+	g.db.commit()
+	return 200
 
 @app.get("/forgot")
 def get_forgot():

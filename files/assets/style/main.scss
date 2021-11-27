@@ -402,6 +402,7 @@ ol > li::before {
 	border-right-width: 0;
 	border-left-width: 0;
 	border-bottom-width: 2px;
+	//float: left;
 	&:not(.disabled):not(:disabled){
 		&:hover {
 			background: var(--gray-600);
