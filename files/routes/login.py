@@ -396,10 +396,11 @@ def set_up_account(v):
 
 	# get avatar
 	if request.files["avatar"]:
-		highres = upload_file(request.files["avatar"]) #"http://localhost/assets/images/cafe.png"#
+		avatar = request.files["avatar"]
+		highres = upload_file(avatar) #"http://localhost/assets/images/cafe.png"#
 		if highres:
 			v.highres = highres
-		avatarurl = upload_file(request.files["avatar"])#"http://localhost/assets/images/cafe.png"#
+		avatarurl = upload_file(avatar)#"http://localhost/assets/images/cafe.png"#
 		if avatarurl:
 			v.profileurl = avatarurl
 		#file = request.files['avatar']
