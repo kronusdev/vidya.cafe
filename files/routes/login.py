@@ -396,24 +396,14 @@ def set_up_account(v):
 
 	# get avatar
 	if request.files["avatar"]:
-		avatar = request.files["avatar"]		
-		highres = upload_file(avatar) #"http://localhost/assets/images/cafe.png"#
-		if highres:
-			v.highres = highres
-		avatarurl = upload_file(resize=True)#"http://localhost/assets/images/cafe.png"#
+		avatar = request.files["avatar"]
+		#TODO: Figure out why this doesn't work (avatarurl throws an error when highres is uncommented)
+		#highres = upload_file(avatar) #"http://localhost/assets/images/cafe.png"#
+		#if highres:
+			#v.highres = highres
+		avatarurl = upload_file(avatar, resize=True)#"http://localhost/assets/images/cafe.png"#
 		if avatarurl:
 			v.profileurl = avatarurl
-		#file = request.files['avatar']
-		#if not file.content_type.startswith('image/'):
-			#if request.headers.get("Authorization"): return {"error": f"Image files only"}, 400
-			#else: return render_template("onboarding.html", v=v, error=f"Image files only."), 400
-
-			#highres = upload_file(file)
-			#if not highres: abort(400)
-			#imageurl = upload_file(file, resize=True)
-			#if not imageurl: abort(400)
-			#v.highres = highres
-			#v.profileurl = "https://robohash.org/urmom?bgset=bg2"
 
 	# get background
 	if request.files["banner"]:
