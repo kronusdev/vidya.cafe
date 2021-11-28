@@ -398,12 +398,16 @@ def set_up_account(v):
 	if request.files["avatar"]:
 		avatar = request.files["avatar"]
 		#TODO: Figure out why this doesn't work (avatarurl throws an error when highres is uncommented)
-		#highres = upload_file(avatar) #"http://localhost/assets/images/cafe.png"#
-		#if highres:
-			#v.highres = highres
-		avatarurl = upload_file(avatar, resize=True)#"http://localhost/assets/images/cafe.png"#
-		if avatarurl:
-			v.profileurl = avatarurl
+
+		highres = upload_file(avatar) #"http://localhost/assets/images/cafe.png"#
+		if not highres:
+			return abort(400)
+		avatarurl = upload_file(resize=True)#"http://localhost/assets/images/cafe.png"#
+		if not avatarurl:
+			return abort(400)
+			
+		v.profileurl = avatarurl
+		v.highres = highres
 
 	# get background
 	if request.files["banner"]:
