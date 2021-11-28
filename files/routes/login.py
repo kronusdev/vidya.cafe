@@ -392,23 +392,29 @@ def set_up_account(v):
 		g.db.rollback()
 		abort(413)
 
+	if request.headers.get("cf-ipcountry") == "T1": return "Image uploads are not allowed through TOR.", 403
+
 	# get avatar
 	if request.files['avatar']:
-		file = request.files['avatar']
-		if not file.content_type.startswith('image/'):
-			if request.headers.get("Authorization"): return {"error": f"Image files only"}, 400
-			else: return render_template("submit.html", v=v, error=f"Image files only.", title=title, body=request.form.get("body", "")), 400
-
-			highres = upload_file(file)
-			if not highres: abort(400)
-			imageurl = upload_file(file, resize=True)
-			if not imageurl: abort(400)
+		highres = upload_file(request.files['avatar']) #"http://localhost/assets/images/cafe.png"#
+		if highres:
 			v.highres = highres
-			v.profileurl = "https://robohash.org/urmom?bgset=bg2"
-	else: return str(request.files['avatar'])
+		avatarurl = upload_file(request.files['avatar'], resize=True)#"http://localhost/assets/images/cafe.png"#
+		if avatarurl:
+			v.profileurl = avatarurl
+		#file = request.files['avatar']
+		#if not file.content_type.startswith('image/'):
+			#if request.headers.get("Authorization"): return {"error": f"Image files only"}, 400
+			#else: return render_template("onboarding.html", v=v, error=f"Image files only."), 400
+
+			#highres = upload_file(file)
+			#if not highres: abort(400)
+			#imageurl = upload_file(file, resize=True)
+			#if not imageurl: abort(400)
+			#v.highres = highres
+			#v.profileurl = "https://robohash.org/urmom?bgset=bg2"
 
 	# get background
-	if request.headers.get("cf-ipcountry") == "T1": return "Image uploads are not allowed through TOR.", 403
 	if request.files["banner"]:
 		imageurl = upload_file(request.files["banner"])
 		if imageurl:
