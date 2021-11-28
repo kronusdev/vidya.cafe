@@ -127,7 +127,16 @@
 					--><input type="radio" name="theme" id="{{entry}}-theme" value="{{entry}}" class="btn-check" {% if entry == v.theme %}checked{%endif%}><!--
 					--><label for="{{entry}}-theme" class="selection">{{entry}}</label><!--
 					--><script>
-					document.getElementById('{{entry}}-theme').onchange = () => {document.styleSheets[2].ownerNode.setAttribute('href', "/assets/style/{{entry}}.css")}
+					document.getElementById('{{entry}}-theme').onchange = () => {
+					// add transition effect
+					document.styleSheets[3].addRule('*','transition: 1s color, 1s background !important')
+					document.styleSheets[2].ownerNode.setAttribute('href', "/assets/style/{{entry}}.css")
+					setTimeout( 
+					() => {document.styleSheets[3].deleteRule(1)},
+					1100
+					)
+					
+					}
 					</script><!--
 				{% endfor %}
 				-->
