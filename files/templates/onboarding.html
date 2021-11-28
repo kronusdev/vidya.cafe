@@ -7,20 +7,28 @@
 <div class="card-blank">
 <div class="card-header border-0">Customize Your Experience</div>
 	<div class="d-flex">
-		<div class="bg-gray-200" style="width: 5rem">
+		<div class="bg-gray-200 d-none d-md-inline-block" style="width: 5rem">
 <!--		<button class="button">Profile</button>-->
 		</div>
-		<div class="mx-4 my-2 w-100">
+		<div class="mx-1 mx-md-4 my-2 w-100" style="width: calc(100% - 2rem) !important;">
 			<form method="POST" action="/setup" enctype="multipart/form-data">
 			<input type="hidden" name="formkey" value="{{v.formkey}}">
 			<h3>Customize your profile</h3>
-			<div class="d-flex">
-				<div class="jumbotron jumbotron-fluid jumbotron-guild d-block rounded mb-5" style="background-image: url('{{v.banner_url}}'); width: 50rem;" id="banner-img">
-					<div class="d-flex w-100 h-100">
+			<div class="d-block d-md-flex">
+				<div class="jumbotron jumbotron-fluid jumbotron-guild d-block rounded m-3 mb-md-5 w-100" style="background-image: url('{{v.banner_url}}'); max-width: 50rem; height:max-content;" id="banner-img">
+					<div class="d-block d-md-flex w-100 h-100">
 						<div class="m-2">
 						<img class="profile-pic profile-pic-120" src="{{v.profile_url}}" id="avatar-img">
+						<style>
+						@media (max-width: 768px) {
+							[for="avatar-upload"], [for="banner-upload"] {
+								float: inline-end;
+								margin-inline: 0.5rem !important;
+							}
+						}
+						</style>
 						<input type="file" id="avatar-upload" name="avatar" hidden="hidden">
-						<label for="avatar-upload" class="button my-2 mr-auto d-block" style="width: max-content"><i class="fas fa-file-upload mr-2"></i> Avatar</label>
+						<label for="avatar-upload" class="button my-2 mr-auto d-inline-block d-md-block" style="width: max-content"><i class="fas fa-file-upload mr-2"></i> Avatar</label>
 						
 						<script>
 						document.getElementById('avatar-upload').addEventListener('change', function(){
@@ -37,7 +45,7 @@
 						</script>
 						
 						<input type="file" id="banner-upload" name="banner" hidden="hidden">
-						<label for="banner-upload" class="button my-2 mr-auto d-block" style="width: max-content"><i class="fas fa-file-upload mr-2"></i> Banner</label>
+						<label for="banner-upload" class="button my-2 mr-auto d-inline-block d-md-block" style="width: max-content"><i class="fas fa-file-upload mr-2"></i> Banner</label>
 						
 						<script>
 						document.getElementById('banner-upload').addEventListener('change', function(){
@@ -54,7 +62,7 @@
 						</script>
 						
 						</div>
-						<div class="card-blank d-inline-block w-100 m-2">
+						<div class="card-blank m-2 d-inline-block" style="width: calc(100% - 1rem);">
 							<div class="d-flex">
 								<h3 id="username" class="font-weight-bolder m-2 d-inline-block" style="color: #{{v.namecolor}}">
 								{{v.username}}
@@ -94,9 +102,9 @@
 				<div class="card-blank mx-3">
 					<h4>Name Color</h4>
 					<input name="name_color" id="name_color" type="color" value="#{{v.namecolor}}" hidden></input>
-					<label for="name_color" class="button d-block"><i class="fas fa-palette mr-2"></i>Name Color</label>
+					<label for="name_color" class="button d-md-block"><i class="fas fa-palette mr-2"></i>Name Color</label>
 					<input name="flair_color" id="flair_color" type="color" hidden value="#{{v.titlecolor}}"></input>
-					<label for="flair_color" class="button d-block"><i class="fas fa-palette mr-2"></i>Flair Color</label>
+					<label for="flair_color" class="button d-md-block"><i class="fas fa-palette mr-2"></i>Flair Color</label>
 					<script>
 						name_color = document.getElementById("name_color")
 						uname = document.getElementById("username")
@@ -159,7 +167,7 @@
 					</select>
 					<a class="button mx-2" id="nobg" href="javascript:void(0)" onclick="document.getElementById('frontpage').style.setProperty('background-image', 'none')">Remove Background</a>
 					<input type="hidden" name="background" id="bginput" value="{{v.background}}"></input>
-					<div id="bgcontainer" style="max-width: 50rem"></div>
+					<div id="bgcontainer" style="max-width: 50rem; display: grid; grid-template-columns: 1fr 1fr 1fr;"></div>
 				</div>
 
 			</div>
