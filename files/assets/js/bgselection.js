@@ -77,8 +77,13 @@ const backgrounds = [
 	let bgsDir = backgrounds[bgselector.selectedIndex].folder;
 	if (make_post == true) {
 		for (i=0; i < bgsToDisplay.length; i++) {
+// 			let onclickPost = "/assets/images/custombackgrounds/" + bgsDir + "/" + bgsToDisplay[i];
+// 			str += `<button class="button m-1 p-0" style="overflow: hidden; background-image: url('/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}'); background-size: cover; height: 10rem" onclick="post('/settings/profile?background=${onclickPost}', function(){window.location.reload(true);})"/></button>`;
 			let onclickPost = "/assets/images/custombackgrounds/" + bgsDir + "/" + bgsToDisplay[i];
-			str += `<button class="button m-1 p-0" style="overflow: hidden; background-image: url('/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}'); background-size: cover; height: 10rem" onclick="post('/settings/profile?background=${onclickPost}', function(){window.location.reload(true);})"/></button>`;
+			property = `'url(${onclickPost})'`
+			
+			str += `<div onclick="document.getElementById('settings').style.setProperty('background-image', ${property}); post('/settings/profile?background=${onclickPost}', ()=>{console.log('loll')})" class="button m-1 p-0" style="overflow: hidden; background-image: url('/assets/images/custombackgrounds/${bgsDir}/${bgsToDisplay[i]}'); background-size: cover;height: 10rem;"></div>`;
+			
 		}
 	}else {
 		for (i=0; i < bgsToDisplay.length; i++) {

@@ -166,7 +166,7 @@
 				<h3 class="mt-5">Select a background</h3>
 				<div>
 					<script src="/assets/js/bgselection.js"></script>
-					<script>addEventListener("DOMContentLoaded", () => updatebgselection());</script>
+					<script>addEventListener("DOMContentLoaded", () => updatebgselection(false));</script>
 					<select id='backgroundSelector' class="input" onchange="updatebgselection();">
 						{% for entry in ["fantasy", "solarpunk", "other", "pixelart"] %}
 							<option value="{{entry}}">

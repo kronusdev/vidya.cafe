@@ -20,7 +20,7 @@ Vidya cafe uses markdown formatting with some things added on top. To learn more
 ### Sorting algorithm
 Keep in mind that comments on your post also contribute to its score!
 
-### Setup and customization
+### Setup and Customization
 If you'd like to customize your profile a bit, head on over to the [setup page](/setup). Everything you do there can be later configured in the settings. You can change numerous things, such as the website theme, your flair and profile banner
 
 
