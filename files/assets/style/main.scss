@@ -140,6 +140,7 @@ $yiq-contrasted-threshold:	160 !default;
 	}
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
+@import "./utils.scss";
 
 html {
 	font-size: 14px;

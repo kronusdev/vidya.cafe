@@ -10934,6 +10934,9 @@ a.close.disabled {
   .table .thead-dark th {
     color: inherit;
     border-color: #1C2229; } }
+.w-max-content {
+  width: max-content !important; }
+
 html {
   font-size: 14px; }
 
