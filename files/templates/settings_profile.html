@@ -11,9 +11,6 @@
 	<div class="col col-lg-10">
 
 		<div class="settings">
-
-			
-
 			<div class="card-blank rounded">
 				<h2 class="h5 card-header" name="referral">Theme</h2>
 					<div class="body d-lg-flex border-bottom">
@@ -188,33 +185,165 @@
 				<h2 class="h5" id="referral" name="referral">Referrals</h2>
 				<p class="text-small text-muted">Invite a friend.</p>
 			</div>
-				<div class="d-lg-flex">
+			<div class="d-lg-flex">
 
-					<div class="title w-lg-25">
-						<label for="referral_code">Referral code</label>
+				<div class="title w-lg-25">
+					<label for="referral_code">Referral code</label>
+				</div>
+
+				<div class="body w-lg-100">
+
+					<div class="input-group">
+
+						<input type="text" readonly="" class="input copy-link" id="referral_code" value="{{request.host_url}}signup?ref={{v.username}}" data-clipboard-text="{{request.host_url}}signup?ref={{v.username}}">
+
+						<span class="input-group-append" data-bs-toggle="tooltip" data-bs-placement="top" title="You have referred {{v.referral_count}} user{{'s' if v.referral_count != 1 else ''}} so far. {% if v.referral_count==0 %}¯\_(ツ)_/¯{% elif v.referral_count>10%}Wow!{% endif %}">
+							<span class="input-group-text text-primary border-0">
+								<i class="far fa-user mr-1" aria-hidden="true"></i>{{v.referral_count}}</span>
+							</span>
+					</div>
+					<div class="text-small-extra text-muted mt-3">Share this link with a friend. {% if v.referral_count==0 %} When they sign up, you'll get the bronze recruitment badge. <a href="/badges">Learn more.</a>{% elif v.referral_count<10 %} When you refer 10 friends, you'll receive the silver recruitment badge. <a href="/badges">Learn more.</a>{% elif v.referral_count<100 %} When you refer 100 friends, you'll receive the gold recruitment badge. <a href="/badges">Learn more</a>.{% endif %}</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-blank rounded">
+				<div class="card-header">
+					<h2 class="h5" id="bio" name="bio">Your Profile</h2>
+					<p class="text-small text-muted">Edit how others see you on {{"SITE_NAME" | app_config}}.</p>
+				</div>
+				<div class="body d-lg-flex border-bottom">
+
+					<label for="bio" class="text-black w-lg-25">Username</label>
+
+					<div class="w-lg-100">
+						<p>Your original username will always stay reserved for you: <code>{{v.original_username}}</code></p>
+
+
+						<form action="/settings/name_change" method="post">
+							<input type="hidden" name="formkey" value="{{v.formkey}}">
+							<input type="text" name="name" class="input w-100" value="{{v.username}}">
+							<small>3-25 characters, including letters, numbers, _ , and -</small>
+							<div class="d-flex mt-2">
+								<input class="button ml-auto" type="submit" value="Change Display Name">
+							</div>
+						</form>
 					</div>
 
-					<div class="body w-lg-100">
+				</div>
+				<div class="body d-lg-flex border-bottom">
 
-						<div class="input-group">
+					<label for="bio" class="text-black w-lg-25">Name Color</label>
 
-							<input type="text" readonly="" class="input copy-link" id="referral_code" value="{{request.host_url}}signup?ref={{v.username}}" data-clipboard-text="{{request.host_url}}signup?ref={{v.username}}">
+					<div class="d-flex">
 
-							<span class="input-group-append" data-bs-toggle="tooltip" data-bs-placement="top" title="You have referred {{v.referral_count}} user{{'s' if v.referral_count != 1 else ''}} so far. {% if v.referral_count==0 %}¯\_(ツ)_/¯{% elif v.referral_count>10%}Wow!{% endif %}">
-								<span class="input-group-text text-primary border-0">
-									<i class="far fa-user mr-1" aria-hidden="true"></i>{{v.referral_count}}</span>
+						<form action="/settings/namecolor" id="color-form" method="post" class="color-picker" style="line-height: 0">
+								<input type="hidden" name="formkey" value="{{v.formkey}}">
+
+								{% for color in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
+								<input type="radio" name="color" id="color-{{color}}" value="{{color}}" {% if v.namecolor == color %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
+								<label class="color-radio" for="color-{{color}}">
+									<span style="background-color: #{{color}}">
+									{% if v.namecolor.lower() == color %}
+										<i class="fas fa-check text-white"></i>
+									{% else %}
+										&nbsp;
+									{% endif %}
+									</span>
+								</label>
+								{% endfor %}
+						</form>
+					</div>
+				</div>
+				{% if not v.flairchanged %}
+				<div class="body d-lg-flex border-bottom">
+
+					<label for="bio" class="text-black w-lg-25">Flair</label>
+
+					<div class="w-lg-100">
+
+						<form id="profile-settings" action="/settings/title_change" method="post">
+							<input type="hidden" name="formkey" value="{{v.formkey}}">
+							<input id="customtitlebody" type="text" name="title" class="input w-100" placeholder='Enter a flair here' value="{% if v.customtitleplain %}{{v.customtitleplain}}{% endif %}">
+							<div class="d-flex mt-2">
+								<small class="format"><i class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom"  title="Add Emoji"></i></small>
+								&nbsp;&nbsp;&nbsp;
+								<small>Limit of 100 characters</small>
+								<input class="button ml-auto" id="titleSave" type="submit" value="Change Flair">
+							</div>
+						</form>
+					</div>
+
+				</div>
+				{% endif %}
+
+				<div class="body d-lg-flex border-bottom">
+
+					<label for="bio" class="text-black w-lg-25">Flair Color</label>
+
+				<div class="d-flex">
+
+						<form action="/settings/titlecolor" id="titlecolor-form" method="post" class="color-picker" style="line-height: 0">
+							<input type="hidden" name="formkey" value="{{v.formkey}}">
+
+							{% for titlecolor in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
+							<input type="radio" name="titlecolor" id="titlecolor-{{titlecolor}}" value="{{titlecolor}}" {% if v.titlecolor == titlecolor %}checked{% endif %} onclick="document.getElementById('titlecolor-form').submit()"/>
+							<label class="color-radio" for="titlecolor-{{titlecolor}}">
+								<span style="background-color: #{{titlecolor}}">
+								{% if v.titlecolor.lower() == titlecolor %}
+									<i class="fas fa-check text-white"></i>
+								{% else %}
+									&nbsp;
+								{% endif %}
 								</span>
+							</label>
+							{% endfor %}
+					</form>
+				</div>
+			</div>
 
+				<div class="body d-lg-flex border-bottom">
+					<label for="bio" class="text-black w-lg-25">Bio</label>
+					<div class="w-lg-100">
+						<form id="profile-bio" action="/settings/profile" method="post">
+							<input type="hidden" name="formkey" value="{{v.formkey}}">
+							<div class="input-group mb-2">
+								<textarea class="input rounded" id="bio-text" aria-label="With textarea"
+								placeholder="Tell the community a bit about yourself."
+								rows="3" name="bio" form="profile-bio" maxlength="1500">{{v.bio}}</textarea>
 							</div>
-
-							<div class="text-small-extra text-muted mt-3">Share this link with a friend. {% if v.referral_count==0 %} When they sign up, you'll get the bronze recruitment badge. <a href="/badges">Learn more.</a>{% elif v.referral_count<10 %} When you refer 10 friends, you'll receive the silver recruitment badge. <a href="/badges">Learn more.</a>{% elif v.referral_count<100 %} When you refer 100 friends, you'll receive the gold recruitment badge. <a href="/badges">Learn more</a>.{% endif %}</div>
-
+							
+							<div class="d-flex">
+								<pre class="button format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('bio-text')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bold"></pre>
+								&nbsp;
+								<pre class="button format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('bio-text')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Italicize"></pre>
+								&nbsp;
+								<pre class="button format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('bio-text')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Quote"></pre>
+								&nbsp;
+								<pre style="line-height:1;" class="button format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('bio-text');getGif()" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#gifModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add GIF">GIF</pre>
+								&nbsp;
+								<pre class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('bio-text')" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Emoji"></pre>
+								&nbsp;
 							</div>
-
-						</div>
-
+							
+							<pre></pre>
+							
+							<div class="d-flex">
+								<small>Limit of 1500 characters</small>
+								<input class="button ml-auto" id="bioSave" type="submit" value="Save Changes">
+							</div>
+						</form>
 					</div>
-					
+				</div>
+				<div class="body d-lg-flex border-bottom">
+					<label class="text-black w-lg-25">Badges</label>
+					<div class="w-lg-100">
+						<p>Profile badges show off all of your site achievements. If your badges look not quite up to date, use this tool to refresh them.</p>
+						<div class="d-flex">
+							<a class="button ml-auto" id="badgeUpdate" href="javascript:void(0)" onclick="post_toast('/settings/badges')">Refresh badges</a>
+						</div>
+					</div>
+				</div>
+			</div>
 					<div class="card-blank rounded">
 						<div class="card-header">
 							<h2 class="h5" name="referral">Donations</h2>
@@ -342,198 +471,7 @@
 
 					</div>
 
-						<div class="card-blank rounded">
-							<div class="card-header">
-								<h2 class="h5" id="bio" name="bio">Your Profile</h2>
-								<p class="text-small text-muted">Edit how others see you on {{"SITE_NAME" | app_config}}.</p>
-							</div>
-							<div class="body d-lg-flex border-bottom">
 
-								<label for="bio" class="text-black w-lg-25">Username</label>
-
-								<div class="w-lg-100">
-									<p>Your original username will always stay reserved for you: <code>{{v.original_username}}</code></p>
-
-
-									<form action="/settings/name_change" method="post">
-										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input type="text" name="name" class="input w-100" value="{{v.username}}">
-										<small>3-25 characters, including letters, numbers, _ , and -</small>
-										<div class="d-flex mt-2">
-											<input class="button ml-auto" type="submit" value="Change Display Name">
-										</div>
-									</form>
-								</div>
-
-							</div>
-							
-<!--							<div class="body d-lg-flex border-bottom">
-
-								<label for="bio" class="text-black w-lg-25">Profile Anthem</label>
-
-								<div class="w-lg-100">
-									<p>Must be a youtube video link.</p>
-
-									<form action="/settings/song_change" method="post">
-										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input type="text" name="song" class="input" value="{% if v.song %}https://youtu.be/{{v.song}}{% endif %}" placeholder='Enter a youtube video link here' >
-										<br><small>In some browsers, users have to click at least once anywhere in the profile page for the anthem to play.</small>
-										<div class="d-flex mt-2">
-											<input class="button ml-auto" type="submit" value="Change Profile Anthem">
-										</div>
-									</form>
-								</div>
-
-							</div>
--->							
-							<div class="body d-lg-flex border-bottom">
-
-								<label for="bio" class="text-black w-lg-25">Name Color</label>
-
-								<div class="d-flex">
-
-									<form action="/settings/namecolor" id="color-form" method="post" class="color-picker" style="line-height: 0">
-											<input type="hidden" name="formkey" value="{{v.formkey}}">
-
-											{% for color in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
-											<input type="radio" name="color" id="color-{{color}}" value="{{color}}" {% if v.namecolor == color %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-											<label class="color-radio" for="color-{{color}}">
-												<span style="background-color: #{{color}}">
-												{% if v.namecolor.lower() == color %}
-													<i class="fas fa-check text-white"></i>
-												{% else %}
-													&nbsp;
-												{% endif %}
-												</span>
-											</label>
-											{% endfor %}
-
-									</form>
-
-								</div>
-							
-							</div>							
-							
-
-						<!--	<div class="body d-lg-flex border-bottom">
-
-								<label for="bio" class="text-black w-lg-25">Animated Username</label>
-
-								<div class="w-lg-100">
-
-									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input" id="animatedname" name="animatedname"{% if v.animatedname%} checked{% endif %} onchange="post_toast('/settings/profile?animatedname='+document.getElementById('animatedname').checked)">
-										<label class="custom-control-label" for="animatedname"></label>
-									</div>
-
-									<span class="text-small-extra text-muted">Enable animated username (only available to users in the {{"COINS_NAME" | app_config}} leaderboard and patrons)</span>
-								</div>
-
-							</div>
-						-->		
-
-							{% if not v.flairchanged %}
-							<div class="body d-lg-flex border-bottom">
-
-								<label for="bio" class="text-black w-lg-25">Flair</label>
-
-								<div class="w-lg-100">
-
-									<form id="profile-settings" action="/settings/title_change" method="post">
-										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input id="customtitlebody" type="text" name="title" class="input w-100" placeholder='Enter a flair here' value="{% if v.customtitleplain %}{{v.customtitleplain}}{% endif %}">
-										<div class="d-flex mt-2">
-											<small class="format"><i class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom"  title="Add Emoji"></i></small>
-											&nbsp;&nbsp;&nbsp;
-											<small>Limit of 100 characters</small>
-											<input class="button ml-auto" id="titleSave" type="submit" value="Change Flair">
-										</div>
-									</form>
-								</div>
-
-							</div>
-							{% endif %}
-
-							<div class="body d-lg-flex border-bottom">
-
-							 <label for="bio" class="text-black w-lg-25">Flair Color</label>
-
-							<div class="d-flex">
-
-								 <form action="/settings/titlecolor" id="titlecolor-form" method="post" class="color-picker" style="line-height: 0">
-										<input type="hidden" name="formkey" value="{{v.formkey}}">
-
-										{% for titlecolor in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
-										<input type="radio" name="titlecolor" id="titlecolor-{{titlecolor}}" value="{{titlecolor}}" {% if v.titlecolor == titlecolor %}checked{% endif %} onclick="document.getElementById('titlecolor-form').submit()"/>
-										<label class="color-radio" for="titlecolor-{{titlecolor}}">
-											<span style="background-color: #{{titlecolor}}">
-											{% if v.titlecolor.lower() == titlecolor %}
-												<i class="fas fa-check text-white"></i>
-											{% else %}
-												&nbsp;
-											{% endif %}
-											</span>
-										</label>
-										{% endfor %}
-
-								</form>
-
-							</div>
-
-							</div>
-
-							<div class="body d-lg-flex border-bottom">
-
-								<label for="bio" class="text-black w-lg-25">Bio</label>
-
-								<div class="w-lg-100">
-
-
-									<form id="profile-bio" action="/settings/profile" method="post">
-										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<div class="input-group mb-2">
-											<textarea class="input rounded" id="bio-text" aria-label="With textarea"
-											placeholder="Tell the community a bit about yourself."
-											rows="3" name="bio" form="profile-bio" maxlength="1500">{{v.bio}}</textarea>
-										</div>
-										
-										<div class="d-flex">
-											<pre class="button format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('bio-text')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bold"></pre>
-											&nbsp;
-											<pre class="button format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('bio-text')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Italicize"></pre>
-											&nbsp;
-											<pre class="button format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('bio-text')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Quote"></pre>
-											&nbsp;
-											<pre style="line-height:1;" class="button format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('bio-text');getGif()" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#gifModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add GIF">GIF</pre>
-											&nbsp;
-											<pre class="button format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('bio-text')" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Emoji"></pre>
-											&nbsp;
-										</div>
-										
-										<pre></pre>
-										
-										<div class="d-flex">
-											<small>Limit of 1500 characters</small>
-											<input class="button ml-auto" id="bioSave" type="submit" value="Save Changes">
-										</div>
-									</form>
-								</div>
-
-							</div>
-							
-							<div class="body d-lg-flex border-bottom">
-								<label class="text-black w-lg-25">Badges</label>
-
-								<div class="w-lg-100">
-									<p>Profile badges show off all of your site achievements. If your badges look not quite up to date, use this tool to refresh them.</p>
-									<div class="d-flex">
-										<a class="button ml-auto" id="badgeUpdate" href="javascript:void(0)" onclick="post_toast('/settings/badges')">Refresh badges</a>
-									</div>
-
-							 </div>
-
-						 </div>
-						 </div>
 						<div class="card-blank rounded">
 							<div class="card-header">
 								<h2 class="h5" id="bio" name="bio">Privacy Toggles</h2>
