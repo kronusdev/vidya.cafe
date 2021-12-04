@@ -5,7 +5,6 @@
 {% block content %}
 {% include "/modals/emoji_modal.html" %}
 {% include "/modals/gif_modal.html" %}
-
 <div class="row">
 
 	<div class="col col-lg-10">
@@ -13,7 +12,7 @@
 		<div class="settings">
 			<div class="card-blank rounded">
 				<h2 class="h5 card-header" name="referral">Theme</h2>
-					<div class="body d-lg-flex border-bottom">
+					<div class="body d-lg-flex settings-category ">
 						<div class="title w-lg-25">
 							<label for="theme">Website Theme</label>
 						</div>
@@ -34,13 +33,13 @@
 							{% endif %}
 						</div>
 				</div>
-					<div class="body d-lg-flex border-bottom">
+					<div class="body d-lg-flex settings-category ">
 						<div class="title w-lg-25">
 							<label for="themecolor">Theme Color</label>
 						</div>
 				<div class="d-flex">
 
-					 <form action="/settings/themecolor" id="themecolor-form" method="post" class="color-picker" style="line-height: 0">
+					 <form action="/settings/themecolor" id="themecolor-form" method="post" class="color-picker input-group" style="line-height: 0">
 							<input type="hidden" name="formkey" value="{{v.formkey}}">
 
 							{% for themecolor in ['47a3ff','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','adf1d2','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
@@ -61,7 +60,7 @@
 				</div>
 				
 				</div>
-					<div class="body d-lg-flex border-bottom">
+					<div class="body d-lg-flex settings-category ">
 					<div class="title w-lg-25">
 						<label for="theme">Website Backgrounds</label>
 						<a class="button mx-0 mt-3 float-right" id="nobg" href="javascript:void(0)" onclick="post('/settings/profile?background=(())', function(){window.location.reload(true);})">Remove Background</a>
@@ -185,7 +184,7 @@
 				<h2 class="h5" id="referral" name="referral">Referrals</h2>
 				<p class="text-small text-muted">Invite a friend.</p>
 			</div>
-			<div class="d-lg-flex">
+			<div class="d-lg-flex settings-category">
 
 				<div class="title w-lg-25">
 					<label for="referral_code">Referral code</label>
@@ -211,7 +210,7 @@
 					<h2 class="h5" id="bio" name="bio">Your Profile</h2>
 					<p class="text-small text-muted">Edit how others see you on {{"SITE_NAME" | app_config}}.</p>
 				</div>
-				<div class="body d-lg-flex border-bottom">
+				<div class="body d-lg-flex settings-category">
 
 					<label for="bio" class="text-black w-lg-25">Username</label>
 
@@ -230,7 +229,7 @@
 					</div>
 
 				</div>
-				<div class="body d-lg-flex border-bottom">
+				<div class="body d-lg-flex settings-category ">
 
 					<label for="bio" class="text-black w-lg-25">Name Color</label>
 
@@ -253,9 +252,22 @@
 								{% endfor %}
 						</form>
 					</div>
+					<small>Or select a custom color:</small>
+					<div class="d-flex">
+						<form action="/settings/namecolor" id="custom-color-form" method="post">
+						<input type="hidden" name="formkey" value="{{v.formkey}}">
+						<input name="color" id="name_color" type="color" value="#{{v.namecolor}}" hidden/>
+						<label for="name_color" class="button w-max-content"><i class="fas fa-palette mr-2"></i>Color picker</label>
+						</form>
+					</div>
+					<script>
+					document.getElementById("name_color").onchange = () => {
+						document.getElementById("custom-color-form").submit()
+					}
+					</script>
 				</div>
 				{% if not v.flairchanged %}
-				<div class="body d-lg-flex border-bottom">
+				<div class="body d-lg-flex settings-category ">
 
 					<label for="bio" class="text-black w-lg-25">Flair</label>
 
@@ -276,15 +288,13 @@
 				</div>
 				{% endif %}
 
-				<div class="body d-lg-flex border-bottom">
+				<div class="body d-lg-flex settings-category ">
 
 					<label for="bio" class="text-black w-lg-25">Flair Color</label>
 
 				<div class="d-flex">
-
 						<form action="/settings/titlecolor" id="titlecolor-form" method="post" class="color-picker" style="line-height: 0">
 							<input type="hidden" name="formkey" value="{{v.formkey}}">
-
 							{% for titlecolor in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
 							<input type="radio" name="titlecolor" id="titlecolor-{{titlecolor}}" value="{{titlecolor}}" {% if v.titlecolor == titlecolor %}checked{% endif %} onclick="document.getElementById('titlecolor-form').submit()"/>
 							<label class="color-radio" for="titlecolor-{{titlecolor}}">
@@ -299,9 +309,22 @@
 							{% endfor %}
 					</form>
 				</div>
+				<small>Or select a custom color:</small>
+				<div class="d-flex">
+					<form action="/settings/titlecolor" id="custom-titlecolor-form" method="post">
+					<input type="hidden" name="formkey" value="{{v.formkey}}">
+					<input name="titlecolor" id="title_color" type="color" value="#{{v.namecolor}}" hidden/>
+					<label for="title_color" class="button w-max-content"><i class="fas fa-palette mr-2"></i>Color picker</label>
+					</form>
+				</div>
+				<script>
+				document.getElementById("title_color").onchange = () => {
+					document.getElementById("custom-titlecolor-form").submit()
+				}
+				</script>
 			</div>
 
-				<div class="body d-lg-flex border-bottom">
+				<div class="body d-lg-flex settings-category ">
 					<label for="bio" class="text-black w-lg-25">Bio</label>
 					<div class="w-lg-100">
 						<form id="profile-bio" action="/settings/profile" method="post">
@@ -334,7 +357,7 @@
 						</form>
 					</div>
 				</div>
-				<div class="body d-lg-flex border-bottom">
+				<div class="body d-lg-flex settings-category ">
 					<label class="text-black w-lg-25">Badges</label>
 					<div class="w-lg-100">
 						<p>Profile badges show off all of your site achievements. If your badges look not quite up to date, use this tool to refresh them.</p>
@@ -350,7 +373,7 @@
 							<p class="text-small text-muted">Manage your settings related to vidya.cafe donations.</p>
 						</div>
 						
-						<div class="body d-lg-flex border-bottom">
+						<div class="body d-lg-flex settings-category ">
 							<label for="bio" class="text-black w-lg-25">Ko-Fi</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_ko-fi_email" method="post">
@@ -371,31 +394,27 @@
 							<h2 class="h5" name="referral">Linked Accounts</h2>
 							<p class="text-small text-muted">Manage your connections to other services.</p>
 						</div>
-						<div class="d-lg-flex">
+						<div class="body d-lg-flex settings-category">
 
-						  <div class="title w-lg-25">
+						  <div class="title-black w-lg-25">
 							<label>Discord</label>
 						  </div>
 
-						  <div class="body w-lg-100">
-
-							{% if v.discord_id %}
-							<form action="/settings/remove_discord" method="post">
-							  <input type="hidden" name="formkey" value="{{v.formkey}}">
-							  <input type="submit" class="button text-capitalize mr-2 mb-0 mt-2" value="Disconnect Discord">
-							</form>
-
-							<div class="text-small-extra text-muted mt-3">Disconnecting your Discord account will remove you from the {{"SITE_NAME" | app_config}} Discord server.</div>
-							{% else %}
-							<a href="/discord" class="button">Link Discord</a>
-							<div class="text-small-extra text-muted mt-3">Link your Discord account to join the {{"SITE_NAME" | app_config}} Discord server.</div>
-							{% endif %}
+						  <div class="w-lg-100">
+						  <div class="input-group">
+							<input type="text" readonly="" class="input copy-link" value="https://discord.gg/b4FMB2VsCV" data-clipboard-text="https://discord.gg/b4FMB2VsCV"/>
+							<span class="input-group-append copy-link" data-clipboard-text="https://discord.gg/b4FMB2VsCV">
+								<span class="input-group-text text-primary border-0">
+									<i class="far fa-copy mr-1" aria-hidden="true"></i>
+								</span>
+							</span>
 
 						  </div>
-
+						  <small>Link to the official vidya.cafe discord server</small>
+						  </div>
 						</div>
 						
-						<div class="body d-lg-flex border-bottom">
+						<div class="body d-lg-flex settings-category ">
 
 							<label for="bio" class="text-black w-lg-25">Steam</label>
 							<div class="w-lg-100">
@@ -411,7 +430,7 @@
 							</div>
 						</div>
 
-						<div class="body d-lg-flex border-bottom">
+						<div class="body d-lg-flex settings-category ">
 							<label for="bio" class="text-black w-lg-25">Xbox Gamertag</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_xbox_gamertag" method="post">
@@ -424,7 +443,7 @@
 							</div>
 						</div>
 
-						<div class="body d-lg-flex border-bottom">
+						<div class="body d-lg-flex settings-category ">
 							<label for="bio" class="text-black w-lg-25">Playstation Network Name</label>
 							<div class="w-lg-100">
 								<form action="/settings/add_psn_name" method="post">
@@ -437,7 +456,7 @@
 							</div>
 						</div>
 
-						<div class="body d-lg-flex border-bottom">
+						<div class="body d-lg-flex settings-category ">
 
 							<label for="bio" class="text-black w-lg-25">Nintendo Switch Friend Code</label>
 							<div class="w-lg-100">
@@ -457,80 +476,80 @@
 							<h2 class="h5" name="referral">RSS Feed</h2>
 							<p class="text-small text-muted">Subscribe to the {{"SITE_NAME" | app_config}} RSS feed.</p>
 						</div>
-						<div class="d-lg-flex">
-
-							<div class="body w-lg-100">
-
-								<input type="text" readonly="" class="input w-100 copy-link" id="rss_feed" value="{{('/rss/hot/all') | full_link}}" data-clipboard-text="{{('/rss/hot/all') | full_link}}">
-
+						<div class="body d-lg-flex settings-category">
+							<div class="w-lg-100">
+								<div class="input-group">
+								<input type="text" readonly="" class="input copy-link" id="rss_feed" value="{{('/rss/hot/all') | full_link}}" data-clipboard-text="{{('/rss/hot/all') | full_link}}">
+								<span class="input-group-append copy-link" data-clipboard-text="{{('/rss/hot/all') | full_link}}">
+									<span class="input-group-text text-primary border-0">
+										<i class="far fa-copy mr-1" aria-hidden="true"></i>
+									</span>
+								</span>
+								</div>
 								<div class="text-small-extra text-muted mt-3">You can change the feed by replacing "hot" with whatever sorting you want and "all" with whatever time filter you want.</div>
-
 							</div>
+						</div>
+					</div>
+
+					<div class="card-blank rounded">
+						<div class="card-header">
+							<h2 class="h5" id="bio" name="bio">Privacy Toggles</h2>
+							</div>
+						<div class="body d-lg-flex settings-category ">
+
+						<div class="title-black w-lg-25">
+							<label for="privateswitch">Private Mode</label>
+						</div>
+
+						<div class="body w-lg-100">
+
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="privateswitch" name="private"{% if v.is_private%} checked{% endif %} onchange="post_toast('/settings/profile?private='+document.getElementById('privateswitch').checked)">
+								<label class="custom-control-label" for="privateswitch"></label>
+							</div>
+
+							<span class="text-small-extra text-muted">This will hide your post and comment history from others. We will also ask search engines to not index your profile page. (Your content will still be accessible via direct link.). It will also turn off showing the activity status by default </span>
 
 						</div>
 
 					</div>
+					<div class="body d-lg-flex settings-category ">
 
+						<div class="title-black w-lg-25">
+							<label for="activityswitch">Show Activity Status</label>
+						</div>
 
-						<div class="card-blank rounded">
-							<div class="card-header">
-								<h2 class="h5" id="bio" name="bio">Privacy Toggles</h2>
-								</div>
-						 <div class="body d-lg-flex border-bottom">
+						<div class="body w-lg-100">
 
-							<div class="title w-lg-25">
-								<label for="privateswitch">Private Mode</label>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="activityswitch" name="activity"{% if v.show_activity%} checked{% endif %} onchange="post_toast('/settings/profile?activity='+document.getElementById('activityswitch').checked)">
+								<label class="custom-control-label" for="activityswitch"></label>
 							</div>
 
-							<div class="body w-lg-100">
-
-								<div class="custom-control custom-switch">
-									<input type="checkbox" class="custom-control-input" id="privateswitch" name="private"{% if v.is_private%} checked{% endif %} onchange="post_toast('/settings/profile?private='+document.getElementById('privateswitch').checked)">
-									<label class="custom-control-label" for="privateswitch"></label>
-								</div>
-
-								<span class="text-small-extra text-muted">This will hide your post and comment history from others. We will also ask search engines to not index your profile page. (Your content will still be accessible via direct link.). It will also turn off showing the activity status by default </span>
-
-							</div>
+							<span class="text-small-extra text-muted">This will hide your online status (green dot next to the username)</span>
 
 						</div>
-						<div class="body d-lg-flex border-bottom">
 
-							<div class="title w-lg-25">
-								<label for="activityswitch">Show Activity Status</label>
+					</div>
+						<div class="body d-lg-flex settings-category ">
+
+						<div class="title-black w-lg-25">
+							<label for="nofollowswitch">Disable Subscriptions</label>
+						</div>
+
+						<div class="body w-lg-100">
+
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="nofollowswitch" name="nofollow"{% if v.is_nofollow%} checked{% endif %} onchange="post_toast('/settings/profile?nofollow='+document.getElementById('nofollowswitch').checked)">
+								<label class="custom-control-label" for="nofollowswitch"></label>
 							</div>
 
-							<div class="body w-lg-100">
-
-								<div class="custom-control custom-switch">
-									<input type="checkbox" class="custom-control-input" id="activityswitch" name="activity"{% if v.show_activity%} checked{% endif %} onchange="post_toast('/settings/profile?activity='+document.getElementById('activityswitch').checked)">
-									<label class="custom-control-label" for="activityswitch"></label>
-								</div>
-
-								<span class="text-small-extra text-muted">This will hide your online status (green dot next to the username)</span>
-
-							</div>
+							<span class="text-small-extra text-muted">Prevent other users from following you.</span>
 
 						</div>
-						 <div class="body d-lg-flex border-bottom">
 
-							<div class="title w-lg-25">
-								<label for="nofollowswitch">Disable Subscriptions</label>
-							</div>
-
-							<div class="body w-lg-100">
-
-								<div class="custom-control custom-switch">
-									<input type="checkbox" class="custom-control-input" id="nofollowswitch" name="nofollow"{% if v.is_nofollow%} checked{% endif %} onchange="post_toast('/settings/profile?nofollow='+document.getElementById('nofollowswitch').checked)">
-									<label class="custom-control-label" for="nofollowswitch"></label>
-								</div>
-
-								<span class="text-small-extra text-muted">Prevent other users from following you.</span>
-
-							</div>
-
-						</div>
-						</div>
+					</div>
+					</div>
 					</div>
 					</div>
 
