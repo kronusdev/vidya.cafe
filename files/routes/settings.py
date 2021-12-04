@@ -213,7 +213,11 @@ def sidebar_settings(v):
 @validate_formkey
 def namecolor(v):
 	color = str(request.form.get("color", "")).strip()
-	if color not in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b']: abort(400)
+	#if color not in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b']: abort(400)
+	if len(color) == 7:
+		color = color[1:7]
+	if len(color) < 6:
+		abort(400)
 	v.namecolor = color
 	g.db.add(v)
 	return redirect("/settings/profile")
@@ -233,7 +237,11 @@ def themecolor(v):
 @validate_formkey
 def titlecolor(v):
 	titlecolor = str(request.form.get("titlecolor", "")).strip()
-	if titlecolor not in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b']: abort(400)
+	#if titlecolor not in ['ff66ac','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b']: abort(400)
+	if len(titlecolor) == 7:
+		titlecolor = titlecolor[1:7]
+	if len(titlecolor) < 6:
+		abort(400)
 	v.titlecolor = titlecolor
 	g.db.add(v)
 	return redirect("/settings/profile")
