@@ -44,7 +44,14 @@
 </head>
 
 <body loading="lazy" id="settings" style="background-image:url({{ v.background }})" class="settings-body">
-
+	<style>
+	.settings-category:not(:nth-child(2)) {
+		border-top: 2px solid var(--gray-600);
+	}
+	.settings-category:not(:last-child) {
+		border-bottom: 1px solid var(--gray-200);
+	}
+	</style>
 	{% include "header.html" %}
 	<!-- Page Content -->
 	<div class="container">
@@ -181,21 +188,16 @@
 
 <!-- Instantiate clipboard by passing a string selector -->
 <script type="text/javascript">
+clipboard_success = new bootstrap.Toast(document.getElementById("toast-success"));
+	clipboard_error = new bootstrap.Toast(document.getElementById("toast-error"));
 	var clipboard = new ClipboardJS('.copy-link');
-	clipboard.on('success', function(e) {
-
-		jQuery(function($) {
-			$('#toast-success').toast('show');
-		})
-		console.log(e);
-	});
-	clipboard.on('error', function(e) {
-
-		jQuery(function($) {
-			$('#toast-error').toast('show');
-		})
-		console.log(e);
-	});
+	clipboard.on("success", () => {
+		clipboard_success.show()
+	})
+	
+	clipboard.on("error", () => {
+		clipboard_error.show()
+	})
 </script>
 
 <!--Post toasts -->
