@@ -1,0 +1,189 @@
+{% extends "default.html" %} 
+{% block content %}
+{% include "/modals/emoji_modal.html" %}
+{% include "/modals/gif_modal.html" %}
+
+<script src="/assets/js/color.js"></script>
+<div class="card-blank">
+<div class="card-header border-0">Customize Your Experience</div>
+	<div class="d-flex">
+		<div class="bg-gray-200 d-none d-md-inline-block" style="width: 5rem">
+<!--		<button class="button">Profile</button>-->
+		</div>
+		<div class="mx-1 mx-md-4 my-2 w-100" style="width: calc(100% - 2rem) !important;">
+			<form method="POST" action="/setup" enctype="multipart/form-data">
+			<input type="hidden" name="formkey" value="{{v.formkey}}">
+			<h3>Customize your profile</h3>
+			<div class="d-block d-md-flex">
+				<div class="jumbotron jumbotron-fluid jumbotron-guild d-block rounded m-3 mb-md-5 w-100" style="background-image: url('{{v.banner_url}}'); max-width: 50rem; height:max-content;" id="banner-img">
+					<div class="d-block d-md-flex w-100 h-100">
+						<div class="m-2">
+						<img class="profile-pic profile-pic-120" src="{{v.profile_url}}" id="avatar-img">
+						<style>
+						@media (max-width: 768px) {
+							[for="avatar-upload"], [for="banner-upload"] {
+								float: inline-end;
+								margin-inline: 0.5rem !important;
+							}
+						}
+						</style>
+						<input type="file" id="avatar-upload" name="avatar" hidden="hidden">
+						<label for="avatar-upload" class="button my-2 mr-auto d-inline-block d-md-block" style="width: max-content"><i class="fas fa-file-upload mr-2"></i> Avatar</label>
+						
+						<script>
+						document.getElementById('avatar-upload').addEventListener('change', function(){
+							f=document.getElementById('avatar-upload');
+							filename = f.files[0].name.toLowerCase()
+							if (filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png") || filename.endsWith(".webp") || filename.endsWith(".webp"))
+							{
+								var fileReader = new FileReader();
+								fileReader.readAsDataURL(f.files[0]);
+								fileReader.addEventListener("load", function () {document.getElementById('avatar-img').setAttribute('src', this.result);});  
+	// 								checkForRequired();
+							}
+						})
+						</script>
+						
+						<input type="file" id="banner-upload" name="banner" hidden="hidden">
+						<label for="banner-upload" class="button my-2 mr-auto d-inline-block d-md-block" style="width: max-content"><i class="fas fa-file-upload mr-2"></i> Banner</label>
+						
+						<script>
+						document.getElementById('banner-upload').addEventListener('change', function(){
+							f=document.getElementById('banner-upload');
+							filename = f.files[0].name.toLowerCase()
+							if (filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png") || filename.endsWith(".webp") || filename.endsWith(".webp"))
+							{
+								var fileReader = new FileReader();
+								fileReader.readAsDataURL(f.files[0]);
+								fileReader.addEventListener("load", function () {document.getElementById('banner-img').style.backgroundImage = "url('"+this.result+"')";});  
+	// 								checkForRequired();
+							}
+						})
+						</script>
+						
+						</div>
+						<div class="card-blank m-2 d-inline-block" style="width: calc(100% - 1rem);">
+							<div class="d-flex">
+								<h3 id="username" class="font-weight-bolder m-2 d-inline-block" style="color: #{{v.namecolor}}">
+								{{v.username}}
+								</h3>
+								
+								<input type="text" name="flair" value="{{v.customtitleplain}}" style="color: #{{v.titlecolor}}" id="flair" class="input w-100 m-2" placeholder="Your flair..">
+								</input>
+								<label class="button format d-inline-block my-2 mr-2" for="emoji-flair-btn">
+									<div id="emoji-flair-btn" onclick="loadEmojis('flair')" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam" style="padding: 0.5rem;margin: -0.5rem;"></i></div>
+								</label>
+							</div>
+							<div>
+								<textarea type="text" name="bio" id="bio" class="input m-2" placeholder="Tell the community something about yourself" maxlength="1500" style="width: calc(100% - 1rem)"></textarea>
+								<div class="ml-2 mb-2">
+									<small class="button format d-inline-block m-0">
+									<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('bio')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bold"></i>
+									</small>
+									&nbsp;
+									<small class="button format d-inline-block m-0">
+									<i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('bio')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Italicize"></i>
+									</small>
+									&nbsp;
+									<small class="button format d-inline-block m-0">
+									<i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('bio')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Quote"></i>
+									</small>
+									&nbsp;
+									<small class="button format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('bio')" data-bs-toggle="modal" data-bs-target="#gifModal" data-bs-toggle="tooltip" data-bs-placement="bottom"  title="Add GIF">GIF</span></small>
+									&nbsp;
+									<label class="button format d-inline-block m-0" for="emoji-reply-btn">
+										<div id="emoji-reply-btn" onclick="loadEmojis('bio')" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#emojiModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Emoji"><i class="fas fa-smile-beam"></i></div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-blank mx-3">
+					<h4>Name Color</h4>
+					<input name="name_color" id="name_color" type="color" value="#{{v.namecolor}}" hidden></input>
+					<label for="name_color" class="button d-md-block"><i class="fas fa-palette mr-2"></i>Name Color</label>
+					<input name="flair_color" id="flair_color" type="color" hidden value="#{{v.titlecolor}}"></input>
+					<label for="flair_color" class="button d-md-block"><i class="fas fa-palette mr-2"></i>Flair Color</label>
+					<script>
+						name_color = document.getElementById("name_color")
+						uname = document.getElementById("username")
+						flair_color = document.getElementById("flair_color")
+						flair = document.getElementById("flair")
+						name_color.onchange = () => {
+							uname.style.color = name_color.value
+						}
+						flair_color.onchange = () => {
+							flair.style.color = flair_color.value
+						}
+					</script>
+				</div>
+			</div>
+			<h3>Set your theme</h3>
+			<div>
+				<div class="d-block">
+				<!--
+				{% for entry in ["dark", "light", "coffee", "tron", "hackernews", "4chan", "blur", "win98", "halloween"] %}
+					--><input type="radio" name="theme" id="{{entry}}-theme" value="{{entry}}" class="btn-check" {% if entry == v.theme %}checked{%endif%}><!--
+					--><label for="{{entry}}-theme" class="selection">{{entry}}</label><!--
+					--><script>
+					document.getElementById('{{entry}}-theme').onchange = () => {
+					// add transition effect
+					document.styleSheets[3].addRule('*','transition: 1s color, 1s background !important')
+					document.styleSheets[2].ownerNode.setAttribute('href', "/assets/style/{{entry}}.css")
+					setTimeout( 
+					() => {document.styleSheets[3].deleteRule(1)},
+					1100
+					)
+					
+					}
+					</script><!--
+				{% endfor %}
+				-->
+				</div>
+				<div class="d-block">
+				{% for themecolor in ['47a3ff','805ad5','62ca56','38a169','80ffff','2a96f3','eb4963','ff0000','f39731','adf1d2','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6', 'f8db58', 'ffffff', 'ff6600', '00007b'] %}
+				<input class="btn-check" type="radio" name="themecolor" id="themecolor-{{themecolor}}" value="{{themecolor}}" {% if v.themecolor == themecolor %}checked{% endif %}/>
+				<label class="color-radio" for="themecolor-{{themecolor}}">
+					<span style="background-color: #{{themecolor}}">
+					{% if v.themecolor.lower() == themecolor %}
+						<i class="fas fa-check text-white"></i>
+					{% else %}
+						&nbsp;
+					{% endif %}
+					</span>
+				</label>
+				<script>
+					document.getElementById("themecolor-{{themecolor}}").onchange = () => { 
+					
+						console.log(document.getElementById("themecolor-{{themecolor}}").value);
+						document.getElementById('themecolor-style').innerHTML = ":root {" + "--primary-color: #"+document.getElementById("themecolor-{{themecolor}}").value+';' + "--secondary-color: #"+lighten_darken_color(document.getElementById("themecolor-{{themecolor}}").value, -40)+';' + "}";
+						
+					}
+				</script>
+				{% endfor %}
+				</div>
+				<h3 class="mt-5">Select a background</h3>
+				<div>
+					<script src="/assets/js/bgselection.js"></script>
+					<script>addEventListener("DOMContentLoaded", () => updatebgselection(false));</script>
+					<select id='backgroundSelector' class="input" onchange="updatebgselection();">
+						{% for entry in ["fantasy", "solarpunk", "other", "pixelart"] %}
+							<option value="{{entry}}">
+								{{entry}}
+							</option>
+						{% endfor %}
+					</select>
+					<a class="button mx-2" id="nobg" href="javascript:void(0)" onclick="document.getElementById('frontpage').style.setProperty('background-image', 'none')">Remove Background</a>
+					<input type="hidden" name="background" id="bginput" value="{{v.background}}"></input>
+					<div id="bgcontainer" style="max-width: 50rem; display: grid; grid-template-columns: 1fr 1fr 1fr;"></div>
+				</div>
+
+			</div>
+			<button type="submit" class="button btn-success" style="float: right">Finish your setup</button>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

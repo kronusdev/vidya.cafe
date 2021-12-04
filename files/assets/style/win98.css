@@ -89,7 +89,7 @@
 	border: 2px outset white !important;
 	border-bottom: 2px solid #a7a5a1 !important;
 	border-right: 2px solid #a7a5a1 !important;
-	background: var(--gray-500) !important;
+	background-color: var(--gray-500) !important;
 	color: var(--actually-black) !important;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .dropdown-menu, .button:hover {
-	background: --gray-500 !important;
+	background-color: --gray-500 !important;
 	color: var(--actually-black) !important;
 }
 

@@ -128,7 +128,7 @@
 
 {% endblock %}
 {% block sidebar %}
-	{% if v %}
+	{% if v and sidebar_settings %}
 	{% include "elements/sidebar_home.html" %}
 	{% endif %}
 {% endblock %}

@@ -140,6 +140,7 @@ $yiq-contrasted-threshold:	160 !default;
 	}
 
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
+@import "./utils.scss";
 
 html {
 	font-size: 14px;
@@ -402,6 +403,7 @@ ol > li::before {
 	border-right-width: 0;
 	border-left-width: 0;
 	border-bottom-width: 2px;
+	//float: left;
 	&:not(.disabled):not(:disabled){
 		&:hover {
 			background: var(--gray-600);
@@ -1381,7 +1383,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-radius: var(--border-radius) !important;
 }
 
-#frontpage, #userpage, #search {
+#frontpage, #userpage, #search, #settings-guild {
 	.posts {
 		.card {
 			//border-width: 0.1px 0.1px 0 0.1px;
