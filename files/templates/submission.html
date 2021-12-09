@@ -24,7 +24,7 @@
 <meta charset="utf-8" />
 <meta property="og:type" content="article" />
 
-{% if comment_info and not comment_info.is_banned and not linked_comment.deleted_utc > 0 %}
+{% if comment_info and comment_info.author and not comment_info.is_banned and not linked_comment.deleted_utc > 0 %}
 <title>{{'@'+comment_info.author.username}} comments on "{{title}} - {{"SITE_NAME" | app_config}}"</title>
 
 
