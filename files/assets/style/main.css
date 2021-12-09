@@ -13410,14 +13410,14 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 1.25rem; }
 
   .comment-actions .score {
-    color: var(--gray-200); }
+    color: var(--accent); }
 
   .score {
-    color: var(--gray-200); }
+    color: var(--accent); }
 
   .arrow-up::before, .arrow-down::before, .arrow-up:hover::before, .arrow-down:hover::before {
     font-size: 1.25rem;
-    color: var(--gray-200);
+    color: var(--accent);
     opacity: 1; }
 
   .active.arrow-up::before, .active.arrow-up:hover::before {
@@ -13452,8 +13452,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   .comment.collapsed .comment-body:hover {
     opacity: 0.5; }
 
-  .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
-    color: var(--gray-100); }
+  .comment-actions .fa, .comment-actions .fas, .comment-actions .far, .comment-actions .fad {
+    color: var(--accent); }
 
   .banner-pic-135 {
     max-width: 100%; }
