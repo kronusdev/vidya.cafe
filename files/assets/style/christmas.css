@@ -1,0 +1,29 @@
+@font-face {
+	font-family: 'Sweater';
+	src: url("/assets/webfonts/xmas_sweater_stitch/Xmas Sweater Stitch.otf");
+}
+
+.arrow-up::before {
+	content: "\f7db";
+	font-weight: 500;
+	font-size: 1.5rem;
+}
+
+.arrow-up.active::before {
+	font-weight: 900;
+}
+
+.post-img {
+	border: 3px dashed red;
+	outline: 2px green solid;
+}
+
+.reindeer {
+	font-family: "Sweater";
+	font-weight: normal;
+	background: darkgreen;
+	color: white;
+	padding: 0.5rem;
+	border-radius: var(--border-radius);
+	outline: 2px dashed red;
+}
