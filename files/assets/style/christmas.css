@@ -183,10 +183,11 @@
 		position: absolute;
 		inset: 0;
 		z-index: 4;
-		margin-top: -0.9rem;
+		margin-top: -1.4rem;
 		background-size: contain;
 		background-repeat: no-repeat;
-		height: 190%;
+		height: 230%;
+		margin-left: -0.2rem;
 	}
 
 	.hat2big::before {
@@ -208,10 +209,11 @@
 		position: absolute;
 		inset: 0;
 		z-index: 4;
-		margin-top: -1.1rem;
+		margin-top: -1.9rem;
 		background-size: contain;
 		background-repeat: no-repeat;
-		height: 170%;
+		height: 230%;
+		margin-left: -0.4rem;
 	}
 
 	.hat4big::before {
@@ -220,12 +222,11 @@
 		position: absolute;
 		inset: 0;
 		z-index: 4;
-		margin-top: -1.4rem;
+		margin-top: -1.9rem;
 		background-size: contain;
 		background-repeat: no-repeat;
-		height: 430%;
-		margin-left: -0.5rem;
-		
+		height: 500%;
+		margin-left: -0.7rem;
 	}
 }
 @media(max-width: 786px){
@@ -235,11 +236,11 @@
 		position: absolute;
 		inset: 0;
 		z-index: 4;
-		margin-top: -0.3rem;
+		margin-top: -1rem;
 		background-size: contain;
 		background-repeat: no-repeat;
-		height: 24%;
-		margin-left: 0.7rem
+		height: 29%;
+		margin-left: 0.5rem;
 	}
 	
 	.hat2smol::before {
@@ -248,7 +249,7 @@
 		position: absolute;
 		inset: 0;
 		z-index: 4;
-		margin-top: -0.9rem;
+		margin-top: -0.6rem;
 		background-size: contain;
 		background-repeat: no-repeat;
 		height: 23%;
@@ -265,7 +266,7 @@
 		background-size: contain;
 		background-repeat: no-repeat;
 		height: 25%;
-		margin-left: 0.3rem
+		margin-left: 0.4rem
 	}
 	
 	.hat4smol::before {
