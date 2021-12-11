@@ -11993,6 +11993,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   font-size: 12px;
   width: fit-content; }
 
+.username-w-flair {
+  display: inline; }
+
 #frontpage .posts .card .card-footer, #userpage .posts .card .card-footer, #thread .posts .card .card-footer, #search .posts .card .card-footer {
   border: 0;
   background-color: transparent;

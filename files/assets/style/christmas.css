@@ -1,3 +1,67 @@
+/*:root {
+	--primary: var(--primary-color);
+	--secondary: var(--secondary-color);
+	--accent: #F2E8CF;
+	--dark: #2B353D;
+	--danger: #E53E3E;
+	--white: #E1E1E1;
+	--opacity: #ffffff08;
+	--black: #F2E8CF;
+	--actually-black: #000000;
+	--light: #000000;
+	--success: #38A169;
+	--muted: #E1E1E1;
+	--info: #168EEA;
+	--purple: var(--primary-color);
+	--red: #E53E3E;
+	--gray: #2B353D;
+	--green: #38A169;
+	--gray-100: #1F2A2E;
+	--gray-200: #1F2A2E;
+	--gray-300: #4c8456;
+	--gray-400: #29444D;
+	--gray-500: #29444D;
+	--gray-600: #46774f;
+	--gray-700: #386641;
+	--gray-800: #1F2A2E;
+	--gray-900: #1F2A2E;
+	--upvote: var(--primary-color);
+	--downvote: #38B2AC;
+	--admin: var(--primary-color);
+	--banned: #960000;
+	--deleted: #969600;
+	--deletedandbanned: #964000;
+	--mod: #07c20c;
+	--code: #e83e8c;
+	--online: #88cc66;
+	--offline: rgba(170 170 170 / 0.6);
+	--gold: #ECC94B;
+	--reddit: #ED4630;
+	--border-color: #1C2229;
+	--border-width: 4px;
+	--border-radius: 0.35rem;
+	--news-tag: #F28181;
+	--changelog-tag: #9C5E20;
+	--trailer-tag: #FFAF5A;
+	--oc-tag: #ECC94B;
+	--video-tag: #ffafaf;
+	--music-tag: #17d860;
+	--picture-tag: #CCE3DF;
+	--meme-tag: #66F8FF;
+	--meta-tag: var(--primary-color);
+	--discussion-tag: #7A83FF;
+	--rant-tag: #BB6FEE;
+	--review-tag: #C6EE6F;
+	--question-tag: #EE98E9;
+	--breaking-news-tag: #ff0000;
+	--none-tag: #E1E1E1;
+	
+	--primary-color: #fff9f4 !important;
+	--secondary-color: #E2A26E !important;
+	
+	--bright-green: #A7C957;
+}*/
+
 @font-face {
 	font-family: 'Sweater';
 	src: url("/assets/webfonts/xmas_sweater_stitch/Xmas Sweater Stitch.otf");
@@ -13,17 +77,206 @@
 	font-weight: 900;
 }
 
+/*.posts .card {
+	background-image: url("/assets/images/christmas/christmas_pattern.webp");
+	background-size: contain;
+}
+
+.posts .card .d-flex.flex-row-reverse.flex-md-row.flex-nowrap.justify-content-end {
+	z-index: 1;
+}
+.posts .card::after {
+	background-image: linear-gradient(177deg, #8EF3F766,#67FAFF70 47%, var(--red) 48%, var(--red) 50%, var(--gray-500) 51%, var(--gray-500));
+	content: '';
+	position: absolute;
+	inset: 0;
+	backdrop-filter: blur(2px);
+}
+
+@supports(backdrop-filter: blur(a)){
+	.
+	backdrop-filter: blur(2px);
+}
+@supports not (backdrop-filter: blur(a)){
+	
+}
+
+.voting {
+	background: var(--gray-500);
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+	margin-right: 4px !important;
+	padding: 0 !important;
+}
+
+.post-title > a{
+	color: var(--gray-900) !important;
+}
+
+.post-meta {
+	color: var(--gray-900);
+}
+
+.username-w-flair {
+	background: var(--gray-500);
+	padding: 0.2rem;
+	border-radius: var(--border-radius);
+}
+
 .post-img {
-	border: 3px dashed red;
-	outline: 2px green solid;
+	border: 2px solid red;
+/*	outline: 2px solid #A7C957;*/
+}*/
+
+.card-header.rounded.bg-gray-400 {
+	background-image: url("/assets/images/christmas/christmas_lights.gif");
+	background-size: 20%;
+	background-repeat: repeat-x;
+	background-position: top left;
+}
+
+/*#custom_feed > .card-header {
+	background: var(--gray-700);
+	border: none;
+}*/
+
+@media(max-width: 786px) {
+	.card-header.rounded.bg-gray-400 {
+		background-size: 40%;
+	}
+	.reindeer {
+		font-size: 2rem;
+	}
+}
+
+.username-w-flair {
+	position: relative;
 }
 
 .reindeer {
 	font-family: "Sweater";
 	font-weight: normal;
-	background: darkgreen;
+	background: var(--gray-100);
 	color: white;
 	padding: 0.5rem;
 	border-radius: var(--border-radius);
-	outline: 2px dashed red;
+/*	outline: 4px double red;
+	border: 2px dashed red;*/
+	outline: 4px double var(--secondary);
+	border: 2px dashed var(--primary);
+	margin-block: 0;
+}
+
+.reindeer::before {
+	content: '\00AB';
+	margin-right: 0.3rem;
+}
+
+.reindeer::after {
+	content: '\00BB';
+	margin-left: 0.3rem;
+}
+
+@media(min-width: 786px){
+	.hat1big::before {
+		background-image: url("/assets/images/christmas/hat1.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -0.9rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 190%;
+	}
+
+	.hat2big::before {
+		background-image: url("/assets/images/christmas/hat2.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -1.5rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 190%;
+		margin-left: -0.2rem;
+	}
+
+	.hat3big::before {
+		background-image: url("/assets/images/christmas/hat3.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -1.1rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 170%;
+	}
+
+	.hat4big::before {
+		background-image: url("/assets/images/christmas/hat4.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -1.4rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 430%;
+		margin-left: -0.5rem;
+		
+	}
+}
+@media(max-width: 786px){
+	.hat1smol::before {
+		background-image: url("/assets/images/christmas/hat1.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -0.3rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 24%;
+		margin-left: 0.7rem
+	}
+	
+	.hat2smol::before {
+		background-image: url("/assets/images/christmas/hat2.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -0.9rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 23%;
+		margin-left: 0.5rem;
+	}
+	
+	.hat3smol::before {
+		background-image: url("/assets/images/christmas/hat3.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -0.8rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 25%;
+		margin-left: 0.3rem
+	}
+	
+	.hat4smol::before {
+		background-image: url("/assets/images/christmas/hat4.png");
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		margin-top: -1.1rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 60%;		
+	}
 }

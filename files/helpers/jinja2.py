@@ -3,6 +3,7 @@ from .get import *
 from files.__main__ import app, cache
 import time
 import re
+import random
 
 @app.template_filter("total_users")
 @cache.memoize(timeout=60)
@@ -18,6 +19,11 @@ def source_code(file_name):
 	return open(path.expanduser('~') + '/files/' +
 				file_name, mode="r+").read()
 
+
+@app.template_filter("random_hat")
+def random_hat(s):
+	nhat = random.randint(1, 4)
+	return "hat"+str(nhat)+s[1]
 
 @app.template_filter("full_link")
 def full_link(url):
