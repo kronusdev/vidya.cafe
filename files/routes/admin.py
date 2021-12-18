@@ -23,21 +23,22 @@ from .front import frontlist
 @app.post("/admin/migratedb")
 @admin_level_required(4)
 def migratedb(v):
-	try:
-		migrate_db_comments(v)
-		migrate_db_posts(v)
-	except:
-		g.db.rollback()
+	#try:
+	migrate_db_comments(v)
+	#migrate_db_posts(v)
+	#except:
+		#g.db.rollback()
 	return "OK", 200
 
 def migrate_db_comments(v):
 	comments = g.db.query(Comment).order_by(Comment.id.asc())
 	comments_aux = g.db.query(CommentAux).order_by(CommentAux.id.asc())
 	
-	rang = g.db.query(CommentAux).order_by(CommentAux.id.desc()).first().id
-	for com_aux in comments_aux:
-		
-		com = comments.filter(Comment.id == com_aux.key_id).first()
+	#rang = g.db.query(CommentAux).order_by(CommentAux.id.desc()).first().id
+	
+	for com in comments:
+		com_aux = comments_aux.filter(CommentAux.id == com.id).first()
+		#com = comments.filter(Comment.id == com_aux.key_id).first()
 		if com != None and com_aux != None:
 			#assert(com.id == com_aux.id)
 			com.body = com_aux.body
