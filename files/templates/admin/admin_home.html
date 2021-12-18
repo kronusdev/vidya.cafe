@@ -31,7 +31,6 @@
 		<input type="checkbox" class="custom-control-input" id="disablesignups" name="disablesignups" {% if x == "yes" %}checked{% endif %} onchange="post('/admin/disablesignups');">
 		<label class="custom-control-label" for="disablesignups">Disable signups</label>
 	</div>
-	<button onclick="post('/admin/migratedb', function(){console.log('ok')})">Migrate db!</button>
 </div>
 
 {% endblock %}

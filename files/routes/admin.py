@@ -20,53 +20,53 @@ import matplotlib.pyplot as plt
 from files.__main__ import app, cache
 from .front import frontlist
 
-@app.post("/admin/migratedb")
-@admin_level_required(4)
-def migratedb(v):
-	#try:
-	migrate_db_comments(v)
-	#migrate_db_posts(v)
-	#except:
-		#g.db.rollback()
-	return "OK", 200
+#@app.post("/admin/migratedb")
+#@admin_level_required(4)
+#def migratedb(v):
+	##try:
+	#migrate_db_comments(v)
+	##migrate_db_posts(v)
+	##except:
+		##g.db.rollback()
+	#return "OK", 200
 
-def migrate_db_comments(v):
-	comments = g.db.query(Comment).order_by(Comment.id.asc())
-	comments_aux = g.db.query(CommentAux).order_by(CommentAux.id.asc())
+#def migrate_db_comments(v):
+	#comments = g.db.query(Comment).order_by(Comment.id.asc())
+	#comments_aux = g.db.query(CommentAux).order_by(CommentAux.id.asc())
 	
-	#rang = g.db.query(CommentAux).order_by(CommentAux.id.desc()).first().id
+	##rang = g.db.query(CommentAux).order_by(CommentAux.id.desc()).first().id
 	
-	for com in comments:
-		com_aux = comments_aux.filter(CommentAux.id == com.id).first()
-		#com = comments.filter(Comment.id == com_aux.key_id).first()
-		if com != None and com_aux != None:
-			#assert(com.id == com_aux.id)
-			com.body = com_aux.body
-			com.body_html = com_aux.body_html
-			com.ban_reason = com_aux.ban_reason
-			g.db.add(com)
-	g.db.commit()
-	return True
+	#for com in comments:
+		#com_aux = comments_aux.filter(CommentAux.id == com.id).first()
+		##com = comments.filter(Comment.id == com_aux.key_id).first()
+		#if com != None and com_aux != None:
+			##assert(com.id == com_aux.id)
+			#com.body = com_aux.body
+			#com.body_html = com_aux.body_html
+			#com.ban_reason = com_aux.ban_reason
+			#g.db.add(com)
+	#g.db.commit()
+	#return True
 
-def migrate_db_posts(v):
-	submissions = g.db.query(Submission).order_by(Submission.id.asc())
-	submissions_aux = g.db.query(SubmissionAux).order_by(SubmissionAux.id.asc())
-	nof_ids = g.db.query(func.count(Submission.id)).scalar()
-	for i in range(1,nof_ids):
-		sub = submissions.filter(Submission.id==i).first()
-		sub_aux = submissions_aux.filter(SubmissionAux.id==i).first()
-		assert(sub.id == sub_aux.id)
-		sub.title = sub_aux.title
-		sub.title_html = sub_aux.title_html
-		sub.url = sub_aux.url
-		sub.embed_url = sub_aux.embed_url
-		sub.body = sub_aux.body
-		sub.body_html = sub_aux.body_html
-		sub.ban_reason = sub_aux.ban_reason
-		sub.tag = sub_aux.tag
-		g.db.add(sub)
-	g.db.commit()
-	return True
+#def migrate_db_posts(v):
+	#submissions = g.db.query(Submission).order_by(Submission.id.asc())
+	#submissions_aux = g.db.query(SubmissionAux).order_by(SubmissionAux.id.asc())
+	#nof_ids = g.db.query(func.count(Submission.id)).scalar()
+	#for i in range(1,nof_ids):
+		#sub = submissions.filter(Submission.id==i).first()
+		#sub_aux = submissions_aux.filter(SubmissionAux.id==i).first()
+		#assert(sub.id == sub_aux.id)
+		#sub.title = sub_aux.title
+		#sub.title_html = sub_aux.title_html
+		#sub.url = sub_aux.url
+		#sub.embed_url = sub_aux.embed_url
+		#sub.body = sub_aux.body
+		#sub.body_html = sub_aux.body_html
+		#sub.ban_reason = sub_aux.ban_reason
+		#sub.tag = sub_aux.tag
+		#g.db.add(sub)
+	#g.db.commit()
+	#return True
 
 @app.get("/admin/flagged/posts")
 @admin_level_required(3)
