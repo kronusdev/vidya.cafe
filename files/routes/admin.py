@@ -20,6 +20,37 @@ import matplotlib.pyplot as plt
 from files.__main__ import app, cache
 from .front import frontlist
 
+@app.post("/admin/migratedb")
+@admin_level_required(4)
+def migratedb(v):
+	try:
+		migrate_db(v)
+	except:
+		g.db.rollback()
+	return "OK", 200
+
+def migrate_db(v):
+	submissions = g.db.query(Submission).order_by(Submission.id.asc())
+	submissions_aux = g.db.query(SubmissionAux).order_by(SubmissionAux.id.asc())
+	nof_ids = g.db.query(func.count(Submission.id)).scalar()
+	for i in range(1,nof_ids):
+		sub = submissions.filter(Submission.id==i).first()
+		sub_aux = submissions_aux.filter(SubmissionAux.id==i).first()
+		assert(sub.id == sub_aux.id)
+		print(i)
+		sub.title = sub_aux.title
+		sub.title_html = sub_aux.title_html
+		sub.url = sub_aux.url
+		sub.embed_url = sub_aux.embed_url
+		sub.body = sub_aux.body
+		sub.body_html = sub_aux.body_html
+		sub.ban_reason = sub_aux.ban_reason
+		sub.tag = sub_aux.tag
+		g.db.add(sub)
+	g.db.commit()
+	
+	return 200
+
 @app.get("/admin/flagged/posts")
 @admin_level_required(3)
 def flagged_posts(v):
