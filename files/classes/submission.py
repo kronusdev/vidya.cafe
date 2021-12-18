@@ -12,20 +12,20 @@ from os import environ
 
 site = environ.get("DOMAIN").strip()
 
-class SubmissionAux(Base):
+#class SubmissionAux(Base):
 
-	__tablename__ = "submissions_aux"
+	#__tablename__ = "submissions_aux"
 
-	key_id = Column(BigInteger, primary_key=True)
-	id = Column(BigInteger, ForeignKey("submissions.id"))
-	title = Column(String(500))
-	title_html = Column(String(500))
-	url = Column(String(500))
-	body = Column(String(10000), default="")
-	body_html = Column(String(20000), default="")
-	ban_reason = Column(String(128), default="")
-	embed_url = Column(String(256), default="")
-	tag = Column(String(128), default="")
+	#key_id = Column(BigInteger, primary_key=True)
+	#id = Column(BigInteger, ForeignKey("submissions.id"))
+	#title = Column(String(500))
+	#title_html = Column(String(500))
+	#url = Column(String(500))
+	#body = Column(String(10000), default="")
+	#body_html = Column(String(20000), default="")
+	#ban_reason = Column(String(128), default="")
+	#embed_url = Column(String(256), default="")
+	#tag = Column(String(128), default="")
 
 
 class Submission(Base, Stndrd, Age_times, Scores):
@@ -308,17 +308,17 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	def voted(self):
 		return self._voted if "_voted" in self.__dict__ else 0
 
-		def realurl(self, v):
-			if self.url:
-				if v and not v.oldreddit: return self.url.replace("old.reddit.com", "reddit.com")
-				if self.url: return self.url
-			return ""
+	def realurl(self, v):
+		if self.url:
+			if v and not v.oldreddit: return self.url.replace("old.reddit.com", "reddit.com")
+			if self.url: return self.url
+		return ""
 
 	
 	def realbody(self, v):
 		body = self.body_html
-		if not v or v.slurreplacer: body = body.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
-		if v and not v.oldreddit: body = body.replace("old.reddit.com", "reddit.com")
+		if not v or v.slurreplacer and body: body = body.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
+		if v and not v.oldreddit and body: body = body.replace("old.reddit.com", "reddit.com")
 		return body
 
 	def realtitle(self, v):

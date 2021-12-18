@@ -242,8 +242,8 @@ def edit_post(pid, v):
 	p.title = title
 	p.title_html = sanitize(title, flair=True)
 	
-	new_tag = request.form.get("new_tag", p.submission_aux.tag)
-	p.submission_aux.tag = new_tag
+	new_tag = request.form.get("new_tag", p.tag)
+	p.tag = new_tag
 
 	
 	if int(time.time()) - p.created_utc > 60 * 3: p.edited_utc = int(time.time())
@@ -446,8 +446,8 @@ def submit_post(v):
 	url = request.form.get("url", "")
 
 	if url:
-		repost = g.db.query(Submission).join(Submission.submission_aux).filter(
-			SubmissionAux.url.ilike(url),
+		repost = g.db.query(Submission).filter(
+			Submission.url.ilike(url),
 			Submission.deleted_utc == 0,
 			Submission.is_banned == False
 		).first()
@@ -495,13 +495,13 @@ def submit_post(v):
 	body = request.form.get("body", "")
 	tag = request.values.get("tag", "")
 	# check for duplicate
-	dup = g.db.query(Submission).join(Submission.submission_aux).filter(
+	dup = g.db.query(Submission).filter(
 
 		Submission.author_id == v.id,
 		Submission.deleted_utc == 0,
-		SubmissionAux.title == title,
-		SubmissionAux.url == url,
-		SubmissionAux.body == body
+		Submission.title == title,
+		Submission.url == url,
+		Submission.body == body
 	).first()
 
 	if dup:
@@ -559,39 +559,20 @@ def submit_post(v):
 
 	similar_posts = g.db.query(Submission).options(
 		lazyload('*')
-		).join(
-			Submission.submission_aux
 		).filter(
-			#or_(
-			#	and_(
 					Submission.author_id == v.id,
-					SubmissionAux.title.op('<->')(title) < app.config["SPAM_SIMILARITY_THRESHOLD"],
+					Submission.title.op('<->')(title) < app.config["SPAM_SIMILARITY_THRESHOLD"],
 					Submission.created_utc > cutoff
-			#	),
-			#	and_(
-			#		SubmissionAux.title.op('<->')(title) < app.config["SPAM_SIMILARITY_THRESHOLD"]/2,
-			#		Submission.created_utc > cutoff
-			#	)
-			#)
+		
 	).all()
 
 	if url:
 		similar_urls = g.db.query(Submission).options(
 			lazyload('*')
-		).join(
-			Submission.submission_aux
 		).filter(
-			#or_(
-			#	and_(
 					Submission.author_id == v.id,
-					SubmissionAux.url.op('<->')(url) < app.config["SPAM_URL_SIMILARITY_THRESHOLD"],
+					Submission.url.op('<->')(url) < app.config["SPAM_URL_SIMILARITY_THRESHOLD"],
 					Submission.created_utc > cutoff
-			#	),
-			#	and_(
-			#		SubmissionAux.url.op('<->')(url) < app.config["SPAM_URL_SIMILARITY_THRESHOLD"]/2,
-			#		Submission.created_utc > cutoff
-			#	)
-			#)
 		).all()
 	else:
 		similar_urls = []
@@ -713,17 +694,6 @@ def submit_post(v):
 		return render_template("submit.html", v=v, error=f"An error occured. The selected feed was {feed}, while the two possible options are 'vidya' and 'cafe'", title=title, url=url)
 
 	#create new post
-	new_post = Submission(
-		private=bool(request.form.get("private","")),
-		author_id=v.id,
-		over_18=bool(request.form.get("over_18","")),
-		app_id=v.client.application.id if v.client else None,
-		is_bot=request.headers.get("X-User-Type","").lower()=="bot",
-		poll_options=json.dumps(poll_options),
-		feed=feed
-	)
-	g.db.add(new_post)
-	g.db.flush()
 
 	for rd in ["https://reddit.com/", "https://new.reddit.com/", "https://www.reddit.com/", "https://redd.it/"]:
 		url = url.replace(rd, "https://old.reddit.com/")
@@ -734,17 +704,27 @@ def submit_post(v):
 
 	title_html = sanitize(title, linkgen=True, flair=True)
 
-	new_post_aux = SubmissionAux(id=new_post.id,
-								 url=url,
-								 body=body,
-								 body_html=body_html,
-								 embed_url=embed,
-								 title=title,
-								 title_html=title_html,
-								 tag=request.form.get("tag", "")
-								 )
-	g.db.add(new_post_aux)
+	new_post = Submission(
+		private=bool(request.form.get("private","")),
+		author_id=v.id,
+		over_18=bool(request.form.get("over_18","")),
+		app_id=v.client.application.id if v.client else None,
+		is_bot=request.headers.get("X-User-Type","").lower()=="bot",
+		poll_options=json.dumps(poll_options),
+		feed=feed,
+		url=url,
+		body=body,
+		body_html=body_html,
+		embed_url=embed,
+		title=title,
+		title_html=title_html,
+		tag=request.form.get("tag", "")
+	)
+	g.db.add(new_post)
 	g.db.flush()
+
+	#g.db.add(new_post_aux)
+	#g.db.flush()
 
 	vote = Vote(user_id=v.id,
 				vote_type=1,
@@ -771,7 +751,6 @@ def submit_post(v):
 
 		new_post.url = upload_file(file)
 		g.db.add(new_post)
-		g.db.add(new_post.submission_aux)
 		g.db.commit()
 
 	g.db.commit()

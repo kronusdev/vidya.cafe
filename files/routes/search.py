@@ -37,14 +37,12 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	posts = g.db.query(Submission).options(
 				lazyload('*')
 			).join(
-				Submission.submission_aux,
-			).join(
 				Submission.author
 			)
 	
 	if 'q' in criteria:
 		words=criteria['q'].split()
-		words=[SubmissionAux.title.ilike('%'+x+'%') for x in words]
+		words=[Submission.title.ilike('%'+x+'%') for x in words]
 		words=tuple(words)
 		posts=posts.filter(*words)
 		
@@ -61,18 +59,18 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		domain=criteria['domain']
 		posts=posts.filter(
 			or_(
-				SubmissionAux.url.ilike("https://"+domain+'/%'),
-				SubmissionAux.url.ilike("https://"+domain+'/%'),
-				SubmissionAux.url.ilike("https://"+domain),
-				SubmissionAux.url.ilike("https://"+domain),
-				SubmissionAux.url.ilike("https://www."+domain+'/%'),
-				SubmissionAux.url.ilike("https://www."+domain+'/%'),
-				SubmissionAux.url.ilike("https://www."+domain),
-				SubmissionAux.url.ilike("https://www."+domain),
-				SubmissionAux.url.ilike("https://old." + domain + '/%'),
-				SubmissionAux.url.ilike("https://old." + domain + '/%'),
-				SubmissionAux.url.ilike("https://old." + domain),
-				SubmissionAux.url.ilike("https://old." + domain)
+				Submission.url.ilike("https://"+domain+'/%'),
+				Submission.url.ilike("https://"+domain+'/%'),
+				Submission.url.ilike("https://"+domain),
+				Submission.url.ilike("https://"+domain),
+				Submission.url.ilike("https://www."+domain+'/%'),
+				Submission.url.ilike("https://www."+domain+'/%'),
+				Submission.url.ilike("https://www."+domain),
+				Submission.url.ilike("https://www."+domain),
+				Submission.url.ilike("https://old." + domain + '/%'),
+				Submission.url.ilike("https://old." + domain + '/%'),
+				Submission.url.ilike("https://old." + domain),
+				Submission.url.ilike("https://old." + domain)
 				)
 			)
 
@@ -114,8 +112,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		posts = posts.filter(Submission.created_utc >= cutoff)
 
 	posts=posts.options(
-		contains_eager(Submission.submission_aux),
-		contains_eager(Submission.author),
+		contains_eager(Submission.author)
 		)
 
 	if sort == "new":

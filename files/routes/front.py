@@ -96,22 +96,20 @@ def frontlist(v=None, feed="vidya", sort="hot", t="all", tag="all", show_sticky=
 			Submission.author_id.notin_(blocking),
 			Submission.author_id.notin_(blocked)
 		)
-	#TODO: Merge Submission and Submission_aux
-	posts=posts.join(Submission.submission_aux)
 	
 	if (tag == "changelog"):
-		posts = posts.filter(SubmissionAux.tag == tag, User.admin_level > 0)
+		posts = posts.filter(Submission.tag == tag, User.admin_level > 0)
 	elif (tag == "all"):
 		posts = posts
 	else:
-		posts = posts.filter(SubmissionAux.tag == tag)
+		posts = posts.filter(Submission.tag == tag)
 
 	if (not ((v and v.changelogsub))) and tag != "changelog":
-		posts=posts.filter(not_(SubmissionAux.tag == "changelog"))
+		posts=posts.filter(not_(Submission.tag == "changelog"))
 
 	if v and filter_words:
 		for word in filter_words:
-			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
+			posts=posts.filter(not_(Submission.title.ilike(f'%{word}%')))
 
 	if t != 'all':
 		cutoff = 0
