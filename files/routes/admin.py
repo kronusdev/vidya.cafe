@@ -23,11 +23,11 @@ from .front import frontlist
 @app.post("/admin/migratedb")
 @admin_level_required(4)
 def migratedb(v):
-	migrate_db_comments(v)
-
-	#try:
-	#except:
-		#g.db.rollback()
+	try:
+		migrate_db_comments(v)
+		migrate_db_posts(v)
+	except:
+		g.db.rollback()
 	return "OK", 200
 
 def migrate_db_comments(v):
