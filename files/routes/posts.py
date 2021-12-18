@@ -777,21 +777,21 @@ def submit_post(v):
 			user = get_account(follow.user_id)
 			send_notification(23, user, f"@{v.username} has made a new post: [{title}](https://{site}{new_post.permalink})")
 
-	g.db.add(new_post)
-	g.db.commit()
+	#g.db.add(new_post)
+	#g.db.commit()
 	
-	if new_post.url:
-		c = Comment(author_id=21,
-			distinguish_level=6,
-			parent_submission=new_post.id,
-			level=1,
-			over_18=False,
-			is_bot=True,
-			app_id=None,
-			)
+	#if new_post.url:
+		#c = Comment(author_id=21,
+			#distinguish_level=6,
+			#parent_submission=new_post.id,
+			#level=1,
+			#over_18=False,
+			#is_bot=True,
+			#app_id=None,
+			#)
 
-		g.db.add(c)
-		g.db.flush()
+		#g.db.add(c)
+		#g.db.flush()
 		#body = f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{new_post.url})\n* [archive.org](https://web.archive.org/{new_post.url})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
 		gevent.spawn(archiveorg, new_post.url)
 		#with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
