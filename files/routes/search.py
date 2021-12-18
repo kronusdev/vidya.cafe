@@ -145,11 +145,11 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 @cache.memoize(300)
 def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
-	comments = g.db.query(Comment).options(lazyload('*')).filter(Comment.parent_submission != None).join(Comment.comment_aux)
+	comments = g.db.query(Comment).options(lazyload('*')).filter(Comment.parent_submission != None)
 
 	if 'q' in criteria:
 		words=criteria['q'].split()
-		words=[CommentAux.body.ilike('%'+x+'%') for x in words]
+		words=[Comment.body.ilike('%'+x+'%') for x in words]
 		words=tuple(words)
 		comments=comments.filter(*words)
 
@@ -173,8 +173,6 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 		else:
 			cutoff = 0
 		comments = comments.filter(Comment.created_utc >= cutoff)
-
-	comments=comments.options(contains_eager(Comment.comment_aux))
 
 	if sort == "new":
 		comments = comments.order_by(Comment.created_utc.desc()).all()

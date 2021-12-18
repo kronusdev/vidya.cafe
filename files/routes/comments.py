@@ -230,12 +230,12 @@ def api_comment(v):
 		return jsonify({"error": reason}), 401
 
 	# check existing
-	existing = g.db.query(Comment).join(CommentAux).filter(Comment.author_id == v.id,
+	existing = g.db.query(Comment).filter(Comment.author_id == v.id,
 															 Comment.deleted_utc == 0,
 															 Comment.parent_comment_id == parent_comment_id,
 															 Comment.parent_submission == parent_submission,
-															 CommentAux.body == body
-															 ).options(contains_eager(Comment.comment_aux)).first()
+															 Comment.body == body
+															 ).first()
 	if existing:
 		return jsonify({"error": f"You already made that comment: {existing.permalink}"}), 409
 
@@ -254,13 +254,12 @@ def api_comment(v):
 		similar_comments = g.db.query(Comment
 										).options(
 			lazyload('*')
-		).join(Comment.comment_aux
-				 ).filter(
+		).filter(
 			Comment.author_id == v.id,
-			CommentAux.body.op(
+			Comment.body.op(
 				'<->')(body) < app.config["COMMENT_SPAM_SIMILAR_THRESHOLD"],
 			Comment.created_utc > cutoff
-		).options(contains_eager(Comment.comment_aux)).all()
+		).all()
 
 		threshold = app.config["COMMENT_SPAM_COUNT_THRESHOLD"]
 		if v.age >= (60 * 60 * 24 * 7):
@@ -320,38 +319,34 @@ def api_comment(v):
 	
 	# create comment
 	parent_id = parent_fullname.split("_")[1]
-	c = Comment(author_id=v.id,
-				parent_submission=parent_submission,
-				parent_comment_id=parent_comment_id,
-				level=level,
-				over_18=parent_post.over_18 or request.form.get("over_18","")=="true",
-				is_bot=is_bot,
-				app_id=v.client.application.id if v.client else None,
-				shadowbanned=v.shadowbanned
-				)
-	g.db.add(c)
-	g.db.flush()
+	body = request.form.get("body")
 	if request.files.get("file") and request.headers.get("cf-ipcountry") != "T1":
 		file=request.files["file"]
 		if not file.content_type.startswith('image/'):
 			return jsonify({"error": "That wasn't an image!"}), 400
 		
-		name = f'comment/{c.id}/{secrets.token_urlsafe(8)}'
-		url = upload_file(file)
-		
-		body = request.form.get("body") + f"\n![]({url})"
-		body = body.replace("\n", "\n\n").replace("\n\n\n\n\n\n", "\n\n").replace("\n\n\n\n", "\n\n").replace("\n\n\n", "\n\n")
-		with CustomRenderer(post_id=parent_id) as renderer:
-			body_md = renderer.render(mistletoe.Document(body))
-		body_html = sanitize(body_md, linkgen=True)
+		url = upload_file(file)		
+		body += f"\n![]({url})"
 
-	c_aux = CommentAux(
-		id=c.id,
-		body_html=body_html,
-		body=body
-	)
+	body = body.replace("\n", "\n\n").replace("\n\n\n\n\n\n", "\n\n").replace("\n\n\n\n", "\n\n").replace("\n\n\n", "\n\n")
+	with CustomRenderer(post_id=parent_id) as renderer:
+		body_md = renderer.render(mistletoe.Document(body))
+	body_html = sanitize(body_md, linkgen=True)
 
-	g.db.add(c_aux)
+	c = Comment(author_id=v.id,
+			parent_submission=parent_submission,
+			parent_comment_id=parent_comment_id,
+			level=level,
+			over_18=parent_post.over_18 or request.form.get("over_18","")=="true",
+			is_bot=is_bot,
+			app_id=v.client.application.id if v.client else None,
+			shadowbanned=v.shadowbanned,
+			body_html=body_html,
+			body=body
+			)
+	name = f'comment/{c.id}/{secrets.token_urlsafe(8)}'
+
+	g.db.add(c)
 	g.db.flush()
 
 	if not v.shadowbanned:
@@ -499,13 +494,12 @@ def edit_comment(cid, v):
 	similar_comments = g.db.query(Comment
 									).options(
 		lazyload('*')
-	).join(Comment.comment_aux
-			 ).filter(
+	).filter(
 		Comment.author_id == v.id,
-		CommentAux.body.op(
+		Comment.body.op(
 			'<->')(body) < app.config["SPAM_SIMILARITY_THRESHOLD"],
 		Comment.created_utc > cutoff
-	).options(contains_eager(Comment.comment_aux)).all()
+	).all()
 
 	threshold = app.config["SPAM_SIMILAR_COUNT_THRESHOLD"]
 	if v.age >= (60 * 60 * 24 * 30):

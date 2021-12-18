@@ -70,10 +70,10 @@ def messagereply(v, username, id):
 	message = message.replace("\n", "\n\n").replace("\n\n\n\n\n\n", "\n\n").replace("\n\n\n\n", "\n\n").replace("\n\n\n", "\n\n")
 
 	# check existing
-	existing = g.db.query(Comment).join(CommentAux).filter(Comment.author_id == v.id,
+	existing = g.db.query(Comment).filter(Comment.author_id == v.id,
 															Comment.sentto == user.id,
-															CommentAux.body == message,
-															).options(contains_eager(Comment.comment_aux)).first()
+															Comment.body == message,
+															).first()
 	if existing: return redirect('/notifications?all=true')
 
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(message))
@@ -87,7 +87,7 @@ def messagereply(v, username, id):
 							)
 	g.db.add(new_comment)
 	g.db.flush()
-	new_aux = CommentAux(id=new_comment.id, body=message, body_html=text_html)
+	new_aux = Comment(id=new_comment.id, body=message, body_html=text_html)
 	g.db.add(new_aux)
 	notif = Notification(comment_id=new_comment.id, user_id=user.id)
 	g.db.add(notif)
@@ -132,10 +132,10 @@ def message2(v, username):
 	message = message.replace("\n", "\n\n").replace("\n\n\n\n\n\n", "\n\n").replace("\n\n\n\n", "\n\n").replace("\n\n\n", "\n\n")
 
 	# check existing
-	existing = g.db.query(Comment).join(CommentAux).filter(Comment.author_id == v.id,
+	existing = g.db.query(Comment).filter(Comment.author_id == v.id,
 															Comment.sentto == user.id,
-															CommentAux.body == message,
-															).options(contains_eager(Comment.comment_aux)).first()
+															Comment.body == message,
+															).first()
 	if existing: return redirect('/notifications?all=true')
 
 	send_pm(v.id, user, message)

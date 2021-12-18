@@ -6,15 +6,15 @@ from files.__main__ import Base
 from .mix_ins import *
 from .flags import CommentFlag
 
-class CommentAux(Base):
+#class CommentAux(Base):
 
-	__tablename__ = "comments_aux"
+	#__tablename__ = "comments_aux"
 
-	key_id = Column(Integer, primary_key=True)
-	id = Column(Integer, ForeignKey("comments.id"))
-	body = Column(String(10000))
-	body_html = Column(String(20000))
-	ban_reason = Column(String(256), default='')
+	#key_id = Column(Integer, primary_key=True)
+	#id = Column(Integer, ForeignKey("comments.id"))
+	#body = Column(String(10000))
+	#body_html = Column(String(20000))
+	#ban_reason = Column(String(256), default='')
 
 
 class Comment(Base, Age_times, Scores, Stndrd):
@@ -22,12 +22,18 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	__tablename__ = "comments"
 
 	id = Column(Integer, primary_key=True)
-	comment_aux = relationship(
-		"CommentAux",
-		lazy="joined",
-		uselist=False,
-		innerjoin=True,
-		primaryjoin="Comment.id==CommentAux.id")
+	
+	body = Column(String(10000))
+	body_html = Column(String(20000))
+	ban_reason = Column(String(256), default='')
+
+	
+	#comment_aux = relationship(
+		#"CommentAux",
+		#lazy="joined",
+		#uselist=False,
+		#innerjoin=True,
+		#primaryjoin="Comment.id==CommentAux.id")
 	author_id = Column(Integer, ForeignKey("users.id"))
 	parent_submission = Column(Integer, ForeignKey("submissions.id"))
 	# this column is foreignkeyed to comment(id) but we can't do that yet as
@@ -232,39 +238,39 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	def is_blocked(self):
 		return self.__dict__.get('_is_blocked', 0)
 
-	@property
-	def body(self):
-		if self.comment_aux: return self.comment_aux.body
-		else: return ""
+	#@property
+	#def body(self):
+		#if self.comment_aux: return self.comment_aux.body
+		#else: return ""
 
-	@body.setter
-	def body(self, x):
-		self.comment_aux.body = x
-		g.db.add(self.comment_aux)
+	#@body.setter
+	#def body(self, x):
+		#self.comment_aux.body = x
+		#g.db.add(self.comment_aux)
 
-	@property
-	def body_html(self):
-		return self.comment_aux.body_html
+	#@property
+	#def body_html(self):
+		#return self.comment_aux.body_html
 
-	@body_html.setter
-	def body_html(self, x):
-		self.comment_aux.body_html = x
-		g.db.add(self.comment_aux)
+	#@body_html.setter
+	#def body_html(self, x):
+		#self.comment_aux.body_html = x
+		#g.db.add(self.comment_aux)
 
 	def realbody(self, v):
-		body = self.comment_aux.body_html
-		if not v or v.slurreplacer: body = body.replace(" nigger"," 🏀").replace(" Nigger"," 🏀").replace(" NIGGER"," 🏀").replace(" pedo"," libertarian").replace(" Pedo"," Libertarian ").replace(" PEDO"," LIBERTARIAN ").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace("  fag","  cute twink").replace("  Fag","  Cute twink").replace("  FAG","  CUTE TWINK").replace(" faggot"," cute twink").replace(" Faggot"," Cute twink").replace(" FAGGOT"," CUTE TWINK").replace(" trump"," DDR").replace(" Trump"," DDR").replace(" TRUMP"," DDR").replace(" biden"," DDD").replace(" Biden"," DDD").replace(" BIDEN"," DDD").replace(" steve akins"," penny verity oaken").replace(" Steve Akins"," Penny Verity Oaken").replace(" STEVE AKINS"," PENNY VERITY OAKEN").replace(" RETARD"," RSLUR").replace(" rapist"," male feminist").replace(" Rapist"," Male feminist").replace(" RAPIST"," MALE FEMINIST").replace(" RETARD"," RSLUR").replace(" rapist"," male feminist").replace(" Rapist"," Male feminist").replace(" RAPIST"," MALE FEMINIST").replace(" RETARD"," RSLUR").replace(" rapist"," male feminist").replace(" Rapist"," Male feminist").replace(" RAPIST"," MALE FEMINIST").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
-		if v and not v.oldreddit: body = body.replace("old.reddit.com", "reddit.com")
+		body = self.body_html
+		if not v or v.slurreplacer and body: body = body.replace(" nigger"," 🏀").replace(" Nigger"," 🏀").replace(" NIGGER"," 🏀").replace(" pedo"," libertarian").replace(" Pedo"," Libertarian ").replace(" PEDO"," LIBERTARIAN ").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace("  fag","  cute twink").replace("  Fag","  Cute twink").replace("  FAG","  CUTE TWINK").replace(" faggot"," cute twink").replace(" Faggot"," Cute twink").replace(" FAGGOT"," CUTE TWINK").replace(" trump"," DDR").replace(" Trump"," DDR").replace(" TRUMP"," DDR").replace(" biden"," DDD").replace(" Biden"," DDD").replace(" BIDEN"," DDD").replace(" steve akins"," penny verity oaken").replace(" Steve Akins"," Penny Verity Oaken").replace(" STEVE AKINS"," PENNY VERITY OAKEN").replace(" RETARD"," RSLUR").replace(" rapist"," male feminist").replace(" Rapist"," Male feminist").replace(" RAPIST"," MALE FEMINIST").replace(" RETARD"," RSLUR").replace(" rapist"," male feminist").replace(" Rapist"," Male feminist").replace(" RAPIST"," MALE FEMINIST").replace(" RETARD"," RSLUR").replace(" rapist"," male feminist").replace(" Rapist"," Male feminist").replace(" RAPIST"," MALE FEMINIST").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
+		if v and not v.oldreddit and body: body = body.replace("old.reddit.com", "reddit.com")
 		return body
 
-	@property
-	def ban_reason(self):
-		return self.comment_aux.ban_reason
+	#@property
+	#def ban_reason(self):
+		#return self.comment_aux.ban_reason
 
-	@ban_reason.setter
-	def ban_reason(self, x):
-		self.comment_aux.ban_reason = x
-		g.db.add(self.comment_aux)
+	#@ban_reason.setter
+	#def ban_reason(self, x):
+		#self.ban_reason = x
+		#g.db.add(self.comment_aux)
 
 	#@property
 	#def award_count(self):

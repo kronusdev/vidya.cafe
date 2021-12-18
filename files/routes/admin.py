@@ -23,13 +23,31 @@ from .front import frontlist
 @app.post("/admin/migratedb")
 @admin_level_required(4)
 def migratedb(v):
-	try:
-		migrate_db(v)
-	except:
-		g.db.rollback()
+	migrate_db_comments(v)
+
+	#try:
+	#except:
+		#g.db.rollback()
 	return "OK", 200
 
-def migrate_db(v):
+def migrate_db_comments(v):
+	comments = g.db.query(Comment).order_by(Comment.id.asc())
+	comments_aux = g.db.query(CommentAux).order_by(CommentAux.id.asc())
+	
+	rang = g.db.query(CommentAux).order_by(CommentAux.id.desc()).first().id
+	for com_aux in comments_aux:
+		
+		com = comments.filter(Comment.id == com_aux.key_id).first()
+		if com != None and com_aux != None:
+			#assert(com.id == com_aux.id)
+			com.body = com_aux.body
+			com.body_html = com_aux.body_html
+			com.ban_reason = com_aux.ban_reason
+			g.db.add(com)
+	g.db.commit()
+	return True
+
+def migrate_db_posts(v):
 	submissions = g.db.query(Submission).order_by(Submission.id.asc())
 	submissions_aux = g.db.query(SubmissionAux).order_by(SubmissionAux.id.asc())
 	nof_ids = g.db.query(func.count(Submission.id)).scalar()
@@ -37,7 +55,6 @@ def migrate_db(v):
 		sub = submissions.filter(Submission.id==i).first()
 		sub_aux = submissions_aux.filter(SubmissionAux.id==i).first()
 		assert(sub.id == sub_aux.id)
-		print(i)
 		sub.title = sub_aux.title
 		sub.title_html = sub_aux.title_html
 		sub.url = sub_aux.url
@@ -48,8 +65,7 @@ def migrate_db(v):
 		sub.tag = sub_aux.tag
 		g.db.add(sub)
 	g.db.commit()
-	
-	return 200
+	return True
 
 @app.get("/admin/flagged/posts")
 @admin_level_required(3)

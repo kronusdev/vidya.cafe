@@ -249,7 +249,10 @@ CREATE TABLE public.comments (
     is_pinned boolean DEFAULT false,
     app_id integer,
     sentto integer,
-    shadowbanned boolean
+    shadowbanned boolean,
+    body character varying(10000),
+    body_html character varying(20000),
+    ban_reason character varying(128)
 );
 
 
