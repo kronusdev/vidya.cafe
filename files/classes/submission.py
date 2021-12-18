@@ -33,12 +33,12 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	__tablename__ = "submissions"
 
 	id = Column(BigInteger, primary_key=True)
-	submission_aux = relationship(
-		"SubmissionAux",
-		lazy="subquery",
-		uselist=False,
-		innerjoin=True,
-		primaryjoin="Submission.id==SubmissionAux.id")
+	#submission_aux = relationship(
+		#"SubmissionAux",
+		#lazy="subquery",
+		#uselist=False,
+		#innerjoin=True,
+		#primaryjoin="Submission.id==SubmissionAux.id")
 	author_id = Column(BigInteger, ForeignKey("users.id"))
 	edited_utc = Column(BigInteger, default=0)
 	created_utc = Column(BigInteger, default=0)
@@ -56,6 +56,17 @@ class Submission(Base, Stndrd, Age_times, Scores):
 		
 		primaryjoin="Comment.parent_submission==Submission.id",
 		)
+	
+	title = Column(String(500))
+	title_html = Column(String(500))
+	url = Column(String(500))
+	body = Column(String(10000), default="")
+	body_html = Column(String(20000), default="")
+	ban_reason = Column(String(128), default="")
+	embed_url = Column(String(256), default="")
+	tag = Column(String(128), default="")
+
+	
 	flags = relationship("Flag", lazy="dynamic")
 	is_approved = Column(Integer, ForeignKey("users.id"), default=0)
 	over_18 = Column(Boolean, default=False)
@@ -297,66 +308,18 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	def voted(self):
 		return self._voted if "_voted" in self.__dict__ else 0
 
-	@property
-	def title(self):
-		return self.submission_aux.title
+		def realurl(self, v):
+			if self.url:
+				if v and not v.oldreddit: return self.url.replace("old.reddit.com", "reddit.com")
+				if self.url: return self.url
+			return ""
 
-	@property
-	def tag(self):
-		return self.submission_aux.tag
-
-	@title.setter
-	def title(self, x):
-		self.submission_aux.title = x
-		g.db.add(self.submission_aux)
-
-	@property
-	def url(self):
-		return self.submission_aux.url
-
-	@url.setter
-	def url(self, x):
-		self.submission_aux.url = x
-		g.db.add(self.submission_aux)
-
-	def realurl(self, v):
-		if self.url:
-			if v and not v.oldreddit: return self.url.replace("old.reddit.com", "reddit.com")
-			if self.url: return self.url
-		return ""
-
-	@property
-	def body(self):
-		return self.submission_aux.body
-
-	@body.setter
-	def body(self, x):
-		self.submission_aux.body = x
-		g.db.add(self.submission_aux)
-
-	@property
-	def body_html(self):
-		return self.submission_aux.body_html
-
-	@body_html.setter
-	def body_html(self, x):
-		self.submission_aux.body_html = x
-		g.db.add(self.submission_aux)
-
+	
 	def realbody(self, v):
-		body = self.submission_aux.body_html
+		body = self.body_html
 		if not v or v.slurreplacer: body = body.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
 		if v and not v.oldreddit: body = body.replace("old.reddit.com", "reddit.com")
 		return body
-
-	@property
-	def title_html(self):
-		return self.submission_aux.title_html
-
-	@title_html.setter
-	def title_html(self, x):
-		self.submission_aux.title_html = x
-		g.db.add(self.submission_aux)
 
 	def realtitle(self, v):
 		if self.title_html: title = self.title_html
@@ -364,23 +327,14 @@ class Submission(Base, Stndrd, Age_times, Scores):
 		if not v or v.slurreplacer: title = title.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
 		return title
 
-	@property
-	def ban_reason(self):
-		return self.submission_aux.ban_reason
+	#@property
+	#def embed_url(self):
+		#return self.submission_aux.embed_url
 
-	@ban_reason.setter
-	def ban_reason(self, x):
-		self.submission_aux.ban_reason = x
-		g.db.add(self.submission_aux)
-
-	@property
-	def embed_url(self):
-		return self.submission_aux.embed_url
-
-	@embed_url.setter
-	def embed_url(self, x):
-		self.submission_aux.embed_url = x
-		g.db.add(self.submission_aux)
+	#@embed_url.setter
+	#def embed_url(self, x):
+		#self.submission_aux.embed_url = x
+		#g.db.add(self.submission_aux)
 
 	@property
 	def is_blocked(self):
@@ -389,10 +343,6 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	@property
 	def is_blocking(self):
 		return self.__dict__.get('_is_blocking', False)
-
-	#@property
-	#def award_count(self):
-		#return len(self.awards)
 
 	@property
 	def is_image(self):

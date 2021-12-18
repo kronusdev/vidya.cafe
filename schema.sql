@@ -87,7 +87,16 @@ CREATE TABLE public.submissions (
     views integer,
     is_bot boolean,
     poll_options text,
-    feed text
+    feed text,
+
+    title character varying(500),
+    title_html text,
+    url character varying(2083),
+	embed_url character varying(10000),
+    body character varying(10000),
+    body_html character varying(20000),
+    ban_reason character varying(128),
+    tag character varying DEFAULT 'none'::character varying
 );
 
 
