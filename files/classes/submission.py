@@ -12,20 +12,20 @@ from os import environ
 
 site = environ.get("DOMAIN").strip()
 
-class SubmissionAux(Base):
+#class SubmissionAux(Base):
 
-	__tablename__ = "submissions_aux"
+	#__tablename__ = "submissions_aux"
 
-	key_id = Column(BigInteger, primary_key=True)
-	id = Column(BigInteger, ForeignKey("submissions.id"))
-	title = Column(String(500))
-	title_html = Column(String(500))
-	url = Column(String(500))
-	body = Column(String(10000), default="")
-	body_html = Column(String(20000), default="")
-	ban_reason = Column(String(128), default="")
-	embed_url = Column(String(256), default="")
-	tag = Column(String(128), default="")
+	#key_id = Column(BigInteger, primary_key=True)
+	#id = Column(BigInteger, ForeignKey("submissions.id"))
+	#title = Column(String(500))
+	#title_html = Column(String(500))
+	#url = Column(String(500))
+	#body = Column(String(10000), default="")
+	#body_html = Column(String(20000), default="")
+	#ban_reason = Column(String(128), default="")
+	#embed_url = Column(String(256), default="")
+	#tag = Column(String(128), default="")
 
 
 class Submission(Base, Stndrd, Age_times, Scores):
@@ -33,12 +33,12 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	__tablename__ = "submissions"
 
 	id = Column(BigInteger, primary_key=True)
-	submission_aux = relationship(
-		"SubmissionAux",
-		lazy="subquery",
-		uselist=False,
-		innerjoin=True,
-		primaryjoin="Submission.id==SubmissionAux.id")
+	#submission_aux = relationship(
+		#"SubmissionAux",
+		#lazy="subquery",
+		#uselist=False,
+		#innerjoin=True,
+		#primaryjoin="Submission.id==SubmissionAux.id")
 	author_id = Column(BigInteger, ForeignKey("users.id"))
 	edited_utc = Column(BigInteger, default=0)
 	created_utc = Column(BigInteger, default=0)
