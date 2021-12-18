@@ -6,15 +6,15 @@ from files.__main__ import Base
 from .mix_ins import *
 from .flags import CommentFlag
 
-#class CommentAux(Base):
+class CommentAux(Base):
 
-	#__tablename__ = "comments_aux"
+	__tablename__ = "comments_aux"
 
-	#key_id = Column(Integer, primary_key=True)
-	#id = Column(Integer, ForeignKey("comments.id"))
-	#body = Column(String(10000))
-	#body_html = Column(String(20000))
-	#ban_reason = Column(String(256), default='')
+	key_id = Column(Integer, primary_key=True)
+	id = Column(Integer, ForeignKey("comments.id"))
+	body = Column(String(10000))
+	body_html = Column(String(20000))
+	ban_reason = Column(String(256), default='')
 
 
 class Comment(Base, Age_times, Scores, Stndrd):
@@ -28,12 +28,12 @@ class Comment(Base, Age_times, Scores, Stndrd):
 	ban_reason = Column(String(256), default='')
 
 	
-	#comment_aux = relationship(
-		#"CommentAux",
-		#lazy="joined",
-		#uselist=False,
-		#innerjoin=True,
-		#primaryjoin="Comment.id==CommentAux.id")
+	comment_aux = relationship(
+		"CommentAux",
+		lazy="joined",
+		uselist=False,
+		innerjoin=True,
+		primaryjoin="Comment.id==CommentAux.id")
 	author_id = Column(Integer, ForeignKey("users.id"))
 	parent_submission = Column(Integer, ForeignKey("submissions.id"))
 	# this column is foreignkeyed to comment(id) but we can't do that yet as
