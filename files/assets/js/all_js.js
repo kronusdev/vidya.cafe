@@ -59,7 +59,8 @@ document.body.addEventListener('keydown', function(event) {
 					 'marseycool', 'marseydisagree', 'marseydragon', 'marseyghost', 'marseygivecrown', 'marseyjapanese', 'marseynightmare', 'marseyno', 'marseynooo',
 					 'marseyoctopus', 'marseypanda', 'marseypenguin', 'marseypretty', 'marseypumpking', 'marseyrage', 'marseyramen', 'marseyshark', 'marseyskeletor',
 					 'marseysmirk', 'marseysombrero', 'marseyspirit', 'marseystars', 'marseystein', 'marseysweating', 'marseytwerking', 'marseyvampire', 'marseyvaporwave',
-					 'marseyvibing', 'marseywarhol', 'marseywinner', 'marseywise', 'marseywolf', 'marseywtf', 'marseywut', 'marseyyawn', 'marseyyes', 'marseyyikes', 'marseyzombie', 'marseyzwei']
+					 'marseyvibing', 'marseywarhol', 'marseywinner', 'marseywise', 'marseywolf', 'marseywtf', 'marseywut', 'marseyyawn', 'marseyyes', 'marseyyikes', 'marseyzombie', 'marseyzwei',
+					 'marseychristmasbulb', 'marseyelf', 'marseyreindeer', 'marseyreindeer2', 'marseyreindeer3', 'marseysanta', 'marseysanta2', 'marseysnow', 'marseysnowman']
 		},
 		{
 			type:'rage',
