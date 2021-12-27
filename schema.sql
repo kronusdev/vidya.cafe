@@ -1023,49 +1023,6 @@ ALTER TABLE public.save_relationship_id_seq OWNER TO postgres;
 
 ALTER SEQUENCE public.save_relationship_id_seq OWNED BY public.save_relationship.id;
 
-
---
--- Name: submissions_aux; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.submissions_aux (
-    id integer,
-    title character varying(500),
-    url character varying(2083),
-    body character varying(10000),
-    body_html character varying(20000),
-    embed_url character varying(10000),
-    ban_reason character varying(128),
-    key_id integer NOT NULL,
-    title_html text,
-    tag character varying DEFAULT 'none'::character varying
-);
-
-
-ALTER TABLE public.submissions_aux OWNER TO postgres;
-
---
--- Name: submissions_aux_key_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.submissions_aux_key_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.submissions_aux_key_id_seq OWNER TO postgres;
-
---
--- Name: submissions_aux_key_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.submissions_aux_key_id_seq OWNED BY public.submissions_aux.key_id;
-
-
 --
 -- Name: submissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -1467,13 +1424,6 @@ ALTER TABLE ONLY public.submissions ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- Name: submissions_aux key_id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.submissions_aux ALTER COLUMN key_id SET DEFAULT nextval('public.submissions_aux_key_id_seq'::regclass);
-
-
---
 -- Name: subscriptions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1745,15 +1695,6 @@ ALTER TABLE ONLY public.save_relationship
 
 ALTER TABLE ONLY public.save_relationship
     ADD CONSTRAINT save_relationship_pkey PRIMARY KEY (id);
-
-
---
--- Name: submissions_aux submissions_aux_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.submissions_aux
-    ADD CONSTRAINT submissions_aux_pkey PRIMARY KEY (key_id);
-
 
 --
 -- Name: submissions submissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
@@ -2243,20 +2184,6 @@ CREATE INDEX subimssion_binary_group_idx ON public.submissions USING btree (is_b
 
 
 --
--- Name: submission_aux_url_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX submission_aux_url_idx ON public.submissions_aux USING btree (url);
-
-
---
--- Name: submission_aux_url_trgm_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX submission_aux_url_trgm_idx ON public.submissions_aux USING gin (url public.gin_trgm_ops);
-
-
---
 -- Name: submission_domainref_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -2297,21 +2224,6 @@ CREATE INDEX submission_pinned_idx ON public.submissions USING btree (is_pinned)
 
 CREATE INDEX submissions_author_index ON public.submissions USING btree (author_id);
 
-
---
--- Name: submissions_aux_id_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX submissions_aux_id_idx ON public.submissions_aux USING btree (id);
-
-
---
--- Name: submissions_aux_title_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX submissions_aux_title_idx ON public.submissions_aux USING btree (title);
-
-
 --
 -- Name: submissions_created_utc_desc_idx; Type: INDEX; Schema: public; Owner: postgres
 --
@@ -2331,14 +2243,6 @@ CREATE INDEX submissions_over18_index ON public.submissions USING btree (over_18
 --
 
 CREATE INDEX submissions_sticky_index ON public.submissions USING btree (stickied);
-
-
---
--- Name: submissions_title_trgm_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX submissions_title_trgm_idx ON public.submissions_aux USING gin (title public.gin_trgm_ops);
-
 
 --
 -- Name: subscription_board_index; Type: INDEX; Schema: public; Owner: postgres
