@@ -602,43 +602,6 @@ ALTER SEQUENCE public.commentflags_id_seq OWNED BY public.commentflags.id;
 
 
 --
--- Name: comments_aux; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.comments_aux (
-    id integer,
-    body character varying(10000),
-    body_html character varying(20000),
-    ban_reason character varying(128),
-    key_id integer NOT NULL
-);
-
-
-ALTER TABLE public.comments_aux OWNER TO postgres;
-
---
--- Name: comments_aux_key_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.comments_aux_key_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.comments_aux_key_id_seq OWNER TO postgres;
-
---
--- Name: comments_aux_key_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.comments_aux_key_id_seq OWNED BY public.comments_aux.key_id;
-
-
---
 -- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1345,14 +1308,6 @@ ALTER TABLE ONLY public.commentflags ALTER COLUMN id SET DEFAULT nextval('public
 
 ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
 
-
---
--- Name: comments_aux key_id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.comments_aux ALTER COLUMN key_id SET DEFAULT nextval('public.comments_aux_key_id_seq'::regclass);
-
-
 --
 -- Name: commentvotes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
@@ -1543,15 +1498,6 @@ ALTER TABLE ONLY public.client_auths
 
 ALTER TABLE ONLY public.commentflags
     ADD CONSTRAINT commentflags_pkey PRIMARY KEY (id);
-
-
---
--- Name: comments_aux comments_aux_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.comments_aux
-    ADD CONSTRAINT comments_aux_pkey PRIMARY KEY (key_id);
-
 
 --
 -- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
@@ -1958,21 +1904,6 @@ CREATE INDEX client_access_token_idx ON public.client_auths USING btree (access_
 
 CREATE INDEX client_refresh_token_idx ON public.client_auths USING btree (refresh_token);
 
-
---
--- Name: comment_body_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX comment_body_idx ON public.comments_aux USING btree (body) WHERE (octet_length((body)::text) <= 2704);
-
-
---
--- Name: comment_body_trgm_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX comment_body_trgm_idx ON public.comments_aux USING gin (body public.gin_trgm_ops);
-
-
 --
 -- Name: comment_parent_index; Type: INDEX; Schema: public; Owner: postgres
 --
@@ -1993,14 +1924,6 @@ CREATE INDEX comment_post_id_index ON public.comments USING btree (parent_submis
 
 CREATE INDEX commentflag_comment_index ON public.commentflags USING btree (comment_id);
 
-
---
--- Name: comments_aux_id_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX comments_aux_id_idx ON public.comments_aux USING btree (id);
-
-
 --
 -- Name: comments_parent_id_idx; Type: INDEX; Schema: public; Owner: postgres
 --
@@ -2013,14 +1936,6 @@ CREATE INDEX comments_parent_id_idx ON public.comments USING btree (parent_comme
 --
 
 CREATE INDEX comments_user_index ON public.comments USING btree (author_id);
-
-
---
--- Name: commentsaux_body_idx; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX commentsaux_body_idx ON public.comments_aux USING gin (to_tsvector('english'::regconfig, (body)::text));
-
 
 --
 -- Name: commentvotes_comments_id_index; Type: INDEX; Schema: public; Owner: postgres
