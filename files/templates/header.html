@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="flex-grow-1"><a href="{% if not p or p and p.feed == 'vidya'%}/{% elif p and p.feed == 'cafe' %}/cafe{%endif%}" class="navbar-brand"><img src="/assets/images/cafe.png" height="32"> Vidya.cafe</a></div>
 		<div class="flex-grow-1 d-fl d-none d-md-block">
-			<form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search/posts/" method="get">
+			<form class="form-inline search flex-nowrap m-0 mx-lg-auto" action="/search/posts/" method="get">
 				<input class="input w-100" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request.args.get('q', '')}}">
 				<span class="input-group-append">
 					<span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
