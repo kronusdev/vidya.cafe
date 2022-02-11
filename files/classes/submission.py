@@ -317,14 +317,22 @@ class Submission(Base, Stndrd, Age_times, Scores):
 	
 	def realbody(self, v):
 		body = self.body_html
+		if not body:
+			return f"An error occured. Please report this to the developers ID={self.id}"
+
 		if not v or v.slurreplacer and body: body = body.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
-		if v and not v.oldreddit and body: body = body.replace("old.reddit.com", "reddit.com")
+		if v and not v.oldreddit: body = body.replace("old.reddit.com", "reddit.com")
 		return body
 
 	def realtitle(self, v):
-		if self.title_html: title = self.title_html
-		else: title = self.title
-		if not v or v.slurreplacer and title: title = title.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
+		if self.title_html: 
+			title = self.title_html
+		else: 
+			title = self.title
+		if not title:
+			return f"An error occured. Please report this to the developers. ID={self.id}"
+		if not v or v.slurreplacer: 
+			title = title.replace(" nigger"," person of above average melanin levels").replace(" Nigger"," Person of above average melanin levels").replace(" NIGGER"," PEOPLE OF ABOVE AVERAGE MELANIN LEVELS").replace(" tranny"," 🚄").replace(" Tranny"," 🚄").replace(" TRANNY"," 🚄").replace(" kill yourself"," keep yourself safe").replace(" KILL YOURSELF"," KEEP YOURSELF SAFE").replace(" trannie"," 🚄").replace(" Trannie"," 🚄").replace(" TRANNIE"," 🚄").replace(" troon"," 🚄").replace(" Troon"," 🚄").replace(" TROON"," 🚄")
 		return title
 
 	#@property

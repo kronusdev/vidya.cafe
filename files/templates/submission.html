@@ -596,13 +596,16 @@
 		</form>
 	</div>
 			{% if p.comment_count >= 2 and not v and not p.is_banned %}
-			<div class="card border-0 bg-light mt-4">
-				<div class="card-body">
-					<h5 class="card-title">Jump in the discussion.</h5>
-					<p class="card-text">No email address required.</p>
-					<div>
-						<a href="/signup?redirect={{request.path | urlencode}}" class="button">Sign up</a>
-						<a href="/login?redirect={{request.path | urlencode}}" class="button btn-link text-muted">Sign in</a>
+			<div class="card border-0 bg-gray-300 mt-4">
+				<div class="card-body overflow-hidden" style="position:relative;">
+					<i class="fad {% if p.id % 3 == 0 %}fa-game-console-handheld{%elif p.id % 3 == 1 %}fa-gamepad-modern{% else %}fa-alien-8bit{%endif%} fa-10x fa-rotate-45 text-primary" style="position:absolute;top: -2rem; right: 0"></i>
+					<div style="z-index:1; position:relative">
+						<h5 class="card-title">Jump in the discussion.</h5>
+						<p class="card-text">No email address required.</p>
+						<div>
+							<a href="/signup?redirect={{request.path | urlencode}}" class="button btn-success">Sign up</a>
+							<a href="/login?redirect={{request.path | urlencode}}" class="button btn-link text-muted">Sign in</a>
+						</div>
 					</div>
 				</div>
 			</div>

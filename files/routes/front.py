@@ -207,7 +207,7 @@ def get_frontpage(v, request, feed):
 	t=request.args.get('t', defaulttime)
 	# front page
 
-	if v.mergefeeds:
+	if v and v.mergefeeds:
 		feed = "all"
 
 	ids = frontlist(sort=sort,

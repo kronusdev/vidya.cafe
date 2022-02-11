@@ -1004,7 +1004,7 @@ th {
 	cursor: pointer;
 	font-size: $font-size-base;
 	color: var(--black);
-	font-family: "Font Awesome 5 Pro";
+	font-family: "Font Awesome 6 Pro";
 	font-weight: 900;
 	content: "\f7b6";
 
@@ -1023,7 +1023,7 @@ th {
 	cursor: pointer;
 	font-size: $font-size-base;
 	color: var(--black);
-	font-family: "Font Awesome 5 Pro";
+	font-family: "Font Awesome 6 Pro";
 	font-weight: 900;
 	content: "\f354";
 }
@@ -1437,7 +1437,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 // Tags
 .all-tag::before {
 	content:"All Posts \f039";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: $all-tag;
 	color: var(--actually-black);
 	padding: 2px;
@@ -1447,7 +1447,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .news-tag::before {
 	content:"News \f1ea";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--news-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1457,7 +1457,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .changelog-tag::before {
 	content:"Changelog \f328";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--changelog-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1467,7 +1467,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .trailer-tag::before {
 	content:"Trailer \f04b";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--trailer-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1477,7 +1477,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .oc-tag::before {
 	content:"OC \f005";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--oc-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1487,7 +1487,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .video-tag::before {
 	content:"Video \f03d";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--video-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1497,7 +1497,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .music-tag::before {
 	content:"Music \f001";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--music-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1506,7 +1506,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 .picture-tag::before {
 	content:"Picture \f302";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--picture-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1516,7 +1516,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .meme-tag::before {
 	content:"Meme \f586";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--meme-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1526,7 +1526,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .meta-tag::before {
 	content:"Meta \f129";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--meta-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1536,7 +1536,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .discussion-tag::before {
 	content:"Discussion \f086";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--discussion-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1546,7 +1546,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .rant-tag::before {
 	content:"Rant \f556";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--rant-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1556,7 +1556,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .review-tag::before {
 	content:"Review \f5c0";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--review-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1566,7 +1566,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .question-tag::before {
 	content:"Question \f128";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--question-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1576,7 +1576,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .breaking-news-tag::before {
 	content:"\f1ea BREAKING NEWS \f1ea";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: var(--breaking-news-tag);
 	color: var(--actually-black);
 	padding: 2px;
@@ -1599,7 +1599,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 #submit .none-tag::before {
 	content:"None \f00d";
-	font-family: "Font Awesome 5 Pro",$font-family-sans-serif;
+	font-family: "Font Awesome 6 Pro",$font-family-sans-serif;
 	background-color: $none-tag;
 	color: var(--actually-black);
 	padding: 2px;
@@ -2297,7 +2297,7 @@ ul.comment-section {
 .comment .comment-collapse::before {
 	content: "";
 	position: absolute;
-	font-family: "Font Awesome 5 Pro";
+	font-family: "Font Awesome 6 Pro";
 	border-left: 2px solid var(--gray-100);
 	font-size: $font-size-base;
 	color: var(--primary);
@@ -2313,7 +2313,7 @@ ul.comment-section {
 .comment.collapsed {
 	.comment-collapse::before {
 		content: "\f055";
-		font-family: "Font Awesome 5 Pro";
+		font-family: "Font Awesome 6 Pro";
 		font-weight: 900;
 		border-left: none;
 		color: var(--gray-500);
