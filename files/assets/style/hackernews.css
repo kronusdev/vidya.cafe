@@ -129,6 +129,9 @@ display: none !important;
 	color: var(--gray-200) !important;
 	opacity: 0.5;
 }
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item.active, .navbar-styling .navbar-nav .nav-link:hover {
+	background-color: var(--gray-500);
+}
 .active.arrow-up::before, .score-up {
 	color: var(--gray-200) !important;
 }
