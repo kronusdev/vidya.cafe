@@ -561,8 +561,8 @@ class User(Base, Stndrd, Age_times):
 	def refresh_selfset_badges(self):
 
 		# check self-setting badges
-		badge_types = g.db.query(BadgeDef).filter(
-			BadgeDef.qualification_expr.isnot(None)).all()
+		badge_types = g.db.query(BadgeDef).filter(BadgeDef.qualification_expr.isnot(None)).all()
+
 		for badge in badge_types:
 			if eval(badge.qualification_expr, {}, {'v': self}):
 				if not self.has_badge(badge.id):

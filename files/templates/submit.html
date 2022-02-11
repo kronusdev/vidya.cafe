@@ -294,9 +294,9 @@
 						<input type="hidden" name="formkey" value="{{v.formkey}}">
 							<label for="feed">Post Feed</label><i class="ml-1 text-muted fad fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title='"Vidya" is the game-related feed, while "Cafe" is for everything else'></i>
 						<div>
-							<input class="btn-check" type="radio" name="feed" id="vidya-feed" value="vidya" checked><!--
+							<input class="btn-check" type="radio" name="feed" id="vidya-feed" value="vidya"{% if feed == "vidya" %}checked{% endif %}><!--
 							--><label class="selection" for="vidya-feed">Vidya</label><!--  
-							--><input class="btn-check" type="radio" name="feed" id="cafe-feed" value="cafe"><!--  
+							--><input class="btn-check" type="radio" name="feed" id="cafe-feed" value="cafe"{% if feed == "cafe" %}checked{% endif %}><!--  
 							--><label class="selection" for="cafe-feed">Cafe</label>
 						</div>
 						<label for="title">Post Title</label>

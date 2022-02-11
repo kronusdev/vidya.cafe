@@ -42,8 +42,11 @@ def submit_get(v):
 	v.last_active = time.time()
 	if v and v.is_banned and not v.unban_utc: return render_template("ban.html")
 
+	feed = request.args.get("feed", "vidya")
+
 	return render_template("submit.html",
-						   v=v)
+						   v=v,
+						   feed=feed)
 
 @app.get("/post/<pid>")
 @app.get("/post/<pid>/<anything>")
