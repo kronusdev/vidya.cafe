@@ -1,3 +1,4 @@
+.vscode/
 newrelic.ini
 vars.env
 /docker-compose.yml
