@@ -148,3 +148,10 @@ blockquote {
 	background-color: var(--muted) !important;
 }
 
+input:checked + .selection, .selection.active {
+	background-color: var(--gray-200) !important;
+}
+
+.nav.settings-nav.bg-gray-300.rounded-top {
+	background: var(--gray-200) !important;
+}
