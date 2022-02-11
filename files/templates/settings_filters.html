@@ -180,7 +180,20 @@
 
 					</div>
 
+					<div class="d-lg-flex settings-category">
+						<div class="title w-lg-25">
+							<label for="mergefeeds">Merge Feeds into one</label>
+						</div>
+						<div class="body w-lg-100">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="mergefeeds" name="mergefeeds"{% if v.mergefeeds %} checked{% endif %} onchange="post_toast('/settings/profile?mergefeeds='+document.getElementById('mergefeeds').checked);">
+								<label class="custom-control-label" for="mergefeeds"></label>
+							</div>
+							<span class="text-small-extra text-muted">Enable if you would like to see both the vidya and cafe feed as one</span>
+						</div>
+						
 
+					</div>
 					<div class="d-lg-flex settings-category">
 
 						<div class="title w-lg-25">

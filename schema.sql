@@ -166,6 +166,7 @@ CREATE TABLE public.users (
     profileurl text,
     bannerurl text,
     hidevotedon boolean,
+    mergefeeds boolean,
     newtab boolean,
     flairchanged boolean,
     defaultsortingcomments text,

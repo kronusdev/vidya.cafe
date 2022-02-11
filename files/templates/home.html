@@ -16,6 +16,7 @@
 		<a href="/submit?feed={{feed}}" class="mx-3 d-none d-md-inline-block">
 				<div class="button mb-0">Create post<i class="ml-2 fas fa-feather-alt"></i></div>
 		</a>
+		{% if not v.mergefeeds %}
 		<div class="d-none d-md-flex mr-2">
 			<a class="selection {% if feed == 'vidya' %}active{%endif%}" href="/" id="vidya_feed_tab">
 				<div>
@@ -28,6 +29,7 @@
 				</div>
 			</a>
 		</div>
+		{% endif %}
 		<i class="d-none d-md-inline-block ml-1 mr-auto text-muted fad fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title='"Vidya" is the game-related feed, while "Cafe" is for everything else'></i>
 <!-- 		<h2 class="reindeer mr-auto d-none d-md-block">Merry Christmas!</h2> -->
 		<div class="dropdown dropdown-actions mx-2">
