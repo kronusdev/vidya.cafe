@@ -81,7 +81,7 @@
 {% endif %}
 
 {% if standalone and level==1 %}
-<div class="post-info mt-5 mb-1 mr-2">
+<div class="post-info mt-5 mb-1 mx-2">
 	{% if c.post and c.post.over_18 %}<span class="badge badge-danger text-small-extra mr-1">NSFW</span>{% endif %}
 	<span class="align-top">
 	{% if c.parent_submission %}
@@ -105,7 +105,7 @@
 </div>
 {% endif %}
 
-<div id="comment-{{c.id}}" class="comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18 and not (v and v.over_18)) %} collapsed{% endif %}" style="border-left: 2px solid #{{c.author.namecolor}} !important;">
+<div id="comment-{{c.id}}" class="mx-2 comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18 and not (v and v.over_18)) %} collapsed{% endif %}" style="border-left: 2px solid #{{c.author.namecolor}} !important;">
 
 	<span class="comment-collapse-desktop d-none d-md-block" onclick="collapse_comment('{{c.id}}')"></span>
 	

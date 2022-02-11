@@ -11613,6 +11613,11 @@ th {
   border-width: 5px;
   border-style: solid; }
 
+.embossed-border:not(:nth-child(2)) {
+  border-top: 2px solid var(--gray-600); }
+.embossed-border:not(:last-child) {
+  border-bottom: 1px solid var(--gray-200); }
+
 .opacity-25 {
   opacity: .25; }
 

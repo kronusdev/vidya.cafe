@@ -1117,6 +1117,15 @@ th {
 	border-style: solid;
 }
 
+.embossed-border{
+	&:not(:nth-child(2)) {
+		border-top: 2px solid var(--gray-600);
+	}
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--gray-200);
+	}
+}
+
 // Opacity
 
 .opacity-25 {
