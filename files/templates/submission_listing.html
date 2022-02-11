@@ -20,7 +20,7 @@
 	})()
 </script>
 
-<div id="post-{{p.id}}" class="card{% if p.is_banned %} banned{% endif %}{% if p.deleted_utc > 0 %} deleted{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}{% if p.over_18 %} nsfw{% endif %}">
+<div tabindex="-1" id="post-{{p.id}}" class="card{% if p.is_banned %} banned{% endif %}{% if p.deleted_utc > 0 %} deleted{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}{% if p.over_18 %} nsfw{% endif %}">
 	<div class="d-flex flex-row-reverse flex-md-row flex-nowrap justify-content-end">
 		<!-- Voting on "medium" devices or larger, hidden on smaller devices -->
 		<div class="voting my-2 d-none d-md-block pr-2">

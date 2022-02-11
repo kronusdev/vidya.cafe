@@ -168,9 +168,6 @@ body {
   text-align: left;
   background-color: #E1E1E1; }
 
-[tabindex="-1"]:focus:not(:focus-visible) {
-  outline: 0 !important; }
-
 hr {
   box-sizing: content-box;
   height: 0;
@@ -11814,6 +11811,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   transition: transform 0.15s;
   margin: 0.25rem 0 0.25rem;
   border-radius: var(--border-radius) !important; }
+  .card.focus, .card:focus {
+    outline: 3px solid var(--primary) !important; }
 
 #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #settings-guild .posts .card {
   border-radius: var(--border-radius);

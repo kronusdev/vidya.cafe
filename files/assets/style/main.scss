@@ -1390,6 +1390,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     transition: transform 0.15s;
     margin: 0.25rem 0 0.25rem;
     border-radius: var(--border-radius) !important;
+	&.focus, &:focus {
+		outline: 3px solid var(--primary) !important;
+	}
 }
 
 #frontpage, #userpage, #search, #settings-guild {
