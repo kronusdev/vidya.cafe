@@ -76,6 +76,10 @@ document.body.addEventListener('keydown', function(event) {
 		{
 			type:'pepe',
 			emojis: ['peepopog','peepojam','peepoknife','peepoking','peepodrink','peepolook','peepopeek','peepolove','peepopet','peepopoggers','peepocool','peepohappy','peepoclap','peepocross','peepowholesome','peepoblanket','peepoface','peepopogchamp','peepowtf','peepoyes','peepoascended','peepothink','peepocoffe','peepocoffe2']
+		},
+		{
+			type:'misc',
+			emojis: ['coffemug', 'capyzen', 'comfyfloppa', 'flopper', 'spit', 'trolled', 'kekw', 'pain', 'king', 'sus', 'skipperfbi', 'this', 'sotrue', 'thistbh', 'thonk', 'gigachad', 'gigachad2']
 		}
 		]
 		let search_bar = document.getElementById("emoji_search");
