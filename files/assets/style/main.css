@@ -11811,8 +11811,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   transition: transform 0.15s;
   margin: 0.25rem 0 0.25rem;
   border-radius: var(--border-radius) !important; }
-  .card.focus, .card:focus {
-    outline: 3px solid var(--primary) !important; }
+
+.focusable-target:focus-visible {
+  outline: 3px solid var(--primary) !important; }
 
 #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #settings-guild .posts .card {
   border-radius: var(--border-radius);

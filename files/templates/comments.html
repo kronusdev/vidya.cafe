@@ -105,7 +105,7 @@
 </div>
 {% endif %}
 
-<div id="comment-{{c.id}}" class="mx-2 comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18 and not (v and v.over_18)) %} collapsed{% endif %}" style="border-left: 2px solid #{{c.author.namecolor}} !important;">
+<div data-focus-level={{c.level}} tabindex="-1" id="comment-{{c.id}}" class="focusable-target mx-2 comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18 and not (v and v.over_18)) %} collapsed{% endif %}" style="border-left: 2px solid #{{c.author.namecolor}} !important;">
 
 	<span class="comment-collapse-desktop d-none d-md-block" onclick="collapse_comment('{{c.id}}')"></span>
 	

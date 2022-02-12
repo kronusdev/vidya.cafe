@@ -20,7 +20,7 @@
 	})()
 </script>
 
-<div tabindex="-1" id="post-{{p.id}}" class="card{% if p.is_banned %} banned{% endif %}{% if p.deleted_utc > 0 %} deleted{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}{% if p.over_18 %} nsfw{% endif %}">
+<div tabindex="-1" id="post-{{p.id}}" class="focusable-target card{% if p.is_banned %} banned{% endif %}{% if p.deleted_utc > 0 %} deleted{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}{% if p.over_18 %} nsfw{% endif %}">
 	<div class="d-flex flex-row-reverse flex-md-row flex-nowrap justify-content-end">
 		<!-- Voting on "medium" devices or larger, hidden on smaller devices -->
 		<div class="voting my-2 d-none d-md-block pr-2">
@@ -98,51 +98,51 @@
 				<ul class="list-inline text-right d-flex">
 					{% if p.realbody(v) %}
 						<li class="list-inline-item m-0">
-							<a href="javascript:void(0)" class="text-expand pr-1" data-id="{{p.id}}"><i class="fas fa-expand-alt m-0 text-expand-icon-{{p.id}}"></i></a>
+							<a data-focus-level=2 href="javascript:void(0)" class="focusable-target text-expand pr-1" data-id="{{p.id}}"><i class="fas fa-expand-alt m-0 text-expand-icon-{{p.id}}"></i></a>
 						</li>
 					{% endif %}
 					<li class="list-inline-item mx-1">
-						<a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}"><i class="fas fa-comment-dots mr-1"></i>{{p.comment_count}}</a>
+						<a data-focus-level=2 class="focusable-target" {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}"><i class="fas fa-comment-dots mr-1"></i>{{p.comment_count}}</a>
 					</li>
 					<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy link">
-						<a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{p.permalink | full_link}}"><i class="fas fa-link m-0"></i></a>
+						<a data-focus-level=2 href="javascript:void(0);" role="button" class="focusable-target copy-link" data-clipboard-text="{{p.permalink | full_link}}"><i class="fas fa-link m-0"></i></a>
 					</li>
 					{% if v and p.id in v.saved_idlist() %}
 						<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unsave">
-							<a href="javascript:void(0)" onclick="post('/unsave_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save m-0"></i><i class="fas fa-minus text-small-extra m-0"></i></a>
+							<a data-focus-level=2 class="focusable-target" href="javascript:void(0)" onclick="post('/unsave_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save m-0"></i><i class="fas fa-minus text-small-extra m-0"></i></a>
 						</li>
 					{% elif v %}
 						<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Save">
-							<a href="javascript:void(0)" onclick="post('/save_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save m-0"></i><i class="fas fa-plus text-small-extra m-0"></i></a>
+							<a data-focus-level=2 class="focusable-target" href="javascript:void(0)" onclick="post('/save_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-save m-0"></i><i class="fas fa-plus text-small-extra m-0"></i></a>
 						</li>
 					{% endif %}
 					{% if v and v.id==p.author_id %}
 						{% if p.deleted_utc > 0 %}
 							<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Undelete post">
-								<a href="javascript:void(0)" onclick="post('/undelete_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-undo m-0"></i>Undelete</a>
+								<a data-focus-level=2 class="focusable-target" href="javascript:void(0)" onclick="post('/undelete_post/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-undo m-0"></i>Undelete</a>
 							</li>
 						{% else %}
 							<li class="list-inline-item mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete post">
-								<a href="javascript:void(0)" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#deletePostModal" onclick="delete_postModal('{{p.id}}')"><i class="fas fa-trash m-0"></i></a>
+								<a data-focus-level=2 class="focusable-target" href="javascript:void(0)" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#deletePostModal" onclick="delete_postModal('{{p.id}}')"><i class="fas fa-trash m-0"></i></a>
 							</li>
 						{% endif %}
 						<li class="list-inline-item mx-2">
-							<a href="javascript:void(0)" onclick="post('/pin/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack"></i>{% if p.is_pinned %}Unpin from your profile{% else %}Pin to your profile{% endif %}</a>
+							<a data-focus-level=2 class="focusable-target" href="javascript:void(0)" onclick="post('/pin/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack"></i>{% if p.is_pinned %}Unpin from your profile{% else %}Pin to your profile{% endif %}</a>
 						</li>
 					{% endif %}
 					<li class="list-inline-item mx-2"><a href="/sips?link={{p.fullname}}"><i class="fas fa-star"></i>Sips</a></li>
 					{% if v and not (v.admin_level == 6 and v.id == p.author_id) %}
 						{% if p.id in v.subscribed_idlist() %}
-							<li class="list-inline-item mx-2"><a href="javascript:void(0)" onclick="post('/unsubscribe/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-slash"></i>Unsubscribe</a></li>
+							<li class="list-inline-item mx-2"><a data-focus-level=2 class="focusable-target" href="javascript:void(0)" onclick="post('/unsubscribe/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-slash"></i>Unsubscribe</a></li>
 						{% else %}
-							<li class="list-inline-item mx-2"><a href="javascript:void(0)" onclick="post('/subscribe/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye"></i>Subscribe</a></li>
+							<li class="list-inline-item mx-2"><a data-focus-level=2 class="focusable-target" href="javascript:void(0)" onclick="post('/subscribe/{{p.id}}', function(){window.location.reload(true);})"><i class="fas fa-eye"></i>Subscribe</a></li>
 						{% endif %}
 					{% endif %}
 					
-					<li class="list-inline-item mx-2"><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#reportPostModal" onclick="report_postModal('{{p.id}}', '{{p.author.username}}')"><i class="fas fa-flag"></i>Report</a></li>
+					<li class="list-inline-item mx-2"><a data-focus-level=2 class="focusable-target" href="javascript:void(0)" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#reportPostModal" onclick="report_postModal('{{p.id}}', '{{p.author.username}}')"><i class="fas fa-flag"></i>Report</a></li>
 
 					{% if v and v.admin_level > 0 %}
-					<input class="post-actions" type="checkbox" id="admin-actions-checkbox-{{p.id}}" onClick="toggleVisibilityForAdminActions({{p.id}})">
+					<input data-focus-level=2 class="focusable-target post-actions" type="checkbox" id="admin-actions-checkbox-{{p.id}}" onClick="toggleVisibilityForAdminActions({{p.id}})">
 					{% endif %}
 				</ul>
 			</div>
