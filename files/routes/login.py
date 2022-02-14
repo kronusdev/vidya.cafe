@@ -155,8 +155,12 @@ def logout(v):
 @app.get("/signup")
 @auth_desired
 def sign_up_get(v):
-	with open('./disablesignups', 'r') as f:
-		if f.read() == "yes": return "New account registration is currently closed. Please come back later.", 403
+		# with open('./disablesignups', 'r') as f:
+		# 	if f.read() == "yes": 
+		# 		return "New account registration is currently closed. Please come back later.", 403
+	disable = open("./disablesignups", "r")
+	if disable.read().find("yes") > -1:
+		return "New account registration is currently closed. Please come back later.", 403
 
 	if v: return redirect("/")
 
