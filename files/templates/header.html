@@ -2,10 +2,10 @@
 
 <nav class="navbar navbar-expand-md navbar-styling fixed-top snowcaps" id="navbar">
 	<div class="container-fluid">
-		<div class="flex-grow-1"><a href="{% if not p or p and p.feed == 'vidya'%}/{% elif p and p.feed == 'cafe' %}/cafe{%endif%}" class="navbar-brand"><img src="/assets/images/cafe.png" height="32"> Vidya.cafe</a></div>
+		<div class="flex-grow-1"><a data-focus-skip href="{% if not p or p and p.feed == 'vidya'%}/{% elif p and p.feed == 'cafe' %}/cafe{%endif%}" class="navbar-brand focusable-target"><img src="/assets/images/cafe.png" height="32"> Vidya.cafe</a></div>
 		<div class="flex-grow-1 d-fl d-none d-md-block">
 			<form class="form-inline search flex-nowrap m-0 mx-lg-auto" action="/search/posts/" method="get">
-				<input class="input w-100" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request.args.get('q', '')}}">
+				<input data-focus-skip class="input w-100 focusable-target" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request.args.get('q', '')}}">
 				<span class="input-group-append">
 					<span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
 						<i class="fa fa-search" aria-hidden="true"></i>
@@ -35,21 +35,21 @@
 		</span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarResponsive">
-		<ul class="navbar-nav ml-auto d-none d-md-flex">
+		<ul tabindex=-1 data-focus-skip class="focusable-target navbar-nav ml-auto d-none d-md-flex">
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-				<a class="nav-link" href="/formatting" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Formatting guide"><i class="fas fa-italic"></i></a>
+				<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/formatting" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Formatting guide"><i class="fas fa-italic"></i></a>
 			</li>
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-				<a class="nav-link" href="/changelog" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Changelog"><i class="fas fa-clipboard"></i></a>
+				<a data-focus-skip data-focus-level=2 class=" focusable-target nav-link" href="/changelog" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Changelog"><i class="fas fa-clipboard"></i></a>
 			</li>
 			
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-				<a class="nav-link" href="/random/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Random Post"><i class="fas fa-random"></i></a>
+				<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/random/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Random Post"><i class="fas fa-random"></i></a>
 			</li>
 
 			{% if v and v.admin_level==6 %}
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-				<a class="nav-link" href="/admin/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Admin Tools"><i class="fas fa-crown{% if v.has_report_queue %} text-success{% endif %}"></i></a>
+				<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/admin/" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Admin Tools"><i class="fas fa-crown{% if v.has_report_queue %} text-success{% endif %}"></i></a>
 			</li>
 			{% endif %}
 
@@ -58,7 +58,7 @@
 			{% if v.notifications_count %}
 
 			<li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
-				<a class="nav-link position-relative" href="/notifications{% if v.notifications_count == v.post_notifications_count %}?posts=true{% endif %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
+				<a data-focus-skip data-focus-level=2 class="focusable-target nav-link position-relative" href="/notifications{% if v.notifications_count == v.post_notifications_count %}?posts=true{% endif %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
 				<i class="fas fa-bell text-danger"></i>
 				<span class="notif-count font-weight-bolder">{{v.notifications_count}}</span></a>
 			</li>
@@ -66,7 +66,7 @@
 			{% else %}
 
 			<li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
-				<a class="nav-link" href="/notifications?all=true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
+				<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/notifications?all=true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
 				<i class="fas fa-bell"></i>
 				</a>
 			</li>
@@ -75,23 +75,23 @@
 
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
 				{% if feed %}
-					<a class="nav-link" href="/submit?feed={{feed}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create post"><i class="fas fa-feather-alt"></i></a>
+					<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/submit?feed={{feed}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create post"><i class="fas fa-feather-alt"></i></a>
 				{% else %}
-					<a class="nav-link" href="/submit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create post"><i class="fas fa-feather-alt"></i></a>
+					<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/submit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create post"><i class="fas fa-feather-alt"></i></a>
 				{% endif %}
 			</li>
 
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-				<a class="nav-link" href="/comments" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Comments"><i class="fas fa-comment-dots"></i></a>
+				<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/comments" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Comments"><i class="fas fa-comment-dots"></i></a>
 			</li>
 
 			<li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-				<a class="nav-link" href="/leaderboard" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Leaderboards"><i class="fas fa-trophy"></i></a>
+				<a data-focus-skip data-focus-level=2 class="focusable-target nav-link" href="/leaderboard" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Leaderboards"><i class="fas fa-trophy"></i></a>
 			</li>
 
 			<li class="nav-item d-flex align-items-center justify-content-center text-center">
 				<div class="dropdown">
-					<a class="nav-link bg-transparent py-0 pr-0" href="{{v.url}}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+					<a data-focus-skip data-focus-level=2 class="focusable-target nav-link bg-transparent py-0 pr-0" href="{{v.url}}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false">
 					<div class="d-flex">
 						<div><img src="{{v.profile_url}}" class="profile-pic-35"></div>

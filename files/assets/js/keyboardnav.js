@@ -45,9 +45,17 @@ let navigation = {
     enabled: false,
     type: "",
     enabled_this_press: false,
-    targets: [],
-    current: undefined,
-    parent: undefined,
+    targets: [], // elements
+    current: undefined, // idx
+    parent: undefined, // idx
+    keymap: {
+        up: ["ArrowUp", "k"],
+        down: ["ArrowDown", "j"],
+        left: ["ArrowLeft", "h"],
+        right: ["ArrowRight", "l"],
+        upvote: " ",
+        interact: ["Enter", "f"]
+    },
 
     current_obj(offset) {
         if(offset) {
@@ -55,7 +63,99 @@ let navigation = {
         } else {
             return navigation.targets[navigation.current]
         }
+    },
+
+    get parent_obj() {
+        return this.targets[this.parent]
+    },
+
+    update_parent() {
+        if (this.current_obj().getAttribute("data-focus-level") == 1 
+        || !this.current_obj().hasAttribute("data-focus-level")) {
+            
+            if (this.current_obj().hasAttribute("data-focus-redirect")) {
+                this.parent = this.targets.findIndex( (t) => {return t.getAttribute("data-focus-id") == this.current_obj().getAttribute("data-focus-redirect")})
+            } else {
+                this.parent = this.current
+            }
+            
+        }
+    },
+    goDown() {
+        for (let i = this.current+1; i < this.targets.length; i++) {
+            if (
+                (this.targets[i].getAttribute("data-focus-level") == 1 
+                || !this.targets[i].hasAttribute("data-focus-level"))
+                ) {
+                    this.current = i
+                focus_centered(this.targets[i])
+                break;    
+            }
+        }
+        
+        
+        this.enabled_this_press = false
+    },
+
+    goUp() {
+        for (let i = this.current-1; i > -1; i--) {
+            if (
+                (this.targets[i].getAttribute("data-focus-level") == 1
+                || !this.targets[i].hasAttribute("data-focus-level"))
+                ) {
+                this.current = i
+                focus_centered(this.targets[i])
+                break;    
+            }
+        }
+        
+        this.enabled_this_press = false   
+    },
+
+    goRight() {
+        this.update_parent();
+
+        for (let i = this.current+1; i < this.targets.length; i++) {
+            if (this.targets[i].getAttribute("data-focus-level") > 1 
+                && this.parent_obj.contains(this.targets[i])) {
+ 
+                this.current = i
+                focus_centered(this.current_obj())
+                console.log(this.current)
+                return;    
+            }
+        }
+        // jump to beginning if at the end of secondary elements
+        for (let i = this.parent+1; i < this.targets.length; i++) {
+            if (this.targets[i].getAttribute("data-focus-level") > 1 
+                && this.parent_obj.contains(this.targets[i])) {
+ 
+                this.current = i
+                focus_centered(this.current_obj())
+                console.log(this.current)
+                return;    
+            }
+        }
+    },
+
+    goLeft() {
+        this.update_parent();
+        for (let i = this.current-1; i > 0; i--) {
+            if (this.targets[i].hasAttribute("data-focus-level")
+            && this.parent_obj.contains(this.targets[i])) {
+                this.current = i
+                focus_centered(this.current_obj())
+                return;
+            }
+        }
     }
+
+
+}
+
+function wrap_number(number, max) {
+    console.log(number, max, (number % max + max)%max)
+    return (number % max + max)%max
 }
 
 function focus_centered(element) {
@@ -70,93 +170,51 @@ How to expand the keyboard navigation system:
 - To mark it as a child element give it the `data-focus-level` attribute with a number higher than 1.  Higher number <=> lower priority
 - To make an element redirect focus to another element when interacted with (pressed enter), give it the `data-redirect-focus` attribute with the `focus-id` of the element to redirect to
 - To set an objects focus-id, give it a `data-focus-id`
-- To make the element focusable ONLY via redirect, give it the `data-weak-focus` attribute
+- To make the element be ignored during the initial focusing, give it the `data-focus-skip` attribute
 
 */
 
 
 // let post_changing_mode = false
 
+
+
+
+
+
+
+
 document.addEventListener("keydown", (event) => {
 
     if (navigation.enabled) {
         switch (event.key) {
-            case "ArrowDown": {
+            case navigation.keymap.down[0]: 
+            case navigation.keymap.down[1]:{
 
                 // up/down focuses only top level comments
-                for (let i = navigation.current+1; i < navigation.targets.length; i++) {
-                    if (
-                        (navigation.targets[i].getAttribute("data-focus-level") == 1 
-                        || !navigation.targets[i].hasAttribute("data-focus-level"))
-                        && !navigation.targets[i].getAttribute("data-weak-focus")
-                        ) {
-                        navigation.current = i
-                        focus_centered(navigation.targets[i])
-                        break;    
-                    }
-                }
-                
-                
-                navigation.enabled_this_press = false
+                navigation.goDown();
                 break;
             }
-            case "ArrowUp": {
+            case navigation.keymap.up[0]: 
+            case navigation.keymap.up[1]: {
                 
                 // up/down focuses only top level comments
-                for (let i = navigation.current-1; i > -1; i--) {
-                    if (
-                        (navigation.targets[i].getAttribute("data-focus-level") == 1
-                        || !navigation.targets[i].hasAttribute("data-focus-level"))
-                        && !navigation.targets[i].getAttribute("data-weak-focus")
-                        ) {
-                        navigation.current = i
-                        focus_centered(navigation.targets[i])
-                        break;    
-                    }
-                }
-                
-                navigation.enabled_this_press = false
+                navigation.goUp();
                 break;
             }
-            case "ArrowRight": {
+            case navigation.keymap.right[0]: 
+            case navigation.keymap.right[1]: {
                 
-                if (navigation.current_obj().getAttribute("data-focus-level") == 1 
-                || !navigation.current_obj().hasAttribute("data-focus-level")) {
-                    
-                    if (navigation.current_obj().hasAttribute("data-focus-redirect")) {
-                        navigation.parent = navigator.targets.find( (t) => {return t.getAttribute("data-focus-id") == navigator.current_obj().getAttribute("data-focus-redirect")})
-                    } else {
-                        navigation.parent = navigation.current
-                    }
-                    
-                }
-                console.log(navigation.parent)
-                for (let i = navigation.current+1; i < navigation.targets.length; i++) {
-                    if (navigation.targets[i].getAttribute("data-focus-level") > 1 
-                        && navigation.targets[navigation.parent].contains(navigation.targets[i])) {
-                        
-                        navigation.current = i
-                        focus_centered(navigation.targets[i])
-                        break;    
-                    }
-                }
-                
+                navigation.goRight();
                 break;
             }
-            case "ArrowLeft": {
+            case navigation.keymap.left[0]: 
+            case navigation.keymap.left[1]: {
                 
-                for (let i = navigation.current-1; i > 0; i--) {
-                    if (navigation.targets[i].hasAttribute("data-focus-level")
-                    && navigation.targets[navigation.parent].contains(navigation.targets[i])) {
-                        navigation.current = i
-                        focus_centered(navigation.targets[i])
-                        break;
-                    }
-                }
-                
+                navigation.goLeft();
                 break;
             }
-            case " ": {
+            case navigation.keymap.upvote: {
                 let up_arrow = navigation.current_obj().querySelector(".arrow-up")
                 if (up_arrow != null) {
                     up_arrow.click()
@@ -173,7 +231,8 @@ document.addEventListener("keydown", (event) => {
                 break;
             }
 
-            case "Enter": {
+            case navigation.keymap.interact[0]: 
+            case navigation.keymap.interact[1]: {
                 if (navigation.type == "frontpage") {
                     let pid = navigation.current_obj().getAttribute("id").replace('post-', '')
                     window.location.href = `/post/${pid}`
@@ -211,19 +270,9 @@ document.addEventListener("keydown", (event) => {
                 
 
                 idx_to_focus = targets.findIndex( (t) => {
-                    return t.getBoundingClientRect().top > 50 && (t.getAttribute("data-focus-level") == 1 || !t.hasAttribute("data-focus-level")) 
+                    return t.getBoundingClientRect().top > 50 && (t.getAttribute("data-focus-level") == 1 || !t.hasAttribute("data-focus-level") && !t.hasAttribute("data-focus-skip")) 
                 });
                 console.log(idx_to_focus)
-
-                // for(let i = 0; i < targets.length; i++) {
-                    
-                //     if (!(targets[i].getBoundingClientRect().top < 0) && !targets[i].getAttribute("data-focus-weak")) {
-                //         to_focus = targets[i+1];
-                //         idx = i+1;
-                //         break;
-                //     }
-
-                // }
                     
                 navigation.current = idx_to_focus
                 navigation.targets = targets

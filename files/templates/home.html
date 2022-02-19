@@ -13,17 +13,17 @@
 	<div class="card-header rounded bg-gray-400">
 		<div class="d-flex align-items-center sortingbarmargin" style="justify-content: flex-end;">
 		<!-- Tag Sort -->
-		<a href="/submit?feed={{feed}}" class="mx-3 d-none d-md-inline-block">
+		<a data-focus-skip href="/submit?feed={{feed}}" class="focusable-target mx-3 d-none d-md-inline-block">
 				<div class="button mb-0">Create post<i class="ml-2 fas fa-feather-alt"></i></div>
 		</a>
 		{% if v and not v.mergefeeds %}
 		<div class="d-none d-md-flex mr-2">
-			<a class="selection {% if feed == 'vidya' %}active{%endif%}" href="/" id="vidya_feed_tab">
+			<a data-focus-skip class="focusable-target selection {% if feed == 'vidya' %}active{%endif%}" href="/" id="vidya_feed_tab">
 				<div>
 				<i class="fad fa-gamepad-alt m-0"></i> Vidya
 				</div>
 			</a>
-			<a class="selection {% if feed == 'cafe' %}active{%endif%}" href="/cafe" id="cafe_feed_tab">
+			<a data-focus-skip class="focusable-target selection {% if feed == 'cafe' %}active{%endif%}" href="/cafe" id="cafe_feed_tab">
 				<div>
 				<i class="fad fa-mug-hot m-0"></i> Cafe
 				</div>

@@ -295,17 +295,17 @@
 							<label for="feed">Post Feed</label><i class="ml-1 text-muted fad fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title='"Vidya" is the game-related feed, while "Cafe" is for everything else'></i>
 						<div>
 							<input class="btn-check" type="radio" name="feed" id="vidya-feed" value="vidya"{% if feed == "vidya" %}checked{% endif %}><!--
-							--><label class="selection" for="vidya-feed">Vidya</label><!--  
+							--><label class="focusable-target selection" for="vidya-feed">Vidya</label><!--  
 							--><input class="btn-check" type="radio" name="feed" id="cafe-feed" value="cafe"{% if feed == "cafe" %}checked{% endif %}><!--  
-							--><label class="selection" for="cafe-feed">Cafe</label>
+							--><label class="focusable-target selection" for="cafe-feed">Cafe</label>
 						</div>
 						<label for="title">Post Title</label>
 
 
-						<input class="input w-100" id="post-title" aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="{{title}}" minlength="1" maxlength="500" required oninput="checkForRequired()">
+						<input class="focusable-target input w-100" id="post-title" aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="{{title}}" minlength="1" maxlength="500" required oninput="checkForRequired()">
 						<div id="urlblock">
 							<label for="URL" class="mt-3">URL</label>
-							<input class="input w-100" id="post-URL" aria-describedby="URLHelp" type="url" name="url" placeholder="Optional if you have text." value="{{request.args.get('url','')}}" required oninput="checkForRequired();autoSuggestTitle();hide_image()">
+							<input class="focusable-target input w-100" id="post-URL" aria-describedby="URLHelp" type="url" name="url" placeholder="Optional if you have text." value="{{request.args.get('url','')}}" required oninput="checkForRequired();autoSuggestTitle();hide_image()">
 							<small class="form-text text-muted">To post an image, use a direct image link such as i.imgur.com</small>
 						</div>
 
@@ -314,7 +314,7 @@
 
 							<img id="image-preview" class="w-100 d-block">
 
-							<label class="button m-0" for="file-upload">
+							<label class="focusable-target button m-0" for="file-upload">
 								<div id="filename-show">Select Image</div>
 								<input id="file-upload" type="file" name="file" accept="image/*" hidden>
 							</label>
@@ -327,7 +327,7 @@
 
 						<div class="input-group">
 
-							<textarea v-model="post_body" v-on:input="toggleOn" form="submitform" id="post-text" class="input rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="3" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
+							<textarea v-model="post_body" v-on:input="toggleOn" form="submitform" id="post-text" class="focusable-target input rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="3" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
 
 							<span class="position-absolute text-small font-weight-bold" id="character-count-submit-text-form" style="right: 1rem; bottom: 0.5rem; z-index: 3;"></span>
 
@@ -361,14 +361,14 @@
 						</div>						
 						<a href="/formatting" target="_blank" class="float-right mt-2 mr-2">Formatting help</a>
 
-								<div class="py-3">
+								<div tabindex=-1 class="focusable-target py-3">
 							<label id="tag-label" for="url" class="mt-3">Post Tag (Optional)</label>
 							<br>
 
 							{% for tag in ["news", "trailer", "oc", "video", "music", "picture", "meme", "meta", "discussion", "rant", "review", "question", "breaking-news", "none"] %}
 								<div style="width: max-content; display: inline-block;" class="tag-container">
 									<div class="{{tag}}-tag inline-block" style="width: max-content; position:relative;">
-										<input v-model="post_tag" type="radio" id="{{tag}}-radio" onclick="updatePostTag('{{tag}}')" name="tag" value="{{tag}}" class="tag-radio">
+										<input data-focus-level=2 v-model="post_tag" type="radio" id="{{tag}}-radio" onclick="updatePostTag('{{tag}}')" name="tag" value="{{tag}}" class="focusable-target tag-radio">
 									</div>
 								</div>
 							{% endfor %}
